@@ -53,18 +53,22 @@
 	});		
 	
 	//obtener informacion de los productos
-	$.ajax({									
-		cache       : false,
-		dataType    : 'json',
-		type        : 'GET',
-		url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+$("#txtTypePriceID").val() +'"}'),		
-		success		: fnFillListaProductos,
-		error:function(xhr,data){	
-			console.info("complete data error");									
-			fnWaitClose();
-			fnShowNotification("Error 505","error");
-		}
-	});	
+	function fnObtenerListadoProductos(){
+		$.ajax({									
+			cache       : false,
+			dataType    : 'json',
+			type        : 'GET',
+			url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+$("#txtTypePriceID").val() +'"}'),		
+			success		: fnFillListaProductos,
+			error:function(xhr,data){	
+				console.info("complete data error");									
+				fnWaitClose();
+				fnShowNotification("Error 505","error");
+			}
+		});	
+	}
+
+	fnObtenerListadoProductos();
 	
 	//Incializar Focos
 	document.getElementById("txtScanerCodigo").focus();
@@ -353,12 +357,21 @@
 				});
 			});
 		});
+
 		//Nuevo Producto
 		$(document).on("click","#btnNewItem",function(){
 			var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI("{\"warehouseID\"|\"<?php echo $warehouseID ?>\"{}\"listPriceID\"|\"<?php echo $objListPrice->listPriceID; ?>\"{}\"typePriceID\"|\""+ $("#txtTypePriceID").val() + "\"}");
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteNewItem 	= onCompleteNewItem; 
 		});
+
+		$(document).on("click","#btnNewItemCatalog",function(){
+			var url_request 				 = "<?php echo site_url(); ?>app_inventory_item/add.aspx";
+			window.open(url_request,"MsgWindow","width=700,height=600");			
+			window.fnObtenerListadoProductos = fnObtenerListadoProductos; 
+		});
+
+
 		//Eliminar Item
 		$(document).on("click","#btnDeleteItem",function(){
 				var listRow = objTableDetail.fnGetData();							
@@ -425,6 +438,8 @@
 		fnClearData();
 		//Obtener Informacion de Credito
 		fnWaitOpen();
+
+
 		$.ajax({									
 			cache       : false,
 			dataType    : 'json',
