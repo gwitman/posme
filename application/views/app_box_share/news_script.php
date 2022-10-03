@@ -19,6 +19,7 @@
 		$(document).on("click","#btnClearCustomer",function(){
 					$("#txtCustomerID").val("");
 					$("#txtCustomerDescription").val("");
+					$("#txtBalanceStart").val("0.00");
 		});
 		
 		 //Regresar a la lista
@@ -96,7 +97,7 @@
 				var saldoTotal 			= 0;				
 				objListaCustomerCredit.forEach(function(obj,inl){ saldoTotal = saldoTotal + fnFormatFloat(obj.balance);});
 				saldoTotal = fnFormatNumber(saldoTotal,2);
-				$("#lblSaldoTotal").html(saldoTotal);
+				$("#txtBalanceStart").val(saldoTotal);
 				
 				
 			},
@@ -117,6 +118,11 @@
 		});
 		total = fnFormatNumber(total,2);
 		$("#txtTotal").val(total);
+
+		var saldoFinal = fnFormatFloat($("#txtBalanceStart").val()) - total ;
+		saldoFinal = fnFormatNumber(saldoFinal,2);
+		$("#txtBalanceFinish").val(saldoFinal);
+
 	}
 	function onCompleteNewShare(objResponse){
 		console.info("CALL onCompleteNewShare");	
@@ -160,10 +166,13 @@
 		tmpl.find("#txtDetailTransactionDetailDocument").attr("value",objRow.doc);
 		tmpl.find("#txtDetailTransactionDetailFecha").attr("value",'');
 		tmpl.find("#txtDetailAmortizationID").attr("value",objRow.creditAmortizationID);
-		tmpl.find("#txtDocument").text(objRow.doc + " /Saldo por Factura: " + objBalancesDocument.balance);
+		tmpl.find("#txtDocument").text(objRow.doc);
 		tmpl.find("#txtFecha").text('');
+		tmpl.find("#txtBalanceStartShare").text(objBalancesDocument.balance);
+		tmpl.find("#txtDetailBalanceStart").attr("value",objBalancesDocument.balance);
 		tmpl.find("#txtDetailShare").attr("value",objRow.abonoFaltante);
-		
+		tmpl.find("#txtBalanceFinishShare").text("0.00");
+
 		$("#body_tb_transaction_master_detail").append(tmpl);
 		refreschChecked();
 		

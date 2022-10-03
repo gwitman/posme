@@ -23,8 +23,8 @@ class App_Box_Share extends CI_Controller {
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);			
 			
-			}	
-			
+			}	  
+			 
 			//Librerias		
 			//
 			////////////////////////////////////////
@@ -314,6 +314,8 @@ class App_Box_Share extends CI_Controller {
 			$objTMInfoNew["referenceClientName"]		= $this->input->post("txtReferenceClientName");
 			$objTMInfoNew["referenceClientIdentifier"]	= $this->input->post("txtReferenceClientIdentifier");
 			$objTMInfoNew["receiptAmount"]				= helper_StringToNumber($this->input->post("txtReceiptAmount",0));
+			$objTMInfoNew["reference1"]				= helper_StringToNumber($this->input->post("txtBalanceStart",0));
+			$objTMInfoNew["reference2"]				= helper_StringToNumber($this->input->post("txtBalanceFinish",0));
 			
 			$this->db->trans_begin();
 			
@@ -330,23 +332,27 @@ class App_Box_Share extends CI_Controller {
 			
 			
 			//Actualizar Detalle
-			$arrayListTransactionDetailID				= $this->input->post("txtDetailTransactionDetailID");
-			$arrayListCustomerCreditDocumentID			= $this->input->post("txtDetailCustomerCreditDocumentID");
-			$arrayListTransactionDetailDocument			= $this->input->post("txtDetailTransactionDetailDocument");
-			$arrayListTransactionDetailFecha			= $this->input->post("txtDetailTransactionDetailFecha");
-			$arrayListCustomerCreditAmortizationID		= $this->input->post("txtDetailAmortizationID");
-			$arrayListShare	 							= $this->input->post("txtDetailShare");
+			$arrayListCustomerCreditDocumentID			= $this->input->post("txtDetailCustomerCreditDocumentID");//documentoid
+			$arrayListTransactionDetailID				= $this->input->post("txtDetailTransactionDetailID");//transaccion
+			$arrayListTransactionDetailDocument			= $this->input->post("txtDetailTransactionDetailDocument");//documento numero
+			$arrayListTransactionDetailFecha			= $this->input->post("txtDetailTransactionDetailFecha");//fecha
+			$arrayListCustomerCreditAmortizationID		= $this->input->post("txtDetailAmortizationID");//amorization
+			$arrayListShare	 							= $this->input->post("txtDetailShare");//abono
 			$amount 									= 0;
 			$this->Transaction_Master_Detail_Model->deleteWhereIDNotIn($companyID,$transactionID,$transactionMasterID,$arrayListTransactionDetailID); 
 			
+			log_message("error",print_r("punto de interrupcion**************0",true));
+			log_message("error",print_r($arrayListTransactionDetailID,true));					
+
 			//phpinfo();			
 			if(!empty($arrayListTransactionDetailID)){				
 				foreach($arrayListTransactionDetailID as $key => $value){			
 					log_message("error",print_r("punto de interrupcion**************1",true));
 					log_message("error",print_r($key,true));
 					log_message("error",print_r($value,true));
-					log_message("error",print_r($arrayListTransactionDetailID[$key],true));					
-					$customerCreditDocumentID				= $value;
+					log_message("error",print_r($arrayListTransactionDetailID[$key],true));		
+
+					$customerCreditDocumentID				= $arrayListCustomerCreditDocumentID[$key];
 					log_message("error",print_r("punto de interrupcion**************2",true));
 					$share									= helper_StringToNumber($arrayListShare[$key]);
 					log_message("error",print_r("punto de interrupcion**************3",true));
@@ -361,12 +367,14 @@ class App_Box_Share extends CI_Controller {
 					
 					//Nuevo Detalle
 					if($transactionDetailID == 0){	
+						log_message("error",print_r("nuevo punto de interrupcion**************7.001",true));
+						log_message("error",print_r($customerCreditDocumentID,true));
 						$objCustomerCreditDocument				= $this->Customer_Credit_Document_Model->get_rowByPK($customerCreditDocumentID);						
 						$objCustomerCreditLine					= $this->Customer_Credit_Line_Model->get_rowByPK($objCustomerCreditDocument->customerCreditLineID); /*customerCreditLineID*/
 						
 						$objTMD 								= NULL;
-						$objTMD["companyID"] 					= $objTM["companyID"];
-						$objTMD["transactionID"] 				= $objTM["transactionID"];
+						$objTMD["companyID"] 					= $objTM->companyID;
+						$objTMD["transactionID"] 				= $objTM->transactionID;
 						$objTMD["transactionMasterID"] 			= $transactionMasterID;
 						$objTMD["componentID"]					= $objComponentShare->componentID;
 						$objTMD["componentItemID"] 				= $customerCreditDocumentID;
@@ -398,14 +406,15 @@ class App_Box_Share extends CI_Controller {
 						$objTMD["quantityStockUnaswared"]		= 0;
 						$objTMD["remaingStock"]					= 0;
 						$objTMD["expirationDate"]				= NULL;
-						$objTMD["inventoryWarehouseSourceID"]	= $objTM["sourceWarehouseID"];
-						$objTMD["inventoryWarehouseTargetID"]	= $objTM["targetWarehouseID"];						
+						$objTMD["inventoryWarehouseSourceID"]	= $objTM->sourceWarehouseID;
+						$objTMD["inventoryWarehouseTargetID"]	= $objTM->targetWarehouseID;						
 						$amount 								= $amount + $objTMD["amount"];
 						
 						$this->Transaction_Master_Detail_Model->insert($objTMD);
 					}					
 					//Editar Detalle
-					else{						
+					else{	
+						log_message("error",print_r("edicion punto de interrupcion**************7.002",true));					
 						$objTMD 								= $this->Transaction_Master_Detail_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID,$transactionDetailID,$objComponentShare->componentID);						
 						$objTMDNew 								= null;
 						$objCustomerCreditDocument				= $this->Customer_Credit_Document_Model->get_rowByPK($objTMD->componentItemID);
@@ -428,7 +437,8 @@ class App_Box_Share extends CI_Controller {
 					
 					
 				}
-			}			
+			}	
+
 			log_message("error",print_r("punto de interrupcion**************8",true));
 			//Actualizar Transaccion			
 			$objTMNew["amount"] = $amount;			
@@ -635,6 +645,8 @@ class App_Box_Share extends CI_Controller {
 			$objTMInfo["referenceClientName"]		= $this->input->post("txtReferenceClientName");
 			$objTMInfo["referenceClientIdentifier"]	= $this->input->post("txtReferenceClientIdentifier");
 			$objTMInfo["receiptAmount"]				= helper_StringToNumber($this->input->post("txtReceiptAmount",0));
+			$objTMInfo["reference1"]				= helper_StringToNumber($this->input->post("txtBalanceStart",0));
+			$objTMInfo["reference2"]				= helper_StringToNumber($this->input->post("txtBalanceFinish",0));
 			$this->Transaction_Master_Info_Model->insert($objTMInfo);
 			
 			//Recorrer la lista del detalle del documento
@@ -644,6 +656,7 @@ class App_Box_Share extends CI_Controller {
 			$arrayListCustomerCreditAmortizationID		= $this->input->post("txtDetailAmortizationID");
 			$arrayListShare	 							= $this->input->post("txtDetailShare");			
 			$arrayListTransactionDetailID				= $this->input->post("txtDetailTransactionDetailID");
+			$arrayListBalanceStart						= $this->input->post("txtDetailBalanceStart");
 			$amount 									= 0;
 			
 			if(!empty($arrayListCustomerCreditDocumentID)){
@@ -652,7 +665,7 @@ class App_Box_Share extends CI_Controller {
 					$share									= helper_StringToNumber($arrayListShare[$key]);
 					$transactionDetailID					= $arrayListTransactionDetailID[$key];
 					$reference1Documento					= $arrayListTransactionDetailDocument[$key];
-					$reference2Fecha						= $arrayListTransactionDetailFecha[$key];
+					$reference2BalanceStart					= $arrayListBalanceStart[$key];
 					$refernece3AmortizationID 				= $arrayListCustomerCreditAmortizationID[$key];
 					
 					$objTMD 								= NULL;
@@ -672,8 +685,9 @@ class App_Box_Share extends CI_Controller {
 					$objTMD["promotionID"] 					= 0;
 					
 					$objTMD["reference1"]					= $reference1Documento;
-					$objTMD["reference2"]					= $reference2Fecha;
+					$objTMD["reference2"]					= $reference2BalanceStart;
 					$objTMD["reference3"]					= $refernece3AmortizationID;
+					$objTMD["reference4"]					= 0;
 					$objTMD["catalogStatusID"]				= 0;
 					$objTMD["inventoryStatusID"]			= 0;
 					$objTMD["isActive"]						= 1;

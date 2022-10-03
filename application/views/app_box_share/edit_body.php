@@ -105,7 +105,7 @@
 												<div class="col-lg-6">
 											
 													<div class="form-group">
-														<label class="col-lg-2 control-label" for="buttons">Cliente</label>
+														<label class="col-lg-4 control-label" for="buttons">Cliente</label>
 														<div class="col-lg-8">
 															<div class="input-group">
 																<input type="hidden" id="txtCustomerID" name="txtCustomerID" value="<?php echo $objTransactionMaster->entityID;  ?>">
@@ -129,7 +129,7 @@
 													</div>
 													
 													<div class="form-group">
-														<label class="col-lg-2 control-label" for="buttons">Cobrador</label>
+														<label class="col-lg-4 control-label" for="buttons">Cobrador</label>
 														<div class="col-lg-8">
 															<div class="input-group">
 																<input type="hidden" id="txtEmployeeID" name="txtEmployeeID" value="<?php echo $objTransactionMaster->reference3;  ?>">
@@ -150,6 +150,20 @@
 																
 															</div>
 														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-4 control-label" for="normal">Saldo inicial</label>
+														<div class="col-lg-8">
+															<input class="form-control"   type="text" readonly="tre" name="txtBalanceStart" id="txtBalanceStart" value="<?php echo number_format($objTransactionMasterInfo->reference1,2); ?>">
+														</div>
+													</div>
+
+													<div class="form-group">
+															<label class="col-lg-4 control-label" for="normal">Saldo final</label>
+															<div class="col-lg-8">
+																<input class="form-control"   type="text"  readonly="tre" name="txtBalanceFinish" id="txtBalanceFinish" value="<?php echo number_format($objTransactionMasterInfo->reference2,2); ?>">
+															</div>
 													</div>
 													
 													
@@ -183,15 +197,7 @@
 																	</a>
 																</li>
 																
-																<li>
-																	<a href="#">
-																		<div class="item" style="width:180px;">
-																			<div class="icon orange"><i class="i-temperature"></i></div>
-																			<span class="percent" id="lblSaldoTotal" style="width:120px">0.00</span>
-																			<span class="txt" style="width:120px">Saldo Total:</span>
-																		</div>
-																	</a>
-																</li>
+																
 																
 																
 															
@@ -263,7 +269,9 @@
                                                   <tr>
                                                     <th></th>
 													<th>Documento</th>
+                                                    <th>Saldo inicial</th>
                                                     <th>Abonar</th>
+													<th>Saldo final</th>
                                                   </tr>
                                                 </thead>
                                                 <tbody id="body_tb_transaction_master_detail">
@@ -276,17 +284,20 @@
 															<td>
 																<input type="checkbox"  class="txtCheckedIsActive" name="txtCheckedIsActive[]" value="1" />
 																<input type="hidden" name="txtDetailCustomerCreditDocumentID[]" id="txtDetailCustomerCreditDocumentID"  class="classDetailItem"  value="<?php echo $value->componentItemID; ?>"/>
-																<input type="hidden" name="txtDetailTransactionDetailID[]" value="<?php echo $value->transactionMasterDetailID; ?>"/>
-																
+																<input type="hidden" name="txtDetailTransactionDetailID[]" id="txtDetailTransactionDetailID" value="<?php echo $value->transactionMasterDetailID; ?>"/>																
 																<input type="hidden" name="txtDetailTransactionDetailDocument[]" id="txtDetailTransactionDetailDocument" value="<?php echo $value->reference1; ?>" />
-																<input type="hidden" name="txtDetailTransactionDetailFecha[]" id="txtDetailTransactionDetailFecha" value="<?php echo $value->reference2; ?>"/>
+																<input type="hidden" name="txtDetailTransactionDetailFecha[]" id="txtDetailTransactionDetailFecha"  />
 																<input type="hidden" name="txtDetailAmortizationID[]" id="txtDetailAmortizationID" value="<?php echo $value->reference3; ?>"/>
+																<input type="hidden" name="txtDetailBalanceStart[]" id="txtDetailBalanceStart" value="<?php echo $value->reference2; ?>"/>
+																<input type="hidden" name="txtDetailBalanceFinish[]" id="txtDetailBalanceFinish" value="<?php echo $value->reference4; ?>"/>
 																
 															</td>
 															<td><text id="txtDocument"><?php echo $value->reference1; ?></text></td>
+															<td><text id="txtBalanceStartShare"><?php echo number_format($value->reference2,2); ?></text></td>
 															<td>
 																<input class="form-control txtDetailShare txt-numeric"  type="text" id="txtDetailShare"  name="txtDetailShare[]"  value="<?php echo  number_format($value->amount,2); ?>" />
 															</td>
+															<td><text id="txtBalanceFinishShare"><?php echo number_format($value->reference4,2); ?></text></td>
 														</tr>
 														<?php
 														}
@@ -358,15 +369,18 @@
 									<input type="checkbox"  class="txtCheckedIsActive" name="txtCheckedIsActive[]" value="1" />
 									<input type="hidden" name="txtDetailCustomerCreditDocumentID[]" id="txtDetailCustomerCreditDocumentID"  class="classDetailItem" />
 									<input type="hidden" name="txtDetailTransactionDetailID[]" id="txtDetailTransactionDetailID" />
-									
 									<input type="hidden" name="txtDetailTransactionDetailDocument[]" id="txtDetailTransactionDetailDocument" />
 									<input type="hidden" name="txtDetailTransactionDetailFecha[]" id="txtDetailTransactionDetailFecha" />
 									<input type="hidden" name="txtDetailAmortizationID[]" id="txtDetailAmortizationID" />
+									<input type="hidden" name="txtDetailBalanceStart[]" id="txtDetailBalanceStart" />
+									<input type="hidden" name="txtDetailBalanceFinish[]" id="txtDetailBalanceFinish" />
 									
 								</td>
 								<td><text id="txtDocument"></text></td>
+								<td><text id="txtBalanceStartShare"></text></td>
 								<td>
 									<input class="form-control txtDetailShare txt-numeric"  type="text" id="txtDetailShare"  name="txtDetailShare[]"  value="" />
 								</td>
+								<td><text id="txtBalanceFinishShare"></text></td>
 							</tr>
 					</script>

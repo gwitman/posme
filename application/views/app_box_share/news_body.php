@@ -93,7 +93,7 @@
 												<div class="col-lg-6">
 												
 														<div class="form-group">
-															<label class="col-lg-2 control-label" for="buttons">Cliente</label>
+															<label class="col-lg-4 control-label" for="buttons">Cliente</label>
 															<div class="col-lg-8">
 																<div class="input-group">
 																	<input type="hidden" id="txtCustomerID" name="txtCustomerID" value="">
@@ -116,6 +116,21 @@
 															</div>
 														</div>
 														
+														<div class="form-group">
+																<label class="col-lg-4 control-label" for="normal">Saldo inicial</label>
+																<div class="col-lg-8">
+																	<input class="form-control"   type="text"  readonly="tre" name="txtBalanceStart" id="txtBalanceStart" value="0">
+																</div>
+														</div>
+
+														<div class="form-group">
+																<label class="col-lg-4 control-label" for="normal">Saldo final</label>
+																<div class="col-lg-8">
+																	<input class="form-control"   type="text"  readonly="tre" name="txtBalanceFinish" id="txtBalanceFinish" value="0">
+																</div>
+														</div>
+
+
 														<div class="vital-stats">
 															<ul>
 																
@@ -147,15 +162,7 @@
 																	</a>
 																</li>
 																
-																<li>
-																	<a href="#">
-																		<div class="item" style="width:180px;">
-																			<div class="icon orange"><i class="i-temperature"></i></div>
-																			<span class="percent" id="lblSaldoTotal" style="width:120px">0.00</span>
-																			<span class="txt" style="width:120px" >Saldo Total:</span>
-																		</div>
-																	</a>
-																</li>
+																
 																
 															</ul>
 														</div><!-- End .vital-stats -->
@@ -225,7 +232,9 @@
                                                   <tr>
                                                     <th></th>
 													<th>Documento</th>
+													<th>Saldo inicial</th>
                                                     <th>Abonar</th>
+													<th>Saldo final</th>
                                                   </tr>
                                                 </thead>
                                                 <tbody id="body_tb_transaction_master_detail">
@@ -295,16 +304,19 @@
 								<td>
 									<input type="checkbox"  class="txtCheckedIsActive" name="txtCheckedIsActive[]" value="1" />
 									<input type="hidden" name="txtDetailCustomerCreditDocumentID[]" id="txtDetailCustomerCreditDocumentID"  class="classDetailItem" />
-									<input type="hidden" name="txtDetailTransactionDetailID[]" />
-									
+									<input type="hidden" name="txtDetailTransactionDetailID[]" id="txtDetailTransactionDetailID" />
 									<input type="hidden" name="txtDetailTransactionDetailDocument[]" id="txtDetailTransactionDetailDocument" />
 									<input type="hidden" name="txtDetailTransactionDetailFecha[]" id="txtDetailTransactionDetailFecha" />
 									<input type="hidden" name="txtDetailAmortizationID[]" id="txtDetailAmortizationID" />
+									<input type="hidden" name="txtDetailBalanceStart[]" id="txtDetailBalanceStart" />
+									<input type="hidden" name="txtDetailBalanceFinish[]" id="txtDetailBalanceFinish" />
 									
 								</td>
 								<td><text id="txtDocument"></text></td>
+								<td><text id="txtBalanceStartShare"></text></td>
 								<td>
 									<input class="form-control txtDetailShare txt-numeric"  type="text" id="txtDetailShare"  name="txtDetailShare[]"  value="" />
 								</td>
+								<td><text id="txtBalanceFinishShare"></text></td>
 							</tr>
 					</script>

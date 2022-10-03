@@ -8,31 +8,26 @@
 		 $('.txt-numeric').mask('000,000.00', {reverse: true});
 		 
 		 
-		 //Buscar los Creditos del Cliente
-		//fnWaitOpen();		
-		//$.ajax({									
-		//	cache       : false,
-		//	dataType    : 'json',
-		//	type        : 'POST',
-		//	url  		: "<?php echo site_url(); ?>app_cxc_api/getCustomerBalance",
-		//	data 		: {customerID : $("#txtCustomerID").val()  },
-		//	success		: function(obj,index,event){
-		//		console.info("complete data success getCustomerBalance");
-		//		fnWaitClose();
-		//		console.info(obj);
-		//		objListaCustomerCredit 	= obj.array;
-		//		var saldoTotal 			= 0;				
-		//		objListaCustomerCredit.forEach(function(obj,inl){ saldoTotal = saldoTotal + fnFormatFloat(obj.balance);});
-		//		saldoTotal = fnFormatNumber(saldoTotal,2);
-		//		$("#lblSaldoTotal").html(saldoTotal);
-		//		
-		//	},
-		//	error:function(xhr,data){	
-		//		console.info("complete data error getCustomerBalance");
-		//		fnWaitClose();
-		//		fnShowNotification("Error 505","error");
-		//	}
-		//});
+		//Buscar los Creditos del Cliente
+		fnWaitOpen();		
+		$.ajax({									
+			cache       : false,
+			dataType    : 'json',
+			type        : 'POST',
+			url  		: "<?php echo site_url(); ?>app_cxc_api/getCustomerBalance",
+			data 		: {customerID : $("#txtCustomerID").val()  },
+			success		: function(obj,index,event){
+				console.info("complete data success getCustomerBalance");
+				fnWaitClose();
+				console.info(obj);
+				objListaCustomerCredit 	= obj.array;
+			},
+			error:function(xhr,data){	
+				console.info("complete data error getCustomerBalance");
+				fnWaitClose();
+				fnShowNotification("Error 505","error");
+			}
+		});
 		
 		
 		//Buscar el Cliente
@@ -52,6 +47,7 @@
 		$(document).on("click","#btnClearCustomer",function(){
 					$("#txtCustomerID").val("");
 					$("#txtCustomerDescription").val("");
+					$("#txtBalanceStart").val("0.00");
 		});
 		
 		//Eliminar el Gestor de Cobro
@@ -169,30 +165,30 @@
 		$("#txtCustomerID").val(objResponse[1]);
 		$("#txtCustomerDescription").val(objResponse[2] + " " + objResponse[3] + " / " + objResponse[4]);
 		
-		//fnWaitOpen();		
-		//$.ajax({									
-		//	cache       : false,
-		//	dataType    : 'json',
-		//	type        : 'POST',
-		//	url  		: "<?php echo site_url(); ?>app_cxc_api/getCustomerBalance",
-		//	data 		: {customerID : $("#txtCustomerID").val()  },
-		//	success		: function(obj,index,event){
-		//		console.info("complete data success getCustomerBalance");
-		//		fnWaitClose();
-		//		console.info(obj);
-		//		objListaCustomerCredit 	= obj.array;
-		//		var saldoTotal 			= 0;				
-		//		objListaCustomerCredit.forEach(function(obj,inl){ saldoTotal = saldoTotal + fnFormatFloat(obj.balance);});
-		//		saldoTotal = fnFormatNumber(saldoTotal,2);
-		//		$("#lblSaldoTotal").html(saldoTotal);
-		//		
-		//	},
-		//	error:function(xhr,data){	
-		//		console.info("complete data error getCustomerBalance");
-		//		fnWaitClose();
-		//		fnShowNotification("Error 505","error");
-		//	}
-		//});
+		fnWaitOpen();		
+		$.ajax({									
+			cache       : false,
+			dataType    : 'json',
+			type        : 'POST',
+			url  		: "<?php echo site_url(); ?>app_cxc_api/getCustomerBalance",
+			data 		: {customerID : $("#txtCustomerID").val()  },
+			success		: function(obj,index,event){
+				console.info("complete data success getCustomerBalance");
+				fnWaitClose();
+				console.info(obj);
+				objListaCustomerCredit 	= obj.array;
+				var saldoTotal 			= 0;				
+				objListaCustomerCredit.forEach(function(obj,inl){ saldoTotal = saldoTotal + fnFormatFloat(obj.balance);});
+				saldoTotal = fnFormatNumber(saldoTotal,2);
+				$("#txtBalanceStart").val(saldoTotal);
+				
+			},
+			error:function(xhr,data){	
+				console.info("complete data error getCustomerBalance");
+				fnWaitClose();
+				fnShowNotification("Error 505","error");
+			}
+		});
 							
 	}
 	function updateSummary(){
@@ -203,13 +199,18 @@
 		});
 		total = fnFormatNumber(total,2);
 		$("#txtTotal").val(total);
+
+		var saldoFinal = fnFormatFloat($("#txtBalanceStart").val()) - total ;
+		saldoFinal = fnFormatNumber(saldoFinal,2);
+		$("#txtBalanceFinish").val(saldoFinal);
+
 	}
 	function onCompleteNewShare(objResponse){
 		console.info("CALL onCompleteNewShare");	
 		
-		//var objBalancesDocument = 
-		//jLinq.from(objListaCustomerCredit).where(function(obj){ return obj.documentNumber == objResponse[4]}).select()[0];
-		//objBalancesDocument.balance = fnFormatNumber(objBalancesDocument.balance,2);
+		var objBalancesDocument = 
+		jLinq.from(objListaCustomerCredit).where(function(obj){ return obj.documentNumber == objResponse[4]}).select()[0];
+		objBalancesDocument.balance = fnFormatNumber(objBalancesDocument.balance,2);
 		
 		var objRow 						= {};
 		objRow.checked 					= false;
@@ -240,16 +241,18 @@
 		
 		
 		var tmpl = $($("#tmpl_row_document").html());
-		tmpl.find("#txtDetailCustomerCreditDocumentID").attr("value",objRow.customerCreditDocumentID);
-		//tmpl.find("#txtDetailTransactionDetailID").attr("value",0);
+		
+		tmpl.find("#txtDetailCustomerCreditDocumentID").attr("value",objRow.customerCreditDocumentID);		
+		tmpl.find("#txtDetailTransactionDetailID").attr("value",0);		
 		tmpl.find("#txtDetailTransactionDetailDocument").attr("value",objRow.doc);
 		tmpl.find("#txtDetailTransactionDetailFecha").attr("value",'');
-		tmpl.find("#txtDetailAmortizationID").attr("value",objRow.creditAmortizationID);		
-		//tmpl.find("#txtDocument").text(objRow.doc + " /Saldo por Factura: " + objBalancesDocument.balance);
+		tmpl.find("#txtDetailAmortizationID").attr("value",objRow.creditAmortizationID);				
 		tmpl.find("#txtDocument").text(objRow.doc);
 		tmpl.find("#txtFecha").text('');
+		tmpl.find("#txtBalanceStartShare").text(objBalancesDocument.balance);
+		tmpl.find("#txtDetailBalanceStart").attr("value",objBalancesDocument.balance);
 		tmpl.find("#txtDetailShare").attr("value",objRow.abonoFaltante);
-		
+		tmpl.find("#txtBalanceFinishShare").text("0.00");
 		
 		$("#body_tb_transaction_master_detail").append(tmpl);
 		refreschChecked();
