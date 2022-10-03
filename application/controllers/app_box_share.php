@@ -221,7 +221,7 @@ class App_Box_Share extends CI_Controller {
 				throw new Exception(NOT_ALL_EDIT);	
 			}
 			
-			$this->load->model("Transaction_Model");	
+			$this->load->model("Transaction_Model");	  
 			$this->load->model("Company_Currency_Model");
 			$this->load->model('core/Bd_Model');
 			$this->load->model("Transaction_Master_Model");
