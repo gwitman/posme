@@ -1,0 +1,127 @@
+@media print {
+}
+
+@media screen , print  {	
+	body {
+		background-image 	: url("");
+		background-repeat 	: no-repeat;
+		background-size		: 120px 40px;
+		background-position-x : 10px;
+		background-position-y : 10px;
+	}
+	.data_tr:hover {
+	  color: 		red;
+	  background: 	black;
+	}
+	
+	.data_grid_encabezado {
+		width: 100%
+	}
+	.data_grid_encabezado > table {
+		width		: 100%;
+		font-size	: x-small;
+		font-family	: monospace;
+	}
+	.data_grid_firm_system > table {
+		width		: 100%;
+		font-size	: x-small;
+		font-family	: monospace;
+	}
+	.data_grid_firm_system > table > tbody > tr > td:first-child{
+		width		: 100%;
+		text-align 	: center;
+	}
+	
+	.data_grid_firm_app > table {
+		width		: 100%;
+		font-size	: x-small;
+		font-family	: monospace;
+		text-align	: center;
+	}
+	
+	.data_grid_left > table {
+		width		: 100%;
+		font-size	: x-small;
+		font-family	: monospace;
+	}
+	
+	.data_grid_left > table > tbody > tr > td:first-child{
+		width		: 100px;
+		font-size	: x-small;
+		font-family	: monospace;
+		font-weight : bolder;
+		background	: #ccc
+	}
+	
+	.data_grid_right > table {
+		width		: 100%;
+		font-size	: x-small;
+		font-family	: monospace;
+	}
+	.data_grid_right > table > tbody > tr > td:nth-child(1){
+		width		: 60%;
+	}
+	.data_grid_right > table > tbody > tr > td:nth-child(2){
+		width		: 100px;
+		font-size	: x-small;
+		font-family	: monospace;
+		font-weight : bolder;
+		background	: #ccc
+	}
+	.data_grid_right > table > tbody > tr > .cell_right{
+		text-align	: right;
+	}
+	.data_grid_right > table > tbody > tr > .cell_left{
+		text-align	: left;
+	}
+	
+	.data_grid_body > table {
+		width		: 100%;
+		font-size	: x-small;
+		font-family	: monospace;
+	}
+	.data_grid_body > table > thead,.data_grid_body > table > tfoot {
+		background	: #ccc;
+		text-align	: center;
+	}
+	.data_grid_body > table > thead > tr > .cell_right,
+	.data_grid_body > table > tfoot > tr > .cell_right {
+		background	: #ccc;
+		text-align	: right;
+	}
+	.data_grid_body > table > tbody > tr > .cell_right {
+		text-align	: right;
+	}	
+	.data_grid_body > table > thead > tr > .cell_left,
+	.data_grid_body > table > tfoot > tr > .cell_left {
+		background	: #ccc;
+		text-align	: left;
+	}
+	.data_grid_body > table > tbody > tr > .cell_left {
+		text-align	: left;
+	}
+	.data_grid_body > table > thead > tr > .cell_center,
+	.data_grid_body > table > tfoot > tr > .cell_center {
+		background	: #ccc;
+		text-align	: center;
+	}
+	.data_grid_body > table > tbody > tr > .cell_center {
+		text-align	: center;
+	}
+	
+	table {
+		border-collapse:collapse;
+	}
+	
+}
+@media screen  {
+	
+}
+/*
+@media print {
+	.data_grid_encabezado {
+	  position: fixed;
+	  bottom: 20px;
+	}
+}
+*/

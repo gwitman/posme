@@ -1,0 +1,253 @@
+---------------------------------------
+instalador:
+---------------------------------------
+---------------------------------------
+---------------------------------------
+		instalar any desk en la computadora.
+		
+		crear una carpeta llamada
+		C:\TeamDS-Importacion
+		
+		pasar a la carpeta los siguientes archivos:
+			HeidiSQL_8.2.0.4675_Setup.exe
+			xampp-win32-1.8.3-2-VC11-installer.exe
+			AdbeRdr1011_es_ES.exe
+			Driver Para Printer 80 - HING.rar
+			npp.6.5.3.Installer.exe			
+			instalar chrome			
+			sqlexamine
+			mysql-conector-net-6.9.8.msi
+			mysql-conector-odbc-5.3.4.win32.msi
+			mysql-conector-odbc-5.3.4.win64.msi
+			mysql-conector-net-6.9.8.msi
+			Trasladar La ultima version del sistema
+			Trasladar la ultima version de la bd
+			
+			
+			
+		instalar el programa  npp.6.5.3.Installer.exe
+		
+		instalar el programa de AdbeRdr1011_es_ES.exe
+		
+		instalar el programa de Driver Para Printer 80-Hing
+		para serie 80
+		
+		instalar el programa de HeidiSQL_8
+		
+		instalar el programa xampp-wind-32
+		
+		instalar chrome.exe descargarlo de la web.
+		
+		dentro de la carpeta C\xampp
+		crear el siguiente directorio: C\xampp\teamds2\nsSystem\
+		
+		
+		es esa nueva capreta dejar caer las carptas del sitema
+		
+		en la carpeta C\xampp\tmp
+		dejar caer la informacion de la capreta :
+		C:\TeamDS-Importacion\XamppTemp
+		
+		
+		a la carpeta C\xampp 
+		agregar los permisos para todos los usuarios. 
+		todos los permisos.
+		
+		
+		
+		
+		
+acceder a pypmyadmin		
+		crear base de datos:
+		posme
+		
+		
+		crear usuarios:
+		root@localhost		root1.2Blandon
+		root@%				root1.2Blandon
+		root@127.0.0.1		root1.2Blandon
+		root@::1			root1.2Blandon
+		
+modificar los siguientes archivos:
+		Modificar las credenciales de la siguiente ruta:
+		C:\xampp\phpMyAdmin\config.inc.php
+		
+		
+acceder a pypmyadmin		
+		cambiar contraseña de los demas root
+		root:						root1.2Blandon
+		
+		
+crear la carpeta
+		xampp/ca/cacert.pem
+		
+		
+modificar los siguientes archivos:
+		configurar el tiempo de phpMyAdmin.
+		xampp\phpMyAdmin\libraries\config.default.php
+		Look for : $cfg['ExecTimeLimit'] = 600;		
+		
+		
+		Aumentar el tamaño de los archivos, para importar data
+		C:\xampp\php\php.ini
+		post_max_size=80M
+		upload_max_filesize=80M
+		
+		
+		; http://php.net/date.timezone
+		; date.timezone=Europe/Berlin
+		date.timezone=America/Managua
+		
+		
+		[Curl]
+		curl.cainfo = "C:\xampp\ca\cacert.pem"
+		
+
+
+		
+modificar los siguientes archivos:		
+		apache\config\httpd.confg:  ó   apache/conf/extra/httpd-xampp.conf
+			#posMe	
+			Alias /posme "C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/"
+			<Directory "C:/xampp/teamds2/nsSystem/fidlocal-produccion-app">
+				Options Indexes FollowSymLinks Includes ExecCGI
+				AllowOverride All
+				Require all granted
+			</Directory>
+			
+			#posMe-adm	
+			Alias /posme-adm "C:/xampp/teamds2/nsSystem/fidlocal-produccion-adm/"
+			<Directory "C:/xampp/teamds2/nsSystem/fidlocal-produccion-adm">
+				Options Indexes FollowSymLinks Includes ExecCGI
+				AllowOverride All
+				Require all granted
+			</Directory>
+	
+
+		
+	
+			
+modificar los siguientes archivos:	
+		reiniciar el servidor xampp
+		
+		
+acceder a phpmy admin		
+		importar la base de datos.
+
+		
+Ejecutar el Script de Limpieza e Inicializacion de Base de Datos
+		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\clear_importar_data_base.sql		
+
+
+Ejecutar el Scritp de Actualizacion de Versiones
+		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\versiones.sql		
+
+
+		Crear acceso directo
+		
+		Crear xampp como servicio
+
+		Crear extension de chrome userguiding
+
+
+Agregar Logo Tipo
+		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\
+		img\logo-micro-finanza.jpg
+		
+		
+
+Configurar parametros usando o creando el script
+		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\actualizar_parametros_[cliente].sql
+		
+Modificar Usuarios del Sistema
+		MODIFICAR EMAIL , del usuario del sistema:
+		inventario,facturador por: company_usuario_@gmail.com
+
+		
+		
+---------------------------------------
+actualizacion:
+---------------------------------------
+---------------------------------------
+---------------------------------------
+	tener a mano, el disco duro.
+	
+	crear una copia de la base de datos de desarrollo
+	
+	guardar la copia en el disco duro
+	E:\Witman_BDMySQL\posme_2022_09_18_0000_000.sql
+	
+	acceder a any desk. de la pc.
+
+	en la maquina del cliente, crear una copia de la siguiente carpeta
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app como 
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app_2022_09_18_001
+	
+	pasar los siguientes carpetas de la maquina de desarrollo al
+	la maquina del cliente
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\view
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\models
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\libraries
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\helpers
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\controllers
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\config\autoload.php  >>>  muy raro.
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\config\constants.php >>>  muy raro.
+	
+	
+	pasar el archivo de respaldo, a la maquina del cliente
+	E:\Witman_BDMySQL\posme_2022_09_18_0000_000.sql
+	en la siguiente direccion.
+	C:\TeamDS-Importacion 	
+	
+	entrar a phpMyAdmin del cliente
+	y realizar un back de la baes de cliente.
+	guardar el backup en la siguiente direccion.
+	C:\TeamDS-Importacion\posme_[cliente]_2022_09_18_0000_000.sql
+	
+	extraer el archivo de back del cliente y dejarlo caer en la
+	siguiente direccion
+	E:\Witman_BDMySQL\...
+	
+	entrar a phpMyAdmini y lebantr el backu de origen
+	utilizando la siguiene base de datos
+	posme_origen <<< 
+	posme_2022_09_18_0000_000.sql
+	
+	realiar merge de estructuras con SQLExaminer.
+	
+	realizar merge de datos con SQL DataExaminer.
+	
+	ejecutar el script de actualizacion.
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\actualizar_parametros_[cliente].sql
+	
+	
+	
+		
+---------------------------------------
+certificado vencido:
+---------------------------------------
+---------------------------------------
+---------------------------------------		
+	pega los archivos en la siguienre ruta:
+	xampp/apache/bin/
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\certif\cert.conf
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\certif\make-cert.bat
+			
+	abrir el siguiente programa
+	xampp/apache/bin/openssl.exe
+	
+	ejecutar el siguiente comando	
+	openssl.exe req -config cert.conf -new -sha256 -newkey rsa:2048 -nodes -keyout  localhost_server.key -x509 -days 3650 -out localhost_server.crt
+	
+	modifica el siguiente archivo
+	xampp/apache/conf/ssl.crt por los nuevos
+	xampp/apache/conf/ssl.key por los nuevos
+	
+	instala el certificado en window.
+	
+	reinicia el xampp
+	
+	limpia la cheche si es posible
+	
+	
+	

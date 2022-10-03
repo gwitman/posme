@@ -1,0 +1,3 @@
+RewriteEngine on 
+RewriteCond $1 !^(index.php|robots.txt|css|js|img|theme-kuta-admin|theme-genyx|file_help|theme-remark) 
+RewriteRule ^(.*)$ /posme/index.php/$1 [L]

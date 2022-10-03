@@ -1,0 +1,9 @@
+COMPROBANTE PROVEEDOR.
+1) Restar de banco.  (El capital + el interés) 1,318.10, que se le paga al proveedor.
+2) Restar al proveedor. (El capital) 627.00  que se le paga al proveedor, por que ya se le debe menos.
+
+3) Restar de la cuenta de utilidades de interés, (El interés) 691.10 que se le paga al proveedor, por que pagamos al proveedor el interés que se gano por invertir su dinero. por tanto se gana menos. y se le debe menos al proveedor.
+
+4) Restamos de la cuenta de pago al capital. (El capital)  627.00 ya que el cliente no nos pago a nosotros el capital se lo pago al proveedor.
+
+5) Restamos la cuenta de costo.  (El capital) 627.00  ya que el costo de ese capital no lo asumimos nosotros, lo asumió el proveedor. por haber arriesgado su dinero.
