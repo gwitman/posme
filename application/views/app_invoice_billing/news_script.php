@@ -50,6 +50,11 @@
 			}
 		});
 	}
+
+	function fnCustomerNewCompleted(){
+		console.info("cliente completado");
+	}
+	
 	
 	fnObtenerListadoProductos();
 		
@@ -232,6 +237,12 @@
 			var url_request 			= "<?php echo site_url(); ?>app_inventory_item/add/callback/fnObtenerListadoProductos";
 			window.open(url_request,"MsgWindow","width=700,height=600");
 			window.fnObtenerListadoProductos = fnObtenerListadoProductos; 			
+		});
+
+		$(document).on("click","#btnSearchCustomerNew",function(){
+			var url_request 				 = "<?php echo site_url(); ?>app_cxc_customer/add/callback/fnCustomerNewCompleted";
+			window.open(url_request,"MsgWindow","width=700,height=600");
+			window.fnCustomerNewCompleted = fnCustomerNewCompleted; 	
 		});
 
 		

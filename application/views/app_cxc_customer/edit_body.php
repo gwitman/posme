@@ -8,12 +8,21 @@
 
                                 <div class="btn-group pull-right">									
 
-									<a href="<?php echo site_url(); ?>app_cxc_customer/index.aspx" id="btnBack" class="btn btn-inverse" ><i class="icon16 i-rotate"></i> Atras</a>                                    
+									<?php 
+										if($callback == "false")
+										{
+											?>
+												<a href="<?php echo site_url(); ?>app_cxc_customer/index.aspx" id="btnBack" class="btn btn-inverse" ><i class="icon16 i-rotate"></i> Atras</a>
+												<a href="#" class="btn btn-danger" id="btnDelete"><i class="icon16 i-remove"></i> Eliminar</a>
+												<a href="#" class="btn btn-primary" id="btnPrinter"><i class="icon16 i-print"></i> Imprimir</a>
+											<?php
 
-									<a href="#" class="btn btn-danger" id="btnDelete"><i class="icon16 i-remove"></i> Eliminar</a>									
-
-									<a href="#" class="btn btn-primary" id="btnPrinter"><i class="icon16 i-print"></i> Imprimir</a>
-
+										}
+										else{
+											?>
+											<?php
+										}
+									?>     
                                     <a href="#" class="btn btn-success" id="btnAcept"><i class="icon16 i-checkmark-4"></i> Guardar</a>
 
                                 </div>
@@ -104,7 +113,8 @@
 
 													<input type="hidden" name="txtEntityID" value="<?php echo $objCustomer->entityID; ?>">
 
-													
+													<input type="hidden" name="txtCallback" value="<?php echo $callback; ?>"/>
+
 
 													<div class="form-group">
 

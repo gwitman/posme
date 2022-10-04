@@ -1,9 +1,19 @@
 <!-- ./ page heading -->
-<script>					
+<script>	
+	var objCallback		= '<?php echo $callback; ?>';				
 	var objTableEmail 	= {};
 	var objTablePhone 	= {};
 	var objTableLine 	= {};
 	var site_url 	  	= "<?php echo site_url(); ?>";
+	
+	//este evento es util cuando la pantalla se ejecuta desde la pantalla de facturacion
+	if(objCallback != 'false'){
+		$(window).unload(function() {
+			//do something
+			window.opener.<?php echo $callback; ?>(); 
+		});
+	}
+
 	
 	$(document).ready(function(){	
 		//Inicializar DataPciker

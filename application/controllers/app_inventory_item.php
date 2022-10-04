@@ -40,8 +40,7 @@ class App_Inventory_Item extends CI_Controller {
 			
 			
 			//Redireccionar datos
-			$uri			= $this->uri->uri_to_assoc(3);
-						
+			$uri			= $this->uri->uri_to_assoc(3);						
 			$companyID		= $uri["companyID"];
 			$itemID			= $uri["itemID"];				
 			$callback		= array_key_exists("callback",$uri) ? $uri["callback"]: "false";

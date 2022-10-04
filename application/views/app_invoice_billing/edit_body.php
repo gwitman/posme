@@ -250,15 +250,17 @@
 											</span>
 
 											<span class="input-group-btn">
-
 												<button class="btn btn-primary" type="button" id="btnSearchCustomer">
-
 													<i aria-hidden="true" class="i-search-5"></i>
-
 													buscar
-
 												</button>
+											</span>
 
+											<span class="input-group-btn">
+												<button class="btn btn-success" type="button" id="btnSearchCustomerNew">
+													<i aria-hidden="true" class="i-plus"></i>
+													nuevo
+												</button>
 											</span>
 
 											
