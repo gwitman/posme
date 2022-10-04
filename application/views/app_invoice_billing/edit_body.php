@@ -326,7 +326,7 @@
 
 								<div class="form-group">
 
-										<label class="col-lg-4 control-label" for="normal">Cliente Ref.</label>
+										<label class="col-lg-4 control-label" for="normal">Cliente</label>
 
 										<div class="col-lg-8">
 
@@ -340,7 +340,7 @@
 
 								<div class="form-group">
 
-										<label class="col-lg-4 control-label" for="normal">Cedula Cliente Ref.</label>
+										<label class="col-lg-4 control-label" for="normal">Cedula</label>
 
 										<div class="col-lg-8">
 
