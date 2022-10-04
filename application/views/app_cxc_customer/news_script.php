@@ -399,7 +399,7 @@
 		//Nuevo Line
 		$(document).on("click","#btnNewLine",function(){
 			console.info("call click_btnNewLine");
-			window.open(site_url+"app_cxc_customer/add_credit_line","MsgWindow","width=650,height=500");
+			window.open(site_url+"app_cxc_customer/add_credit_line","MsgWindow","width=700,height=600");
 			window.parentNewLine = parentNewLine;
 		});
 		//Eliminar Linea
@@ -514,6 +514,12 @@
 			fnShowNotification("Escribir la Identificacion","error",timerNotification);
 			result = false;
 		}
+
+		if($($("#body_detail_line").find("tr")[0]).find("td").length <= 1){
+			fnShowNotification("Configurar una linea al cliente","error",timerNotification);
+			result = false;
+		}
+
 		//Nombre
 		if( 
 			(

@@ -62,7 +62,7 @@
 						<div class="col-lg-6">
 								
 								<div class="form-group">
-										<label class="col-lg-4 control-label" for="normal">*Nombre</label>
+										<label class="col-lg-4 control-label text-primary" for="normal">*Nombre</label>
 										<div class="col-lg-8">
 											<input class="form-control"  type="text"  name="txtName" id="txtName" value="<?php echo htmlentities($objItem->name,ENT_QUOTES); ?>">												
 											<input type="hidden" name="txtItemID" value="<?php echo $objItem->itemID; ?>"/>
@@ -72,7 +72,7 @@
 								</div>
 								
 								<div class="form-group">
-										<label class="col-lg-4 control-label" for="normal">Barra</label>
+										<label class="col-lg-4 control-label text-primary" for="normal">Barra</label>
 										<div class="col-lg-8">
 											<input class="form-control"  type="text"  name="txtBarCode" id="txtBarCode" value="<?php echo $objItem->barCode; ?>">												
 										</div>

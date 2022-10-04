@@ -133,7 +133,7 @@
 
 													<div class="form-group">
 
-															<label class="col-lg-4 control-label" for="normal">*Primer Nombre</label>
+															<label class="col-lg-4 control-label text-primary" for="normal">*Primer Nombre</label>
 
 															<div class="col-lg-8">
 
@@ -257,7 +257,7 @@
 
 													<div class="form-group">
 
-															<label class="col-lg-4 control-label" for="normal">*Identificacion</label>
+															<label class="col-lg-4 control-label text-primary" for="normal">*Identificacion</label>
 
 															<div class="col-lg-8">
 
@@ -858,7 +858,7 @@
 
 														<div class="form-group">
 
-															<label class="col-lg-4 control-label" for="selectFilter">*Pais</label>
+															<label class="col-lg-4 control-label text-primary" for="selectFilter">*Pais</label>
 
 															<div class="col-lg-8">
 
@@ -888,7 +888,7 @@
 
 														<div class="form-group">
 
-															<label class="col-lg-4 control-label" for="selectFilter">*Departamento</label>
+															<label class="col-lg-4 control-label text-primary" for="selectFilter">*Departamento</label>
 
 															<div class="col-lg-8">
 
@@ -904,7 +904,7 @@
 
 														<div class="form-group">
 
-															<label class="col-lg-4 control-label" for="selectFilter">*Municipio</label>
+															<label class="col-lg-4 control-label text-primary" for="selectFilter">*Municipio</label>
 
 															<div class="col-lg-8">
 

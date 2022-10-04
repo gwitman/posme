@@ -241,7 +241,7 @@
 
 		$(document).on("click","#btnSearchCustomerNew",function(){
 			var url_request 				 = "<?php echo site_url(); ?>app_cxc_customer/add/callback/fnCustomerNewCompleted";
-			window.open(url_request,"MsgWindow","width=700,height=600");
+			window.open(url_request,"mozillaWindow","width=700,height=600");
 			window.fnCustomerNewCompleted = fnCustomerNewCompleted; 	
 		});
 
