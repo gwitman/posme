@@ -1,13 +1,15 @@
 <!-- ./ page heading -->
 <script>	
-	var objRowWarehouse = {};
+	var objCallback				= '<?php echo $callback; ?>';
+	var objRowWarehouse 		= {};
 
 	//este evento es util cuando la pantalla se ejecuta desde la pantalla de facturacion
-	//
-	$(window).unload(function() {
-		//do something
-		window.opener.fnObtenerListadoProductos(); 
-	});
+	if(objCallback != 'false'){
+		$(window).unload(function() {
+			//do something
+			window.opener.<?php echo $callback; ?>(); 
+		});
+	}
 
 
 	$(document).ready(function(){	

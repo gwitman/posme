@@ -43,7 +43,8 @@ class App_Inventory_Item extends CI_Controller {
 			$uri			= $this->uri->uri_to_assoc(3);
 						
 			$companyID		= $uri["companyID"];
-			$itemID			= $uri["itemID"];	
+			$itemID			= $uri["itemID"];				
+			$callback		= array_key_exists("callback",$uri) ? $uri["callback"]: "false";
 			$branchID 		= $dataSession["user"]->branchID;
 			$roleID 		= $dataSession["role"]->roleID;			
 			if((!$companyID || !$itemID))
@@ -76,7 +77,7 @@ class App_Inventory_Item extends CI_Controller {
 			$dataView["objListUnitMeasure"]			= $this->core_web_catalog->getCatalogAllItem("tb_item","unitMeasureID",$companyID);
 			$dataView["objListDisplay"]				= $this->core_web_catalog->getCatalogAllItem("tb_item","displayID",$companyID);
 			$dataView["objListDisplayUnitMeasure"]	= $this->core_web_catalog->getCatalogAllItem("tb_item","displayUnitMeasureID",$companyID);
-			
+			$dataView["callback"]					= $callback;
 			
 					
 			//Renderizar Resultado
@@ -86,7 +87,13 @@ class App_Inventory_Item extends CI_Controller {
 			$dataSession["body"]			= $this->load->view('app_inventory_item/edit_body',$dataView,true);
 			$dataSession["script"]			= $this->load->view('app_inventory_item/edit_script',$dataView,true);  
 			$dataSession["footer"]			= "";				
-			$this->load->view("core_masterpage/default_masterpage",$dataSession);	
+
+			if($callback == "false")
+				$this->load->view("core_masterpage/default_masterpage",$dataSession);	
+			else
+				$this->load->view("core_masterpage/default_widgetchoose",$dataSession);	
+
+			
 			
 		}
 		catch(Exception $ex){
@@ -265,8 +272,9 @@ class App_Inventory_Item extends CI_Controller {
 					
 					//Ingresar Cuenta					
 					$this->db->trans_begin();					
+					$callback  								= $this->input->post("txtCallback"); 
 					$objItem["companyID"]					= $dataSession["user"]->companyID;
-					$objItem["branchID"] 					= $dataSession["user"]->branchID;
+					$objItem["branchID"] 					= $dataSession["user"]->branchID;					
 					$objItem["inventoryCategoryID"] 		= $this->input->post("txtInventoryCategoryID");
 					$objItem["familyID"] 					= $this->input->post("txtFamilyID");
 					$objItem["itemNumber"] 					= $this->core_web_counter->goNextNumber($dataSession["user"]->companyID,$dataSession["user"]->branchID,"tb_item",0);
@@ -371,7 +379,7 @@ class App_Inventory_Item extends CI_Controller {
 					if($this->db->trans_status() !== false){
 						$this->db->trans_commit();						
 						$this->core_web_notification->set_message(false,SUCCESS);
-						redirect('app_inventory_item/edit/companyID/'.$companyID."/itemID/".$itemID);						
+						redirect('app_inventory_item/edit/companyID/'.$companyID."/itemID/".$itemID."/callback/".$callback);						
 					}
 					else{
 						$this->db->trans_rollback();						
@@ -415,10 +423,11 @@ class App_Inventory_Item extends CI_Controller {
 					if(!file_exists($directoryItem))
 					mkdir( $directoryItem,0700);
 					
-					$this->db->trans_begin();						
+					$this->db->trans_begin();	
+					$callback  	= $this->input->post("txtCallback"); 									
 					if(!$this->core_web_workflow->validateWorkflowStage("tb_item","statusID",$objOldItem->statusID,COMMAND_EDITABLE,$dataSession["user"]->companyID,$dataSession["user"]->branchID,$dataSession["role"]->roleID))
 					{
-						//Actualizar Cuenta						
+						//Actualizar Cuenta								
 						$objNewItem["inventoryCategoryID"] 			= $this->input->post("txtInventoryCategoryID");
 						$objNewItem["familyID"] 					= $this->input->post("txtFamilyID");												
 						$objNewItem["barCode"] 						= $this->input->post("txtBarCode") == "" ? "B".$objOldItem->itemNumber  : $this->input->post("txtBarCode");
@@ -555,7 +564,7 @@ class App_Inventory_Item extends CI_Controller {
 						$this->db->trans_rollback();						
 						$this->core_web_notification->set_message(true,$this->db->_error_message());
 					}
-					redirect('app_inventory_item/edit/companyID/'.$companyID."/itemID/".$itemID);
+					redirect('app_inventory_item/edit/companyID/'.$companyID."/itemID/".$itemID."/callback/".$callback);
 					
 			} 
 			
@@ -593,9 +602,11 @@ class App_Inventory_Item extends CI_Controller {
 			$this->load->model("Warehouse_Model");
 			$this->load->model("ItemCategory_Model");
 			
+			$uri								= $this->uri->uri_to_assoc(3);
 			$companyID 							= $dataSession["user"]->companyID;
 			$branchID 							= $dataSession["user"]->branchID;
 			$roleID 							= $dataSession["role"]->roleID;
+			$callback							= array_key_exists("callback",$uri) ? $uri["callback"]: "false";
 			
 			$objParameterWarehouseDefault	= $this->core_web_parameter->getParameter("INVENTORY_ITEM_WAREHOUSE_DEFAULT",$companyID);
 			$warehouseDefault 				= $objParameterWarehouseDefault->value;
@@ -609,6 +620,7 @@ class App_Inventory_Item extends CI_Controller {
 			$dataView["objListDisplay"]				= $this->core_web_catalog->getCatalogAllItem("tb_item","displayID",$companyID);
 			$dataView["objListDisplayUnitMeasure"]	= $this->core_web_catalog->getCatalogAllItem("tb_item","displayUnitMeasureID",$companyID);
 			$dataView["warehouseDefault"]			= $warehouseDefault;
+			$dataView["callback"]					= $callback;
 			
 			//Renderizar Resultado 
 			$dataSession["notification"]	= $this->core_web_error->get_error($dataSession["user"]->userID);
@@ -617,7 +629,11 @@ class App_Inventory_Item extends CI_Controller {
 			$dataSession["body"]			= $this->load->view('app_inventory_item/news_body',$dataView,true);
 			$dataSession["script"]			= $this->load->view('app_inventory_item/news_script',$dataView,true);  
 			$dataSession["footer"]			= "";
-			$this->load->view("core_masterpage/default_masterpage",$dataSession);	
+
+			if($callback == "false")
+				$this->load->view("core_masterpage/default_masterpage",$dataSession);	
+			else
+				$this->load->view("core_masterpage/default_widgetchoose",$dataSession);	
 			
 		}
 		catch(Exception $ex){

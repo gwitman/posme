@@ -55,6 +55,7 @@
 											<input class="form-control"  type="text"  name="txtName" id="txtName" value="<?php echo htmlentities($objItem->name,ENT_QUOTES); ?>">												
 											<input type="hidden" name="txtItemID" value="<?php echo $objItem->itemID; ?>"/>
 											<input type="hidden" name="txtCompanyID" value="<?php echo $objItem->companyID; ?>"/>
+											<input type="hidden" name="txtCallback" value="<?php echo $callback; ?>"/>
 										</div>
 								</div>
 								

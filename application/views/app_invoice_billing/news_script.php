@@ -229,7 +229,7 @@
 
 
 		$(document).on("click","#btnNewItemCatalog",function(){
-			var url_request 			= "<?php echo site_url(); ?>app_inventory_item/add.aspx";
+			var url_request 			= "<?php echo site_url(); ?>app_inventory_item/add/callback/fnObtenerListadoProductos";
 			window.open(url_request,"MsgWindow","width=700,height=600");
 			window.fnObtenerListadoProductos = fnObtenerListadoProductos; 			
 		});
