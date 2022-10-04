@@ -91,7 +91,7 @@ class App_Inventory_Item extends CI_Controller {
 			if($callback == "false")
 				$this->load->view("core_masterpage/default_masterpage",$dataSession);	
 			else
-				$this->load->view("core_masterpage/default_widgetchoose",$dataSession);	
+				$this->load->view("core_masterpage/default_popup",$dataSession);	
 
 			
 			
@@ -633,7 +633,7 @@ class App_Inventory_Item extends CI_Controller {
 			if($callback == "false")
 				$this->load->view("core_masterpage/default_masterpage",$dataSession);	
 			else
-				$this->load->view("core_masterpage/default_widgetchoose",$dataSession);	
+				$this->load->view("core_masterpage/default_popup",$dataSession);	
 			
 		}
 		catch(Exception $ex){

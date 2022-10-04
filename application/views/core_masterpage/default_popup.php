@@ -121,8 +121,8 @@
 
 		<script src="<?php echo site_url(); ?>theme-genyx/js/jquery-ui-1-10-2.min.js"></script>
 
-		<script src="<?php echo site_url(); ?>theme-genyx/js/bootstrap/bootstrap.js"></script>  
-
+		<script src="<?php echo site_url(); ?>theme-genyx/js/bootstrap/bootstrap.js"></script>  		
+  
 		<script src="<?php echo site_url(); ?>theme-genyx/js/conditionizr.min.js"></script>  
 
 		<script src="<?php echo site_url(); ?>theme-genyx/js/plugins/core/nicescroll/jquery.nicescroll.min.js"></script>
