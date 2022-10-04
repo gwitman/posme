@@ -206,6 +206,13 @@
 
 								</div>
 
+								<div class="form-group">
+									<label class="col-lg-2 control-label" for="normal">Descripcion</label>
+									<div class="col-lg-8">
+										<textarea class="form-control"  id="txtNote" name="txtNote" rows="6"><?php echo $objTransactionMaster->note; ?></textarea>
+									</div>
+
+								</div>
 								
 
 							
@@ -218,7 +225,7 @@
 
 								<div class="form-group">
 
-									<label class="col-lg-2 control-label" for="buttons">Cliente</label>
+									<label class="col-lg-4 control-label" for="buttons">Cliente</label>
 
 									<div class="col-lg-8">
 
@@ -268,7 +275,7 @@
 
 								<div class="form-group">
 
-									<label class="col-lg-2 control-label" for="selectFilter">Linea</label>
+									<label class="col-lg-4 control-label" for="selectFilter">Linea</label>
 
 									<div class="col-lg-8">
 
@@ -286,7 +293,7 @@
 
 								<div class="form-group">
 
-									<label class="col-lg-2 control-label" for="selectFilter">Tipo</label>
+									<label class="col-lg-4 control-label" for="selectFilter">Tipo</label>
 
 									<div class="col-lg-8">
 
@@ -316,6 +323,33 @@
 
 								</div>
 
+
+								<div class="form-group">
+
+										<label class="col-lg-4 control-label" for="normal">Cliente Ref.</label>
+
+										<div class="col-lg-8">
+
+											<input class="form-control"   type="text" name="txtReferenceClientName" id="txtReferenceClientName" value="<?php echo $objTransactionMasterInfo->referenceClientName; ?>">
+
+										</div>
+
+								</div>
+
+								
+
+								<div class="form-group">
+
+										<label class="col-lg-4 control-label" for="normal">Cedula Cliente Ref.</label>
+
+										<div class="col-lg-8">
+
+											<input class="form-control"   type="text" name="txtReferenceClientIdentifier" id="txtReferenceClientIdentifier" value="<?php echo $objTransactionMasterInfo->referenceClientIdentifier; ?>">
+
+										</div>
+
+								</div>
+
 								
 
 								
@@ -327,6 +361,10 @@
 						</div>
 
 						</div>
+
+
+					
+						
 
 					</div>
 
@@ -374,31 +412,7 @@
 
 								</div>
 								
-								<div class="form-group">
-
-										<label class="col-lg-4 control-label" for="normal">Cliente Ref.</label>
-
-										<div class="col-lg-8">
-
-											<input class="form-control"   type="text" name="txtReferenceClientName" id="txtReferenceClientName" value="<?php echo $objTransactionMasterInfo->referenceClientName; ?>">
-
-										</div>
-
-								</div>
-
 								
-
-								<div class="form-group">
-
-										<label class="col-lg-4 control-label" for="normal">ID Cliente Ref.</label>
-
-										<div class="col-lg-8">
-
-											<input class="form-control"   type="text" name="txtReferenceClientIdentifier" id="txtReferenceClientIdentifier" value="<?php echo $objTransactionMasterInfo->referenceClientIdentifier; ?>">
-
-										</div>
-
-								</div>
 
 								
 
@@ -655,17 +669,7 @@
 
 						
 
-							<div class="form-group">
-
-								<label class="col-lg-2 control-label" for="normal">Descripcion</label>
-
-								<div class="col-lg-6">
-
-									<textarea class="form-control"  id="txtNote" name="txtNote" rows="6"><?php echo $objTransactionMaster->note; ?></textarea>
-
-								</div>
-
-							</div>
+							
 
 						
 
