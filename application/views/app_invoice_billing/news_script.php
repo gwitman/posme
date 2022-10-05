@@ -1,7 +1,9 @@
 <!-- ./ page heading -->
 <script>					
-	var objTableDetail 			= {};	
-	var objListaProductos		= {};
+	var objTableDetail 						= {};	
+	var objListaProductos					= {};
+	var varPermitirFacturarProductosEnZero	= '<?php echo $objParameterInvoiceBillingQuantityZero; ?>';
+
 	var varPermisos				= JSON.parse('<?php echo json_encode($objListaPermisos); ?>');
 	var varPermisosEsPermitidoModificarPrecio = 
 		jLinq.from(varPermisos).where(function(obj){ return obj.display == "ES_PERMITIDO_MODIFICAR_PRECIO_EN_FACTURACION"}).select().length > 0 ?
@@ -406,7 +408,7 @@
 		///////////////////////////////////////////////
 		//Validar Cuentas del Comprobantes
 		if(objTableDetail.fnGetData().length == 0){
-			fnShowNotification("La factura no tiene item","error",timerNotification);
+			fnShowNotification("La factura no tiene productos","error",timerNotification);
 			result = false;
 		};		
 
@@ -438,7 +440,9 @@
 			if(
 				parseFloat(objProducto.Cantidad) < parseFloat(rowTableItemQuantity) 
 				&&
-				objProducto.isInvoiceQuantityZero != "1" 
+				objProducto.isInvoiceQuantityZero == "0" 
+				&&
+				varPermitirFacturarProductosEnZero == "false"
 			){
 				fnShowNotification("Producto no hay suficiente en inventario " + rowTableItemNombre,"error",timerNotification);				
 				document.getElementById("txtQuantityRow"+rowTableItemID).focus();

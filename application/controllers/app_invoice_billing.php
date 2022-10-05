@@ -98,6 +98,9 @@ class App_Invoice_Billing extends CI_Controller {
 			$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT",$companyID);
 			$dataView["objParameterInvoiceButtomPrinterFidLocalPayment"] = $parameterValue->value;
 			
+			$objParameterInvoiceBillingQuantityZero					= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
+			$dataView["objParameterInvoiceBillingQuantityZero"]		= $objParameterInvoiceBillingQuantityZero->value;
+
 			//Tipo de Factura
 			$dataView["urlPrinterDocument"]						= $urlPrinterDocument->value;
 			$dataView["objTransactionMaster"]					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
@@ -154,7 +157,10 @@ class App_Invoice_Billing extends CI_Controller {
 			$dataSession["body"]			= $this->load->view('app_invoice_billing/edit_body',$dataView,true);
 			$dataSession["script"]			= $this->load->view('app_invoice_billing/edit_script',$dataView,true);  
 			$dataSession["footer"]			= "";
-			$this->load->view("core_masterpage/default_masterpage",$dataSession);	
+
+
+			//$this->load->view("core_masterpage/default_masterpage",$dataSession);	
+			$this->load->view("core_masterpage/default_popup",$dataSession);	
 			
 		}
 		catch(Exception $ex){
@@ -370,6 +376,9 @@ class App_Invoice_Billing extends CI_Controller {
 			if($this->core_web_accounting->cycleIsCloseByDate($companyID,$objTM->transactionOn))
 			throw new Exception("EL DOCUMENTO NO PUEDE ACTUALIZARCE, EL CICLO CONTABLE ESTA CERRADO");
 			
+			$objParameterInvoiceBillingQuantityZero		= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
+			$objParameterInvoiceBillingQuantityZero		= $objParameterInvoiceBillingQuantityZero->value;
+
 			//Actualizar Maestro
 			$typePriceID 								= $this->input->post("txtTypePriceID");
 			$objListPrice 								= $this->List_Price_Model->getListPriceToApply($companyID);
@@ -458,14 +467,22 @@ class App_Invoice_Billing extends CI_Controller {
 					
 					//$price 								= $objItem->cost * ( 1 + ($objPrice->percentage/100));
 					$price 									= $arrayListPrice[$key];
+					log_message("ERROR","mostrar precio");
+					log_message("ERROR",$price);
 					
 					$ivaPercentage							= ($objCompanyComponentConcept != null ? $objCompanyComponentConcept->valueOut : 0 );					
 					$unitaryAmount 							= $price * (1 + $ivaPercentage);					
 					$tax1 									= $price * $ivaPercentage;
 					$transactionMasterDetailID				= $listTransactionDetalID[$key];
 					
-					
-					if($objItemWarehouse->quantity < $quantity  && $objItem->isInvoiceQuantityZero != 1 )
+					//Validar Cantidades
+					if(
+						$objItemWarehouse->quantity < $quantity  
+						&& 
+						$objItem->isInvoiceQuantityZero == 0
+						&&
+						$objParameterInvoiceBillingQuantityZero == "false"
+					)
 					throw new Exception("La cantidad de '"+$objItem->itemNumber+ " " +$objItem->name+"' es mayor que la disponible en bodega");
 										
 					//Nuevo Detalle
@@ -558,17 +575,23 @@ class App_Invoice_Billing extends CI_Controller {
 					}					
 					//Editar Detalle
 					else{
+						log_message("ERROR","actualizar detalle");
 						$objItemServicioPrestamoDolares			= $this->Item_Model->get_rowByCode($companyID,$this->core_web_parameter->getParameter("INVOICE_PRESTAMO_DOL_ITEM",$companyID)->value);						$objTMD 								= $this->Transaction_Master_Detail_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID,$transactionMasterDetailID);						
 						$objTMDC  								= $this->Transaction_Master_Detail_Credit_Model->get_rowByPK($transactionMasterDetailID);
 						$objTMDC								= NULL;
-						
-						//Codigo para Expresar Correctamente el Credito en Dolares.						//Cuando se factura este producto.						//En la factura solo debe de existir el.
+						log_message("ERROR",$price);
+
+						//Codigo para Expresar Correctamente el Credito en Dolares.						
+						//Cuando se factura este producto.						
+						//En la factura solo debe de existir el.
 						if($objItemServicioPrestamoDolares->itemID == $objTMD->componentItemID){
 							$exchangeRate001 = $objTMNew["exchangeRate"] > 1 ? round($objTMNew["exchangeRate"],4) : round(1 / round($objTMNew["exchangeRate"],4),4) ;							
 							$objItem->cost 	= $exchangeRate001;
 							$unitaryAmount	= $objItem->cost;
 							$price 			= $unitaryAmount;
 						}
+						
+						log_message("ERROR","precio despues de la validacion de dolares. ".$price);
 						
 						$objTMDNew 								= null;
 						$objTMDNew["quantity"] 					= $quantity;					//cantidad
@@ -587,6 +610,7 @@ class App_Invoice_Billing extends CI_Controller {
 						$tax1Total								= $tax1Total + $tax1;
 						$subAmountTotal							= $subAmountTotal + ($quantity * $price);
 						$amountTotal							= $amountTotal + $objTMDNew["amount"];
+						log_message("ERROR",print_r($objTMDNew,true));
 						$this->Transaction_Master_Detail_Model->update($companyID,$transactionID,$transactionMasterID,$transactionMasterDetailID,$objTMDNew);	
 
 						$objTMDC["reference1"]					= $this->input->post("txtFixedExpenses");
@@ -802,6 +826,9 @@ class App_Invoice_Billing extends CI_Controller {
 			if($this->core_web_accounting->cycleIsCloseByDate($dataSession["user"]->companyID,$this->input->post("txtDate")))
 			throw new Exception("EL DOCUMENTO NO PUEDE INGRESAR, EL CICLO CONTABLE ESTA CERRADO");
 			
+			
+
+
 			//Obtener transaccion
 			$transactionID 							= $this->core_web_transaction->getTransactionID($dataSession["user"]->companyID,"tb_transaction_master_billing",0);
 			$companyID 								= $dataSession["user"]->companyID;
@@ -810,6 +837,9 @@ class App_Invoice_Billing extends CI_Controller {
 			$objListPrice 							= $this->List_Price_Model->getListPriceToApply($companyID);
 			$typePriceID 							= $this->input->post("txtTypePriceID");
 			
+			$objParameterInvoiceBillingQuantityZero		= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
+			$objParameterInvoiceBillingQuantityZero		= $objParameterInvoiceBillingQuantityZero->value;
+
 			$objTM["companyID"] 					= $dataSession["user"]->companyID;
 			$objTM["transactionID"] 				= $transactionID;			
 			$objTM["branchID"]						= $dataSession["user"]->branchID;
@@ -892,7 +922,13 @@ class App_Invoice_Billing extends CI_Controller {
 					$tax1 									= $price * $ivaPercentage;
 					
 					
-					if($objItemWarehouse->quantity < $quantity && $objItem->isInvoiceQuantityZero != 1 )
+					if(
+						$objItemWarehouse->quantity < $quantity 
+						&& 
+						$objItem->isInvoiceQuantityZero == 0
+						&&						
+						$objParameterInvoiceBillingQuantityZero == "false"
+					)
 					throw new Exception("La cantidad de '"+$objItem->itemNumber+ " " +$objItem->name+"' es mayor que la disponible en bodega");
 					
 					$objTMD 								= NULL;
@@ -1092,6 +1128,9 @@ class App_Invoice_Billing extends CI_Controller {
 			$dataView["listProvider"]			= $this->Provider_Model->get_rowByCompany($companyID);
 			$dataView["objListaPermisos"]		= $dataSession["menuHiddenPopup"];
 
+			$objParameterInvoiceBillingQuantityZero					= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
+			$dataView["objParameterInvoiceBillingQuantityZero"]		= $objParameterInvoiceBillingQuantityZero->value;
+
 			
 						
 			if(!$dataView["objCustomerDefault"])
@@ -1107,7 +1146,9 @@ class App_Invoice_Billing extends CI_Controller {
 			$dataSession["body"]			= $this->load->view('app_invoice_billing/news_body',$dataView,true);
 			$dataSession["script"]			= $this->load->view('app_invoice_billing/news_script',$dataView,true);  
 			$dataSession["footer"]			= "";
-			$this->load->view("core_masterpage/default_masterpage",$dataSession);	
+
+			//$this->load->view("core_masterpage/default_masterpage",$dataSession);	
+			$this->load->view("core_masterpage/default_popup",$dataSession);	
 			
 		}
 		catch(Exception $ex){
@@ -1955,10 +1996,12 @@ class App_Invoice_Billing extends CI_Controller {
 			//Set Nombre del Reporte
 			$reportName		= "DOC_INVOICE";
 			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));			
-			$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*.$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
+			//$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*.$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
 			
 			log_message("ERROR","preuba de impresora 005");
 			//$pdf->ezText("::".strtoupper($objCompany->name)."::\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			$pdf->ezText("VARIEDADES"."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			$pdf->ezText("#".$datView["objTM"]->transactionNumber."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			$pdf->ezText("RUC ".$datView["Identifier"]->value."\n\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			log_message("ERROR","preuba de impresora 006");
@@ -1969,7 +2012,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$data = array( 
 				array('field1'=>'Fecha'			,'field2'=>$datView["objTM"]->createdOn	 		) ,
 				array('field1'=>'Estado'		,'field2'=>$datView["objStage"][0]->display	 		) ,
-				//array('field1'=>'Cajero'		,'field2'=>$datView["objUser"]->nickname     		) ,
+				array('field1'=>'Vendedor'		,'field2'=>$datView["objUser"]->nickname     		) ,
 				//array('field1'=>'Tienda'		,'field2'=>$datView["objBranch"]->name   	 		) ,
 				array('field1'=>'Tipo'			,'field2'=>$datView["objTipo"]->name   	 			) ,
 				//array('field1'=>'Tipo Cambio'	,'field2'=>$prefixCurrency.$datView["objTM"]->exchangeRate) ,
@@ -2163,7 +2206,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$pdf->ezText("\n***************************",						
 			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			
-			$pdf->ezText("\nTelefono:",						
+			$pdf->ezText("\nTelefono de tienda:",						
 			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			
 			$pdf->ezText("\n".$objParameterPhone->value,						

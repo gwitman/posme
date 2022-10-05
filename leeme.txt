@@ -220,7 +220,7 @@ actualizacion:
 	ejecutar el script de actualizacion.
 	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\actualizar_parametros_[cliente].sql
 	
-	
+	ejecutar otros script
 	
 		
 ---------------------------------------

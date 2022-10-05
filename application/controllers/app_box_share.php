@@ -1256,15 +1256,23 @@ class App_Box_Share extends CI_Controller {
 			//Set Informacion File
 			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));
 			//Set Titulo			
-			$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
+			//$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
+			
 			//Set Encambezado del comprobante
+			$pdf->ezText("VARIEDADES"."",FONT_SIZE,array('justification'=>'center'));
+			$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
 			$pdf->ezText("ABONO:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
+
 			$spacing 			= 0.5;
 			
 			$data = array( 
 				array(
 					'field1'=>'Fecha',
 					'field2'=>$datView["objTM"]->transactionOn					
+				),
+				array(
+					'field1'=>'Vendedor',
+					'field2'=>$datView["objUser"]->nickname				
 				),
 				array(
 					'field1'=>'Cliente',

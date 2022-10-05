@@ -1,7 +1,9 @@
 <!-- ./ page heading -->
 <script>	
-	var objTableDetail 			= {};		var tmpData 				= [];
+	var objTableDetail 			= {};		
+	var tmpData 				= [];
 	var objListaProductos		= {};
+	var varPermitirFacturarProductosEnZero	= '<?php echo $objParameterInvoiceBillingQuantityZero; ?>';
 	var varUrlPrinter			= '<?php echo $urlPrinterDocument; ?>';
 	var varDetail 				= JSON.parse('<?php echo json_encode($objTransactionMasterDetail); ?>');	
 	var varDetailWarehouse		= JSON.parse('<?php echo json_encode($objTransactionMasterDetailWarehouse); ?>');	
@@ -30,7 +32,7 @@
 			"'"+varDetail[i].itemName + "'", 
 			varDetail[i].unitMeasureName,
 			fnFormatNumber(varDetail[i].quantity,2),
-			fnFormatNumber(varDetail[i].unitaryPrice,2),/*precio sistema*/
+			fnFormatNumber(varDetail[i].unitaryPrice,4),/*precio sistema*/
 			fnFormatNumber(varDetail[i].unitaryPrice * varDetail[i].quantity,2), /*precio por cantidad*/							
 			fnFormatNumber(iva_,2)
 		]);
@@ -605,7 +607,7 @@
 		///////////////////////////////////////////////
 		//Validar Cuentas del Comprobantes
 		if(objTableDetail.fnGetData().length == 0){
-			fnShowNotification("La factura no tiene item","error",timerNotification);
+			fnShowNotification("La factura no tiene productos","error",timerNotification);
 			result = false;
 		};
 		
@@ -638,7 +640,9 @@
 			if(
 				parseFloat(objProducto.Cantidad) < parseFloat(rowTableItemQuantity)
 				&&
-				objProducto.isInvoiceQuantityZero != "1" 
+				objProducto.isInvoiceQuantityZero == "0" 
+				&& 
+				varPermitirFacturarProductosEnZero == "false" 
 			){
 				fnShowNotification("Producto no hay suficiente en inventario " + rowTableItemNombre,"error",timerNotification);				
 				document.getElementById("txtQuantityRow"+rowTableItemID).focus();
