@@ -80,7 +80,7 @@ class App_Box_Report extends CI_Controller {
 			if($uri != false){
 				$viewReport			= $uri["viewReport"];	
 				$startOn			= $uri["startOn"];
-				$endOn				= $uri["endOn"];	
+				$endOn				= $uri["endOn"]." 23:59:59";	
 			} 
 			
 			 
@@ -138,8 +138,8 @@ class App_Box_Report extends CI_Controller {
 				else
 				$objDataResult["objCash"]					= NULL;
 			
-				log_message("ERROR",print_r($objDataCash[0],true));
-				log_message("ERROR",print_r($objDataSales[0],true));
+				log_message("ERROR",print_r($objDataCash,true));
+				log_message("ERROR",print_r($objDataSales,true));
 				
 				
 				

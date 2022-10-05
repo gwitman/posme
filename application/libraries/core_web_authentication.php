@@ -127,6 +127,7 @@ class core_web_authentication {
 		$this->CI->session->sess_destroy();   
    }
    function isAuthenticated(){
+		
 		$this->CI->load->library("session");
 		log_message("ERROR",APP_NEED_AUTHENTICATION." 001.001");
 			

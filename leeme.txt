@@ -55,6 +55,7 @@ instalador:
 		
 		
 		
+Configurar los Roles y los Usuarios, en la aplicacion de desarrollo, para el nuevo comercio.
 		
 		
 acceder a pypmyadmin		
@@ -165,6 +166,7 @@ Modificar Usuarios del Sistema
 
 		
 		
+
 ---------------------------------------
 actualizacion:
 ---------------------------------------

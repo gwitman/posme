@@ -26,6 +26,7 @@ class core_web_permission {
 		//dataMenuBodyTop
 		//dataMenuHiddenPopup
 		
+
 		if(is_array($dataMenuHiddenPopup))
 		foreach($dataMenuHiddenPopup AS $url_){	
 			if(strtoupper ($url_->address) == strtoupper ($url)){
@@ -70,7 +71,10 @@ class core_web_permission {
 		//dataMenuLeft
 		//dataMenuBodyReport
 		//dataMenuBodyTop
-		//dataMenuHiddenPopup		
+		//dataMenuHiddenPopup	
+		
+		
+
 		if(is_array($dataMenuHiddenPopup))
 		foreach($dataMenuHiddenPopup AS $url_){	
 			if(strtoupper ($url_->address) == strtoupper ($url)){
@@ -117,7 +121,7 @@ class core_web_permission {
 		//dataMenuLeft
 		//dataMenuBodyReport
 		//dataMenuBodyTop
-		//dataMenuHiddenPopup
+		//dataMenuHiddenPopup	
 		
 		
 		//Craer Variables
