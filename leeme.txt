@@ -187,13 +187,7 @@ actualizacion:
 	
 	pasar los siguientes carpetas de la maquina de desarrollo al
 	la maquina del cliente
-	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\view
-	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\models
-	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\libraries
-	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\helpers
-	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\controllers
-	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\config\autoload.php  >>>  muy raro.
-	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\config\constants.php >>>  muy raro.
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\...
 	
 	
 	pasar el archivo de respaldo, a la maquina del cliente
@@ -215,9 +209,12 @@ actualizacion:
 	posme_origen <<< 
 	posme_2022_09_18_0000_000.sql
 	
-	realiar merge de estructuras con SQLExaminer.
-	
-	realizar merge de datos con SQL DataExaminer.
+	actualiar tablas:
+		tb_branch
+		
+
+
+
 	
 	ejecutar el script de actualizacion.
 	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\actualizar_parametros_[cliente].sql

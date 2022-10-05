@@ -1996,12 +1996,12 @@ class App_Invoice_Billing extends CI_Controller {
 			//Set Nombre del Reporte
 			$reportName		= "DOC_INVOICE";
 			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));			
-			//$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*.$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
+			$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*.$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
 			
 			log_message("ERROR","preuba de impresora 005");
 			//$pdf->ezText("::".strtoupper($objCompany->name)."::\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
-			$pdf->ezText("VARIEDADES"."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
-			$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			//$pdf->ezText("VARIEDADES"."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			$pdf->ezText("#".$datView["objTM"]->transactionNumber."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			$pdf->ezText("RUC ".$datView["Identifier"]->value."\n\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			log_message("ERROR","preuba de impresora 006");

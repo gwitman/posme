@@ -2205,11 +2205,11 @@ class App_Box_Canceldocument extends CI_Controller {
 			//Set Informacion File
 			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));
 			//Set Titulo			
-			//$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
+			$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
 			//Set Encambezado del comprobante
 			
-			$pdf->ezText("VARIEDADES"."",FONT_SIZE,array('justification'=>'center'));
-			$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
+			//$pdf->ezText("VARIEDADES"."",FONT_SIZE,array('justification'=>'center'));
+			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
 			$pdf->ezText("CANCELACION:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
 			$spacing 			= 0.5;
 			
@@ -2254,7 +2254,7 @@ class App_Box_Canceldocument extends CI_Controller {
 			
 			
 			//Set Comentario del Comprobante
-			$pdf->ezText("\nCOMENTARIO",FONT_SIZE_BODY_INVICE);
+			$pdf->ezText("\nCLIENTE",FONT_SIZE_BODY_INVICE);
 			$data	= array(
 				array('field1'=> $datView["objNatural"]->firstName."/".$datView["objTM"]->note."...")
 			);
@@ -2293,7 +2293,7 @@ class App_Box_Canceldocument extends CI_Controller {
 					),
 					array(
 						'field1'=>'Saldo Anterior',
-						'field2'=>round($row->reference2,2)
+						'field2'=>round($row->reference2,0)
 					),				
 					array(
 						'field1'=>'Abono',
@@ -2301,7 +2301,7 @@ class App_Box_Canceldocument extends CI_Controller {
 					),
 					array(
 						'field1'=>'Nuevo Saldo',
-						'field2'=>round($row->reference4,2)
+						'field2'=>round($row->reference4,0)
 					),
 					array(
 						'field1'=>'Moneda',
