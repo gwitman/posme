@@ -1,22 +1,22 @@
-UPDATE tb_company SET NAME = 'Variedades Carlos Luis' , address = 'Disnorte 1 1/2c al este' WHERE companyID = 2;
+UPDATE tb_company SET NAME = 'Pulperia Mendoza' , address = 'Esquina opuesta a la policia nacional' WHERE companyID = 2;
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'Carlos Luis Castellon Munguia'
+	tb_company_parameter.value = 'Walther Gustavo Mendoza Espinoza'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_NAME';
 		
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'Disnorte, 1 1/2c al este.'
+	tb_company_parameter.value = 'Esquina opuesta a la policia nacional'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ADDRESS';
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '2023-09-15'
+	tb_company_parameter.value = '2023-10-11'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_LICENSE_EXPIRED';
@@ -30,21 +30,21 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '8719-4407'
+	tb_company_parameter.value = '5792-4747'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PHONE';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '8719-4407'
+	tb_company_parameter.value = '5792-4747'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_PHONE';
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = ','
+	tb_company_parameter.value = ';'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_CSV_SPLIT';
@@ -76,21 +76,21 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'variedades_carlos_luis'
+	tb_company_parameter.value = 'flc_walter_mendoza'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_CXC_WSDL_SIN_RIESGO_USUARIO';	
 	
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '291-080478-0000F'
+	tb_company_parameter.value = '290-251175-0002P'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ID';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '291-080478-0000F'
+	tb_company_parameter.value = '290-251175-0002P'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_COMPANY_IDENTIFIER';

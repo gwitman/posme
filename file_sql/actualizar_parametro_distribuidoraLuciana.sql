@@ -23,21 +23,21 @@ WHERE
 		
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '5'
+	tb_company_parameter.value = '500'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_MAX_USER';
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '8719-4407'
+	tb_company_parameter.value = '8939-8513'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PHONE';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '8719-4407'
+	tb_company_parameter.value = '8939-8513'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_PHONE';
@@ -83,14 +83,14 @@ WHERE
 	
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '291-080478-0000F'
+	tb_company_parameter.value = '281-150593-0001X'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ID';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '291-080478-0000F'
+	tb_company_parameter.value = '281-150593-0001X'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_COMPANY_IDENTIFIER';

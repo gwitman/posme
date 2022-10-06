@@ -209,6 +209,9 @@ actualizacion:
 	posme_origen <<< 
 	posme_2022_09_18_0000_000.sql
 	
+	crear usuarios:
+		root@localhost		root1.2Blandon
+		
 	actualiar tablas:
 		tb_branch
 		

@@ -17796,3 +17796,1374 @@ ERROR - 2022-10-05 16:52:14 --> preuba de impresora 010
 ERROR - 2022-10-05 16:52:14 --> preuba de impresora 015
 DEBUG - 2022-10-05 16:52:14 --> Final output sent to browser
 DEBUG - 2022-10-05 16:52:14 --> Total execution time: 0.1300
+DEBUG - 2022-10-05 18:27:49 --> Config Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Hooks Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Utf8 Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> UTF-8 Support Enabled
+DEBUG - 2022-10-05 18:27:49 --> URI Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Router Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Output Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Security Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Input Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:49 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:49 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:49 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:49 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-05 18:27:49 --> Language Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Loader Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Helper loaded: url_helper
+DEBUG - 2022-10-05 18:27:49 --> Helper loaded: form_helper
+DEBUG - 2022-10-05 18:27:49 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-05 18:27:49 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-05 18:27:49 --> Helper loaded: text_helper
+DEBUG - 2022-10-05 18:27:49 --> Database Driver Class Initialized
+ERROR - 2022-10-05 18:27:49 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-05 18:27:49 --> Session Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Helper loaded: string_helper
+ERROR - 2022-10-05 18:27:49 --> punto de interrupcion  Session->set_userdata**************1
+ERROR - 2022-10-05 18:27:49 --> punto de interrupcion  Session->set_userdata**************2
+DEBUG - 2022-10-05 18:27:49 --> Session routines successfully run
+DEBUG - 2022-10-05 18:27:49 --> Form Validation Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Email Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Controller Class Initialized
+INFO  - 2022-10-05 18:27:49 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:49 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:49 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:49 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_billing/index
+INFO  - 2022-10-05 18:27:49 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-05 18:27:49 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-05 18:27:49 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/112',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%22a5f07271cb1abda707b4a9cde96486e6%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665010334%3B%7D65ecc1d94890e2a00e7e13027d963239',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '56893',
+  'REDIRECT_URL' => '/posme/app_invoice_billing/index',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_billing/index',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_billing/index',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_billing\\index',
+  'PHP_SELF' => '/posme/index.php/app_invoice_billing/index',
+  'REQUEST_TIME_FLOAT' => 1665016069.6740000247955322265625,
+  'REQUEST_TIME' => 1665016069,
+)
+DEBUG - 2022-10-05 18:27:49 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-05 18:27:49 --> 1 001.001
+ERROR - 2022-10-05 18:27:49 --> obteniendo userdata 001.001
+ERROR - 2022-10-05 18:27:49 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-05 18:27:49 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Table Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Jquery Class Initialized
+DEBUG - 2022-10-05 18:27:49 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2022-10-05 18:27:49 --> Model Class Initialized
+ERROR - 2022-10-05 18:27:49 --> punto de interrupcion  Session->set_userdata**************1
+ERROR - 2022-10-05 18:27:49 --> punto de interrupcion  Session->set_userdata**************2
+DEBUG - 2022-10-05 18:27:49 --> File loaded: application/views/app_invoice_billing/list_head.php
+DEBUG - 2022-10-05 18:27:49 --> File loaded: application/views/app_invoice_billing/list_footer.php
+DEBUG - 2022-10-05 18:27:49 --> File loaded: application/views/app_invoice_billing/list_script.php
+DEBUG - 2022-10-05 18:27:49 --> File loaded: application/views/core_masterpage/default_masterpage.php
+DEBUG - 2022-10-05 18:27:49 --> Final output sent to browser
+DEBUG - 2022-10-05 18:27:49 --> Total execution time: 0.0906
+DEBUG - 2022-10-05 18:27:51 --> Config Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Hooks Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Utf8 Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> UTF-8 Support Enabled
+DEBUG - 2022-10-05 18:27:51 --> URI Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Router Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Output Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Security Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Input Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-05 18:27:51 --> Language Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Loader Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: url_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: form_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: text_helper
+DEBUG - 2022-10-05 18:27:51 --> Database Driver Class Initialized
+ERROR - 2022-10-05 18:27:51 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-05 18:27:51 --> Session Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: string_helper
+DEBUG - 2022-10-05 18:27:51 --> Session routines successfully run
+DEBUG - 2022-10-05 18:27:51 --> Form Validation Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Email Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Controller Class Initialized
+INFO  - 2022-10-05 18:27:51 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:51 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:51 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:51 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_billing/add
+INFO  - 2022-10-05 18:27:51 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-05 18:27:51 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-05 18:27:51 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/index',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%224d9d193159d103d9a9e1d46ef06054dd%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665016069%3B%7D2e56424d1f509cf881068ab1e8bc9992',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '56893',
+  'REDIRECT_URL' => '/posme/app_invoice_billing/add.aspx',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_billing/add.aspx',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_billing/add.aspx',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_billing\\add.aspx',
+  'PHP_SELF' => '/posme/index.php/app_invoice_billing/add.aspx',
+  'REQUEST_TIME_FLOAT' => 1665016071.09899997711181640625,
+  'REQUEST_TIME' => 1665016071,
+)
+DEBUG - 2022-10-05 18:27:51 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-05 18:27:51 --> 1 001.001
+ERROR - 2022-10-05 18:27:51 --> obteniendo userdata 001.001
+ERROR - 2022-10-05 18:27:51 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+ERROR - 2022-10-05 18:27:51 --> punto de interrupcion  Session->set_userdata**************1
+ERROR - 2022-10-05 18:27:51 --> punto de interrupcion  Session->set_userdata**************2
+DEBUG - 2022-10-05 18:27:51 --> File loaded: application/views/app_invoice_billing/news_head.php
+DEBUG - 2022-10-05 18:27:51 --> File loaded: application/views/app_invoice_billing/news_body.php
+DEBUG - 2022-10-05 18:27:51 --> File loaded: application/views/app_invoice_billing/news_script.php
+DEBUG - 2022-10-05 18:27:51 --> File loaded: application/views/core_masterpage/default_popup.php
+DEBUG - 2022-10-05 18:27:51 --> Final output sent to browser
+DEBUG - 2022-10-05 18:27:51 --> Total execution time: 0.1159
+DEBUG - 2022-10-05 18:27:51 --> Config Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Hooks Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Utf8 Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> UTF-8 Support Enabled
+DEBUG - 2022-10-05 18:27:51 --> Config Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> URI Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Hooks Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Router Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Utf8 Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> UTF-8 Support Enabled
+DEBUG - 2022-10-05 18:27:51 --> URI Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Router Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Output Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Output Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Security Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Security Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Input Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> Input Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-05 18:27:51 --> XSS Filtering completed
+DEBUG - 2022-10-05 18:27:51 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-05 18:27:51 --> Language Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Language Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Loader Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Loader Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: url_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: url_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: form_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: form_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: text_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: text_helper
+DEBUG - 2022-10-05 18:27:51 --> Database Driver Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Database Driver Class Initialized
+ERROR - 2022-10-05 18:27:51 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+ERROR - 2022-10-05 18:27:51 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-05 18:27:51 --> Session Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Session Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: string_helper
+DEBUG - 2022-10-05 18:27:51 --> Helper loaded: string_helper
+DEBUG - 2022-10-05 18:27:51 --> Session routines successfully run
+DEBUG - 2022-10-05 18:27:51 --> Session routines successfully run
+DEBUG - 2022-10-05 18:27:51 --> Form Validation Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Form Validation Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Email Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Email Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Controller Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Controller Class Initialized
+INFO  - 2022-10-05 18:27:51 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:51 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:51 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:51 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:51 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:51 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_api/getViewApi
+INFO  - 2022-10-05 18:27:51 --> *******************************************************************************************************
+INFO  - 2022-10-05 18:27:51 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  '_' => '1665016071249',
+)
+INFO  - 2022-10-05 18:27:51 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_api/getLineByCustomer
+INFO  - 2022-10-05 18:27:51 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-05 18:27:51 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-05 18:27:51 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'entityID' => '13',
+)
+INFO  - 2022-10-05 18:27:51 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_ACCEPT' => 'application/json, text/javascript, */*; q=0.01',
+  'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'cors',
+  'HTTP_SEC_FETCH_DEST' => 'empty',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/add.aspx',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%224d9d193159d103d9a9e1d46ef06054dd%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665016069%3B%7D2e56424d1f509cf881068ab1e8bc9992',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '56900',
+  'REDIRECT_QUERY_STRING' => '_=1665016071249',
+  'REDIRECT_URL' => '/posme/app_invoice_api/getViewApi/33/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/{"warehouseID"|"4"{}"listPriceID"|"12"{}"typePriceID"|"154"}',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '_=1665016071249',
+  'REQUEST_URI' => '/posme/app_invoice_api/getViewApi/33/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/%7B%22warehouseID%22%7C%224%22%7B%7D%22listPriceID%22%7C%2212%22%7B%7D%22typePriceID%22%7C%22154%22%7D?_=1665016071249',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_api/getViewApi/33/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/{"warehouseID"|"4"{}"listPriceID"|"12"{}"typePriceID"|"154"}',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_api\\getViewApi\\33\\onCompleteNewItem\\SELECCIONAR_ITEM_BILLING\\{"warehouseID"|"4"{}"listPriceID"|"12"{}"typePriceID"|"154"}',
+  'PHP_SELF' => '/posme/index.php/app_invoice_api/getViewApi/33/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/{"warehouseID"|"4"{}"listPriceID"|"12"{}"typePriceID"|"154"}',
+  'REQUEST_TIME_FLOAT' => 1665016071.283999919891357421875,
+  'REQUEST_TIME' => 1665016071,
+)
+DEBUG - 2022-10-05 18:27:51 --> Session class already loaded. Second attempt ignored.
+INFO  - 2022-10-05 18:27:51 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'CONTENT_LENGTH' => '11',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_ACCEPT' => 'application/json, text/javascript, */*; q=0.01',
+  'CONTENT_TYPE' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_ORIGIN' => 'http://localhost',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'cors',
+  'HTTP_SEC_FETCH_DEST' => 'empty',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/add.aspx',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%224d9d193159d103d9a9e1d46ef06054dd%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665016069%3B%7D2e56424d1f509cf881068ab1e8bc9992',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '56893',
+  'REDIRECT_URL' => '/posme/app_invoice_api/getLineByCustomer',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'POST',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_api/getLineByCustomer',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_api/getLineByCustomer',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_api\\getLineByCustomer',
+  'PHP_SELF' => '/posme/index.php/app_invoice_api/getLineByCustomer',
+  'REQUEST_TIME_FLOAT' => 1665016071.28299999237060546875,
+  'REQUEST_TIME' => 1665016071,
+)
+ERROR - 2022-10-05 18:27:51 --> 1 001.001
+DEBUG - 2022-10-05 18:27:51 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-05 18:27:51 --> obteniendo userdata 001.001
+ERROR - 2022-10-05 18:27:51 --> 1 001.001
+ERROR - 2022-10-05 18:27:51 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+ERROR - 2022-10-05 18:27:51 --> obteniendo userdata 001.001
+ERROR - 2022-10-05 18:27:51 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+ERROR - 2022-10-05 18:27:51 --> componenete 003:
+DEBUG - 2022-10-05 18:27:51 --> Model Class Initialized
+ERROR - 2022-10-05 18:27:51 --> Array
+(
+    [0] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 4
+            [unitMeasureID] => 78
+            [cost] => 10.0000
+            [quantity] => 77796.0000
+            [quantityMax] => 0.0000
+            [quantityMin] => 0.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 100.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 36.06080000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000000
+            [Nombre] => no usar 001
+            [Barra] => BITT00000000
+            [Medida] => LITRO
+            [Cantidad] => 38962.0000
+            [Precio] => 36.06080000
+        )
+
+    [1] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 5
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 418635.0000
+            [quantityMax] => 250.0000
+            [quantityMin] => 0.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 100.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 2.56366600
+            [BPrecio] => 256.36660000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000001
+            [Nombre] => no usar 002
+            [Barra] => BITT00000001
+            [Medida] => LITRO
+            [Cantidad] => 85.0000
+            [Precio] => 256.36660000
+        )
+
+    [2] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 598
+            [unitMeasureID] => 79
+            [cost] => 125.0000
+            [quantity] => 311.0000
+            [quantityMax] => 100.0000
+            [quantityMin] => 0.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 100.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 700.00000000
+            [BPrecio] => 1000.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000594
+            [Nombre] => producto generico
+            [Barra] => BITT00000002
+            [Medida] => KG
+            [Cantidad] => 314.3400
+            [Precio] => 1000.00000000
+        )
+
+    [3] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 599
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 98.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 100.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 1.00000000
+            [BPrecio] => 100.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000595
+            [Nombre] => pana de 1 litro
+            [Barra] => CML002
+            [Medida] => KG
+            [Cantidad] => 98.0000
+            [Precio] => 100.00000000
+        )
+
+    [4] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 600
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 200.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000596
+            [Nombre] => pelota
+            [Barra] => BITT00000596
+            [Medida] => KG
+            [Cantidad] => 200.0000
+            [Precio] => 0.00000000
+        )
+
+    [5] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 601
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 200.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000597
+            [Nombre] => caramelo
+            [Barra] => 
+            [Medida] => KG
+            [Cantidad] => 200.0000
+            [Precio] => 0.00000000
+        )
+
+    [6] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 602
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 2.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000598
+            [Nombre] => diadema
+            [Barra] => BITT00000598
+            [Medida] => KG
+            [Cantidad] => 2.0000
+            [Precio] => 0.00000000
+        )
+
+    [7] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 603
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 20.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000599
+            [Nombre] => vitamina e
+            [Barra] => BITT00000599
+            [Medida] => KG
+            [Cantidad] => 20.0000
+            [Precio] => 0.00000000
+        )
+
+    [8] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 604
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 20.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000600
+            [Nombre] => vitamina b12
+            [Barra] => BITT00000600
+            [Medida] => KG
+            [Cantidad] => 20.0000
+            [Precio] => 0.00000000
+        )
+
+    [9] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 605
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 20.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000601
+            [Nombre] => pasta de diente
+            [Barra] => BITT00000601
+            [Medida] => KG
+            [Cantidad] => 20.0000
+            [Precio] => 0.00000000
+        )
+
+    [10] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 606
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 20.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000602
+            [Nombre] => cuadro
+            [Barra] => ITT00000602
+            [Medida] => KG
+            [Cantidad] => 20.0000
+            [Precio] => 0.00000000
+        )
+
+    [11] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 607
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 30.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000603
+            [Nombre] => pintura
+            [Barra] => ITT00000603
+            [Medida] => KG
+            [Cantidad] => 30.0000
+            [Precio] => 0.00000000
+        )
+
+    [12] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 608
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 100.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000604
+            [Nombre] => grapa
+            [Barra] => ITT00000604
+            [Medida] => KG
+            [Cantidad] => 100.0000
+            [Precio] => 0.00000000
+        )
+
+    [13] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 609
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 40.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000605
+            [Nombre] => madera
+            [Barra] => ITT00000605
+            [Medida] => KG
+            [Cantidad] => 35.0000
+            [Precio] => 0.00000000
+        )
+
+    [14] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 610
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 100.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000606
+            [Nombre] => formon
+            [Barra] => ITT00000606
+            [Medida] => KG
+            [Cantidad] => 100.0000
+            [Precio] => 0.00000000
+        )
+
+    [15] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 611
+            [unitMeasureID] => 79
+            [cost] => 10.0000
+            [quantity] => 4032.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 3.00000000
+            [BPrecio] => 300.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000607
+            [Nombre] => semilla de mango
+            [Barra] => ITT00000607
+            [Medida] => KG
+            [Cantidad] => 4032.0000
+            [Precio] => 300.00000000
+        )
+
+    [16] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 613
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 300.0000
+            [quantityMax] => 100.0000
+            [quantityMin] => 0.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 100.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000609
+            [Nombre] => tv
+            [Barra] => ITT00000609
+            [Medida] => KG
+            [Cantidad] => 300.0000
+            [Precio] => 0.00000000
+        )
+
+    [17] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 619
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000615
+            [Nombre] => Sopa Maruchan 12g
+            [Barra] => BITT00000615
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [18] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 620
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000616
+            [Nombre] => Blusa Azul marca Nyke
+            [Barra] => BITT00000616
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [19] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 621
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000617
+            [Nombre] => papel 4pulgada
+            [Barra] => BITT00000617
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [20] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 622
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.10000000
+            [BPrecio] => 10.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000618
+            [Nombre] => pepel amarillo crepe
+            [Barra] => BITT00000618
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 10.00000000
+        )
+
+    [21] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 623
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000619
+            [Nombre] => cartera de cuero marca kike
+            [Barra] => BITT00000619
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [22] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 624
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.10000000
+            [BPrecio] => 10.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000620
+            [Nombre] => almuada blanca
+            [Barra] => BITT00000620
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 10.00000000
+        )
+
+    [23] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 625
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.10000000
+            [BPrecio] => 10.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000621
+            [Nombre] => tuaya
+            [Barra] => BITT00000621
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 10.00000000
+        )
+
+    [24] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 626
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000622
+            [Nombre] => mesa de noche
+            [Barra] => BITT00000622
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [25] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 627
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000623
+            [Nombre] => sgsdgf
+            [Barra] => BITT00000623
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [26] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 628
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000624
+            [Nombre] => test
+            [Barra] => t
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [27] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 629
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000625
+            [Nombre] => test
+            [Barra] => BITT00000625
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [28] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 630
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000626
+            [Nombre] => afadfa
+            [Barra] => BITT00000626
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [29] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 631
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000627
+            [Nombre] => afasf
+            [Barra] => BITT00000627
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [30] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 632
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000628
+            [Nombre] => licuadora
+            [Barra] => BITT00000628
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+)
+
+DEBUG - 2022-10-05 18:27:51 --> Final output sent to browser
+DEBUG - 2022-10-05 18:27:51 --> Total execution time: 0.0729
+DEBUG - 2022-10-05 18:27:51 --> Final output sent to browser
+DEBUG - 2022-10-05 18:27:51 --> Total execution time: 0.0791
