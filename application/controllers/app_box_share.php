@@ -1261,6 +1261,7 @@ class App_Box_Share extends CI_Controller {
 			//Set Encambezado del comprobante
 			//$pdf->ezText("VARIEDADES"."",FONT_SIZE,array('justification'=>'center'));
 			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
+			$pdf->ezText("::".strtoupper($objCompany->name)."::",FONT_SIZE,array('justification'=>'center' ));
 			$pdf->ezText("ABONO:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
 
 			$spacing 			= 0.5;

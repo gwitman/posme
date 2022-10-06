@@ -1168,6 +1168,7 @@ class App_Box_Sharecapital extends CI_Controller {
 			//Set Encambezado del comprobante
 			//$pdf->ezText("VARIEDADES"."",FONT_SIZE,array('justification'=>'center'));
 			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
+			$pdf->ezText("::".strtoupper($objCompany->name)."::",FONT_SIZE,array('justification'=>'center' ));
 			$pdf->ezText("ABONO AL CAPITAL:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
 			$spacing 			= 0.5;
 
