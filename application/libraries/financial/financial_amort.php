@@ -449,35 +449,30 @@ class financial_amort{
 		$cuotaAcumulada	= 0;
 
 		while ($i <= $numpay) {
-			$newInterest	=$monthly*$saldo;
-			$principal 		=$amount/$numpay;
+			$newInterest	=round(round($monthly,2)*round($saldo,2),2);
+			$principal 		=round(round($amount,2)/$numpay,2);
 			$parcela		=$principal+$newInterest;
-			$saldo			=$saldo-$principal ;
-			$saldoInicial	=$saldo+$principal ;
-			$cuotaAcumulada = sprintf("%0.12f",$cuotaAcumulada) + sprintf("%01.2f",$parcela);
-			log_message("ERROR","cuota acumulada");
-			log_message("ERROR",$cuotaAcumulada);
-			log_message("ERROR",$i);
-			
-			if($newInterest == 0 && $i == $numpay){
-				log_message("ERROR","ultimo pago");
-				$diferencia = sprintf("%0.12f",$cuotaAcumulada) - sprintf("%01.2f",$amount);
-				$diferencia = round($diferencia,2);
-				log_message("ERROR",$diferencia);
 
-				$principal = round($principal,2) - $diferencia;
-				$parcela = round($parcela,2) - $diferencia;
-				$saldoInicial = round($saldoInicial,2) - $diferencia;
+			$saldo			=$saldo-$principal ;
+			$saldoInicial	=$saldo+$principal ;			
+			$cuotaAcumulada =$cuotaAcumulada + $principal;
+	
+			
+			if($i == $numpay){
+				
+				$diferencia = $cuotaAcumulada - $amount;
+				$principal 	= $principal - $diferencia;//principal
+				$parcela 	= $parcela - $diferencia;//cuota
 				
 				
 				$result["detail"][$i]	  				= null;
 				$result["detail"][$i]["pnum"] 			= $i;									
 				$result["detail"][$i]["date"] 			= date_format($nextDate,"Y-m-d");		
-				$result["detail"][$i]["principal"] 		= sprintf("%01.2f",$principal) ;			
-				$result["detail"][$i]["interes"] 		= 0.00;			
-				$result["detail"][$i]["cuota"] 			= sprintf("%01.2f",$parcela);				
+				$result["detail"][$i]["principal"] 		= $principal ;				
+				$result["detail"][$i]["interes"] 		= $newInterest ;			
+				$result["detail"][$i]["cuota"] 			= $parcela;				
 				$result["detail"][$i]["saldo"] 			= 0;				
-				$result["detail"][$i]["saldoInicial"] 	= sprintf("%01.2f",$saldoInicial);
+				$result["detail"][$i]["saldoInicial"] 	= $saldoInicial;
 				$result["detail"][$i]["cpmnt"] 			= 0;
 
 			}
@@ -485,11 +480,11 @@ class financial_amort{
 				$result["detail"][$i]	  				= null;
 				$result["detail"][$i]["pnum"] 			= $i;									
 				$result["detail"][$i]["date"] 			= date_format($nextDate,"Y-m-d");		
-				$result["detail"][$i]["principal"] 		= sprintf("%01.2f",$principal) ;				
-				$result["detail"][$i]["interes"] 		= sprintf("%01.2f",$newInterest) ;			
-				$result["detail"][$i]["cuota"] 			= sprintf("%01.2f",$parcela);				
-				$result["detail"][$i]["saldo"] 			= sprintf("%01.2f",$saldo) ;				
-				$result["detail"][$i]["saldoInicial"] 	= sprintf("%01.2f",$saldoInicial);
+				$result["detail"][$i]["principal"] 		= $principal ;				
+				$result["detail"][$i]["interes"] 		= $newInterest ;			
+				$result["detail"][$i]["cuota"] 			= $parcela;				
+				$result["detail"][$i]["saldo"] 			= $saldo ;				
+				$result["detail"][$i]["saldoInicial"] 	= $saldoInicial;
 				$result["detail"][$i]["cpmnt"] 			= 0;
 			}
 			$nextDate								= $this->getNextDate($nextDate,$this->periodPay);

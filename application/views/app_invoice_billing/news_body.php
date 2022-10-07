@@ -232,14 +232,14 @@
 												</button>
 
 											</span>
-
+											<!--
 											<span class="input-group-btn">
 												<button class="btn btn-success" type="button" id="btnSearchCustomerNew">
 													<i aria-hidden="true" class="i-plus"></i>
 													nuevo
 												</button>
 											</span>
-
+											-->
 											
 
 										</div>

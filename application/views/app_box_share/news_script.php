@@ -95,7 +95,8 @@
 				console.info(obj);
 				objListaCustomerCredit 	= obj.array;
 				var saldoTotal 			= 0;				
-				objListaCustomerCredit.forEach(function(obj,inl){ saldoTotal = saldoTotal + fnFormatFloat(obj.balance);});
+				objListaCustomerCredit.forEach(function(obj,inl){ saldoTotal = saldoTotal + obj.balance;});
+				
 				saldoTotal = fnFormatNumber(saldoTotal,2);
 				$("#txtBalanceStart").val(saldoTotal);
 				
