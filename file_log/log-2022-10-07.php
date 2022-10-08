@@ -34296,3 +34296,2962 @@ DEBUG - 2022-10-07 08:41:49 --> Model Class Initialized
 DEBUG - 2022-10-07 08:41:49 --> Model Class Initialized
 DEBUG - 2022-10-07 08:41:49 --> Final output sent to browser
 DEBUG - 2022-10-07 08:41:49 --> Total execution time: 0.0769
+DEBUG - 2022-10-07 09:06:01 --> Config Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:06:01 --> URI Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Router Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Output Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Security Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Input Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:01 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:01 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:01 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:01 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:06:01 --> Language Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:06:01 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:06:01 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:06:01 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:06:01 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:06:01 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:06:01 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:06:01 --> Session Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Helper loaded: string_helper
+ERROR - 2022-10-07 09:06:01 --> punto de interrupcion  Session->set_userdata**************1
+ERROR - 2022-10-07 09:06:01 --> punto de interrupcion  Session->set_userdata**************2
+DEBUG - 2022-10-07 09:06:01 --> Session routines successfully run
+DEBUG - 2022-10-07 09:06:01 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Email Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Controller Class Initialized
+INFO  - 2022-10-07 09:06:01 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:01 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:01 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:01 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_billing/index
+INFO  - 2022-10-07 09:06:01 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:06:01 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:06:01 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_box_share/edit/companyID/2/transactionID/23/transactionMasterID/105',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%22d6addcdb5fb1316b8c8ad5ebf6eabd03%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665153678%3B%7D261d71ec74203ccb8846fe3679a92ab6; userID=2; nickname=superadmin; email=gjosias%40posme',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '49784',
+  'REDIRECT_URL' => '/posme/app_invoice_billing/index.aspx',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_billing/index.aspx',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_billing/index.aspx',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_billing\\index.aspx',
+  'PHP_SELF' => '/posme/index.php/app_invoice_billing/index.aspx',
+  'REQUEST_TIME_FLOAT' => 1665155161.4560000896453857421875,
+  'REQUEST_TIME' => 1665155161,
+)
+DEBUG - 2022-10-07 09:06:01 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:06:01 --> 1 001.001
+ERROR - 2022-10-07 09:06:01 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:06:01 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-07 09:06:01 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Table Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Jquery Class Initialized
+DEBUG - 2022-10-07 09:06:01 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2022-10-07 09:06:01 --> Model Class Initialized
+ERROR - 2022-10-07 09:06:01 --> punto de interrupcion  Session->set_userdata**************1
+ERROR - 2022-10-07 09:06:01 --> punto de interrupcion  Session->set_userdata**************2
+DEBUG - 2022-10-07 09:06:01 --> File loaded: application/views/app_invoice_billing/list_head.php
+DEBUG - 2022-10-07 09:06:01 --> File loaded: application/views/app_invoice_billing/list_footer.php
+DEBUG - 2022-10-07 09:06:01 --> File loaded: application/views/app_invoice_billing/list_script.php
+DEBUG - 2022-10-07 09:06:01 --> File loaded: application/views/core_masterpage/default_masterpage.php
+DEBUG - 2022-10-07 09:06:01 --> Final output sent to browser
+DEBUG - 2022-10-07 09:06:01 --> Total execution time: 0.0994
+DEBUG - 2022-10-07 09:06:03 --> Config Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:06:03 --> URI Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> Router Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> Output Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> Security Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> Input Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:03 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:03 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:03 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:03 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:06:03 --> Language Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:06:03 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:06:03 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:06:03 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:06:03 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:06:03 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:06:03 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:06:03 --> Session Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> Helper loaded: string_helper
+DEBUG - 2022-10-07 09:06:03 --> Session routines successfully run
+DEBUG - 2022-10-07 09:06:03 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:06:03 --> Email Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Controller Class Initialized
+INFO  - 2022-10-07 09:06:04 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:04 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:04 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:04 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_billing/edit
+INFO  - 2022-10-07 09:06:04 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:06:04 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:06:04 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/index.aspx',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%223da03f4214d793c7768d08c5ac4feddf%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665155161%3B%7D0084de0d9baa872678b97426004e4504',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '49784',
+  'REDIRECT_URL' => '/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_billing\\edit\\companyID\\2\\transactionID\\19\\transactionMasterID\\116',
+  'PHP_SELF' => '/posme/index.php/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'REQUEST_TIME_FLOAT' => 1665155163.940000057220458984375,
+  'REQUEST_TIME' => 1665155163,
+)
+DEBUG - 2022-10-07 09:06:04 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:06:04 --> 1 001.001
+ERROR - 2022-10-07 09:06:04 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:06:04 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+ERROR - 2022-10-07 09:06:04 --> SELECT `td`.`companyID`, `td`.`transactionID`, `td`.`transactionMasterID`, `td`.`transactionMasterDetailID`, `td`.`componentID`, `td`.`componentItemID`, `td`.`promotionID`, `td`.`amount`, `td`.`cost`, `td`.`quantity`, `td`.`discount`, `td`.`unitaryAmount`, `td`.`unitaryCost`, `td`.`unitaryPrice`, `td`.`tax1`, `td`.`tax2`, `td`.`tax3`, `td`.`tax4`, `td`.`reference1`, `td`.`reference2`, `td`.`reference3`, `td`.`reference4`, `td`.`reference5`, `td`.`reference6`, `td`.`reference7`, `td`.`catalogStatusID`, `td`.`inventoryStatusID`, `td`.`isActive`, `td`.`quantityStock`, `td`.`quantiryStockInTraffic`, `td`.`quantityStockUnaswared`, `td`.`remaingStock`, `td`.`expirationDate`, `td`.`inventoryWarehouseSourceID`, `td`.`inventoryWarehouseTargetID`, `i`.`itemNumber`, `i`.`name` as itemName, `ci`.`name` as unitMeasureName, `td`.`descriptionReference`, `td`.`exchangeRateReference`
+FROM (`tb_transaction_master_detail` td)
+JOIN `tb_item` i ON `td`.`companyID` = `i`.`companyID` and td.componentItemID = i.itemID
+JOIN `tb_catalog_item` ci ON `i`.`unitMeasureID` = `ci`.`catalogItemID`
+WHERE `td`.`companyID` =  '2'
+AND `td`.`transactionID` =  '19'
+AND `td`.`transactionMasterID` =  '116'
+AND `td`.`isActive` =  1
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+ERROR - 2022-10-07 09:06:04 --> punto de interrupcion  Session->set_userdata**************1
+ERROR - 2022-10-07 09:06:04 --> punto de interrupcion  Session->set_userdata**************2
+DEBUG - 2022-10-07 09:06:04 --> File loaded: application/views/app_invoice_billing/edit_head.php
+DEBUG - 2022-10-07 09:06:04 --> File loaded: application/views/app_invoice_billing/edit_body.php
+DEBUG - 2022-10-07 09:06:04 --> File loaded: application/views/app_invoice_billing/edit_script.php
+DEBUG - 2022-10-07 09:06:04 --> File loaded: application/views/core_masterpage/default_popup.php
+DEBUG - 2022-10-07 09:06:04 --> Final output sent to browser
+DEBUG - 2022-10-07 09:06:04 --> Total execution time: 0.1322
+DEBUG - 2022-10-07 09:06:04 --> Config Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Config Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:06:04 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:06:04 --> URI Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> URI Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Router Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Router Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Output Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Output Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Security Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Security Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Input Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:04 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:04 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:04 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:04 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:04 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:06:04 --> Language Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Input Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:04 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:04 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:04 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:04 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:04 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:06:04 --> Language Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:06:04 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:06:04 --> Database Driver Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: text_helper
+ERROR - 2022-10-07 09:06:04 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:06:04 --> Session Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: string_helper
+DEBUG - 2022-10-07 09:06:04 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:06:04 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:06:04 --> Session routines successfully run
+DEBUG - 2022-10-07 09:06:04 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Session Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Helper loaded: string_helper
+DEBUG - 2022-10-07 09:06:04 --> Email Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Session routines successfully run
+DEBUG - 2022-10-07 09:06:04 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Email Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Controller Class Initialized
+INFO  - 2022-10-07 09:06:04 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:04 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:04 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:04 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_api/getLineByCustomer
+INFO  - 2022-10-07 09:06:04 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:06:04 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'entityID' => '309',
+)
+INFO  - 2022-10-07 09:06:04 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'CONTENT_LENGTH' => '12',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_ACCEPT' => 'application/json, text/javascript, */*; q=0.01',
+  'CONTENT_TYPE' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_ORIGIN' => 'http://localhost',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'cors',
+  'HTTP_SEC_FETCH_DEST' => 'empty',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%223da03f4214d793c7768d08c5ac4feddf%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665155161%3B%7D0084de0d9baa872678b97426004e4504',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '49790',
+  'REDIRECT_URL' => '/posme/app_invoice_api/getLineByCustomer',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'POST',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_api/getLineByCustomer',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_api/getLineByCustomer',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_api\\getLineByCustomer',
+  'PHP_SELF' => '/posme/index.php/app_invoice_api/getLineByCustomer',
+  'REQUEST_TIME_FLOAT' => 1665155164.158999919891357421875,
+  'REQUEST_TIME' => 1665155164,
+)
+DEBUG - 2022-10-07 09:06:04 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2022-10-07 09:06:04 --> Controller Class Initialized
+ERROR - 2022-10-07 09:06:04 --> 1 001.001
+ERROR - 2022-10-07 09:06:04 --> obteniendo userdata 001.001
+INFO  - 2022-10-07 09:06:04 --> *******************************************************************************************************
+ERROR - 2022-10-07 09:06:04 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+INFO  - 2022-10-07 09:06:04 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:04 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:04 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_api/getViewApi
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+INFO  - 2022-10-07 09:06:04 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  '_' => '1665155164113',
+)
+INFO  - 2022-10-07 09:06:04 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+INFO  - 2022-10-07 09:06:04 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_ACCEPT' => 'application/json, text/javascript, */*; q=0.01',
+  'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'cors',
+  'HTTP_SEC_FETCH_DEST' => 'empty',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%223da03f4214d793c7768d08c5ac4feddf%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665155161%3B%7D0084de0d9baa872678b97426004e4504',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '49784',
+  'REDIRECT_QUERY_STRING' => '_=1665155164113',
+  'REDIRECT_URL' => '/posme/app_invoice_api/getViewApi/33/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/{"warehouseID"|"4"{}"listPriceID"|"12"{}"typePriceID"|"154"}',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '_=1665155164113',
+  'REQUEST_URI' => '/posme/app_invoice_api/getViewApi/33/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/%7B%22warehouseID%22%7C%224%22%7B%7D%22listPriceID%22%7C%2212%22%7B%7D%22typePriceID%22%7C%22154%22%7D?_=1665155164113',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_api/getViewApi/33/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/{"warehouseID"|"4"{}"listPriceID"|"12"{}"typePriceID"|"154"}',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_api\\getViewApi\\33\\onCompleteNewItem\\SELECCIONAR_ITEM_BILLING\\{"warehouseID"|"4"{}"listPriceID"|"12"{}"typePriceID"|"154"}',
+  'PHP_SELF' => '/posme/index.php/app_invoice_api/getViewApi/33/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/{"warehouseID"|"4"{}"listPriceID"|"12"{}"typePriceID"|"154"}',
+  'REQUEST_TIME_FLOAT' => 1665155164.1600000858306884765625,
+  'REQUEST_TIME' => 1665155164,
+)
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:06:04 --> 1 001.001
+ERROR - 2022-10-07 09:06:04 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:06:04 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:04 --> Model Class Initialized
+ERROR - 2022-10-07 09:06:04 --> componenete 003:
+ERROR - 2022-10-07 09:06:04 --> Array
+(
+    [0] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 4
+            [unitMeasureID] => 78
+            [cost] => 10.0000
+            [quantity] => 77796.0000
+            [quantityMax] => 0.0000
+            [quantityMin] => 0.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 100.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 36.06080000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000000
+            [Nombre] => no usar 001
+            [Barra] => BITT00000000
+            [Medida] => LITRO
+            [Cantidad] => 38962.0000
+            [Precio] => 36.06080000
+        )
+
+    [1] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 5
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 418635.0000
+            [quantityMax] => 250.0000
+            [quantityMin] => 0.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 100.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 2.56366600
+            [BPrecio] => 256.36660000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000001
+            [Nombre] => no usar 002
+            [Barra] => BITT00000001
+            [Medida] => LITRO
+            [Cantidad] => 85.0000
+            [Precio] => 256.36660000
+        )
+
+    [2] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 598
+            [unitMeasureID] => 79
+            [cost] => 125.0000
+            [quantity] => 311.0000
+            [quantityMax] => 100.0000
+            [quantityMin] => 0.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 100.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 700.00000000
+            [BPrecio] => 1000.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000594
+            [Nombre] => producto generico
+            [Barra] => BITT00000002
+            [Medida] => KG
+            [Cantidad] => 314.3400
+            [Precio] => 1000.00000000
+        )
+
+    [3] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 599
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 94.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 100.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 10.00000000
+            [BPrecio] => 1000.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000595
+            [Nombre] => pana de 1 litro
+            [Barra] => CML002
+            [Medida] => KG
+            [Cantidad] => 94.0000
+            [Precio] => 1000.00000000
+        )
+
+    [4] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 600
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 200.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000596
+            [Nombre] => pelota
+            [Barra] => BITT00000596
+            [Medida] => KG
+            [Cantidad] => 200.0000
+            [Precio] => 0.00000000
+        )
+
+    [5] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 601
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 200.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000597
+            [Nombre] => caramelo
+            [Barra] => 
+            [Medida] => KG
+            [Cantidad] => 200.0000
+            [Precio] => 0.00000000
+        )
+
+    [6] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 602
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 2.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000598
+            [Nombre] => diadema
+            [Barra] => BITT00000598
+            [Medida] => KG
+            [Cantidad] => 2.0000
+            [Precio] => 0.00000000
+        )
+
+    [7] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 603
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 20.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000599
+            [Nombre] => vitamina e
+            [Barra] => BITT00000599
+            [Medida] => KG
+            [Cantidad] => 20.0000
+            [Precio] => 0.00000000
+        )
+
+    [8] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 604
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 20.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000600
+            [Nombre] => vitamina b12
+            [Barra] => BITT00000600
+            [Medida] => KG
+            [Cantidad] => 20.0000
+            [Precio] => 0.00000000
+        )
+
+    [9] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 605
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 20.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000601
+            [Nombre] => pasta de diente
+            [Barra] => BITT00000601
+            [Medida] => KG
+            [Cantidad] => 20.0000
+            [Precio] => 0.00000000
+        )
+
+    [10] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 606
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 20.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000602
+            [Nombre] => cuadro
+            [Barra] => ITT00000602
+            [Medida] => KG
+            [Cantidad] => 20.0000
+            [Precio] => 0.00000000
+        )
+
+    [11] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 607
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 30.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000603
+            [Nombre] => pintura
+            [Barra] => ITT00000603
+            [Medida] => KG
+            [Cantidad] => 30.0000
+            [Precio] => 0.00000000
+        )
+
+    [12] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 608
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 100.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000604
+            [Nombre] => grapa
+            [Barra] => ITT00000604
+            [Medida] => KG
+            [Cantidad] => 100.0000
+            [Precio] => 0.00000000
+        )
+
+    [13] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 609
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 40.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000605
+            [Nombre] => madera
+            [Barra] => ITT00000605
+            [Medida] => KG
+            [Cantidad] => 35.0000
+            [Precio] => 0.00000000
+        )
+
+    [14] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 610
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 100.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 0.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000606
+            [Nombre] => formon
+            [Barra] => ITT00000606
+            [Medida] => KG
+            [Cantidad] => 100.0000
+            [Precio] => 0.00000000
+        )
+
+    [15] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 611
+            [unitMeasureID] => 79
+            [cost] => 10.0000
+            [quantity] => 4032.0000
+            [quantityMax] => 1.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 3.00000000
+            [BPrecio] => 300.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000607
+            [Nombre] => semilla de mango
+            [Barra] => ITT00000607
+            [Medida] => KG
+            [Cantidad] => 4032.0000
+            [Precio] => 300.00000000
+        )
+
+    [16] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 613
+            [unitMeasureID] => 79
+            [cost] => 0.0000
+            [quantity] => 300.0000
+            [quantityMax] => 100.0000
+            [quantityMin] => 0.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 100.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 0
+            [Codigo] => ITT00000609
+            [Nombre] => tv
+            [Barra] => ITT00000609
+            [Medida] => KG
+            [Cantidad] => 300.0000
+            [Precio] => 0.00000000
+        )
+
+    [17] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 619
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000615
+            [Nombre] => Sopa Maruchan 12g
+            [Barra] => BITT00000615
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [18] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 620
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000616
+            [Nombre] => Blusa Azul marca Nyke
+            [Barra] => BITT00000616
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [19] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 621
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000617
+            [Nombre] => papel 4pulgada
+            [Barra] => BITT00000617
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [20] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 622
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.10000000
+            [BPrecio] => 10.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000618
+            [Nombre] => pepel amarillo crepe
+            [Barra] => BITT00000618
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 10.00000000
+        )
+
+    [21] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 623
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000619
+            [Nombre] => cartera de cuero marca kike
+            [Barra] => BITT00000619
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [22] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 624
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.10000000
+            [BPrecio] => 10.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000620
+            [Nombre] => almuada blanca
+            [Barra] => BITT00000620
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 10.00000000
+        )
+
+    [23] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 625
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.10000000
+            [BPrecio] => 10.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000621
+            [Nombre] => tuaya
+            [Barra] => BITT00000621
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 10.00000000
+        )
+
+    [24] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 626
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000622
+            [Nombre] => mesa de noche
+            [Barra] => BITT00000622
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [25] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 627
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000623
+            [Nombre] => sgsdgf
+            [Barra] => BITT00000623
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [26] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 628
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000624
+            [Nombre] => test
+            [Barra] => t
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [27] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 629
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000625
+            [Nombre] => test
+            [Barra] => BITT00000625
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [28] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 630
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000626
+            [Nombre] => afadfa
+            [Barra] => BITT00000626
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [29] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 631
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000627
+            [Nombre] => afasf
+            [Barra] => BITT00000627
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [30] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 632
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000628
+            [Nombre] => licuadora
+            [Barra] => BITT00000628
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+    [31] => stdClass Object
+        (
+            [listPriceID] => 12
+            [startOn] => 2016-01-01 00:00:00
+            [endOn] => 2022-12-31 00:00:00
+            [typePriceID] => 154
+            [display] => PUBLICO
+            [itemID] => 633
+            [unitMeasureID] => 78
+            [cost] => 0.0000
+            [quantity] => 0.0000
+            [quantityMax] => 1000.0000
+            [quantityMin] => 1.0000
+            [iwCost] => 0.0000
+            [iwQuantityMax] => 1000.0000
+            [iwQuantityMin] => 0.0000
+            [percentage] => 0.00000000
+            [BPrecio] => 0.00000000
+            [isInvoiceQuantityZero] => 1
+            [Codigo] => ITT00000629
+            [Nombre] => barra
+            [Barra] => BITT00000629
+            [Medida] => LITRO
+            [Cantidad] => 0.0000
+            [Precio] => 0.00000000
+        )
+
+)
+
+DEBUG - 2022-10-07 09:06:04 --> Final output sent to browser
+DEBUG - 2022-10-07 09:06:04 --> Final output sent to browser
+DEBUG - 2022-10-07 09:06:04 --> Total execution time: 0.0951
+DEBUG - 2022-10-07 09:06:04 --> Total execution time: 0.0949
+DEBUG - 2022-10-07 09:06:06 --> Config Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:06:06 --> URI Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Router Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Output Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Security Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Input Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:06 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:06 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:06 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:06:06 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:06:06 --> Language Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:06:06 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:06:06 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:06:06 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:06:06 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:06:06 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:06:06 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:06:06 --> Session Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Helper loaded: string_helper
+DEBUG - 2022-10-07 09:06:06 --> Session routines successfully run
+DEBUG - 2022-10-07 09:06:06 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Email Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Controller Class Initialized
+INFO  - 2022-10-07 09:06:06 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:06 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:06 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:06:06 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_billing/viewRegisterVariedadesCarlosLuis
+INFO  - 2022-10-07 09:06:06 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:06:06 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:06:06 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%223da03f4214d793c7768d08c5ac4feddf%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665155161%3B%7D0084de0d9baa872678b97426004e4504',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '49790',
+  'REDIRECT_URL' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_billing\\viewRegisterVariedadesCarlosLuis\\companyID\\2\\transactionID\\19\\transactionMasterID\\116',
+  'PHP_SELF' => '/posme/index.php/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'REQUEST_TIME_FLOAT' => 1665155166.78299999237060546875,
+  'REQUEST_TIME' => 1665155166,
+)
+ERROR - 2022-10-07 09:06:06 --> preuba de impresora
+DEBUG - 2022-10-07 09:06:06 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:06:06 --> 1 001.001
+ERROR - 2022-10-07 09:06:06 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:06:06 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+ERROR - 2022-10-07 09:06:06 --> preuba de impresora 003
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+ERROR - 2022-10-07 09:06:06 --> SELECT `td`.`companyID`, `td`.`transactionID`, `td`.`transactionMasterID`, `td`.`transactionMasterDetailID`, `td`.`componentID`, `td`.`componentItemID`, `td`.`promotionID`, `td`.`amount`, `td`.`cost`, `td`.`quantity`, `td`.`discount`, `td`.`unitaryAmount`, `td`.`unitaryCost`, `td`.`unitaryPrice`, `td`.`tax1`, `td`.`tax2`, `td`.`tax3`, `td`.`tax4`, `td`.`reference1`, `td`.`reference2`, `td`.`reference3`, `td`.`reference4`, `td`.`reference5`, `td`.`reference6`, `td`.`reference7`, `td`.`catalogStatusID`, `td`.`inventoryStatusID`, `td`.`isActive`, `td`.`quantityStock`, `td`.`quantiryStockInTraffic`, `td`.`quantityStockUnaswared`, `td`.`remaingStock`, `td`.`expirationDate`, `td`.`inventoryWarehouseSourceID`, `td`.`inventoryWarehouseTargetID`, `i`.`itemNumber`, `i`.`name` as itemName, `ci`.`name` as unitMeasureName, `td`.`descriptionReference`, `td`.`exchangeRateReference`
+FROM (`tb_transaction_master_detail` td)
+JOIN `tb_item` i ON `td`.`companyID` = `i`.`companyID` and td.componentItemID = i.itemID
+JOIN `tb_catalog_item` ci ON `i`.`unitMeasureID` = `ci`.`catalogItemID`
+WHERE `td`.`companyID` =  '2'
+AND `td`.`transactionID` =  '19'
+AND `td`.`transactionMasterID` =  '116'
+AND `td`.`isActive` =  1
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+DEBUG - 2022-10-07 09:06:06 --> Model Class Initialized
+ERROR - 2022-10-07 09:06:06 --> preuba de impresora 004
+ERROR - 2022-10-07 09:06:06 --> preuba de impresora 005
+ERROR - 2022-10-07 09:06:06 --> preuba de impresora 006
+ERROR - 2022-10-07 09:06:06 --> preuba de impresora 010
+ERROR - 2022-10-07 09:06:06 --> preuba de impresora 015
+DEBUG - 2022-10-07 09:06:06 --> Final output sent to browser
+DEBUG - 2022-10-07 09:06:06 --> Total execution time: 0.1056
+DEBUG - 2022-10-07 09:19:50 --> Config Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:19:50 --> URI Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Router Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Output Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Security Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Input Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:19:50 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:19:50 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:19:50 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:19:50 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:19:50 --> Language Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:19:50 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:19:50 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:19:50 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:19:50 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:19:50 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:19:50 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:19:50 --> Session Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Helper loaded: string_helper
+ERROR - 2022-10-07 09:19:50 --> punto de interrupcion  Session->set_userdata**************1
+ERROR - 2022-10-07 09:19:50 --> punto de interrupcion  Session->set_userdata**************2
+DEBUG - 2022-10-07 09:19:50 --> Session routines successfully run
+DEBUG - 2022-10-07 09:19:50 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Email Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Controller Class Initialized
+INFO  - 2022-10-07 09:19:50 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:19:50 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:19:50 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:19:50 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_billing/viewRegisterVariedadesCarlosLuis
+INFO  - 2022-10-07 09:19:50 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:19:50 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:19:50 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_CACHE_CONTROL' => 'max-age=0',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%223da03f4214d793c7768d08c5ac4feddf%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665155161%3B%7D0084de0d9baa872678b97426004e4504',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '49849',
+  'REDIRECT_URL' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_billing\\viewRegisterVariedadesCarlosLuis\\companyID\\2\\transactionID\\19\\transactionMasterID\\116',
+  'PHP_SELF' => '/posme/index.php/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'REQUEST_TIME_FLOAT' => 1665155990.0829999446868896484375,
+  'REQUEST_TIME' => 1665155990,
+)
+ERROR - 2022-10-07 09:19:50 --> preuba de impresora
+DEBUG - 2022-10-07 09:19:50 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:19:50 --> 1 001.001
+ERROR - 2022-10-07 09:19:50 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:19:50 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+ERROR - 2022-10-07 09:19:50 --> preuba de impresora 003
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+ERROR - 2022-10-07 09:19:50 --> SELECT `td`.`companyID`, `td`.`transactionID`, `td`.`transactionMasterID`, `td`.`transactionMasterDetailID`, `td`.`componentID`, `td`.`componentItemID`, `td`.`promotionID`, `td`.`amount`, `td`.`cost`, `td`.`quantity`, `td`.`discount`, `td`.`unitaryAmount`, `td`.`unitaryCost`, `td`.`unitaryPrice`, `td`.`tax1`, `td`.`tax2`, `td`.`tax3`, `td`.`tax4`, `td`.`reference1`, `td`.`reference2`, `td`.`reference3`, `td`.`reference4`, `td`.`reference5`, `td`.`reference6`, `td`.`reference7`, `td`.`catalogStatusID`, `td`.`inventoryStatusID`, `td`.`isActive`, `td`.`quantityStock`, `td`.`quantiryStockInTraffic`, `td`.`quantityStockUnaswared`, `td`.`remaingStock`, `td`.`expirationDate`, `td`.`inventoryWarehouseSourceID`, `td`.`inventoryWarehouseTargetID`, `i`.`itemNumber`, `i`.`name` as itemName, `ci`.`name` as unitMeasureName, `td`.`descriptionReference`, `td`.`exchangeRateReference`
+FROM (`tb_transaction_master_detail` td)
+JOIN `tb_item` i ON `td`.`companyID` = `i`.`companyID` and td.componentItemID = i.itemID
+JOIN `tb_catalog_item` ci ON `i`.`unitMeasureID` = `ci`.`catalogItemID`
+WHERE `td`.`companyID` =  '2'
+AND `td`.`transactionID` =  '19'
+AND `td`.`transactionMasterID` =  '116'
+AND `td`.`isActive` =  1
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+DEBUG - 2022-10-07 09:19:50 --> Model Class Initialized
+ERROR - 2022-10-07 09:19:50 --> preuba de impresora 004
+ERROR - 2022-10-07 09:19:50 --> preuba de impresora 005
+ERROR - 2022-10-07 09:19:50 --> preuba de impresora 006
+ERROR - 2022-10-07 09:19:50 --> preuba de impresora 010
+ERROR - 2022-10-07 09:19:50 --> preuba de impresora 015
+DEBUG - 2022-10-07 09:19:50 --> Final output sent to browser
+DEBUG - 2022-10-07 09:19:50 --> Total execution time: 0.1198
+DEBUG - 2022-10-07 09:40:13 --> Config Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:40:13 --> URI Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Router Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Output Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Security Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Input Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:13 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:13 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:13 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:13 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:40:13 --> Language Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:40:13 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:40:13 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:40:13 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:40:13 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:40:13 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:40:13 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:40:13 --> Session Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Helper loaded: string_helper
+ERROR - 2022-10-07 09:40:13 --> punto de interrupcion  Session->set_userdata**************1
+ERROR - 2022-10-07 09:40:13 --> punto de interrupcion  Session->set_userdata**************2
+DEBUG - 2022-10-07 09:40:13 --> Session routines successfully run
+DEBUG - 2022-10-07 09:40:13 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Email Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Controller Class Initialized
+INFO  - 2022-10-07 09:40:13 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:40:13 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:40:13 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:40:13 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_billing/viewRegisterVariedadesCarlosLuis
+INFO  - 2022-10-07 09:40:13 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:40:13 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:40:13 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_CACHE_CONTROL' => 'max-age=0',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%228a1d7b978105dafbd56786300da50114%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665155990%3B%7Dd322309b5e9c8c0b610f7adfbc33aa96',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '49950',
+  'REDIRECT_URL' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_billing\\viewRegisterVariedadesCarlosLuis\\companyID\\2\\transactionID\\19\\transactionMasterID\\116',
+  'PHP_SELF' => '/posme/index.php/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'REQUEST_TIME_FLOAT' => 1665157213.8259999752044677734375,
+  'REQUEST_TIME' => 1665157213,
+)
+ERROR - 2022-10-07 09:40:13 --> preuba de impresora
+DEBUG - 2022-10-07 09:40:13 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:40:13 --> 1 001.001
+ERROR - 2022-10-07 09:40:13 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:40:13 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+ERROR - 2022-10-07 09:40:13 --> preuba de impresora 003
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+ERROR - 2022-10-07 09:40:13 --> SELECT `td`.`companyID`, `td`.`transactionID`, `td`.`transactionMasterID`, `td`.`transactionMasterDetailID`, `td`.`componentID`, `td`.`componentItemID`, `td`.`promotionID`, `td`.`amount`, `td`.`cost`, `td`.`quantity`, `td`.`discount`, `td`.`unitaryAmount`, `td`.`unitaryCost`, `td`.`unitaryPrice`, `td`.`tax1`, `td`.`tax2`, `td`.`tax3`, `td`.`tax4`, `td`.`reference1`, `td`.`reference2`, `td`.`reference3`, `td`.`reference4`, `td`.`reference5`, `td`.`reference6`, `td`.`reference7`, `td`.`catalogStatusID`, `td`.`inventoryStatusID`, `td`.`isActive`, `td`.`quantityStock`, `td`.`quantiryStockInTraffic`, `td`.`quantityStockUnaswared`, `td`.`remaingStock`, `td`.`expirationDate`, `td`.`inventoryWarehouseSourceID`, `td`.`inventoryWarehouseTargetID`, `i`.`itemNumber`, `i`.`name` as itemName, `ci`.`name` as unitMeasureName, `td`.`descriptionReference`, `td`.`exchangeRateReference`
+FROM (`tb_transaction_master_detail` td)
+JOIN `tb_item` i ON `td`.`companyID` = `i`.`companyID` and td.componentItemID = i.itemID
+JOIN `tb_catalog_item` ci ON `i`.`unitMeasureID` = `ci`.`catalogItemID`
+WHERE `td`.`companyID` =  '2'
+AND `td`.`transactionID` =  '19'
+AND `td`.`transactionMasterID` =  '116'
+AND `td`.`isActive` =  1
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:13 --> Model Class Initialized
+ERROR - 2022-10-07 09:40:13 --> preuba de impresora 004
+ERROR - 2022-10-07 09:40:13 --> preuba de impresora 005
+ERROR - 2022-10-07 09:40:13 --> preuba de impresora 006
+ERROR - 2022-10-07 09:40:13 --> preuba de impresora 010
+ERROR - 2022-10-07 09:40:13 --> preuba de impresora 015
+DEBUG - 2022-10-07 09:40:13 --> Final output sent to browser
+DEBUG - 2022-10-07 09:40:13 --> Total execution time: 0.1213
+DEBUG - 2022-10-07 09:40:24 --> Config Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:40:24 --> URI Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Router Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Output Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Security Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Input Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:24 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:24 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:24 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:24 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:40:24 --> Language Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:40:24 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:40:24 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:40:24 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:40:24 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:40:24 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:40:24 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:40:24 --> Session Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Helper loaded: string_helper
+DEBUG - 2022-10-07 09:40:24 --> Session routines successfully run
+DEBUG - 2022-10-07 09:40:24 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Email Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Controller Class Initialized
+INFO  - 2022-10-07 09:40:24 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:40:24 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:40:24 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:40:24 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************core_dashboards/index
+INFO  - 2022-10-07 09:40:24 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:40:24 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:40:24 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/index.aspx',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%226e341096e4de6bfd80521ca658166680%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665157213%3B%7D4c445b0c37bf8774cc895b0d44dd7e42',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '49955',
+  'REDIRECT_URL' => '/posme/core_dashboards/index.aspx',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/core_dashboards/index.aspx',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/core_dashboards/index.aspx',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\core_dashboards\\index.aspx',
+  'PHP_SELF' => '/posme/index.php/core_dashboards/index.aspx',
+  'REQUEST_TIME_FLOAT' => 1665157223.99499988555908203125,
+  'REQUEST_TIME' => 1665157223,
+)
+DEBUG - 2022-10-07 09:40:24 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:40:24 --> 1 001.001
+ERROR - 2022-10-07 09:40:24 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:40:24 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+ERROR - 2022-10-07 09:40:24 --> session
+ERROR - 2022-10-07 09:40:24 --> Variedades Carlos Luis
+DEBUG - 2022-10-07 09:40:24 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:24 --> File loaded: application/views/core_dasboard/dashboards_default.php
+DEBUG - 2022-10-07 09:40:24 --> File loaded: application/views/core_masterpage/default_masterpage.php
+DEBUG - 2022-10-07 09:40:24 --> Final output sent to browser
+DEBUG - 2022-10-07 09:40:24 --> Total execution time: 0.0887
+DEBUG - 2022-10-07 09:40:26 --> Config Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:40:26 --> URI Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Router Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Output Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Security Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Input Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:26 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:26 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:26 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:40:26 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:40:26 --> Language Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:40:26 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:40:26 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:40:26 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:40:26 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:40:26 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:40:26 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:40:26 --> Session Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Helper loaded: string_helper
+DEBUG - 2022-10-07 09:40:26 --> Session routines successfully run
+DEBUG - 2022-10-07 09:40:26 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Email Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Controller Class Initialized
+INFO  - 2022-10-07 09:40:26 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:40:26 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:40:26 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:40:26 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************core_dashboards/index
+INFO  - 2022-10-07 09:40:26 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:40:26 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:40:26 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_PRAGMA' => 'no-cache',
+  'HTTP_CACHE_CONTROL' => 'no-cache',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/index.aspx',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%226e341096e4de6bfd80521ca658166680%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665157213%3B%7D4c445b0c37bf8774cc895b0d44dd7e42',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '49955',
+  'REDIRECT_URL' => '/posme/core_dashboards/index.aspx',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/core_dashboards/index.aspx',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/core_dashboards/index.aspx',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\core_dashboards\\index.aspx',
+  'PHP_SELF' => '/posme/index.php/core_dashboards/index.aspx',
+  'REQUEST_TIME_FLOAT' => 1665157226.21000003814697265625,
+  'REQUEST_TIME' => 1665157226,
+)
+DEBUG - 2022-10-07 09:40:26 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:40:26 --> 1 001.001
+ERROR - 2022-10-07 09:40:26 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:40:26 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+ERROR - 2022-10-07 09:40:26 --> session
+ERROR - 2022-10-07 09:40:26 --> Variedades Carlos Luis
+DEBUG - 2022-10-07 09:40:26 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> Model Class Initialized
+DEBUG - 2022-10-07 09:40:26 --> File loaded: application/views/core_dasboard/dashboards_default.php
+DEBUG - 2022-10-07 09:40:26 --> File loaded: application/views/core_masterpage/default_masterpage.php
+DEBUG - 2022-10-07 09:40:26 --> Final output sent to browser
+DEBUG - 2022-10-07 09:40:26 --> Total execution time: 0.0501
+DEBUG - 2022-10-07 09:41:19 --> Config Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:41:19 --> URI Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Router Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Output Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Security Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Input Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:41:19 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:41:19 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:41:19 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:41:19 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:41:19 --> Language Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:41:19 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:41:19 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:41:19 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:41:19 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:41:19 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:41:19 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:41:19 --> Session Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Helper loaded: string_helper
+DEBUG - 2022-10-07 09:41:19 --> Session routines successfully run
+DEBUG - 2022-10-07 09:41:19 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Email Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Controller Class Initialized
+INFO  - 2022-10-07 09:41:19 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:41:19 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:41:19 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:41:19 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_billing/viewRegisterVariedadesCarlosLuis
+INFO  - 2022-10-07 09:41:19 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:41:19 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:41:19 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_CACHE_CONTROL' => 'max-age=0',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%226e341096e4de6bfd80521ca658166680%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665157213%3B%7D4c445b0c37bf8774cc895b0d44dd7e42',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '49967',
+  'REDIRECT_URL' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_billing\\viewRegisterVariedadesCarlosLuis\\companyID\\2\\transactionID\\19\\transactionMasterID\\116',
+  'PHP_SELF' => '/posme/index.php/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'REQUEST_TIME_FLOAT' => 1665157279.3840000629425048828125,
+  'REQUEST_TIME' => 1665157279,
+)
+ERROR - 2022-10-07 09:41:19 --> preuba de impresora
+DEBUG - 2022-10-07 09:41:19 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:41:19 --> 1 001.001
+ERROR - 2022-10-07 09:41:19 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:41:19 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+ERROR - 2022-10-07 09:41:19 --> preuba de impresora 003
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+ERROR - 2022-10-07 09:41:19 --> SELECT `td`.`companyID`, `td`.`transactionID`, `td`.`transactionMasterID`, `td`.`transactionMasterDetailID`, `td`.`componentID`, `td`.`componentItemID`, `td`.`promotionID`, `td`.`amount`, `td`.`cost`, `td`.`quantity`, `td`.`discount`, `td`.`unitaryAmount`, `td`.`unitaryCost`, `td`.`unitaryPrice`, `td`.`tax1`, `td`.`tax2`, `td`.`tax3`, `td`.`tax4`, `td`.`reference1`, `td`.`reference2`, `td`.`reference3`, `td`.`reference4`, `td`.`reference5`, `td`.`reference6`, `td`.`reference7`, `td`.`catalogStatusID`, `td`.`inventoryStatusID`, `td`.`isActive`, `td`.`quantityStock`, `td`.`quantiryStockInTraffic`, `td`.`quantityStockUnaswared`, `td`.`remaingStock`, `td`.`expirationDate`, `td`.`inventoryWarehouseSourceID`, `td`.`inventoryWarehouseTargetID`, `i`.`itemNumber`, `i`.`name` as itemName, `ci`.`name` as unitMeasureName, `td`.`descriptionReference`, `td`.`exchangeRateReference`
+FROM (`tb_transaction_master_detail` td)
+JOIN `tb_item` i ON `td`.`companyID` = `i`.`companyID` and td.componentItemID = i.itemID
+JOIN `tb_catalog_item` ci ON `i`.`unitMeasureID` = `ci`.`catalogItemID`
+WHERE `td`.`companyID` =  '2'
+AND `td`.`transactionID` =  '19'
+AND `td`.`transactionMasterID` =  '116'
+AND `td`.`isActive` =  1
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+DEBUG - 2022-10-07 09:41:19 --> Model Class Initialized
+ERROR - 2022-10-07 09:41:19 --> preuba de impresora 004
+ERROR - 2022-10-07 09:41:19 --> preuba de impresora 005
+ERROR - 2022-10-07 09:41:19 --> preuba de impresora 006
+ERROR - 2022-10-07 09:41:19 --> preuba de impresora 010
+ERROR - 2022-10-07 09:41:19 --> preuba de impresora 015
+DEBUG - 2022-10-07 09:41:19 --> Final output sent to browser
+DEBUG - 2022-10-07 09:41:19 --> Total execution time: 0.1265
+DEBUG - 2022-10-07 09:54:36 --> Config Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:54:36 --> URI Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Router Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Output Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Security Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Input Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:54:36 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:54:36 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:54:36 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:54:36 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:54:36 --> Language Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:54:36 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:54:36 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:54:36 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:54:36 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:54:36 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:54:36 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:54:36 --> Session Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Helper loaded: string_helper
+ERROR - 2022-10-07 09:54:36 --> punto de interrupcion  Session->set_userdata**************1
+ERROR - 2022-10-07 09:54:36 --> punto de interrupcion  Session->set_userdata**************2
+DEBUG - 2022-10-07 09:54:36 --> Session routines successfully run
+DEBUG - 2022-10-07 09:54:36 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Email Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Controller Class Initialized
+INFO  - 2022-10-07 09:54:36 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:54:36 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:54:36 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:54:36 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_billing/viewRegisterVariedadesCarlosLuis
+INFO  - 2022-10-07 09:54:36 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:54:36 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:54:36 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_CACHE_CONTROL' => 'max-age=0',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%226e341096e4de6bfd80521ca658166680%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665157213%3B%7D4c445b0c37bf8774cc895b0d44dd7e42',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '50001',
+  'REDIRECT_URL' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_billing\\viewRegisterVariedadesCarlosLuis\\companyID\\2\\transactionID\\19\\transactionMasterID\\116',
+  'PHP_SELF' => '/posme/index.php/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'REQUEST_TIME_FLOAT' => 1665158076.0559999942779541015625,
+  'REQUEST_TIME' => 1665158076,
+)
+ERROR - 2022-10-07 09:54:36 --> preuba de impresora
+DEBUG - 2022-10-07 09:54:36 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:54:36 --> 1 001.001
+ERROR - 2022-10-07 09:54:36 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:54:36 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+ERROR - 2022-10-07 09:54:36 --> preuba de impresora 003
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+ERROR - 2022-10-07 09:54:36 --> SELECT `td`.`companyID`, `td`.`transactionID`, `td`.`transactionMasterID`, `td`.`transactionMasterDetailID`, `td`.`componentID`, `td`.`componentItemID`, `td`.`promotionID`, `td`.`amount`, `td`.`cost`, `td`.`quantity`, `td`.`discount`, `td`.`unitaryAmount`, `td`.`unitaryCost`, `td`.`unitaryPrice`, `td`.`tax1`, `td`.`tax2`, `td`.`tax3`, `td`.`tax4`, `td`.`reference1`, `td`.`reference2`, `td`.`reference3`, `td`.`reference4`, `td`.`reference5`, `td`.`reference6`, `td`.`reference7`, `td`.`catalogStatusID`, `td`.`inventoryStatusID`, `td`.`isActive`, `td`.`quantityStock`, `td`.`quantiryStockInTraffic`, `td`.`quantityStockUnaswared`, `td`.`remaingStock`, `td`.`expirationDate`, `td`.`inventoryWarehouseSourceID`, `td`.`inventoryWarehouseTargetID`, `i`.`itemNumber`, `i`.`name` as itemName, `ci`.`name` as unitMeasureName, `td`.`descriptionReference`, `td`.`exchangeRateReference`
+FROM (`tb_transaction_master_detail` td)
+JOIN `tb_item` i ON `td`.`companyID` = `i`.`companyID` and td.componentItemID = i.itemID
+JOIN `tb_catalog_item` ci ON `i`.`unitMeasureID` = `ci`.`catalogItemID`
+WHERE `td`.`companyID` =  '2'
+AND `td`.`transactionID` =  '19'
+AND `td`.`transactionMasterID` =  '116'
+AND `td`.`isActive` =  1
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+DEBUG - 2022-10-07 09:54:36 --> Model Class Initialized
+ERROR - 2022-10-07 09:54:36 --> preuba de impresora 004
+ERROR - 2022-10-07 09:54:36 --> preuba de impresora 005
+ERROR - 2022-10-07 09:54:36 --> preuba de impresora 006
+ERROR - 2022-10-07 09:54:36 --> preuba de impresora 010
+ERROR - 2022-10-07 09:54:36 --> preuba de impresora 015
+DEBUG - 2022-10-07 09:54:36 --> Final output sent to browser
+DEBUG - 2022-10-07 09:54:36 --> Total execution time: 0.1413
+DEBUG - 2022-10-07 09:55:35 --> Config Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:55:35 --> URI Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Router Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Output Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Security Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Input Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:55:35 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:55:35 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:55:35 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:55:35 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:55:35 --> Language Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:55:35 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:55:35 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:55:35 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:55:35 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:55:35 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:55:35 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:55:35 --> Session Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Helper loaded: string_helper
+DEBUG - 2022-10-07 09:55:35 --> Session routines successfully run
+DEBUG - 2022-10-07 09:55:35 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Email Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Controller Class Initialized
+INFO  - 2022-10-07 09:55:35 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:55:35 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:55:35 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:55:35 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************core_dashboards/index
+INFO  - 2022-10-07 09:55:35 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:55:35 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:55:35 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_CACHE_CONTROL' => 'max-age=0',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/index.aspx',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%2248d38dffa2bc02fc6af53a3418aa2fec%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665158076%3B%7D8e94457f58767202874755d01bcec2e7',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '50016',
+  'REDIRECT_URL' => '/posme/core_dashboards/index.aspx',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/core_dashboards/index.aspx',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/core_dashboards/index.aspx',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\core_dashboards\\index.aspx',
+  'PHP_SELF' => '/posme/index.php/core_dashboards/index.aspx',
+  'REQUEST_TIME_FLOAT' => 1665158135.499000072479248046875,
+  'REQUEST_TIME' => 1665158135,
+)
+DEBUG - 2022-10-07 09:55:35 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:55:35 --> 1 001.001
+ERROR - 2022-10-07 09:55:35 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:55:35 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+ERROR - 2022-10-07 09:55:35 --> session
+ERROR - 2022-10-07 09:55:35 --> Variedades Carlos Luis
+DEBUG - 2022-10-07 09:55:35 --> Model Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Model Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> Model Class Initialized
+DEBUG - 2022-10-07 09:55:35 --> File loaded: application/views/core_dasboard/dashboards_default.php
+DEBUG - 2022-10-07 09:55:35 --> File loaded: application/views/core_masterpage/default_masterpage.php
+DEBUG - 2022-10-07 09:55:35 --> Final output sent to browser
+DEBUG - 2022-10-07 09:55:35 --> Total execution time: 0.0866
+DEBUG - 2022-10-07 09:55:37 --> Config Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Hooks Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 09:55:37 --> URI Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Router Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Output Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Security Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Input Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:55:37 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:55:37 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:55:37 --> XSS Filtering completed
+DEBUG - 2022-10-07 09:55:37 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 09:55:37 --> Language Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Loader Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 09:55:37 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 09:55:37 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 09:55:37 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 09:55:37 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 09:55:37 --> Database Driver Class Initialized
+ERROR - 2022-10-07 09:55:37 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 09:55:37 --> Session Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Helper loaded: string_helper
+DEBUG - 2022-10-07 09:55:37 --> Session routines successfully run
+DEBUG - 2022-10-07 09:55:37 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Email Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Controller Class Initialized
+INFO  - 2022-10-07 09:55:37 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:55:37 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:55:37 --> *******************************************************************************************************
+INFO  - 2022-10-07 09:55:37 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************core_dashboards/index
+INFO  - 2022-10-07 09:55:37 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:55:37 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 09:55:37 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_PRAGMA' => 'no-cache',
+  'HTTP_CACHE_CONTROL' => 'no-cache',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/index.aspx',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%2248d38dffa2bc02fc6af53a3418aa2fec%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665158076%3B%7D8e94457f58767202874755d01bcec2e7',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '50016',
+  'REDIRECT_URL' => '/posme/core_dashboards/index.aspx',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/core_dashboards/index.aspx',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/core_dashboards/index.aspx',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\core_dashboards\\index.aspx',
+  'PHP_SELF' => '/posme/index.php/core_dashboards/index.aspx',
+  'REQUEST_TIME_FLOAT' => 1665158137.474999904632568359375,
+  'REQUEST_TIME' => 1665158137,
+)
+DEBUG - 2022-10-07 09:55:37 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 09:55:37 --> 1 001.001
+ERROR - 2022-10-07 09:55:37 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 09:55:37 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+ERROR - 2022-10-07 09:55:37 --> session
+ERROR - 2022-10-07 09:55:37 --> Variedades Carlos Luis
+DEBUG - 2022-10-07 09:55:37 --> Model Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Model Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> Model Class Initialized
+DEBUG - 2022-10-07 09:55:37 --> File loaded: application/views/core_dasboard/dashboards_default.php
+DEBUG - 2022-10-07 09:55:37 --> File loaded: application/views/core_masterpage/default_masterpage.php
+DEBUG - 2022-10-07 09:55:37 --> Final output sent to browser
+DEBUG - 2022-10-07 09:55:37 --> Total execution time: 0.0601
+DEBUG - 2022-10-07 10:14:29 --> Config Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Hooks Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 10:14:29 --> URI Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Router Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Output Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Security Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Input Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> XSS Filtering completed
+DEBUG - 2022-10-07 10:14:29 --> XSS Filtering completed
+DEBUG - 2022-10-07 10:14:29 --> XSS Filtering completed
+DEBUG - 2022-10-07 10:14:29 --> XSS Filtering completed
+DEBUG - 2022-10-07 10:14:29 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 10:14:29 --> Language Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Loader Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 10:14:29 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 10:14:29 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 10:14:29 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 10:14:29 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 10:14:29 --> Database Driver Class Initialized
+ERROR - 2022-10-07 10:14:29 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 10:14:29 --> Session Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Helper loaded: string_helper
+ERROR - 2022-10-07 10:14:29 --> punto de interrupcion  Session->set_userdata**************1
+ERROR - 2022-10-07 10:14:29 --> punto de interrupcion  Session->set_userdata**************2
+DEBUG - 2022-10-07 10:14:29 --> Session garbage collection performed.
+DEBUG - 2022-10-07 10:14:29 --> Session routines successfully run
+DEBUG - 2022-10-07 10:14:29 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Email Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Controller Class Initialized
+INFO  - 2022-10-07 10:14:29 --> *******************************************************************************************************
+INFO  - 2022-10-07 10:14:29 --> *******************************************************************************************************
+INFO  - 2022-10-07 10:14:29 --> *******************************************************************************************************
+INFO  - 2022-10-07 10:14:29 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************app_invoice_billing/viewRegisterVariedadesCarlosLuis
+INFO  - 2022-10-07 10:14:29 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 10:14:29 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 10:14:29 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_CACHE_CONTROL' => 'max-age=0',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/edit/companyID/2/transactionID/19/transactionMasterID/116',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%2248d38dffa2bc02fc6af53a3418aa2fec%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665158076%3B%7D8e94457f58767202874755d01bcec2e7',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '50114',
+  'REDIRECT_URL' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\app_invoice_billing\\viewRegisterVariedadesCarlosLuis\\companyID\\2\\transactionID\\19\\transactionMasterID\\116',
+  'PHP_SELF' => '/posme/index.php/app_invoice_billing/viewRegisterVariedadesCarlosLuis/companyID/2/transactionID/19/transactionMasterID/116',
+  'REQUEST_TIME_FLOAT' => 1665159269.4249999523162841796875,
+  'REQUEST_TIME' => 1665159269,
+)
+ERROR - 2022-10-07 10:14:29 --> preuba de impresora
+DEBUG - 2022-10-07 10:14:29 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 10:14:29 --> 1 001.001
+ERROR - 2022-10-07 10:14:29 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 10:14:29 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+ERROR - 2022-10-07 10:14:29 --> preuba de impresora 003
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+ERROR - 2022-10-07 10:14:29 --> SELECT `td`.`companyID`, `td`.`transactionID`, `td`.`transactionMasterID`, `td`.`transactionMasterDetailID`, `td`.`componentID`, `td`.`componentItemID`, `td`.`promotionID`, `td`.`amount`, `td`.`cost`, `td`.`quantity`, `td`.`discount`, `td`.`unitaryAmount`, `td`.`unitaryCost`, `td`.`unitaryPrice`, `td`.`tax1`, `td`.`tax2`, `td`.`tax3`, `td`.`tax4`, `td`.`reference1`, `td`.`reference2`, `td`.`reference3`, `td`.`reference4`, `td`.`reference5`, `td`.`reference6`, `td`.`reference7`, `td`.`catalogStatusID`, `td`.`inventoryStatusID`, `td`.`isActive`, `td`.`quantityStock`, `td`.`quantiryStockInTraffic`, `td`.`quantityStockUnaswared`, `td`.`remaingStock`, `td`.`expirationDate`, `td`.`inventoryWarehouseSourceID`, `td`.`inventoryWarehouseTargetID`, `i`.`itemNumber`, `i`.`name` as itemName, `ci`.`name` as unitMeasureName, `td`.`descriptionReference`, `td`.`exchangeRateReference`
+FROM (`tb_transaction_master_detail` td)
+JOIN `tb_item` i ON `td`.`companyID` = `i`.`companyID` and td.componentItemID = i.itemID
+JOIN `tb_catalog_item` ci ON `i`.`unitMeasureID` = `ci`.`catalogItemID`
+WHERE `td`.`companyID` =  '2'
+AND `td`.`transactionID` =  '19'
+AND `td`.`transactionMasterID` =  '116'
+AND `td`.`isActive` =  1
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:29 --> Model Class Initialized
+ERROR - 2022-10-07 10:14:29 --> preuba de impresora 004
+ERROR - 2022-10-07 10:14:29 --> preuba de impresora 005
+ERROR - 2022-10-07 10:14:29 --> preuba de impresora 006
+ERROR - 2022-10-07 10:14:29 --> preuba de impresora 010
+ERROR - 2022-10-07 10:14:29 --> preuba de impresora 015
+DEBUG - 2022-10-07 10:14:29 --> Final output sent to browser
+DEBUG - 2022-10-07 10:14:29 --> Total execution time: 0.1353
+DEBUG - 2022-10-07 10:14:32 --> Config Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Hooks Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Utf8 Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> UTF-8 Support Enabled
+DEBUG - 2022-10-07 10:14:32 --> URI Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Router Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Output Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Security Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Input Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> XSS Filtering completed
+DEBUG - 2022-10-07 10:14:32 --> XSS Filtering completed
+DEBUG - 2022-10-07 10:14:32 --> XSS Filtering completed
+DEBUG - 2022-10-07 10:14:32 --> XSS Filtering completed
+DEBUG - 2022-10-07 10:14:32 --> Global POST and COOKIE data sanitized
+DEBUG - 2022-10-07 10:14:32 --> Language Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Loader Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Helper loaded: url_helper
+DEBUG - 2022-10-07 10:14:32 --> Helper loaded: form_helper
+DEBUG - 2022-10-07 10:14:32 --> Helper loaded: web_tools_helper
+DEBUG - 2022-10-07 10:14:32 --> Helper loaded: cookie_helper
+DEBUG - 2022-10-07 10:14:32 --> Helper loaded: text_helper
+DEBUG - 2022-10-07 10:14:32 --> Database Driver Class Initialized
+ERROR - 2022-10-07 10:14:32 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\database\drivers\mysql\mysql_driver.php 73
+DEBUG - 2022-10-07 10:14:32 --> Session Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Helper loaded: string_helper
+DEBUG - 2022-10-07 10:14:32 --> Session routines successfully run
+DEBUG - 2022-10-07 10:14:32 --> Form Validation Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Email Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Controller Class Initialized
+INFO  - 2022-10-07 10:14:32 --> *******************************************************************************************************
+INFO  - 2022-10-07 10:14:32 --> *******************************************************************************************************
+INFO  - 2022-10-07 10:14:32 --> *******************************************************************************************************
+INFO  - 2022-10-07 10:14:32 --> METHOD 	    --> 'companyID:2,userID:-->2,nickName:-->superadmin-->'execute method************************************core_dashboards/index
+INFO  - 2022-10-07 10:14:32 --> GET 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 10:14:32 --> POST 		--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'false
+INFO  - 2022-10-07 10:14:32 --> $_SERVER 	--> 'companyID:2,userID:-->2,nickName:-->superadmin-->'array (
+  'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'REDIRECT_PHPRC' => '\\xampp\\php',
+  'REDIRECT_TMP' => '\\xampp\\tmp',
+  'REDIRECT_STATUS' => '200',
+  'MIBDIRS' => 'C:/xampp/php/extras/mibs',
+  'MYSQL_HOME' => '\\xampp\\mysql\\bin',
+  'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf',
+  'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php',
+  'PHPRC' => '\\xampp\\php',
+  'TMP' => '\\xampp\\tmp',
+  'HTTP_HOST' => 'localhost',
+  'HTTP_CONNECTION' => 'keep-alive',
+  'HTTP_CACHE_CONTROL' => 'max-age=0',
+  'HTTP_SEC_CH_UA' => '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+  'HTTP_SEC_CH_UA_MOBILE' => '?0',
+  'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'HTTP_SEC_FETCH_SITE' => 'same-origin',
+  'HTTP_SEC_FETCH_MODE' => 'navigate',
+  'HTTP_SEC_FETCH_USER' => '?1',
+  'HTTP_SEC_FETCH_DEST' => 'document',
+  'HTTP_REFERER' => 'http://localhost/posme/app_invoice_billing/index.aspx',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+  'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+  'HTTP_COOKIE' => 'userID=2; nickname=superadmin; email=gjosias%40posme; tb_log_session=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%2265df929b3133c6cb7c43856c9d082600%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A7%3A%220.0.0.0%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F105.0.0.0+Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1665159269%3B%7D3f43a90452bb5a2cc57095224819807e',
+  'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;D:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\SQL Examiner Suite 2022\\;C:\\Users\\Usuario\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Usuario\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\Usuario\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\xampp\\php;',
+  'SystemRoot' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6 Server at localhost Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.6',
+  'SERVER_NAME' => 'localhost',
+  'SERVER_ADDR' => '::1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '::1',
+  'DOCUMENT_ROOT' => 'C:/xampp/htdocs',
+  'REQUEST_SCHEME' => 'http',
+  'CONTEXT_PREFIX' => '/posme',
+  'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/',
+  'SERVER_ADMIN' => 'postmaster@localhost',
+  'SCRIPT_FILENAME' => 'C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/index.php',
+  'REMOTE_PORT' => '50114',
+  'REDIRECT_URL' => '/posme/core_dashboards/index.aspx',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/posme/core_dashboards/index.aspx',
+  'SCRIPT_NAME' => '/posme/index.php',
+  'PATH_INFO' => '/core_dashboards/index.aspx',
+  'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\core_dashboards\\index.aspx',
+  'PHP_SELF' => '/posme/index.php/core_dashboards/index.aspx',
+  'REQUEST_TIME_FLOAT' => 1665159272.90100002288818359375,
+  'REQUEST_TIME' => 1665159272,
+)
+DEBUG - 2022-10-07 10:14:32 --> Session class already loaded. Second attempt ignored.
+ERROR - 2022-10-07 10:14:32 --> 1 001.001
+ERROR - 2022-10-07 10:14:32 --> obteniendo userdata 001.001
+ERROR - 2022-10-07 10:14:32 --> stdClass Object
+(
+    [companyID] => 2
+    [branchID] => 2
+    [userID] => 2
+    [nickname] => superadmin
+    [password] => jose.
+    [email] => gjosias@posme
+    [createdOn] => 2013-11-22 13:02:20
+    [createdBy] => 0
+    [employeeID] => 313
+)
+
+ERROR - 2022-10-07 10:14:32 --> session
+ERROR - 2022-10-07 10:14:32 --> Variedades Carlos Luis
+DEBUG - 2022-10-07 10:14:32 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> Model Class Initialized
+DEBUG - 2022-10-07 10:14:32 --> File loaded: application/views/core_dasboard/dashboards_default.php
+DEBUG - 2022-10-07 10:14:32 --> File loaded: application/views/core_masterpage/default_masterpage.php
+DEBUG - 2022-10-07 10:14:32 --> Final output sent to browser
+DEBUG - 2022-10-07 10:14:32 --> Total execution time: 0.0771

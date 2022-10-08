@@ -1,4 +1,4 @@
-USE nssystem_erp_fidlocal_produccion;
+USE posme;
 
 select 'Procesando...Contabilidad' as processsx;
 delete from tb_journal_entry_detail;
@@ -22,25 +22,15 @@ delete from tb_transaction_master_concept;
 delete from tb_transaction_master_detail;
 delete from tb_transaction_master;
 
-
+select 'Procesando...Activo Fijo' as processsx;
 #delete from tb_fixed_assent;
-#delete from tb_employee;
-#delete from tb_provider; 
+
 
 select 'Procesando...Productos' as processsx;
 delete from tb_item_data_sheet_detail;
 delete from tb_item_data_sheet;
 delete from tb_kardex;
-delete from tb_item_warehouse;
-delete from tb_price;
-delete from tb_provider_item;
-delete from tb_item where itemID not in (4,5);
-
-
-
-#DELETE FROM tb_catalog_item where catalogID = 10 and catalogItemID NOT IN ( 70,73,74);
-#DELETE FROM tb_center_cost where classID <> 1;
-#DELETE FROM tb_accounting_cycle where companyID = 2 and componentID = 4 ;
-#DELETE FROM tb_accounting_period where companyID = 2 and componentID = 4 ;
-select 'Procesando...Cuentas' as processsx;
-DELETE FROM tb_account;
+delete from tb_item_warehouse where itemID not in (4,5,598);
+delete from tb_price where itemID not in (4,5,598);
+delete from tb_provider_item where itemID not in (4,5,598);
+delete from tb_item where itemID not in (4,5,598);

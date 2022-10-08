@@ -3,6 +3,9 @@ instalador:
 ---------------------------------------
 ---------------------------------------
 ---------------------------------------
+		Configurar los Roles y los Usuarios, en la aplicacion de desarrollo, para el nuevo comercio.
+
+		
 		instalar any desk en la computadora.
 		
 		crear una carpeta llamada
@@ -15,7 +18,7 @@ instalador:
 			Driver Para Printer 80 - HING.rar
 			npp.6.5.3.Installer.exe			
 			instalar chrome			
-			sqlexamine
+			mysql tool merge o sqlexaminer
 			mysql-conector-net-6.9.8.msi
 			mysql-conector-odbc-5.3.4.win32.msi
 			mysql-conector-odbc-5.3.4.win64.msi
@@ -55,7 +58,7 @@ instalador:
 		
 		
 		
-Configurar los Roles y los Usuarios, en la aplicacion de desarrollo, para el nuevo comercio.
+
 		
 		
 acceder a pypmyadmin		
@@ -136,36 +139,24 @@ acceder a phpmy admin
 		importar la base de datos.
 
 		
-Ejecutar el Script de Limpieza e Inicializacion de Base de Datos
-		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\clear_importar_data_base.sql		
+Crear acceso directo
 
-
-Ejecutar el Scritp de Actualizacion de Versiones
-		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\versiones.sql		
-
-
-		Crear acceso directo
-		
-		Crear xampp como servicio
-
-		Crear extension de chrome userguiding
+Crear xampp como servicio
 
 
 Agregar Logo Tipo
 		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\
 		img\logo-micro-finanza.jpg
 		
+
 		
+Ejecutar el Script de Limpieza e Inicializacion de Base de Datos
+		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\clear_importar_data_base.sql		
+
 
 Configurar parametros usando o creando el script
 		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\actualizar_parametros_[cliente].sql
-		
-Modificar Usuarios del Sistema
-		MODIFICAR EMAIL , del usuario del sistema:
-		inventario,facturador por: company_usuario_@gmail.com
 
-		
-		
 
 ---------------------------------------
 actualizacion:
