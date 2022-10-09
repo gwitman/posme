@@ -77,13 +77,51 @@ class App_Box_Report extends CI_Controller {
 			$branchID			= $dataSession["user"]->branchID;
 			$userID				= $dataSession["user"]->userID;
 			$tocken				= '';
+
+
+			//obtener permiso de fecha de reporte				
+			$filterArray 		= array_filter($dataSession["menuHiddenPopup"], function($val){  return (strpos($val->display, 'ES_PERMITIDO_MOSTRAR_INFO_DE_') !== false) && (strpos($val->display, '_DAY_IN_app_box_report_share') !== false) ;});
+			$filteredArray 		= [];
+			$filterIndex 		= 0;			
+			foreach($filterArray as $key => $value ){ $filteredArray[$filterIndex] = $value;  $filterIndex++; }
+
+			if(count($filteredArray) > 0){
+				$filteredArray = str_replace("ES_PERMITIDO_MOSTRAR_INFO_DE_","",$filteredArray[0]->display);
+				$filteredArray = str_replace("_DAY_IN_app_box_report_share","",$filteredArray);
+				$filteredArray = intval($filteredArray);
+			}
+			else{
+				$filteredArray = -1;
+			}
+
+			log_message("ERROR","cantidad de dias") ;
 			if($uri != false){
 				$viewReport			= $uri["viewReport"];	
 				$startOn			= $uri["startOn"];
 				$endOn				= $uri["endOn"]." 23:59:59";	
+
+				//calcular las fechas iniciales del reporte
+				$startOn_ = DateTime::createFromFormat('Y-m-d',$startOn);		
+				$endOn_ = DateTime::createFromFormat('Y-m-d H:i:s',$endOn);		
+
+				if($filteredArray != -1){
+					$startOn_Temporal = $endOn_;
+					date_sub($startOn_Temporal, date_interval_create_from_date_string($filteredArray.' days'));
+					
+					if($startOn_ <  $startOn_Temporal){
+						$startOn = $startOn_Temporal->format('Y-m-d');
+					}
+				}
+
+
+
+				log_message("ERROR",print_r($startOn,true)) ;
+				log_message("ERROR",print_r($endOn,true)) ;
 			} 
 			
-			 
+
+			
+			
 			
 			//Cargar Libreria
 			$this->load->model('core/Company_Model');	
