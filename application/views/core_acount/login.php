@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="description" content="bootstrap admin template">
-  <meta name="author" content="">
+  <meta name="author" content=""> 
   <title>::posMe::</title>
   
   <link rel="apple-touch-icon" href="<?php echo site_url(); ?>/theme-remark/assets/images/apple-touch-icon.png">
@@ -58,14 +58,17 @@
             <h2 class="brand-text font-size-18">...</h2>
           </div>
           <form method="POST" action="<?php echo base_url(); ?>core_acount/login"  autocomplete="off">
+
             <div class="form-group form-material floating" data-plugin="formMaterial">
               <input type="text" class="form-control" name="txtNickname" />
               <label class="floating-label">Usuario</label>
             </div>
+
             <div class="form-group form-material floating" data-plugin="formMaterial">
               <input type="password" class="form-control" name="txtPassword" />
               <label class="floating-label">Contraseña</label>
             </div>
+
             <div class="form-group clearfix">
               <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg pull-xs-left">
                 <input type="checkbox" id="inputCheckbox" name="remember">
@@ -73,13 +76,51 @@
               </div>
               <a class="pull-xs-right" href="forgot-password.html">Reenviar Contraseña?</a>
             </div>
+
+            <div class="form-group clearfix">
+              <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg pull-xs-left">
+                <input type="checkbox" id="inputCheckboxPayment" name="inputCheckBoxPayment">
+                <label for="inputCheckboxPayment">Pagar</label>
+              </div>
+              
+            </div>
+
             <button type="submit" class="btn btn-primary btn-block btn-lg m-t-40">Ingresar</button>
+
+            
+            <div class="form-group form-material floating hidden-lg-up" id="divPagosMeses" data-plugin="formMaterial">
+              <select class="form-control" id="txtPagarCantidadDe" name="txtPagarCantidadDe">
+                  <option value="">  Seleccionar</option>
+                  <option value="1"> <?php echo "$ ".round($parameterPrice * 1,2); ?></option>
+                  <option value="2"> <?php echo "$ ".round($parameterPrice * 2,2); ?></option>
+                  <option value="3"> <?php echo "$ ".round($parameterPrice * 3,2); ?></option>
+                  <option value="4"> <?php echo "$ ".round($parameterPrice * 4,2); ?></option>
+                  <option value="5"> <?php echo "$ ".round($parameterPrice * 5,2); ?></option>
+                  <option value="6"> <?php echo "$ ".round($parameterPrice * 6,2); ?></option>
+                  <option value="7"> <?php echo "$ ".round($parameterPrice * 7,2); ?></option>
+                  <option value="8"> <?php echo "$ ".round($parameterPrice * 8,2); ?></option>
+                  <option value="9"> <?php echo "$ ".round($parameterPrice * 9,2); ?></option>
+                  <option value="10"><?php echo "$ ".round($parameterPrice * 10,2); ?></option>
+                  <option value="11"><?php echo "$ ".round($parameterPrice * 11,2); ?></option>
+                  <option value="12"><?php echo "$ ".round($parameterPrice * 12,2); ?></option>
+              </select>              
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block btn-lg m-t-40 hidden-lg-up" id="divPagosMesesBoton" >Pagar</button>
+
           </form>
           <!--
           <p>Still no account? Please go to <a href="register-v3.html">Sign up</a></p>
           -->
         </div>
       </div>
+      
+
+
+
+    
+
+
       <footer class="page-copyright page-copyright-inverse">
 		<?php echo $message; ?>
         <p>Aplicación elaborada por teamDS2</p>
@@ -143,8 +184,25 @@
     'use strict';
     var Site = window.Site;
     $(document).ready(function() {
-      Site.run();
+        Site.run();
+
+       
     });
+
+    $("#inputCheckboxPayment").on("click",function(){
+        var checked = $("#inputCheckboxPayment").is(':checked');
+        if(checked){
+          $("#divPagosMeses").removeClass("hidden-lg-up");
+          $("#divPagosMesesBoton").removeClass("hidden-lg-up");
+        }
+        else{
+          $("#divPagosMeses").addClass("hidden-lg-up");
+          $("#divPagosMesesBoton").addClass("hidden-lg-up");
+        }
+          
+    });
+
+
   })(document, window, jQuery);
   </script>
 </body>

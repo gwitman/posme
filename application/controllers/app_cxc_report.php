@@ -770,6 +770,8 @@ class App_Cxc_Report extends CI_Controller {
 			$objCompany 	= $this->Company_Model->get_rowByPK($companyID);
 			//Get Datos
 			$query			= "CALL pr_cxc_get_report_customer_list('".$userID."','".$tocken."','".$companyID."');";
+			log_message("ERROR",print_r($query,true));
+			
 			$objData		= $this->Bd_Model->executeProcedureMultiQuery($query);			
 			
 			if(isset($objData[0]))

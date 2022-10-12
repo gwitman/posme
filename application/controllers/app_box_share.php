@@ -1207,6 +1207,7 @@ class App_Box_Share extends CI_Controller {
 			$uri						= $this->uri->uri_to_assoc(3);						
 			$transactionID				= $uri["transactionID"];			
 			$transactionMasterID		= $uri["transactionMasterID"];				
+			$saldos						= $uri["saldos"];	
 			$companyID 					= $dataSession["user"]->companyID;		
 			$branchID 					= $dataSession["user"]->branchID;		
 			$roleID 					= $dataSession["role"]->roleID;		
@@ -1216,6 +1217,7 @@ class App_Box_Share extends CI_Controller {
 			$this->load->library('core_web_pdf/src/EXTCezpdf.php');			
 			$this->load->model("Transaction_Master_Model");
 			$this->load->model("Transaction_Master_Detail_Model");	
+			$this->load->model("Transaction_Master_Info_Model");
 			$this->load->model("core/Company_Model"); 
 			$this->load->model("core/User_Model");
 			$this->load->model("Customer_Credit_Document_Model");
@@ -1244,6 +1246,7 @@ class App_Box_Share extends CI_Controller {
 			
 			$datView["objTM"]	 					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
 			$datView["objTMD"]						= $this->Transaction_Master_Detail_Model->get_rowByTransactionToShare($companyID,$transactionID,$transactionMasterID);
+			$datView["objTMI"]						= $this->Transaction_Master_Info_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
 			$datView["objTM"]->transactionOn 		= date_format(date_create($datView["objTM"]->transactionOn),"Y-m-d");
 			$datView["objUser"] 					= $this->User_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->createdAt,$datView["objTM"]->createdBy);
 			$datView["objBranch"]					= $this->Branch_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->branchID);
@@ -1334,10 +1337,14 @@ class App_Box_Share extends CI_Controller {
 			//Set Detalle del Comprobante
 			$pdf->ezText("\nDETALLE",FONT_SIZE_BODY_INVICE);			
 			$data		= array();
+			$saldos			= $saldos;
+			$saldoAnterior 	= 0;
+			$saldoNuevo 	= 0;
 			if($datView["objTMD"])
 			foreach($datView["objTMD"] as $row){
 				$objCustomerCreditDocument 	= $this->Customer_Credit_Document_Model->get_rowByPK($row->componentItemID);
-				
+				$saldoAnterior 		= $saldos == "Individuales"? round($row->reference2,0) : round($datView["objTMI"]->reference1,0);
+				$saldoNuevo 		= $saldos == "Individuales"? round($row->reference4,0) : round($datView["objTMI"]->reference2,0);
 				
 				$data = array( 
 					array(
@@ -1346,7 +1353,7 @@ class App_Box_Share extends CI_Controller {
 					),
 					array(
 						'field1'=>'Saldo Anterior',
-						'field2'=>round($row->reference2,0)
+						'field2'=>$saldoAnterior
 					),				
 					array(
 						'field1'=>'Abono',
@@ -1354,7 +1361,7 @@ class App_Box_Share extends CI_Controller {
 					),
 					array(
 						'field1'=>'Nuevo Saldo',
-						'field2'=>round($row->reference4,0)
+						'field2'=>$saldoNuevo
 					),
 					array(
 						'field1'=>'Moneda',

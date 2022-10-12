@@ -57,6 +57,7 @@ define('PATH_FILE_OF_APP_ROOT','C:/xampp/teamds2/nsSystem/fidlocal-produccion-ap
 define('PATH_FILE_OF_XAMPP_TMP','C:/xampp/tmp');
 define('APP_NAME','WSYSTEM');
 define('APP_TIMEZONE','America/Managua');/*yyyy-m-d*/
+define("APP_COMPANY","2");
 
 //Tipos de Menu
 define("MENU_TOP",4);

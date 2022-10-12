@@ -4,8 +4,34 @@ class Core_acount extends CI_Controller {
 	//Vista de Login
 	function index(){
 	
+		//Obtener Datos 			
+		$parameterSendBox = $this->core_web_parameter->getParameter("CORE_PAYMENT_SENDBOX",APP_COMPANY);		
+		$parameterSendBox = $parameterSendBox->value;		
+
+		$parameterSendBoxUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_USUARIO",APP_COMPANY);
+		$parameterSendBoxUsuario = $parameterSendBoxUsuario->value;
+
+		$parameterSendBoxClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_CLAVE",APP_COMPANY);
+		$parameterSendBoxClave = $parameterSendBoxClave->value;
+
+		$parameterProduccionUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_USUARIO",APP_COMPANY);
+		$parameterProduccionUsuario = $parameterProduccionUsuario->value;
+
+		$parameterProduccionClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_CLAVE",APP_COMPANY);
+		$parameterProduccionClave = $parameterProduccionClave->value;
+
+		$parameterPrice= $this->core_web_parameter->getParameter("CORE_PRICE",APP_COMPANY);
+		$parameterPrice = $parameterPrice->value;		
+
+		$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_TIPO_PLAN",APP_COMPANY);
+		$parameterTipoPlan = $parameterTipoPlan->value;		
+	
+
+			
 		//Renderizar		
-		$data["message"]	= "";
+		$data["message"]	= "";		
+		$data["parameterPrice"]		= $parameterPrice;
+		$data["parameterTipoPlan"]	= $parameterTipoPlan;
 		$this->load->view('core_acount/login',$data);
 		
 	
@@ -40,37 +66,59 @@ class Core_acount extends CI_Controller {
 		try{ 
 			if(!isset($_POST["txtNickname"]) || !isset($_POST["txtPassword"]))
 			throw new Exception(NOT_VALID_USER);
+
 			$this->load->library('core_web_logs');
-			$nickname 	= $_POST["txtNickname"];
-			$password	= $_POST["txtPassword"];
+			$nickname 				= $_POST["txtNickname"];
+			$password				= $_POST["txtPassword"];
+			$pagoCantidadDeMeses	= isset($_POST["txtNickname"]) ?  $_POST["txtPagarCantidadDe"] : 0;
+			$pagoCantidadDeMeses	= $pagoCantidadDeMeses != null  ?  $pagoCantidadDeMeses : 0;
+			$pagoCantidadDeMeses	= $pagoCantidadDeMeses != ""  ?  $pagoCantidadDeMeses : 0;
+			
+
 			$objUser	= $this->core_web_authentication->get_UserBy_PasswordAndNickname($nickname,$password);			
 			$data 		= $this->core_web_authentication->createLogin($objUser);
-			$dataSession	= $this->session->all_userdata();	
-			
-			trigger_error("Login ----> ".print_r($dataSession["user"],true), E_USER_NOTICE);
-			
-			log_message('ERROR',"componenete:");
+			$dataSession		= $this->session->all_userdata();	
 			$dataSession		= $this->session->all_userdata(); 
 			
 			
 			//Obtener Datos 			
-			log_message('ERROR',print_r($objUser["user"]->companyID,true));
+			$parameterSendBox = $this->core_web_parameter->getParameter("CORE_PAYMENT_SENDBOX",$objUser["user"]->companyID);
+			$parameterSendBox = $parameterSendBox->value;
+
+			$parameterSendBoxUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_USUARIO",$objUser["user"]->companyID);
+			$parameterSendBoxUsuario = $parameterSendBoxUsuario->value;
+
+			$parameterSendBoxClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_CLAVE",$objUser["user"]->companyID);
+			$parameterSendBoxClave = $parameterSendBoxClave->value;
+
+			$parameterProduccionUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_USUARIO",$objUser["user"]->companyID);
+			$parameterProduccionUsuario = $parameterProduccionUsuario->value;
+
+			$parameterProduccionClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_CLAVE",$objUser["user"]->companyID);
+			$parameterProduccionClave = $parameterProduccionClave->value;
+
+			$parameterPrice= $this->core_web_parameter->getParameter("CORE_PRICE",$objUser["user"]->companyID);
+			$parameterPrice = $parameterPrice->value;
+
+			$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_TIPO_PLAN",$objUser["user"]->companyID);
+			$parameterTipoPlan = $parameterTipoPlan->value;
+
+			
 			$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_LICENSE_EXPIRED",$objUser["user"]->companyID);
-			
-			log_message('ERROR',print_r($parameterFechaExpiration,true));
 			$parameterFechaExpiration = $parameterFechaExpiration->value;
-			log_message('ERROR',print_r($parameterFechaExpiration,true));
+			$parameterFechaExpiration = DateTime::createFromFormat('Y-m-d',$parameterFechaExpiration);			
+			$pagoCantidadMonto		  = $pagoCantidadDeMeses * $parameterPrice;
+
 			
-			$parameterFechaExpiration = DateTime::createFromFormat('Y-m-d',$parameterFechaExpiration);
-			log_message('ERROR',print_r($parameterFechaExpiration,true));
-			
+
+			//Procesar Pago
+			if($pagoCantidadMonto > 0 )
+			{
+				redirect("core_acount/payment/pagoCantidadDeMeses/".$pagoCantidadDeMeses);
+			}
+
 			//Validar Fecha de Expiracion
-			$fechaNow  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  
-			
-			log_message('ERROR',"validar fechas..");			
-			log_message('ERROR',print_r($fechaNow,true));
-			log_message('ERROR',print_r($parameterFechaExpiration,true));
-			
+			$fechaNow  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  						
 			if( $fechaNow >  $parameterFechaExpiration ){
 				throw new Exception('
 				<p>La licencia a expirado.</p>
@@ -80,30 +128,51 @@ class Core_acount extends CI_Controller {
 				');
 			}
 			
-			//Establecer cooke de identificaion de usuario
-			//log_message("ERROR",print_r($dataSession[user]->userID),true);
-			//log_message("ERROR",print_r($dataSession[user]->nickname),true);
-			//log_message("ERROR",print_r($dataSession[user]->email),true);
+
+			//Set Variables
+			$params_["message"]	= "Usuario Login: ".$nickname;
 			
+
 			$this->input->set_cookie("userID",$dataSession[user]->userID,43200,"localhost");
 			$this->input->set_cookie("nickname",$dataSession[user]->nickname,43200,"localhost");
 			$this->input->set_cookie("email",$dataSession[user]->email,43200,"localhost");			
-			log_message('ERROR',print_r($this->session->userdata('user'),true));
-			
-			
 			$this->email->set_mailtype('html');
 			$this->email->from(EMAIL_APP, HELLOW);
 			$this->email->to(EMAIL_APP_NOTIFICACION);
-			$this->email->subject("LOGIN:NUEVO");
-			$params_["message"]	= "Usuario Login: ".$nickname;
+			$this->email->subject("LOGIN:NUEVO");			
 			$this->email->message($this->load->view('core_template/email_notificacion',$params_,true)); 
 			$this->email->send();
 			
 			redirect($objUser["role"]->urlDefault);
 		}
-		catch(Exception $e){
-			$data_message["txtMessage"]	= $e->getMessage();
-			$data_login["message"]		= $data_message["txtMessage"];
+		catch(Exception $e){			
+
+			$parameterSendBox = $this->core_web_parameter->getParameter("CORE_PAYMENT_SENDBOX",APP_COMPANY);		
+			$parameterSendBox = $parameterSendBox->value;			
+
+			$parameterSendBoxUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_USUARIO",APP_COMPANY);
+			$parameterSendBoxUsuario = $parameterSendBoxUsuario->value;
+
+			$parameterSendBoxClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_CLAVE",APP_COMPANY);
+			$parameterSendBoxClave = $parameterSendBoxClave->value;
+
+			$parameterProduccionUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_USUARIO",APP_COMPANY);
+			$parameterProduccionUsuario = $parameterProduccionUsuario->value;
+
+			$parameterProduccionClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_CLAVE",APP_COMPANY);
+			$parameterProduccionClave = $parameterProduccionClave->value;
+
+			$parameterPrice= $this->core_web_parameter->getParameter("CORE_PRICE",APP_COMPANY);
+			$parameterPrice = $parameterPrice->value;		
+
+			$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_TIPO_PLAN",APP_COMPANY);
+			$parameterTipoPlan = $parameterTipoPlan->value;		
+				
+			//Renderizar					
+			$data_login["message"]				= $e->getMessage();
+			$data_login["parameterPrice"]		= $parameterPrice;
+			$data_login["parameterTipoPlan"]	= $parameterTipoPlan;
+
 			$this->load->view('core_acount/login',$data_login);
 		}
 	}
@@ -244,25 +313,78 @@ class Core_acount extends CI_Controller {
 	function payment(){
 		
 		$this->load->library('core_web_pagadito/Pagadito');
-		
-		//produccion
-		//$uidt = "7be685eb39ed6cac49de29bd36f4665e";
-		//$wskt = "12ef04e7197c001b66920797fac63c46";
-		
-		//desarrollo
-		$uidt = "35f6110eb79c3640a9bc35f876fe05f6";
-		$wskt = "56720c930f874d4011ff7f3e2a86eddb";
+		$this->load->model('core/Company_Parameter_Model');
 
-		$urlProducto = "www.google.com";
-		$cantidad = 1;
-		$precio  = 25;
-		$nombre = "licenemiento";
-		$numberFactura = "FAC001";
-		$sendBox = true;
-		log_message("ERROR","cobrando 001");
+		//AUTENTICACION
+		if(!$this->core_web_authentication->isAuthenticated())
+		throw new Exception(USER_NOT_AUTENTICATED);
+
+
+		$dataSession			= $this->session->all_userdata();
+		$uri					= $this->uri->uri_to_assoc(3);						
+		$pagoCantidadDeMeses	= $uri["pagoCantidadDeMeses"];
+
+		//Obtener Datos
+		$parameterSendBox = $this->core_web_parameter->getParameter("CORE_PAYMENT_SENDBOX",$dataSession["user"]->companyID);
+		$parameterSendBox = $parameterSendBox->value;
+
+		$parameterSendBoxUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_USUARIO",$dataSession["user"]->companyID);
+		$parameterSendBoxUsuario = $parameterSendBoxUsuario->value;
+
+		$parameterSendBoxClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_CLAVE",$dataSession["user"]->companyID);
+		$parameterSendBoxClave = $parameterSendBoxClave->value;
+
+		$parameterProduccionUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_USUARIO",$dataSession["user"]->companyID);
+		$parameterProduccionUsuario = $parameterProduccionUsuario->value;
+
+		$parameterProduccionClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_CLAVE",$dataSession["user"]->companyID);
+		$parameterProduccionClave = $parameterProduccionClave->value;
+
+		$parameterPrice= $this->core_web_parameter->getParameter("CORE_PRICE",$dataSession["user"]->companyID);
+		$parameterPrice = $parameterPrice->value;
+
+		$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_TIPO_PLAN",$dataSession["user"]->companyID);
+		$parameterTipoPlan = $parameterTipoPlan->value;
+
+
+		$parameterTemporal1 = $this->core_web_parameter->getParameter("CORE_TEMPORAL001",$dataSession["user"]->companyID);
+		$parameterTemporal2 = $this->core_web_parameter->getParameter("CORE_TEMPORAL002",$dataSession["user"]->companyID);
+		$parameterTemporal3 = $this->core_web_parameter->getParameter("CORE_TEMPORAL003",$dataSession["user"]->companyID);
 		
 		
+		$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_LICENSE_EXPIRED",$dataSession["user"]->companyID);
+		$parameterFechaExpiration = $parameterFechaExpiration->value;
+		$parameterFechaExpiration = DateTime::createFromFormat('Y-m-d',$parameterFechaExpiration);			
+		$pagoCantidadMonto		  = $pagoCantidadDeMeses * $parameterPrice;
+		$fechaNow  				  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));
+
+		//desarrollo		
+		//$uidt = "35f6110eb79c3640a9bc35f876fe05f6";
+		//$wskt = "56720c930f874d4011ff7f3e2a86eddb";
+		$uidt 			= "";
+		$wskt 			= "";
+		$urlProducto 	= "localhost/posme";
+		$sendBox 		= $parameterSendBox == "true"? true : false;
+		$cantidad 		= $pagoCantidadDeMeses;
+		$precio  		= $pagoCantidadMonto;
+		if($sendBox){
+			$uidt = $parameterSendBoxUsuario;
+			$wskt = $parameterSendBoxClave;
+		}
+		else{
+			$uidt = $parameterProduccionUsuario;
+			$wskt = $parameterProduccionClave;
+		}
 		
+
+		$nombre 		= str_replace("@","","licenciamiento ".$dataSession["user"]->email." FAC ".$fechaNow->format('Y-m-d'));
+		$numberFactura 	= str_replace("@","",$dataSession["user"]->email."FAC".$fechaNow->format('Ymmdd'));
+		
+		
+
+		$dataParameter["value"] = $cantidad;	
+		$this->Company_Parameter_Model->update($dataSession["user"]->companyID,$parameterTemporal1->parameterID,$dataParameter);
+
 		if (($cantidad * $precio) > 0) 
 		{
 			/*
@@ -279,17 +401,15 @@ class Core_acount extends CI_Controller {
 			 * a la función mode_sandbox_on(). De lo contrario omitir la siguiente linea.
 			 */
 			if ($sendBox) {
-				$Pagadito->mode_sandbox_on();
-				log_message("ERROR","cobrando 002");
+				$Pagadito->mode_sandbox_on();			
 			}
 			
-			log_message("ERROR","cobrando 003");
+			
 			/*
 			 * Validamos la conexión llamando a la función connect(). Retorna
 			 * true si la conexión es exitosa. De lo contrario retorna false
 			 */
-			if ($Pagadito->connect()) {
-				log_message("ERROR","cobrando 004");
+			if ($Pagadito->connect()) {				
 				/*
 				 * Luego pasamos a agregar los detalles
 				 */
@@ -298,14 +418,16 @@ class Core_acount extends CI_Controller {
 				}
 				
 				//Agregando campos personalizados de la transacción
+				/*
 				$Pagadito->set_custom_param("param1", "Valor de param1");
 				$Pagadito->set_custom_param("param2", "Valor de param2");
 				$Pagadito->set_custom_param("param3", "Valor de param3");
 				$Pagadito->set_custom_param("param4", "Valor de param4");
 				$Pagadito->set_custom_param("param5", "Valor de param5");
-		
+				*/
+
 				//Habilita la recepción de pagos preautorizados para la orden de cobro.
-				$Pagadito->enable_pending_payments();
+				//$Pagadito->enable_pending_payments();
 		
 				/*
 				 * Lo siguiente es ejecutar la transacción, enviandole el ern.
@@ -383,20 +505,80 @@ class Core_acount extends CI_Controller {
 		} 
 		
 	}
+	
+
 	function paymentBack(){
 		$this->load->library('core_web_pagadito/Pagadito.php');
+		$this->load->model('core/Company_Parameter_Model');
+
+		//AUTENTICACION
+		if(!$this->core_web_authentication->isAuthenticated())
+		throw new Exception(USER_NOT_AUTENTICATED);
+
+
 		
-		$uidt = "7be685eb39ed6cac49de29bd36f4665e";
-		$wskt = "12ef04e7197c001b66920797fac63c46";
-		$sendBox = true;
+		$dataSession			= $this->session->all_userdata();
+		$uri					= $this->uri->uri_to_assoc(3);						
 		
-		if (isset($_GET["token"]) && $_GET["token"] != "") 
+
+		//Obtener Datos
+		$parameterSendBox = $this->core_web_parameter->getParameter("CORE_PAYMENT_SENDBOX",$dataSession["user"]->companyID);
+		$parameterSendBox = $parameterSendBox->value;
+
+		$parameterSendBoxUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_USUARIO",$dataSession["user"]->companyID);
+		$parameterSendBoxUsuario = $parameterSendBoxUsuario->value;
+
+		$parameterSendBoxClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_CLAVE",$dataSession["user"]->companyID);
+		$parameterSendBoxClave = $parameterSendBoxClave->value;
+
+		$parameterProduccionUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_USUARIO",$dataSession["user"]->companyID);
+		$parameterProduccionUsuario = $parameterProduccionUsuario->value;
+
+		$parameterProduccionClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_CLAVE",$dataSession["user"]->companyID);
+		$parameterProduccionClave = $parameterProduccionClave->value;
+
+		$parameterPrice= $this->core_web_parameter->getParameter("CORE_PRICE",$dataSession["user"]->companyID);
+		$parameterPrice = $parameterPrice->value;
+
+		$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_TIPO_PLAN",$dataSession["user"]->companyID);
+		$parameterTipoPlan = $parameterTipoPlan->value;
+
+		$parameterTemporal1 = $this->core_web_parameter->getParameter("CORE_TEMPORAL001",$dataSession["user"]->companyID);
+		$parameterTemporal2 = $this->core_web_parameter->getParameter("CORE_TEMPORAL002",$dataSession["user"]->companyID);
+		$parameterTemporal3 = $this->core_web_parameter->getParameter("CORE_TEMPORAL003",$dataSession["user"]->companyID);
+
+		
+		$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_LICENSE_EXPIRED",$dataSession["user"]->companyID);
+		$parameterFechaExpirationFecha 	= $parameterFechaExpiration->value;
+		$parameterFechaExpirationFecha 	= DateTime::createFromFormat('Y-m-d',$parameterFechaExpirationFecha);					
+		$fechaNow  				  		= DateTime::createFromFormat('Y-m-d',date("Y-m-d"));
+
+
+
+		$uidt 			= "";
+		$wskt 			= "";
+		$sendBox 		= $parameterSendBox == "true"? true : false;
+		if($sendBox){
+			$uidt = $parameterSendBoxUsuario;
+			$wskt = $parameterSendBoxClave;
+		}
+		else{
+			$uidt = $parameterProduccionUsuario;
+			$wskt = $parameterProduccionClave;
+		}
+
+		
+		$tocken 	= $uri["parametro1"];/*tockent*/
+		$factura	= $uri["parametro2"];/*tockent*/
+		if ($tocken != "" ) 
 		{
 			/*
 			 * Lo primero es crear el objeto Pagadito, al que se le pasa como
 			 * parámetros el UID y el WSK definidos en config.php
 			 */
-			$Pagadito = new Pagadito($uidt, $wskt);
+			$Pagadito = new Pagadito();
+			log_message("ERROR","Mensaje 001") ;
+			$Pagadito->Init($uidt, $wskt);
 			/*
 			 * Si se está realizando pruebas, necesita conectarse con Pagadito SandBox. Para ello llamamos
 			 * a la función mode_sandbox_on(). De lo contrario omitir la siguiente linea.
@@ -414,7 +596,7 @@ class Core_acount extends CI_Controller {
 				 * get_status(). Le pasamos como parámetro el token recibido vía
 				 * GET en nuestra URL de retorno.
 				 */
-				if ($Pagadito->get_status($_GET["token"])) {
+				if ($Pagadito->get_status( $tocken ) ) {
 					/*
 					 * Luego validamos el estado de la transacción, consultando el
 					 * estado devuelto por la API.
@@ -430,6 +612,26 @@ class Core_acount extends CI_Controller {
 							Gracias por comprar con Pagadito.<br />
 							NAP(N&uacute;mero de Aprobaci&oacute;n Pagadito): <label class="respuesta">' . $Pagadito->get_rs_reference() . '</label><br />
 							Fecha Respuesta: <label class="respuesta">' . $Pagadito->get_rs_date_trans() . '</label><br /><br />';
+
+							log_message("ERROR","Mensaje 001") ;
+							log_message("ERROR",print_r($msgPrincipal,true)) ;
+							log_message("ERROR",print_r($msgSecundario,true)) ;
+							log_message("ERROR",print_r($parameterTemporal1,true)) ;
+							
+							//A la fecha de hoy sumar la cantidad de meses
+							//$fechaNow  	= DateTime::createFromFormat('Y-m-d',date("Y-m-d"));							
+							$fechaNow = $parameterFechaExpirationFecha;
+							log_message("ERROR",print_r($fechaNow,true)) ;
+							date_add($fechaNow,date_interval_create_from_date_string( $parameterTemporal1->value.' months'));
+							log_message("ERROR",print_r($fechaNow,true)) ;
+
+							//Actualizar reporte
+							$dataParameter["value"] = $fechaNow->format('Y-m-d');	
+							log_message("ERROR",print_r($dataParameter["value"],true)) ;
+							$this->Company_Parameter_Model->update($dataSession["user"]->companyID,$parameterFechaExpiration->parameterID,$dataParameter);
+
+							log_message("ERROR","Listo reidreccionar") ;
+							redirect("core_acount");							
 							break;
 						
 						case "REGISTERED":
@@ -440,6 +642,9 @@ class Core_acount extends CI_Controller {
 							 */ ///////////////////////////////////////////////////////////////////////////////////////////////////////
 							$msgPrincipal = "Atenci&oacute;n";
 							$msgSecundario = "La transacci&oacute;n fue cancelada.<br /><br />";
+
+							log_message("ERROR",print_r($msgPrincipal,true)) ;
+							log_message("ERROR",print_r($msgSecundario,true)) ;
 							break;
 						
 						case "VERIFYING":
@@ -455,6 +660,10 @@ class Core_acount extends CI_Controller {
 							Su pago est&aacute; en validaci&oacute;n.<br />
 							NAP(N&uacute;mero de Aprobaci&oacute;n Pagadito): <label class="respuesta">' . $Pagadito->get_rs_reference() . '</label><br />
 							Fecha Respuesta: <label class="respuesta">' . $Pagadito->get_rs_date_trans() . '</label><br /><br />';
+
+							log_message("ERROR",print_r($msgPrincipal,true)) ;
+							log_message("ERROR",print_r($msgSecundario,true)) ;
+
 							break;
 						
 						case "REVOKED":
@@ -465,6 +674,9 @@ class Core_acount extends CI_Controller {
 							 */ ///////////////////////////////////////////////////////////////////////////////////////////////////////
 							$msgPrincipal = "Atenci&oacute;n";
 							$msgSecundario = "La transacci&oacute;n fue denegada.<br /><br />";
+
+							log_message("ERROR",print_r($msgPrincipal,true)) ;
+							log_message("ERROR",print_r($msgSecundario,true)) ;
 							break;
 						
 						case "FAILED":
@@ -479,6 +691,10 @@ class Core_acount extends CI_Controller {
 							 */ ///////////////////////////////////////////////////////////////////////////////////////////////////////
 							$msgPrincipal = "Atenci&oacute;n";
 							$msgSecundario = "La transacci&oacute;n no fue realizada.<br /><br />";
+
+							log_message("ERROR",print_r($msgPrincipal,true)) ;
+							log_message("ERROR",print_r($msgSecundario,true)) ;
+
 							break;
 					}
 				} else {
@@ -502,6 +718,9 @@ class Core_acount extends CI_Controller {
 							 */ ///////////////////////////////////////////////////////////////////////////////////////////////////////
 							$msgPrincipal = "Error en la transacci&oacute;n";
 							$msgSecundario = "La transacci&oacute;n no fue completada.<br /><br />";
+
+							log_message("ERROR",print_r($msgPrincipal,true)) ;
+							log_message("ERROR",print_r($msgSecundario,true)) ;
 							break;
 					}
 				}
@@ -533,6 +752,10 @@ class Core_acount extends CI_Controller {
 						$msgSecundario = "
 								COD: " . $Pagadito->get_rs_code() . "<br />
 								MSG: " . $Pagadito->get_rs_message() . "<br /><br />";
+
+						log_message("ERROR",print_r($msgPrincipal,true)) ;
+						log_message("ERROR",print_r($msgSecundario,true)) ;
+
 						break;
 				}
 			}
@@ -543,8 +766,12 @@ class Core_acount extends CI_Controller {
 			 */
 			$msgPrincipal = "Atenci&oacute;n";
 			$msgSecundario = "No se recibieron los datos correctamente.<br /> La transacci&oacute;n no fue completada.<br /><br />";
+			log_message("ERROR",print_r($msgPrincipal,true)) ;
+			log_message("ERROR",print_r($msgSecundario,true)) ;
+
 		}
 
+		
 		
 	}
 }
