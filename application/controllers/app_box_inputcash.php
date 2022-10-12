@@ -67,7 +67,7 @@ class App_Box_Inputcash extends CI_Controller {
 		
 			
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
-			$targetCurrency						= $this->core_web_currency->getCurrencyReport($companyID);			
+			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);			
 			
 			//Tipo de Factura			
 			$dataView["objTransactionMaster"]					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);			
@@ -231,7 +231,7 @@ class App_Box_Inputcash extends CI_Controller {
 			
 			//Valores de tasa de cambio
 			date_default_timezone_set(APP_TIMEZONE); 
-			$objCurrencyDolares						= $this->core_web_currency->getCurrencyReport($companyID);
+			$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
 			$objCurrencyCordoba						= $this->core_web_currency->getCurrencyDefault($companyID);
 			$dateOn 								= date("Y-m-d");
 			$dateOn 								= date_format(date_create($dateOn),"Y-m-d");
@@ -435,7 +435,7 @@ class App_Box_Inputcash extends CI_Controller {
 			$objTM["note"] 							= $this->input->post("txtNote",'');
 			$objTM["sign"] 							= $objT->signInventory;
 			$objTM["currencyID"]					= $this->core_web_currency->getCurrencyDefault($dataSession["user"]->companyID)->currencyID;
-			$objTM["currencyID2"]					= $this->core_web_currency->getCurrencyReport($dataSession["user"]->companyID)->currencyID;
+			$objTM["currencyID2"]					= $this->core_web_currency->getCurrencyExternal($dataSession["user"]->companyID)->currencyID;
 			$objTM["exchangeRate"]					= $this->core_web_currency->getRatio($dataSession["user"]->companyID,date("Y-m-d"),1,$objTM["currencyID2"],$objTM["currencyID"]);
 			//$objTM["reference1"] 					= $this->input->post("txtReference1");
 			//$objTM["reference2"] 					= $this->input->post("txtReference2");
@@ -613,7 +613,7 @@ class App_Box_Inputcash extends CI_Controller {
 			$roleID 							= $dataSession["role"]->roleID;
 			$transactionID 						= $this->core_web_transaction->getTransactionID($dataSession["user"]->companyID,"tb_transaction_master_inputcash",0);
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
-			$targetCurrency						= $this->core_web_currency->getCurrencyReport($companyID);			
+			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);			
 			
 			//Tipo de Factura
 			$dataView["companyID"]				= $dataSession["user"]->companyID;

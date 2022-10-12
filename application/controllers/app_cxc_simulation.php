@@ -132,7 +132,7 @@ class App_Cxc_Simulation extends CI_Controller {
 			$branchID 							= $dataSession["user"]->branchID;
 			$roleID 							= $dataSession["role"]->roleID;
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
-			$targetCurrency						= $this->core_web_currency->getCurrencyReport($companyID);			
+			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);			
 			$customerDefault					= $this->core_web_parameter->getParameter("INVOICE_BILLING_CLIENTDEFAULT",$companyID);
 			
 			//Tipo de Factura

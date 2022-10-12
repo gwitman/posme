@@ -35,7 +35,7 @@ class App_Invoice_Api extends CI_Controller {
 			
 			//Obtener tasa de cambio
 			date_default_timezone_set(APP_TIMEZONE); 
-			$objCurrencyDolares						= $this->core_web_currency->getCurrencyReport($companyID);
+			$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
 			$objCurrencyCordoba						= $this->core_web_currency->getCurrencyDefault($companyID);
 			$dateOn 								= date("Y-m-d");
 			$dateOn 								= date_format(date_create($dateOn),"Y-m-d");

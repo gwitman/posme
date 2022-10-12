@@ -370,7 +370,7 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			$objTM["note"] 							= $this->input->post("txtDescription",'');
 			$objTM["sign"] 							= $objT->signInventory;
 			$objTM["currencyID"]					= $this->core_web_currency->getCurrencyDefault($dataSession["user"]->companyID)->currencyID;
-			$objTM["currencyID2"]					= $objTM["currencyID"];//$this->core_web_currency->getCurrencyReport($dataSession["user"]->companyID)->currencyID;
+			$objTM["currencyID2"]					= $objTM["currencyID"];//$this->core_web_currency->getCurrencyExternal($dataSession["user"]->companyID)->currencyID;
 			$objTM["exchangeRate"]					= 1;//$this->core_web_currency->getRatio($dataSession["user"]->companyID,date("Y-m-d"),1,$objTM["currencyID"],$objTM["currencyID2"]);
 			$objTM["reference1"] 					= $this->input->post("txtReference1",'');
 			$objTM["reference2"] 					= $this->input->post("txtReference2",'');

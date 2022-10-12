@@ -30,6 +30,13 @@ class core_web_currency {
 	    //Obtener Moneda
 	    return $this->CI->Currency_Model->get_rowName($moneyFuncionalName->value);
    }
+   function getCurrencyExternal($companyID){
+		$this->CI->load->model('core/Currency_Model');
+		$moneyFuncionalName = $this->CI->core_web_parameter->getParameter("ACCOUNTING_CURRENCY_NAME_EXTERNAL",$companyID);
+
+		//Obtener Moneda
+		return $this->CI->Currency_Model->get_rowName($moneyFuncionalName->value);
+	}
    function getCurrencyName($name){
    		$this->CI->load->model('core/Currency_Model');
    		
@@ -38,7 +45,7 @@ class core_web_currency {
    }
    function getTarget($companyID,$currencySourceID){
 	   $default = $this->getCurrencyDefault($companyID)->currencyID;
-	   $report  = $this->getCurrencyReport($companyID)->currencyID;
+	   $report  = $this->getCurrencyExternal($companyID)->currencyID;
 	   
 	   
 	   $result  = ($currencySourceID == $default) ? $report : $default;

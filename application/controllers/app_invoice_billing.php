@@ -79,7 +79,7 @@ class App_Invoice_Billing extends CI_Controller {
 			throw new Exception("EL COMPONENTE 'tb_item' NO EXISTE...");
 			
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
-			$targetCurrency						= $this->core_web_currency->getCurrencyReport($companyID);			
+			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);			
 			$customerDefault					= $this->core_web_parameter->getParameter("INVOICE_BILLING_CLIENTDEFAULT",$companyID);
 			$objListPrice 						= $this->List_Price_Model->getListPriceToApply($companyID);
 			$objListCurrency					= $this->Company_Currency_Model->getByCompany($companyID);
@@ -241,7 +241,7 @@ class App_Invoice_Billing extends CI_Controller {
 				
 					//Valores de tasa de cambio
 					date_default_timezone_set(APP_TIMEZONE); 
-					$objCurrencyDolares						= $this->core_web_currency->getCurrencyReport($companyID);
+					$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
 					$objCurrencyCordoba						= $this->core_web_currency->getCurrencyDefault($companyID);
 					$dateOn 								= date("Y-m-d");
 					$dateOn 								= date_format(date_create($dateOn),"Y-m-d");
@@ -358,7 +358,7 @@ class App_Invoice_Billing extends CI_Controller {
 			
 			//Valores de tasa de cambio
 			date_default_timezone_set(APP_TIMEZONE); 
-			$objCurrencyDolares						= $this->core_web_currency->getCurrencyReport($companyID);
+			$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
 			$objCurrencyCordoba						= $this->core_web_currency->getCurrencyDefault($companyID);
 			$dateOn 								= date("Y-m-d");
 			$dateOn 								= date_format(date_create($dateOn),"Y-m-d");
@@ -1097,7 +1097,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$roleID 							= $dataSession["role"]->roleID;
 			$transactionID 						= $this->core_web_transaction->getTransactionID($dataSession["user"]->companyID,"tb_transaction_master_billing",0);
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
-			$targetCurrency						= $this->core_web_currency->getCurrencyReport($companyID);			
+			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);			
 			$customerDefault					= $this->core_web_parameter->getParameter("INVOICE_BILLING_CLIENTDEFAULT",$companyID);
 			$objListPrice 						= $this->List_Price_Model->getListPriceToApply($companyID);
 			$objListCurrency					= $this->Company_Currency_Model->getByCompany($companyID);

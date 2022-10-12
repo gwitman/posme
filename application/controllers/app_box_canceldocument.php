@@ -146,7 +146,7 @@ class App_Box_Canceldocument extends CI_Controller {
 
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
 
-			$targetCurrency						= $this->core_web_currency->getCurrencyReport($companyID);			
+			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);			
 
 			
 			$urlPrinterDocument					= $this->core_web_parameter->getParameter("BOX_CANCELDOCUMENT_URL_PRINTER",$companyID);
@@ -502,7 +502,7 @@ class App_Box_Canceldocument extends CI_Controller {
 
 			date_default_timezone_set(APP_TIMEZONE); 
 
-			$objCurrencyDolares						= $this->core_web_currency->getCurrencyReport($companyID);
+			$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
 
 			$objCurrencyCordoba						= $this->core_web_currency->getCurrencyDefault($companyID);
 
@@ -1076,7 +1076,7 @@ class App_Box_Canceldocument extends CI_Controller {
 
 			$objTM["currencyID"]					= $this->core_web_currency->getCurrencyDefault($dataSession["user"]->companyID)->currencyID;
 
-			$objTM["currencyID2"]					= $this->core_web_currency->getCurrencyReport($dataSession["user"]->companyID)->currencyID;
+			$objTM["currencyID2"]					= $this->core_web_currency->getCurrencyExternal($dataSession["user"]->companyID)->currencyID;
 
 			$objTM["exchangeRate"]					= $this->core_web_currency->getRatio($dataSession["user"]->companyID,date("Y-m-d"),1,$objTM["currencyID2"],$objTM["currencyID"]);
 
@@ -1466,7 +1466,7 @@ class App_Box_Canceldocument extends CI_Controller {
 
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
 
-			$targetCurrency						= $this->core_web_currency->getCurrencyReport($companyID);			
+			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);			
 
 			
 

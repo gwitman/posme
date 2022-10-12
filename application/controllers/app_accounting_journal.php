@@ -75,7 +75,7 @@ class App_Accounting_Journal extends CI_Controller {
 			
 			//Obtener Informacion
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
-			$targetCurrency						= $this->core_web_currency->getCurrencyReport($companyID);			
+			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);			
 			$datView["objExchangeRate"]			= $this->core_web_currency->getRatio($companyID,$datView["objJournalEntry"]->journalDate,1,$targetCurrency->currencyID,$objCurrency->currencyID);
 			$datView["objCurrency"]				= $objCurrency;
 			$datView["objListWorkflowStage"]	= $this->core_web_workflow->getWorkflowStageByStageInit("tb_journal_entry","statusID",$datView["objJournalEntry"]->statusID,$companyID,$branchID,$roleID);
@@ -229,7 +229,7 @@ class App_Accounting_Journal extends CI_Controller {
 			throw new Exception("00409 EL COMPONENTE 'tb_journal_entry' NO EXISTE...");
 			
 			$objCurrency							= $this->core_web_currency->getCurrencyDefault($dataSession["user"]->companyID);
-			$targetCurrency							= $this->core_web_currency->getCurrencyReport($dataSession["user"]->companyID);
+			$targetCurrency							= $this->core_web_currency->getCurrencyExternal($dataSession["user"]->companyID);
 			
 			
 			//Nuevo Registro			
@@ -259,7 +259,7 @@ class App_Accounting_Journal extends CI_Controller {
 						
 						//Obtener la tasa de Cambio
 						$objCurrency						= $this->core_web_currency->getCurrencyDefault($dataSession["user"]->companyID);
-						$targetCurrency						= $this->core_web_currency->getCurrencyReport($dataSession["user"]->companyID);			
+						$targetCurrency						= $this->core_web_currency->getCurrencyExternal($dataSession["user"]->companyID);			
 						$exchangeRate						= $this->core_web_currency->getRatio($dataSession["user"]->companyID,$this->input->post("txtDate"),1,$targetCurrency->currencyID,$this->input->post("txtCurrencyID"));			
 						
 						if(!$exchangeRate)
@@ -388,7 +388,7 @@ class App_Accounting_Journal extends CI_Controller {
 							
 							//Obtener la tasa de Cambio
 							$objCurrency						= $this->core_web_currency->getCurrencyDefault($dataSession["user"]->companyID);
-							$targetCurrency						= $this->core_web_currency->getCurrencyReport($dataSession["user"]->companyID);									
+							$targetCurrency						= $this->core_web_currency->getCurrencyExternal($dataSession["user"]->companyID);									
 							$exchangeRate						= $this->core_web_currency->getRatio($companyID,$this->input->post("txtDate"),1,$targetCurrency->currencyID,$this->input->post("txtCurrencyID"));			
 							
 							if(!$exchangeRate)
@@ -541,7 +541,7 @@ class App_Accounting_Journal extends CI_Controller {
 			$branchID 							= $dataSession["user"]->branchID;
 			$roleID 							= $dataSession["role"]->roleID;
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
-			$targetCurrency						= $this->core_web_currency->getCurrencyReport($companyID);			
+			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);			
 			$dataView["componentAccountID"] 	= $objComponent->componentID;
 			$dataView["exchangeRate"]			= $this->core_web_currency->getRatio($companyID,date("Y-m-d"),1,$targetCurrency->currencyID,$objCurrency->currencyID);
 			$dataView["objCurrency"]			= $objCurrency;

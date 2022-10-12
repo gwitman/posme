@@ -242,7 +242,7 @@ class App_Cxc_Customer extends CI_Controller {
 			
 			//Moneda Dolares
 			date_default_timezone_set(APP_TIMEZONE); 
-			$objCurrencyDolares						= $this->core_web_currency->getCurrencyReport($companyID);
+			$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
 			$dateOn 								= date("Y-m-d");
 			$dateOn 								= date_format(date_create($dateOn),"Y-m-d");
 			$exchangeRate 							= 0;
@@ -447,6 +447,10 @@ class App_Cxc_Customer extends CI_Controller {
 			
 				}
 				
+				log_message("ERROR",print_r( $exchangeRateTotal ,true));
+				log_message("ERROR",print_r( $exchangeRateAmount ,true));
+				log_message("ERROR",print_r( $exchangeRate ,true));
+
 				//sumar los limites en dolares
 				if($exchangeRate == 1)
 					$exchangeRateTotal = $exchangeRateTotal + $exchangeRateAmount;
@@ -454,8 +458,11 @@ class App_Cxc_Customer extends CI_Controller {
 				else
 					$exchangeRateTotal = $exchangeRateTotal + ($exchangeRateAmount / $exchangeRate);
 					
-				
+				log_message("ERROR",print_r( $exchangeRateTotal ,true));
+
 			}
+			log_message("ERROR",print_r( $objCustomerCreditNew["limitCreditDol"] ,true));
+
 			
 			//Validar Limite de Credito
 			if($exchangeRateTotal > $objCustomerCreditNew["limitCreditDol"])
@@ -526,7 +533,7 @@ class App_Cxc_Customer extends CI_Controller {
 			
 			//Moneda Dolares
 			date_default_timezone_set(APP_TIMEZONE); 
-			$objCurrencyDolares						= $this->core_web_currency->getCurrencyReport($companyID);
+			$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
 			$dateOn 								= date("Y-m-d");
 			$dateOn 								= date_format(date_create($dateOn),"Y-m-d");
 			$exchangeRate 							= 0;
@@ -694,16 +701,25 @@ class App_Cxc_Customer extends CI_Controller {
 				$exchangeRateAmount							= $objCustomerCreditLine["limitCredit"];
 				$this->Customer_Credit_Line_Model->insert($objCustomerCreditLine);
 				
+
+				log_message("ERROR",print_r( $exchangeRateTotal ,true));
+				log_message("ERROR",print_r( $exchangeRateAmount ,true));
+				log_message("ERROR",print_r( $exchangeRate ,true));
+
 				//sumar los limites en dolares
 				if($exchangeRate == 1)
 					$exchangeRateTotal = $exchangeRateTotal + $exchangeRateAmount;
 				//sumar los limite en cordoba
 				else
 					$exchangeRateTotal = $exchangeRateTotal + ($exchangeRateAmount / $exchangeRate);
+
+				log_message("ERROR",print_r( $exchangeRateTotal ,true));
 				
 				
 			}
-			
+
+			log_message("ERROR",print_r( $exchangeRateTotal ,true));
+			log_message("ERROR",print_r( $objCustomerCredit["limitCreditDol"] ,true));
 			//Validar Limite de Credito
 			if($exchangeRateTotal > $objCustomerCredit["limitCreditDol"])
 			throw new Exception("LINEAS DE CREDITOS MAL CONFIGURADAS LÍMITE EXCEDIDO");

@@ -131,7 +131,7 @@ class App_Notification extends CI_Controller {
 		if($objListCompany)
 		foreach($objListCompany as $i){
 				$defaultCurrencyID	= $this->core_web_currency->getCurrencyDefault($i->companyID)->currencyID;
-				$reportCurrencyID	= $this->core_web_currency->getCurrencyReport($i->companyID)->currencyID;
+				$reportCurrencyID	= $this->core_web_currency->getCurrencyExternal($i->companyID)->currencyID;
 				
 				try {
 					$exchangeRate		= $this->core_web_currency->getRatio($i->companyID,$date_,1,$reportCurrencyID,$defaultCurrencyID);					

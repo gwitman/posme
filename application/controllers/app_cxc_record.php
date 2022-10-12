@@ -425,7 +425,7 @@ class App_Cxc_Record extends CI_Controller {
 			
 			//Moneda Dolares
 			date_default_timezone_set(APP_TIMEZONE); 
-			$objCurrencyDolares						= $this->core_web_currency->getCurrencyReport($companyID);
+			$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
 			$dateOn 								= date("Y-m-d");
 			$dateOn 								= date_format(date_create($dateOn),"Y-m-d");
 			$exchangeRate 							= 0;
@@ -701,7 +701,7 @@ class App_Cxc_Record extends CI_Controller {
 			
 			//Moneda Dolares
 			date_default_timezone_set(APP_TIMEZONE); 
-			$objCurrencyDolares						= $this->core_web_currency->getCurrencyReport($companyID);
+			$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
 			$dateOn 								= date("Y-m-d");
 			$dateOn 								= date_format(date_create($dateOn),"Y-m-d");
 			$exchangeRate 							= 0;
