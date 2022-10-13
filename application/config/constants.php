@@ -109,6 +109,7 @@ define("FONT_SIZE_BODY_INVICE","10");//cm
 
 //Mensajes
 define("USER_NOT_AUTENTICATED","TIEMPO DE ESPERA AGOTADO:   <a href='http://localhost/posme/'>**INGRESAR**</a> ");
+define("USER_LOGIN","<a href='http://localhost/posme/'>**INGRESAR**</a> ");
 define("NOT_ALL_INSERT","NO PUEDE INGRESAR UN REGISTRO");
 define("NOT_ALL_EDIT","NO PUEDE EDITAR NINGUN REGISTRO");
 define("NOT_EDIT","NO PUEDE EDITAR UN REGISTRO QUE NO FUE CREADO POR USTED");

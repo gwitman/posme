@@ -377,8 +377,8 @@ class Core_acount extends CI_Controller {
 		}
 		
 
-		$nombre 		= str_replace("@","","licenciamiento ".$dataSession["user"]->email." FAC ".$fechaNow->format('Y-m-d'));
-		$numberFactura 	= str_replace("@","",$dataSession["user"]->email."FAC".$fechaNow->format('Ymmdd'));
+		$nombre 		= str_replace("@","","licenciamiento ".$dataSession["user"]->email." FAC ".$fechaNow->format('Y-m-d His'));
+		$numberFactura 	= str_replace("@","",$dataSession["user"]->email."FAC".$fechaNow->format('Ymmdd His'));
 		
 		
 
@@ -569,7 +569,7 @@ class Core_acount extends CI_Controller {
 
 		
 		$tocken 	= $uri["parametro1"];/*tockent*/
-		$factura	= $uri["parametro2"];/*tockent*/
+		$factura	= $uri["parametro2"];/*comprobante*/
 		if ($tocken != "" ) 
 		{
 			/*
@@ -631,7 +631,20 @@ class Core_acount extends CI_Controller {
 							$this->Company_Parameter_Model->update($dataSession["user"]->companyID,$parameterFechaExpiration->parameterID,$dataParameter);
 
 							log_message("ERROR","Listo reidreccionar") ;
-							redirect("core_acount");							
+
+							echo $msgPrincipal;
+							echo "</br>";
+							if($sendBox){
+								echo "El pago no fue real";
+								echo "</br>";
+							}
+							echo $msgSecundario;
+							echo "</br>";
+							echo "Tomar Print si es posible para que tenga un soporte.";
+							echo "</br>";
+							echo "Dar click : ".USER_LOGIN;
+							echo "</br>";
+							//redirect("core_acount");							
 							break;
 						
 						case "REGISTERED":
@@ -645,6 +658,11 @@ class Core_acount extends CI_Controller {
 
 							log_message("ERROR",print_r($msgPrincipal,true)) ;
 							log_message("ERROR",print_r($msgSecundario,true)) ;
+
+							echo $msgPrincipal;
+							echo "</br>";
+							echo $msgSecundario;
+
 							break;
 						
 						case "VERIFYING":
@@ -664,6 +682,10 @@ class Core_acount extends CI_Controller {
 							log_message("ERROR",print_r($msgPrincipal,true)) ;
 							log_message("ERROR",print_r($msgSecundario,true)) ;
 
+							echo $msgPrincipal;
+							echo "</br>";
+							echo $msgSecundario;
+
 							break;
 						
 						case "REVOKED":
@@ -677,6 +699,11 @@ class Core_acount extends CI_Controller {
 
 							log_message("ERROR",print_r($msgPrincipal,true)) ;
 							log_message("ERROR",print_r($msgSecundario,true)) ;
+
+							echo $msgPrincipal;
+							echo "</br>";
+							echo $msgSecundario;
+
 							break;
 						
 						case "FAILED":
@@ -694,6 +721,10 @@ class Core_acount extends CI_Controller {
 
 							log_message("ERROR",print_r($msgPrincipal,true)) ;
 							log_message("ERROR",print_r($msgSecundario,true)) ;
+
+							echo $msgPrincipal;
+							echo "</br>";
+							echo $msgSecundario;
 
 							break;
 					}
@@ -721,6 +752,10 @@ class Core_acount extends CI_Controller {
 
 							log_message("ERROR",print_r($msgPrincipal,true)) ;
 							log_message("ERROR",print_r($msgSecundario,true)) ;
+
+							echo $msgPrincipal;
+							echo "</br>";
+							echo $msgSecundario;
 							break;
 					}
 				}
@@ -755,7 +790,9 @@ class Core_acount extends CI_Controller {
 
 						log_message("ERROR",print_r($msgPrincipal,true)) ;
 						log_message("ERROR",print_r($msgSecundario,true)) ;
-
+						echo $msgPrincipal;
+						echo "</br>";
+						echo $msgSecundario;
 						break;
 				}
 			}
@@ -768,6 +805,9 @@ class Core_acount extends CI_Controller {
 			$msgSecundario = "No se recibieron los datos correctamente.<br /> La transacci&oacute;n no fue completada.<br /><br />";
 			log_message("ERROR",print_r($msgPrincipal,true)) ;
 			log_message("ERROR",print_r($msgSecundario,true)) ;
+			echo $msgPrincipal;
+			echo "</br>";
+			echo $msgSecundario;
 
 		}
 

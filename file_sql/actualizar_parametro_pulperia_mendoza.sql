@@ -1,3 +1,39 @@
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = 'MENSUALIDAD'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'CORE_TIPO_PLAN';
+
+
+
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = '60'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'CORE_PRICE_BY_INVOICE';
+
+
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = 'false'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'CORE_PAYMENT_SENDBOX';
+
+
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = 'Dolar'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_EXTERNAL';
+
+
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = 'Cordoba'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_REPORT';
+
+
 UPDATE tb_company SET NAME = 'Pulperia Mendoza' , address = 'Esquina opuesta a la policia nacional' WHERE companyID = 2;
 
 
