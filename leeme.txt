@@ -12,13 +12,13 @@ instalador:
 		C:\TeamDS-Importacion
 		
 		pasar a la carpeta los siguientes archivos:
-			HeidiSQL_8.2.0.4675_Setup.exe
+			navicat
 			xampp-win32-1.8.3-2-VC11-installer.exe
+			XamppTemp
 			AdbeRdr1011_es_ES.exe
 			Driver Para Printer 80 - HING.rar
 			npp.6.5.3.Installer.exe			
-			instalar chrome			
-			mysql tool merge o sqlexaminer
+			instalar chrome						
 			mysql-conector-net-6.9.8.msi
 			mysql-conector-odbc-5.3.4.win32.msi
 			mysql-conector-odbc-5.3.4.win64.msi
@@ -34,10 +34,10 @@ instalador:
 		
 		instalar el programa de Driver Para Printer 80-Hing
 		para serie 80
-		
-		instalar el programa de HeidiSQL_8
-		
+
 		instalar el programa xampp-wind-32
+
+		instalar el programa de navicate		
 		
 		instalar chrome.exe descargarlo de la web.
 		
@@ -55,31 +55,29 @@ instalador:
 		a la carpeta C\xampp 
 		agregar los permisos para todos los usuarios. 
 		todos los permisos.
-		
-		
-		
 
+		trasalardar el siguiente archivo
+		C:\xampp\htdocs\core_test_payment.php a la misma direccion
 		
 		
-acceder a pypmyadmin		
-		crear base de datos:
-		posme
 		
-		
-		crear usuarios:
+acceder a phpMyAdmin 
 		root@localhost		root1.2Blandon
-		root@%				root1.2Blandon
-		root@127.0.0.1		root1.2Blandon
-		root@::1			root1.2Blandon
 		
 modificar los siguientes archivos:
 		Modificar las credenciales de la siguiente ruta:
 		C:\xampp\phpMyAdmin\config.inc.php
+
+				
+acceder a phpmyadmin
+		crear usuarios:				
+		root@127.0.0.1		root1.2Blandon
+		root@::1			root1.2Blandon
+		root@%				root1.2Blandon
 		
-		
+
 acceder a pypmyadmin		
-		cambiar contraseña de los demas root
-		root:						root1.2Blandon
+		crear base de datos:posme
 		
 		
 crear la carpeta
@@ -156,6 +154,13 @@ Ejecutar el Script de Limpieza e Inicializacion de Base de Datos
 
 Configurar parametros usando o creando el script
 		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\actualizar_parametros_[cliente].sql
+
+
+Probar la configuracion de pago
+	http://localhost/core_test_payment.php
+
+Probar la configuracion de pago
+	http://localhost/posme/
 
 
 ---------------------------------------

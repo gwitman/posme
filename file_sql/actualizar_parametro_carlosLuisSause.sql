@@ -5,9 +5,15 @@ WHERE
 	tb_parameter.name = 'CORE_TIPO_PLAN';
 
 
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = '64'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'CORE_PRICE';
+
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '63'
+	tb_company_parameter.value = '0.01'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PRICE_BY_INVOICE';
