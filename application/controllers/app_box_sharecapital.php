@@ -1216,7 +1216,8 @@ class App_Box_Sharecapital extends CI_Controller {
 			//Set Comentario del Comprobante
 			$pdf->ezText("\nCLIENTE",FONT_SIZE_BODY_INVICE);
 			$data	= array(
-				array('field1'=> $datView["objNatural"]->firstName."/".$datView["objTM"]->note."...")
+				//array('field1'=> $datView["objNatural"]->firstName."/".$datView["objTM"]->note."...")
+				array('field1'=> $datView["objNatural"]->firstName)
 			);
 			$pdf->ezTable(
 				$data,
