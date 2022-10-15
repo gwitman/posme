@@ -883,21 +883,17 @@ class App_Invoice_Billing extends CI_Controller {
 
 			//Si esta configurado como auto aplicado
 			//y es al credito. cambiar el estado por el estado inicial, que es registrada
-			$statusCorrecto = "";
+			$statusID = "";
 			if($objParameterInvoiceAutoApply == "true" && $exisCausalInCredit == "true" ){				
-				$statusCorrecto = $objListWorkflowStage[0]->workflowStageID;
+				$statusID = $objListWorkflowStage[0]->workflowStageID;
 			}
 			//De lo contrario respetar el estado que venga en pantalla
 			else {
-				$statusCorrecto = $this->input->post("txtStatusID");
+				$statusID = $this->input->post("txtStatusID");
 			}
 
 			
-
-
 			
-			$typePriceID 							= $this->input->post("txtTypePriceID");
-			$objListPrice 							= $this->List_Price_Model->getListPriceToApply($companyID);
 			$objTM["companyID"] 					= $dataSession["user"]->companyID;
 			$objTM["transactionID"] 				= $transactionID;			
 			$objTM["branchID"]						= $dataSession["user"]->branchID;
@@ -918,7 +914,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$objTM["reference2"] 					= $this->input->post("txtReference2");
 			$objTM["reference3"] 					= $this->input->post("txtReference3");
 			$objTM["reference4"] 					= $this->input->post("txtCustomerCreditLineID","0");
-			$objTM["statusID"] 						= $statusCorrecto;
+			$objTM["statusID"] 						= $statusID;
 			$objTM["amount"] 						= 0;
 			$objTM["isApplied"] 					= 0;
 			$objTM["journalEntryID"] 				= 0;
@@ -958,19 +954,29 @@ class App_Invoice_Billing extends CI_Controller {
 			$arrayListLote	 							= $this->input->post("txtDetailLote");			
 			$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");			
 			
-			//Ingresar la configuracion de precios			
+			//Ingresar la configuracion de precios		
+			$amountTotal 									= 0;
+			$tax1Total 										= 0;
+			$subAmountTotal									= 0;
+			
+
+			//Tipo de precio seleccionado por el usuario,
+			//Actualmente no se esta usando
+			$typePriceID 							= $this->input->post("txtTypePriceID");
+			$objListPrice 							= $this->List_Price_Model->getListPriceToApply($companyID);
+
+			//obtener la lista de precio por defecto
 			$objParameterPriceDefault	= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
 			$listPriceID 	= $objParameterPriceDefault->value;
+
+			//obener los tipos de precio de la lista de precio por defecto
 			$objTipePrice 	= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
 			
-			
+			//Parametro para validar si se cambian los precios en la facturacion
 			$objParameterUpdatePrice	= $this->core_web_parameter->getParameter("INVOICE_UPDATEPRICE_ONLINE",$companyID);
 			$objUpdatePrice 			= $objParameterUpdatePrice->value;
 			
 
-			$amountTotal 									= 0;
-			$tax1Total 										= 0;
-			$subAmountTotal									= 0;
 			
 			if(!empty($arrayListItemID)){
 				foreach($arrayListItemID as $key => $value){
@@ -1076,6 +1082,8 @@ class App_Invoice_Billing extends CI_Controller {
 			$this->Transaction_Master_Model->update($companyID,$transactionID,$transactionMasterID,$objTM);
 			
 			//Aplicar el Documento?
+			//Las factuas de credito no se auto aplican auque este el parametro, por que hay que crer el documento
+			//y esto debe ser revisado cuidadosamente
 			if( $this->core_web_workflow->validateWorkflowStage("tb_transaction_master_billing","statusID",$objTM["statusID"],COMMAND_APLICABLE,$dataSession["user"]->companyID,$dataSession["user"]->branchID,$dataSession["role"]->roleID)){
 				
 				//Ingresar en Kardex.
