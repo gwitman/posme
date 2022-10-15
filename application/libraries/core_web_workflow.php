@@ -172,6 +172,83 @@ class core_web_workflow {
 	
 		
    }
+   //Obtener el primer estado de aplicacion
+   function getWorkflowStageApplyFirst($table,$field,$companyID,$branchID,$roleID){
+		$this->CI->load->model('core/Component_Model');
+		$this->CI->load->model('core/Element_Model');
+		$this->CI->load->model('core/Sub_Element_Model');
+		$this->CI->load->model('core/Company_Component_Flavor_Model');		
+		$this->CI->load->model('core/Workflow_Model');
+		$this->CI->load->model('core/Workflow_Stage_Model');
+		$this->CI->load->model('core/Workflow_Stage_Relation_Model');
+		$this->CI->load->model('core/Role_Model');
+		$this->CI->load->model('core/Role_Autorization_Model');
+		
+		
+		//obtener elemento 
+		$objElement 	= $this->CI->Element_Model->get_rowByName($table,ELEMENT_TYPE_TABLE);
+		if(!$objElement)
+		throw new Exception("NO EXISTE LA TABLA '".$table."' DENTRO DE LOS REGISTROS DE ELEMENT ");
+		
+		//obtener subelement
+		$objSubElement 	= $this->CI->Sub_Element_Model->get_rowByNameAndElementID($objElement->elementID,$field); 
+		if(!$objSubElement)
+		throw new Exception("NO EXISTE EL CAMPO '".$field."' DENTRO DE LOS REGISTROS DE SUBELEMENT PARA EL ELEMENTO '".$table."' ");
+		
+		//obtener componente workflow
+		$objComponent = $this->CI->Component_Model->get_rowByName("tb_workflow");
+		if(!$objComponent)
+		throw new Exception("NO EXISTE EL COMPONENTE 'tb_workflow' DENTROS DE LOS REGISTROS DE 'Component' ");
+		
+		//obtener el workflow
+		if(!$objSubElement->workflowID)
+		throw new Exception("EN LA TABLA SUBELEMENT PARA '".$field."' NO EXISTE EL WORKFLOW CONFIGURADO");
+		
+		$objWorkflow = $this->CI->Workflow_Model->get_rowByWorkflowID($objSubElement->workflowID);
+		if(!$objWorkflow)
+		throw new Exception("NO EXISTE EL WORKFLOW ");
+				
+		//obtener flavor
+		$objCompanyComponentFlavor = $this->CI->Company_Component_Flavor_Model->get_rowByCompanyAndComponentAndComponentItemID($companyID,$objComponent->componentID,$objWorkflow->workflowID);
+		if(!$objCompanyComponentFlavor)
+		throw new Exception("NO EXISTE EL FLAVOR PARA EL COMPONENTE DE WORKFLOW ");
+		
+		//obtener la lista de workflowStage
+		$objWorkflowStage 		= $this->CI->Workflow_Stage_Model->get_rowByWorkflowIDAndFlavorID_ApplyFirst($objWorkflow->workflowID,$objCompanyComponentFlavor->flavorID);
+		
+		//obtener los workflowdel usuario
+		$objWorkflowStageRole 	= $this->CI->Role_Autorization_Model->get_rowByRole($companyID,$branchID,$roleID);
+		
+		//obtener el rol del usuario
+		$objRole 				= $this->CI->Role_Model->get_rowByPK($companyID,$branchID,$roleID);
+		
+		
+		if($objRole->isAdmin){		
+			//el usuario puede ver todos los workflow
+			return $objWorkflowStage;
+		}
+		else if(!$objWorkflowStageRole){			
+			//el usuario no pueder ver ningun workflow
+			 return $objWorkflowStageRole;
+		}			
+		else if (!$objWorkflowStage){			
+			//no hay ningun workflow
+			return $objWorkflowStage;
+		}
+		else{
+			$exists = false;
+			foreach($objWorkflowStageRole as $ii){									
+				if($ii->workflowStageID == $objWorkflowStage[0]->workflowStageID)
+				$exists = true;
+			}		
+			
+			if(!$exists)
+			return null;
+			
+			return $objWorkflowStage; 
+		}
+	
+   }
    //Obtener un Estado
    function getWorkflowStage($table,$field,$stageID,$companyID,$branchID,$roleID){
 		$this->CI->load->model('core/Component_Model');
@@ -323,6 +400,7 @@ class core_web_workflow {
 		}
 		
    }  
+   
    //Validar el Estado
    function validateWorkflowStage($table,$field,$stageID,$cmd,$companyID,$branchID,$roleID){
 		$this->CI->load->model('core/Component_Model');

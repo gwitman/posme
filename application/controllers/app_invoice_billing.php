@@ -326,6 +326,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$this->load->model("List_Price_Model");
 			$this->load->model("Price_Model");
 			$this->load->model("Company_Component_Concept_Model");
+
 			$this->load->model("Entity_Account_Model");
 			$this->load->model("Customer_Credit_Document_Model");
 			$this->load->model("Customer_Credit_Amortization_Model");
@@ -782,6 +783,7 @@ class App_Invoice_Billing extends CI_Controller {
 	}
 	function insertElement($dataSession){
 		try{
+
 			//PERMISO SOBRE LA FUNCTION
 			if(APP_NEED_AUTHENTICATION == true){
 				$permited = false;
@@ -794,6 +796,7 @@ class App_Invoice_Billing extends CI_Controller {
 				if ($resultPermission 	== PERMISSION_NONE)
 				throw new Exception(NOT_ALL_INSERT);	
 			}
+
 			
 			$this->load->model("Transaction_Model");	
 			$this->load->model("Company_Currency_Model");
@@ -804,13 +807,21 @@ class App_Invoice_Billing extends CI_Controller {
 			$this->load->model("Transaction_Master_Concept_Model");	
 
 			$this->load->model("Transaction_Master_Detail_Credit_Model");	
-						$this->load->model("Item_Model");
+			$this->load->model("Item_Model");
 			$this->load->model("Transaction_Causal_Model");
 			$this->load->model("ItemWarehouse_Model");
 			$this->load->model("List_Price_Model");
 			$this->load->model("Price_Model");
 			$this->load->model("Company_Component_Concept_Model");
 			
+			$this->load->model("Entity_Account_Model");
+			$this->load->model("Customer_Credit_Document_Model");
+			$this->load->model("Customer_Credit_Amortization_Model");
+			$this->load->model("Customer_Credit_Line_Model");
+			$this->load->model("Customer_Credit_Document_Endity_Related_Model");
+			$this->load->model("Customer_Credit_Model");		
+			$this->load->model("core/Catalog_Item_Model");							
+			$this->load->library("financial/financial_amort");
 			
 			//Obtener el Componente de Transacciones Facturacion
 			$objComponentBilling			= $this->core_web_tools->getComponentIDBy_ComponentName("tb_transaction_master_billing");
@@ -823,23 +834,70 @@ class App_Invoice_Billing extends CI_Controller {
 			throw new Exception("EL COMPONENTE 'tb_item' NO EXISTE...");
 			
 			
-			if($this->core_web_accounting->cycleIsCloseByDate($dataSession["user"]->companyID,$this->input->post("txtDate")))
-			throw new Exception("EL DOCUMENTO NO PUEDE INGRESAR, EL CICLO CONTABLE ESTA CERRADO");
+			$companyID 							= $dataSession["user"]->companyID;
+			$branchID 							= $dataSession["user"]->branchID;
+			$roleID 							= $dataSession["role"]->roleID;
+			$userID								= $dataSession["user"]->userID;
 			
-			
-
-
 			//Obtener transaccion
 			$transactionID 							= $this->core_web_transaction->getTransactionID($dataSession["user"]->companyID,"tb_transaction_master_billing",0);
 			$companyID 								= $dataSession["user"]->companyID;
 			$objT 									= $this->Transaction_Model->getByCompanyAndTransaction($dataSession["user"]->companyID,$transactionID);
 			$objTransactionCausal 					= $this->Transaction_Causal_Model->getByCompanyAndTransactionAndCausal($companyID,$transactionID,$this->input->post("txtCausalID"));
-			$objListPrice 							= $this->List_Price_Model->getListPriceToApply($companyID);
-			$typePriceID 							= $this->input->post("txtTypePriceID");
 			
+			
+			//Valores de tasa de cambio
+			date_default_timezone_set(APP_TIMEZONE); 
+			$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
+			$objCurrencyCordoba						= $this->core_web_currency->getCurrencyDefault($companyID);
+			$dateOn 								= date("Y-m-d");
+			$dateOn 								= date_format(date_create($dateOn),"Y-m-d");
+			$exchangeRate 							= $this->core_web_currency->getRatio($companyID,$dateOn,1,$objCurrencyDolares->currencyID,$objCurrencyCordoba->currencyID);
+			
+
+			if($this->core_web_accounting->cycleIsCloseByDate($dataSession["user"]->companyID,$this->input->post("txtDate")))
+			throw new Exception("EL DOCUMENTO NO PUEDE INGRESAR, EL CICLO CONTABLE ESTA CERRADO");
+			
+			
+
 			$objParameterInvoiceBillingQuantityZero		= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
 			$objParameterInvoiceBillingQuantityZero		= $objParameterInvoiceBillingQuantityZero->value;
+			
 
+			//obtener el primer estado  de la factura o el estado inicial.
+			$objListWorkflowStage					= $this->core_web_workflow->getWorkflowInitStage("tb_transaction_master_billing","statusID",$companyID,$branchID,$roleID);
+
+
+			//Saber si se va autoaplicar
+			$objParameterInvoiceAutoApply			= $this->core_web_parameter->getParameter("INVOICE_AUTOAPPLY_CASH",$companyID);
+			$objParameterInvoiceAutoApply			= $objParameterInvoiceAutoApply->value;
+
+			//Saber si es al credito
+			$parameterCausalTypeCredit 				= $this->core_web_parameter->getParameter("INVOICE_BILLING_CREDIT",$companyID);			
+			$causalIDTypeCredit 					= explode(",", $parameterCausalTypeCredit->value);
+			$exisCausalInCredit						= null;
+			$exisCausalInCredit						= array_search($this->input->post("txtCausalID"),$causalIDTypeCredit);
+			if($exisCausalInCredit || $exisCausalInCredit === 0){
+				$exisCausalInCredit = "true";
+			}
+
+			//Si esta configurado como auto aplicado
+			//y es al credito. cambiar el estado por el estado inicial, que es registrada
+			$statusCorrecto = "";
+			if($objParameterInvoiceAutoApply == "true" && $exisCausalInCredit == "true" ){				
+				$statusCorrecto = $objListWorkflowStage[0]->workflowStageID;
+			}
+			//De lo contrario respetar el estado que venga en pantalla
+			else {
+				$statusCorrecto = $this->input->post("txtStatusID");
+			}
+
+			
+
+
+			
+			$typePriceID 							= $this->input->post("txtTypePriceID");
+			$objListPrice 							= $this->List_Price_Model->getListPriceToApply($companyID);
 			$objTM["companyID"] 					= $dataSession["user"]->companyID;
 			$objTM["transactionID"] 				= $transactionID;			
 			$objTM["branchID"]						= $dataSession["user"]->branchID;
@@ -860,7 +918,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$objTM["reference2"] 					= $this->input->post("txtReference2");
 			$objTM["reference3"] 					= $this->input->post("txtReference3");
 			$objTM["reference4"] 					= $this->input->post("txtCustomerCreditLineID","0");
-			$objTM["statusID"] 						= $this->input->post("txtStatusID");
+			$objTM["statusID"] 						= $statusCorrecto;
 			$objTM["amount"] 						= 0;
 			$objTM["isApplied"] 					= 0;
 			$objTM["journalEntryID"] 				= 0;
@@ -890,6 +948,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$objTMInfo["receiptAmountDol"]			= helper_StringToNumber($this->input->post("txtReceiptAmountDol",0));
 			$this->Transaction_Master_Info_Model->insert($objTMInfo);
 			
+
 			//Recorrer la lista del detalle del documento
 			$arrayListItemID 							= $this->input->post("txtItemID");
 			$arrayListQuantity	 						= $this->input->post("txtQuantity");	
@@ -899,6 +958,16 @@ class App_Invoice_Billing extends CI_Controller {
 			$arrayListLote	 							= $this->input->post("txtDetailLote");			
 			$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");			
 			
+			//Ingresar la configuracion de precios			
+			$objParameterPriceDefault	= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
+			$listPriceID 	= $objParameterPriceDefault->value;
+			$objTipePrice 	= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
+			
+			
+			$objParameterUpdatePrice	= $this->core_web_parameter->getParameter("INVOICE_UPDATEPRICE_ONLINE",$companyID);
+			$objUpdatePrice 			= $objParameterUpdatePrice->value;
+			
+
 			$amountTotal 									= 0;
 			$tax1Total 										= 0;
 			$subAmountTotal									= 0;
@@ -978,6 +1047,25 @@ class App_Invoice_Billing extends CI_Controller {
 					$objTMDC["reference5"]					= "";
 					$objTMDC["reference9"]					= "reference1: Porcentaje de Gastos Fijo para las facturas de credito,reference2: Escritura Publica,reference3: Primer Linea del Protocolo";
 					$this->Transaction_Master_Detail_Credit_Model->insert($objTMDC);
+
+					if($objUpdatePrice)
+					{
+						foreach($objTipePrice as $priceT)
+						{			
+								$typePriceID					= $priceT->catalogItemID;																					
+								$dataUpdatePrice["price"] 		= $price;
+								$dataUpdatePrice["percentage"] 	= 
+																$objItem->cost == 0 ? 
+																	($price / 100) : 
+																	(((100 * $price) / $objItem->cost) - 100);
+																	
+								log_message("ERROR","Actualizar Lista de Precio");
+								log_message("ERROR",print_r($dataUpdatePrice,true));
+								$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
+								
+						}
+					}
+					
 				}
 			}
 			
@@ -987,6 +1075,18 @@ class App_Invoice_Billing extends CI_Controller {
 			$objTM["subAmount"] = $subAmountTotal;			
 			$this->Transaction_Master_Model->update($companyID,$transactionID,$transactionMasterID,$objTM);
 			
+			//Aplicar el Documento?
+			if( $this->core_web_workflow->validateWorkflowStage("tb_transaction_master_billing","statusID",$objTM["statusID"],COMMAND_APLICABLE,$dataSession["user"]->companyID,$dataSession["user"]->branchID,$dataSession["role"]->roleID)){
+				
+				//Ingresar en Kardex.
+				$this->core_web_inventory->calculateKardexNewOutput($companyID,$transactionID,$transactionMasterID);			
+			
+				//Crear Conceptos.
+				$this->core_web_concept->billing($companyID,$transactionID,$transactionMasterID);
+				
+			}
+			
+
 			if($this->db->trans_status() !== false){
 				$this->db->trans_commit();						
 				$this->core_web_notification->set_message(false,SUCCESS);
@@ -1105,6 +1205,21 @@ class App_Invoice_Billing extends CI_Controller {
 			if(!$objListPrice)
 			throw new Exception("NO EXISTE UNA LISTA DE PRECIO PARA SER APLICADA");
 		
+
+			$objParameterInvoiceAutoApply			= $this->core_web_parameter->getParameter("INVOICE_AUTOAPPLY_CASH",$companyID);
+			$objParameterInvoiceAutoApply			= $objParameterInvoiceAutoApply->value;
+
+
+			//Obtener la lista de estados
+			if($objParameterInvoiceAutoApply == "true"){
+				$dataView["objListWorkflowStage"]	= $this->core_web_workflow->getWorkflowStageApplyFirst("tb_transaction_master_billing","statusID",$companyID,$branchID,$roleID);
+			}
+			else{
+				$dataView["objListWorkflowStage"]	= $this->core_web_workflow->getWorkflowInitStage("tb_transaction_master_billing","statusID",$companyID,$branchID,$roleID);
+			}
+			
+			
+			
 			//Tipo de Factura
 			$dataView["companyID"]				= $dataSession["user"]->companyID;
 			$dataView["userID"]					= $dataSession["user"]->userID;
@@ -1120,8 +1235,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$dataView["objComponentCustomer"]	= $objComponentCustomer;
 			$dataView["objCaudal"]				= $this->Transaction_Causal_Model->getCausalByBranch($companyID,$transactionID,$branchID);			
 			$dataView["warehouseID"]			= $dataView["objCaudal"][0]->warehouseSourceID;
-			$dataView["objListWarehouse"]		= $this->UserWarehouse_Model->getRowByUserID($companyID,$userID);
-			$dataView["objListWorkflowStage"]	= $this->core_web_workflow->getWorkflowInitStage("tb_transaction_master_billing","statusID",$companyID,$branchID,$roleID);
+			$dataView["objListWarehouse"]		= $this->UserWarehouse_Model->getRowByUserID($companyID,$userID);			
 			$dataView["objCustomerDefault"]		= $this->Customer_Model->get_rowByCode($companyID,$customerDefault->value);
 			$dataView["objListTypePrice"]		= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
 			$dataView["objListZone"]			= $this->core_web_catalog->getCatalogAllItem("tb_transaction_master_info_billing","zoneID",$companyID);			
