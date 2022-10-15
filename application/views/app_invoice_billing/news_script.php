@@ -15,6 +15,7 @@
 	document.getElementById("txtScanerCodigo").focus();
 	
 	
+
 	//Obtener informacion del cliente
 	fnWaitOpen();
 	
