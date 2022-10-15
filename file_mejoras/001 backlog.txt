@@ -1,6 +1,0 @@
-1) al momento de facturar, crear un flag, que me permita
-saber si la factura se reportara en la sin riesgo.
-
-requisitos:	es necesario agregar un falg, a la tabla de 
-tb_customer_document_credit.
-
