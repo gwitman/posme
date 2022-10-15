@@ -89,14 +89,18 @@ class App_Invoice_Billing extends CI_Controller {
 			throw new Exception("NO EXISTE UNA LISTA DE PRECIO PARA SER APLICADA");
 		
 			//Obtener parametros para mostrar botones de impresion
-			$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_BAUCHER_GENERAL",$companyID);
-			$dataView["objParameterInvoiceButtomPrinterBoucherGeneral"] = $parameterValue->value;
-			$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_PREPRINTER",$companyID);
-			$dataView["objParameterInvoiceButtomPrinterPrePrinter"] = $parameterValue->value;
+			//$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_BAUCHER_GENERAL",$companyID);
+			//$dataView["objParameterInvoiceButtomPrinterBoucherGeneral"] = $parameterValue->value;
+			
+			//$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_PREPRINTER",$companyID);
+			//$dataView["objParameterInvoiceButtomPrinterPrePrinter"] = $parameterValue->value;
+
+			//$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT",$companyID);
+			//$dataView["objParameterInvoiceButtomPrinterFidLocalPayment"] = $parameterValue->value;
+
 			$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT_AND_AMORTIZACION",$companyID);
 			$dataView["objParameterInvoiceButtomPrinterFidLocalPaymentAndAmortization"] = $parameterValue->value;
-			$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT",$companyID);
-			$dataView["objParameterInvoiceButtomPrinterFidLocalPayment"] = $parameterValue->value;
+			
 			
 			$objParameterInvoiceBillingQuantityZero					= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
 			$dataView["objParameterInvoiceBillingQuantityZero"]		= $objParameterInvoiceBillingQuantityZero->value;
@@ -1392,6 +1396,8 @@ class App_Invoice_Billing extends CI_Controller {
 			)));
 		}
 	}
+
+	//facturacion de facturas membretadas
 	function viewRegisterPrePrinter(){
 		try{ 
 			//AUTENTICADO
@@ -1483,7 +1489,8 @@ class App_Invoice_Billing extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}	
 	}
-	
+
+	//facturacion estandar
 	function viewRegister(){
 		//Factura en Impresora Termica 
 		//O impresora de ticket, con ancho de 3.2 pulgadas
@@ -1799,6 +1806,8 @@ class App_Invoice_Billing extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}
+
+	//facturacion de fid local
 	function viewRegisterFidLocal(){
 		try{ 
 			//AUTENTICADO
@@ -2023,6 +2032,8 @@ class App_Invoice_Billing extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}
+
+	//factura general de carlos luis y demas comercios
 	function viewRegisterVariedadesCarlosLuis(){
 		//Factura en Impresora Termica 
 		//O impresora de ticket, con ancho de 3.2 pulgadas

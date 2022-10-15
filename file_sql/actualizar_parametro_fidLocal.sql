@@ -94,7 +94,7 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_invoice_billing/viewRegister'
+	tb_company_parameter.value = 'app_invoice_billing/viewRegisterFidLocal'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'INVOICE_URL_PRINTER';
@@ -137,3 +137,17 @@ UPDATE tb_company_parameter, tb_parameter  SET
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_COMPANY_IDENTIFIER';
+
+
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = '00002'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'INVENTORY_ITEM_WAREHOUSE_DEFAULT';
+
+
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = 'true'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT_AND_AMORTIZACION';	

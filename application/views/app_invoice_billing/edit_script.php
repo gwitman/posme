@@ -121,27 +121,7 @@
 		var objectParameterButtoms = {};
 		
 		
-		/*
-		if(<?php echo $objParameterInvoiceButtomPrinterBoucherGeneral; ?> == true)
-		{	
-			objectParameterButtoms.Baucher=function(){
-						fnWaitOpen();
-						window.open("<?php echo site_url(); ?>app_invoice_billing/viewRegister/companyID/<?php echo $objTransactionMaster->companyID;?>/transactionID/<?php echo $objTransactionMaster->transactionID;?>/transactionMasterID/<?php echo $objTransactionMaster->transactionMasterID;?>", '_blank');
-						fnWaitClose();
-						$(this).dialog("close");
-			};	
-		}		
 		
-		
-		if(<?php echo $objParameterInvoiceButtomPrinterPrePrinter; ?> == true){		
-
-			objectParameterButtoms.Membretada=function(){
-				fnWaitOpen();
-				window.open("<?php echo site_url(); ?>app_invoice_billing/viewRegisterPrePrinter/companyID/<?php echo $objTransactionMaster->companyID;?>/transactionID/<?php echo $objTransactionMaster->transactionID;?>/transactionMasterID/<?php echo $objTransactionMaster->transactionMasterID;?>", '_blank');
-				fnWaitClose();
-				$(this).dialog("close");
-			};
-		}
 		
 		if(<?php echo $objParameterInvoiceButtomPrinterFidLocalPaymentAndAmortization; ?> == true){	
 			objectParameterButtoms.FidLocalTabla=function(){
@@ -152,15 +132,6 @@
 			};
 		}
 		
-		if(<?php echo $objParameterInvoiceButtomPrinterFidLocalPayment; ?> == true){	
-			objectParameterButtoms.FidLocal=function(){
-				fnWaitOpen();
-				window.open("<?php echo site_url(); ?>app_invoice_billing/viewRegisterFidLocal/companyID/<?php echo $objTransactionMaster->companyID;?>/transactionID/<?php echo $objTransactionMaster->transactionID;?>/transactionMasterID/<?php echo $objTransactionMaster->transactionMasterID;?>", '_blank');
-				fnWaitClose();
-				$(this).dialog("close");
-			};		
-		}
-		*/
 		
 		
 		objectParameterButtoms.Imprimir=function(){
