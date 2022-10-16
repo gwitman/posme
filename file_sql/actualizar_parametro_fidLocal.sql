@@ -140,7 +140,7 @@ WHERE
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '00002'
+	tb_company_parameter.value = '00001'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'INVENTORY_ITEM_WAREHOUSE_DEFAULT';
