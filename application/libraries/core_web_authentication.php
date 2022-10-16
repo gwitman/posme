@@ -129,13 +129,13 @@ class core_web_authentication {
    function isAuthenticated(){
 		
 		$this->CI->load->library("session");
-		log_message("ERROR",APP_NEED_AUTHENTICATION." 001.001");
+		//log_message("ERROR",APP_NEED_AUTHENTICATION." 001.001");
 			
 		if(!APP_NEED_AUTHENTICATION)
 		return true;
 				
-		log_message("ERROR","obteniendo userdata 001.001");
-		log_message("ERROR",print_r($this->CI->session->userdata('user'),true));
+		//log_message("ERROR","obteniendo userdata 001.001");
+		//log_message("ERROR",print_r($this->CI->session->userdata('user'),true));
 		
 		if($this->CI->session->userdata('user'))
 		return true;

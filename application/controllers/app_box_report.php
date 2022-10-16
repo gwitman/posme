@@ -78,6 +78,7 @@ class App_Box_Report extends CI_Controller {
 			$userID				= $dataSession["user"]->userID;
 			$tocken				= '';
 
+			//log_message("ERROR",print_r($dataSession["role"],true)) ;
 
 			//obtener permiso de fecha de reporte				
 			$filterArray 		= array_filter($dataSession["menuHiddenPopup"], function($val){  return (strpos($val->display, 'ES_PERMITIDO_MOSTRAR_INFO_DE_') !== false) && (strpos($val->display, '_DAY_IN_app_box_report_share') !== false) ;});
@@ -85,7 +86,7 @@ class App_Box_Report extends CI_Controller {
 			$filterIndex 		= 0;			
 			foreach($filterArray as $key => $value ){ $filteredArray[$filterIndex] = $value;  $filterIndex++; }
 
-			if(count($filteredArray) > 0){
+			if(count($filteredArray) > 0 && $dataSession["role"]->isAdmin == 0 ){
 				$filteredArray = str_replace("ES_PERMITIDO_MOSTRAR_INFO_DE_","",$filteredArray[0]->display);
 				$filteredArray = str_replace("_DAY_IN_app_box_report_share","",$filteredArray);
 				$filteredArray = intval($filteredArray);
@@ -94,15 +95,15 @@ class App_Box_Report extends CI_Controller {
 				$filteredArray = -1;
 			}
 
-			log_message("ERROR","cantidad de dias") ;
+			//log_message("ERROR","cantidad de dias") ;
 			if($uri != false){
 				$viewReport			= $uri["viewReport"];	
 				$startOn			= $uri["startOn"];
 				$endOn				= $uri["endOn"]." 23:59:59";	
 
 				//calcular las fechas iniciales del reporte
-				$startOn_ = DateTime::createFromFormat('Y-m-d',$startOn);		
-				$endOn_ = DateTime::createFromFormat('Y-m-d H:i:s',$endOn);		
+				$startOn_ 	= DateTime::createFromFormat('Y-m-d',$startOn);		
+				$endOn_ 	= DateTime::createFromFormat('Y-m-d H:i:s',$endOn);		
 
 				if($filteredArray != -1){
 					$startOn_Temporal = $endOn_;
@@ -115,8 +116,8 @@ class App_Box_Report extends CI_Controller {
 
 
 
-				log_message("ERROR",print_r($startOn,true)) ;
-				log_message("ERROR",print_r($endOn,true)) ;
+				//log_message("ERROR",print_r($startOn,true)) ;
+				//log_message("ERROR",print_r($endOn,true)) ;
 			} 
 			
 
@@ -176,8 +177,8 @@ class App_Box_Report extends CI_Controller {
 				else
 				$objDataResult["objCash"]					= NULL;
 			
-				log_message("ERROR",print_r($objDataCash,true));
-				log_message("ERROR",print_r($objDataSales,true));
+				//log_message("ERROR",print_r($objDataCash,true));
+				//log_message("ERROR",print_r($objDataSales,true));
 				
 				
 				
@@ -187,7 +188,7 @@ class App_Box_Report extends CI_Controller {
 				$objDataResult["endOn"] 					= $endOn;
 				$objDataResult["objFirma"] 					= "{companyID:" . $dataSession["user"]->companyID . ",branchID:" . $dataSession["user"]->branchID . ",userID:" . $dataSession["user"]->userID . ",fechaID:" . date('Y-m-d H:i:s') . ",reportID:" . "pr_cxc_get_report_customer_credit" . ",ip:". $dataSession["ip_address"] . ",sessionID:" . $dataSession["session_id"] .",agenteID:". $dataSession["user_agent"] .",lastActivity:".  $dataSession["last_activity"] . "}"  ;
 				$objDataResult["objFirmaEncription"] 		= md5 ($objDataResult["objFirma"]);
-				log_message("INFO",print_r($objDataResult,true));
+				//log_message("INFO",print_r($objDataResult,true));
 				$this->load->view("app_box_report/share/view_a_disemp",$objDataResult);
 			}
 		}
