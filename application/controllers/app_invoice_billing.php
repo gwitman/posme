@@ -361,6 +361,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$oldStatusID 							= $objTM->statusID;
 			$parameterCausalTypeCredit 				= $this->core_web_parameter->getParameter("INVOICE_BILLING_CREDIT",$companyID);
 			
+			
 			//Valores de tasa de cambio
 			date_default_timezone_set(APP_TIMEZONE); 
 			$objCurrencyDolares						= $this->core_web_currency->getCurrencyExternal($companyID);
@@ -495,16 +496,6 @@ class App_Invoice_Billing extends CI_Controller {
 
 						log_message("ERROR","Actualizar Lista de Precio 00125");
 						
-						//Codigo para Expresar Correctamente el Credito en Dolares.
-						//Cuando se factura este producto.
-						//En la factura solo debe de existir el.
-						$objItemServicioPrestamoDolares			= $this->Item_Model->get_rowByCode($companyID,$this->core_web_parameter->getParameter("INVOICE_PRESTAMO_DOL_ITEM",$companyID)->value);
-						if($objItemServicioPrestamoDolares->itemID == $itemID){
-							$exchangeRate001 = $objTMNew["exchangeRate"] > 1 ? round($objTMNew["exchangeRate"],4) : round(1 / round($objTMNew["exchangeRate"],4),4) ;
-							$objItem->cost 	= $exchangeRate001;
-							$unitaryAmount	= $objItem->cost;
-							$price 			= $unitaryAmount;
-						}
 						
 						$objTMD 								= NULL;
 						$objTMD["companyID"] 					= $objTM->companyID;
@@ -580,21 +571,10 @@ class App_Invoice_Billing extends CI_Controller {
 					}					
 					//Editar Detalle
 					else{
-						log_message("ERROR","actualizar detalle");
-						$objItemServicioPrestamoDolares			= $this->Item_Model->get_rowByCode($companyID,$this->core_web_parameter->getParameter("INVOICE_PRESTAMO_DOL_ITEM",$companyID)->value);						$objTMD 								= $this->Transaction_Master_Detail_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID,$transactionMasterDetailID);						
+						log_message("ERROR","actualizar detalle");						
 						$objTMDC  								= $this->Transaction_Master_Detail_Credit_Model->get_rowByPK($transactionMasterDetailID);
 						$objTMDC								= NULL;
 						log_message("ERROR",$price);
-
-						//Codigo para Expresar Correctamente el Credito en Dolares.						
-						//Cuando se factura este producto.						
-						//En la factura solo debe de existir el.
-						if($objItemServicioPrestamoDolares->itemID == $objTMD->componentItemID){
-							$exchangeRate001 = $objTMNew["exchangeRate"] > 1 ? round($objTMNew["exchangeRate"],4) : round(1 / round($objTMNew["exchangeRate"],4),4) ;							
-							$objItem->cost 	= $exchangeRate001;
-							$unitaryAmount	= $objItem->cost;
-							$price 			= $unitaryAmount;
-						}
 						
 						log_message("ERROR","precio despues de la validacion de dolares. ".$price);
 						
@@ -670,11 +650,8 @@ class App_Invoice_Billing extends CI_Controller {
 				$exisCausalInCredit		= null;
 				$exisCausalInCredit		= array_search($objTMNew["transactionCausalID"] ,$causalIDTypeCredit);
 				
+				//si la factura es de credito
 				if($exisCausalInCredit || $exisCausalInCredit === 0){
-					
-					
-					//Calculo del Total en Dolares
-					$amountTotalDolares	= $objTMNew["exchangeRate"] > 1 ? /*cordoba a dolares*/ ($amountTotal * round(1/round($objTMNew["exchangeRate"],4),4)) : /*dolares a cordoba*/ ($amountTotal * round($objTMNew["exchangeRate"],4));
 					
 					
 					//Crear documento del modulo
@@ -687,7 +664,7 @@ class App_Invoice_Billing extends CI_Controller {
 					$objCustomerCreditDocument["exchangeRate"] 			= $objTMNew["exchangeRate"];
 					$objCustomerCreditDocument["term"] 					= $objCustomerCreditLine->term;
 					$objCustomerCreditDocument["interes"] 				= $objCustomerCreditLine->interestYear;
-					$objCustomerCreditDocument["amount"] 				= $objCurrencyDolares->currencyID == $objTMNew["currencyID"] ? $amountTotalDolares : $amountTotal;
+					$objCustomerCreditDocument["amount"] 				= $amountTotal;
 					$objCustomerCreditDocument["currencyID"] 			= $objTMNew["currencyID"];					
 					$objCustomerCreditDocument["statusID"] 				= $this->core_web_workflow->getWorkflowInitStage("tb_customer_credit_document","statusID",$companyID,$branchID,$roleID)[0]->workflowStageID;
 					$objCustomerCreditDocument["reference1"] 			= $objTMNew["note"];
@@ -698,7 +675,7 @@ class App_Invoice_Billing extends CI_Controller {
 					$objCustomerCreditDocument["providerIDCredit"] 		= $objTMNew["reference1"];
 					$objCustomerCreditDocument["periodPay"]				= $objCustomerCreditLine->periodPay;
 					$objCustomerCreditDocument["typeAmortization"] 		= $objCustomerCreditLine->typeAmortization;
-					$objCustomerCreditDocument["balance"] 				= $objCurrencyDolares->currencyID == $objTMNew["currencyID"] ? $amountTotalDolares : $amountTotal;
+					$objCustomerCreditDocument["balance"] 				= $amountTotal;
 					$objCustomerCreditDocument["reportSinRiesgo"] 	 	= $this->input->post("txtCheckReportSinRiesgo");
 					$customerCreditDocumentID 							= $this->Customer_Credit_Document_Model->insert($objCustomerCreditDocument);
 					$periodPay 											= $this->Catalog_Item_Model->get_rowByCatalogItemID($objCustomerCreditLine->periodPay);
@@ -730,23 +707,8 @@ class App_Invoice_Billing extends CI_Controller {
 						$objCustomerAmoritizacion["isActive"]					= 1;
 						$objCustomerAmortizationID 								= $this->Customer_Credit_Amortization_Model->insert($objCustomerAmoritizacion);
 					}
-					
-					//disminuir el balance de general					
-					$objCustomerCredit 					= $this->Customer_Credit_Model->get_rowByPK($objCustomerCreditLine->companyID,$objCustomerCreditLine->branchID,$objCustomerCreditLine->entityID);
-					$objCustomerCreditNew["balanceDol"]	= $objCustomerCredit->balanceDol - $amountTotalDolares;
-					$this->Customer_Credit_Model->update($objCustomerCreditLine->companyID,$objCustomerCreditLine->branchID,$objCustomerCreditLine->entityID,$objCustomerCreditNew);
-					
-					//disminuir el balance linea
-					if($objCustomerCreditLine->currencyID == $objCurrencyCordoba->currencyID)
-						$objCustomerCreditLineNew["balance"]	= $objCustomerCreditLine->balance - $amountTotal;
-					else
-						$objCustomerCreditLineNew["balance"]	= $objCustomerCreditLine->balance - $amountTotalDolares;
-						
-					
-					$this->Customer_Credit_Line_Model->update($objCustomerCreditLine->customerCreditLineID,$objCustomerCreditLineNew);
-					
 
-
+					
 					//Crear las personas relacionadas a la factura
 					$objEntityRelated								= array();
 					$objEntityRelated["customerCreditDocumentID"]	= $customerCreditDocumentID;
@@ -764,6 +726,31 @@ class App_Invoice_Billing extends CI_Controller {
 					$this->core_web_auditoria->setAuditCreated($objEntityRelated,$dataSession);			
 					$ccEntityID 		= $this->Customer_Credit_Document_Endity_Related_Model->insert($objEntityRelated);
 					
+
+
+					//Calculo del Total en Dolares
+					$amountTotalDolares	= $objTMNew["exchangeRate"] > 1 ? 
+								/*factura en cordoba*/ ($amountTotal * round($objTMNew["exchangeRate"],4)) : 
+								/*factura en dolares*/ ($amountTotal * 1 );
+					
+					
+
+					//disminuir el balance de general					
+					$objCustomerCredit 					= $this->Customer_Credit_Model->get_rowByPK($objCustomerCreditLine->companyID,$objCustomerCreditLine->branchID,$objCustomerCreditLine->entityID);
+					$objCustomerCreditNew["balanceDol"]	= $objCustomerCredit->balanceDol - $amountTotalDolares;
+					$this->Customer_Credit_Model->update($objCustomerCreditLine->companyID,$objCustomerCreditLine->branchID,$objCustomerCreditLine->entityID,$objCustomerCreditNew);
+					
+					//disminuir el balance de linea
+					if($objCustomerCreditLine->currencyID == $objCurrencyCordoba->currencyID)
+						$objCustomerCreditLineNew["balance"]	= $objCustomerCreditLine->balance - $amountTotal;
+					else
+						$objCustomerCreditLineNew["balance"]	= $objCustomerCreditLine->balance - $amountTotalDolares;
+						
+					
+					$this->Customer_Credit_Line_Model->update($objCustomerCreditLine->customerCreditLineID,$objCustomerCreditLineNew);
+					
+
+
 				}
 				
 			}

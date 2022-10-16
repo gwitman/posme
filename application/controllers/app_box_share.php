@@ -1003,7 +1003,8 @@ class App_Box_Share extends CI_Controller {
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
 			$transactionID				= $uri["transactionID"];			
-			$transactionMasterID		= $uri["transactionMasterID"];				
+			$transactionMasterID		= $uri["transactionMasterID"];	
+			$saldos						= $uri["saldos"];				
 			$companyID 					= $dataSession["user"]->companyID;		
 			$branchID 					= $dataSession["user"]->branchID;		
 			$roleID 					= $dataSession["role"]->roleID;		
@@ -1014,6 +1015,7 @@ class App_Box_Share extends CI_Controller {
 			$this->load->model("Transaction_Master_Model");
 			$this->load->model("Transaction_Master_Detail_Model");	
 			$this->load->model("Customer_Credit_Document_Model");
+			$this->load->model("Transaction_Master_Info_Model");
 			$this->load->model("core/Company_Model"); 
 			$this->load->model("core/User_Model");
 		
@@ -1045,6 +1047,7 @@ class App_Box_Share extends CI_Controller {
 			
 			$datView["objTM"]	 					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
 			$datView["objTMD"]						= $this->Transaction_Master_Detail_Model->get_rowByTransactionToShare($companyID,$transactionID,$transactionMasterID);
+			$datView["objTMI"]						= $this->Transaction_Master_Info_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
 			$datView["objTM"]->transactionOn 		= date_format(date_create($datView["objTM"]->transactionOn),"Y-m-d");
 			$datView["objUser"] 					= $this->User_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->createdAt,$datView["objTM"]->createdBy);
 			$datView["objBranch"]					= $this->Branch_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->branchID);
@@ -1131,12 +1134,24 @@ class App_Box_Share extends CI_Controller {
 			);
 			
 			//Set Detalle del Comprobante
-			$pdf->ezText("\n\n<b>Detalle</b>",FONT_SIZE);			
+			$saldos			= $saldos;
+			$saldoAnterior 	= 0;
+			$saldoNuevo 	= 0;
+			$pdf->ezText("\n\n<b>Detalle</b>",FONT_SIZE);	
 			$data		= array();
 			if($datView["objTMD"])
 			foreach($datView["objTMD"] as $row){
 				$objCustomerCreditDocument 	= $this->Customer_Credit_Document_Model->get_rowByPK($row->componentItemID);
-				$data[] 					= array('field1'=>$row->reference1,'field2'=>round($row->reference2,2),'field3'=>$objCustomerCreditDocument->currencySimbol." ".round($row->amount,2),'field4'=>$objCustomerCreditDocument->currencySimbol." ".round($row->reference4,2),'field5'=>$objCustomerCreditDocument->currencyName);
+				$saldoAnterior 		= $saldos == "Individuales"? round($row->reference2,0) : round($datView["objTMI"]->reference1,0);
+				$saldoNuevo 		= $saldos == "Individuales"? round($row->reference4,0) : round($datView["objTMI"]->reference2,0);
+
+				$data[] 					= array(
+					'field1'=>$row->reference1, /*documento*/
+					'field2'=>$saldoAnterior, /*saldo anterior */
+					'field3'=>$objCustomerCreditDocument->currencySimbol." ".round($row->amount,2), /*abono */
+					'field4'=>$objCustomerCreditDocument->currencySimbol." ".$saldoNuevo, /** nuevo saldo */
+					'field5'=>$objCustomerCreditDocument->currencyName /**moneda */
+				);
 			}
 			
 			log_message("ERROR",print_r("tsseta 005",true));
