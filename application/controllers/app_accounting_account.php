@@ -19,7 +19,7 @@ class App_Accounting_Account extends CI_Controller {
 		$this->load->model("Account_Level_Model"); 
 
 		$objAccountLevel = $this->Account_Level_Model->get_rowByPK($companyID,$accountLevelID);
-
+		
 				
 
 		//Validar Longitud Total
