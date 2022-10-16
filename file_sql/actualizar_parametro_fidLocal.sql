@@ -151,3 +151,11 @@ UPDATE tb_company_parameter, tb_parameter  SET
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT_AND_AMORTIZACION';	
+
+
+	
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = '1'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'CREDIT_INTERES_MULTIPLO';	
