@@ -6,14 +6,14 @@ WHERE
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '63'
+	tb_company_parameter.value = '75'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PRICE';
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '0.01'
+	tb_company_parameter.value = '0.0'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PRICE_BY_INVOICE';
@@ -40,25 +40,25 @@ WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_REPORT';
 
-UPDATE tb_company SET NAME = 'Variedades Carlos Luis' , address = 'Disnorte 1 1/2c al este' WHERE companyID = 2;
+UPDATE tb_company SET NAME = 'Aqua Mar' , address = 'Wester Union 3c al Este 1/2 al Norte' WHERE companyID = 2;
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'Carlos Luis Castellon Munguia'
+	tb_company_parameter.value = 'Jennyfer Ester Salmeron Perez'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_NAME';
 		
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'Disnorte, 1 1/2c al este.'
+	tb_company_parameter.value = 'Wester Union 3c al Este 1/2 al Norte'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ADDRESS';
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '2023-10-15'
+	tb_company_parameter.value = '2023-10-24'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_LICENSE_EXPIRED';
@@ -72,14 +72,14 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '8719-4407'
+	tb_company_parameter.value = '8888-8888'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PHONE';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '8719-4407'
+	tb_company_parameter.value = '8888-8888'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_PHONE';
@@ -118,21 +118,21 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'variedades_carlos_luis_sause'
+	tb_company_parameter.value = 'variedades_aqua_mar'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_CXC_WSDL_SIN_RIESGO_USUARIO';	
 	
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '291-080478-0000F'
+	tb_company_parameter.value = '291-080000-00000'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ID';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '291-080478-0000F'
+	tb_company_parameter.value = '291-080000-00000'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_COMPANY_IDENTIFIER';
