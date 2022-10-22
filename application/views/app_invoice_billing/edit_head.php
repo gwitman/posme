@@ -13,9 +13,6 @@
 				<script src="<?php echo site_url(); ?>theme-genyx/js/plugins/ui/range-slider/rangeslider.js"></script>
 
 				<script src="<?php echo site_url(); ?>theme-genyx/js/pages/ui-elements.js"></script>
-
-				<script src="<?php echo site_url(); ?>js/plugin_impresora_termica.js"></script>
-
 				
 
 				<div id="heading" class="page-header">

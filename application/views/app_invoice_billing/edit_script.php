@@ -16,7 +16,9 @@
 		true:
 		false;
 	var PriceStatus = varPermisosEsPermitidoModificarPrecio == true ? "":"readonly";
-		
+
+	
+
 	
 	for(var i = 0 ; i < varDetail.length;i++){
 		//Obtener Iva
@@ -74,37 +76,9 @@
 		console.info("cliente completado");
 	}
 
-	function imprimirMostrarImpresoras(){
-		connetor_plugin.obtenerImpresoras().then(impresoras => {
-			console.log(impresoras);
-		});
-	}
-	async function imprimirDirecto(){
-		var impresorasPorDefecto 	= "POS-80-Series USB"		;
-		var api_key 				= "12345";
+	
+	
 
-
-		const conector = new connetor_plugin().
-			conector.fontsize("2")
-			conector.textaling("center")
-			conector.text("ferreteria angel")
-			conector.fontsize("1")
-			conector.feed("3")
-			conector.textaling("left")
-			conector.qr("https://abrazasoft.com")
-			conector.feed("5")
-			conector.cut("0");
-
-		const resp = await conector.imprimir(impresorasPorDefecto,api_key);
-		if(resp == true){
-
-		}
-		else{
-			console.log("problema al imprimir:"+resp);
-		}
-
-			
-	}
 
 
 	fnObtenerListadoProductos();

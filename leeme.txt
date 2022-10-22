@@ -28,6 +28,7 @@ instalador:
 			
 			
 			
+			
 		instalar el programa  npp.6.5.3.Installer.exe
 		
 		instalar el programa de AdbeRdr1011_es_ES.exe
@@ -59,6 +60,7 @@ instalador:
 		trasalardar el siguiente archivo
 		C:\xampp\htdocs\core_test_payment.php a la misma direccion
 		
+
 		
 		
 acceder a phpMyAdmin 

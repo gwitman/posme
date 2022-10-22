@@ -1384,6 +1384,20 @@ class App_Invoice_Billing extends CI_Controller {
 		}
 	}
 
+	//facturacino imprimir directamente en impresora
+	function viewPrinterDirect(){
+		try{
+			
+			$this->load->library('core_web_printer_direct/library.php');			
+			$objPrinter = new Library();
+			$objPrinter->executePrinter();
+
+		}
+		catch(Exception $ex){
+			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
+		}	
+	}
+
 	//facturacion de facturas membretadas
 	function viewRegisterPrePrinter(){
 		try{ 
