@@ -589,7 +589,7 @@
 								<div class="form-group ">
 										<label class="col-lg-4 control-label" for="normal">% De Gasto.</label>
 										<div class="col-lg-8">
-											<input class="form-control"   type="text" name="txtFixedExpenses" id="txtFixedExpenses" value="0.01">
+											<input class="form-control"   type="text" name="txtFixedExpenses" id="txtFixedExpenses" value="0">
 											
 											<a href="#" class="btn btn-primary  gap-right10" data-toggle="popover" data-placement="bottom" 
 											data-content="Ejemplo: Del Interese de cada cuota, se multiplica por este % para saber de cuanto es la comision para FID-Local, este numero debe ser #0 o mayor que #1" title="" data-original-title="% de Gastos Fijo:">Ayuda:</a>
@@ -686,11 +686,11 @@
 
 				</div><!-- End .row-fluid  -->
 
-				<a href="#" class="btn btn-flat btn-info" id="btnNewItem" >Agregar a la factura</a>
-				<a href="#" class="btn btn-flat btn-danger" id="btnDeleteItem" >Eliminar de la factura</a>	
-				<a href="#" class="btn btn-flat btn-success" id="btnNewItemCatalog" >Nuevo producto al catalogo</a>
-				<a href="<?php echo site_url(); ?>app_invoice_billing/index" id="btnBack" class="btn btn-inverse" ><i class="icon16 i-rotate"></i> Regresar a la lista</a>
-				<a href="#" class="btn btn-success" id="btnAcept"><i class="icon16 i-checkmark-4"></i> Guardar factura</a>
+				<a href="#" class="btn btn-flat btn-info" id="btnNewItem" >Agregar</a>
+				<a href="#" class="btn btn-flat btn-danger" id="btnDeleteItem" >Eliminar</a>	
+				<a href="#" class="btn btn-flat btn-success" id="btnNewItemCatalog" >Nuevo producto</a>
+				<a href="<?php echo site_url(); ?>app_invoice_billing/index" id="btnBack" class="btn btn-inverse" ><i class="icon16 i-rotate"></i> Regresar</a>
+				<a href="#" class="btn btn-success" id="btnAcept"><i class="icon16 i-checkmark-4"></i> Guardar</a>
 				<input class="form-control"  type="text"  name="txtScanerCodigo" id="txtScanerCodigo" value="" >
 				
 
