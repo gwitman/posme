@@ -5,7 +5,7 @@
 	
 
 		<!-- botonera -->
-
+		<!--
 		<div class="email-bar" style="border-left:1px solid #c9c9c9">                                
 
 			<div class="btn-group pull-right">                                    
@@ -17,7 +17,7 @@
 			</div>
 
 		</div> 
-
+		-->
 		<!-- /botonera -->
 
 	</div>
@@ -686,9 +686,11 @@
 
 				</div><!-- End .row-fluid  -->
 
-				<a href="#" class="btn btn-flat btn-info" id="btnNewItem" >Agregar</a>
-				<a href="#" class="btn btn-flat btn-danger" id="btnDeleteItem" >Eliminar</a>	
-				<a href="#" class="btn btn-flat btn-success" id="btnNewItemCatalog" >Nuevo producto</a>
+				<a href="#" class="btn btn-flat btn-info" id="btnNewItem" >Agregar a la factura</a>
+				<a href="#" class="btn btn-flat btn-danger" id="btnDeleteItem" >Eliminar de la factura</a>	
+				<a href="#" class="btn btn-flat btn-success" id="btnNewItemCatalog" >Nuevo producto al catalogo</a>
+				<a href="<?php echo site_url(); ?>app_invoice_billing/index" id="btnBack" class="btn btn-inverse" ><i class="icon16 i-rotate"></i> Regresar a la lista</a>
+				<a href="#" class="btn btn-success" id="btnAcept"><i class="icon16 i-checkmark-4"></i> Guardar factura</a>
 				<input class="form-control"  type="text"  name="txtScanerCodigo" id="txtScanerCodigo" value="" >
 				
 
@@ -844,7 +846,7 @@
 	
 
 		<!-- botonera -->
-
+		<!--
 		<div class="email-bar" style="border-left:1px solid #c9c9c9">                                
 
 			<div class="btn-group pull-right">                                    
@@ -856,7 +858,7 @@
 			</div>
 
 		</div> 
-
+		-->
 		<!-- /botonera -->
 
 	</div>

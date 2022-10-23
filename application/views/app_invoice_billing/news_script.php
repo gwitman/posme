@@ -613,7 +613,7 @@
 		$("#txtIva").val(fnFormatNumber(ivaGeneral,2));
 		$("#txtTotal").val(fnFormatNumber(totalGeneral,2));
 		
-		$("#txtReceiptAmount").val("0.00");
+		$("#txtReceiptAmount").val(fnFormatNumber(totalGeneral,2));
 		$("#txtReceiptAmountDol").val("0.00");
 		$("#txtChangeAmount").val("0.00");
 			
