@@ -11,8 +11,7 @@ instalador:
 		crear una carpeta llamada
 		C:\TeamDS-Importacion
 		
-		pasar a la carpeta los siguientes archivos:
-			navicat
+		pasar a la carpeta los siguientes archivos:			
 			xampp-win32-1.8.3-2-VC11-installer.exe
 			XamppTemp
 			AdbeRdr1011_es_ES.exe
@@ -37,8 +36,6 @@ instalador:
 		para serie 80
 
 		instalar el programa xampp-wind-32
-
-		instalar el programa de navicate		
 		
 		instalar chrome.exe descargarlo de la web.
 		
