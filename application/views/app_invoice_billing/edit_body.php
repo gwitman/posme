@@ -424,37 +424,39 @@
 						
 					</div><!-- End .col-lg-12  --> 
 				</div><!-- End .row-fluid  -->
-				<a href="#" class="btn btn-flat btn-info" id="btnNewItem" >Agregar</a>
-				<a href="#" class="btn btn-flat btn-danger" id="btnDeleteItem" >Eliminar</a>		
-				<a href="#" class="btn btn-flat btn-success" id="btnNewItemCatalog" >Nuevo producto</a>
-				<a href="<?php echo site_url(); ?>app_invoice_billing/index" id="btnBack" class="btn btn-inverse" ><i class="icon16 i-rotate"></i> Regresar</a>    
-				<a href="#" class="btn btn-success" id="btnAcept"><i class="icon16 i-checkmark-4"></i> Guardar</a>                                
-				<a href="<?php echo site_url(); ?>app_invoice_billing/add.aspx" class="btn btn-info" id="btnNew"><i class="icon16 i-checkmark-4"></i> Nueva</a>
-				<a href="#" class="btn btn-danger" id="btnDelete"><i class="icon16 i-remove"></i> Eliminar</a>	
-				<a href="#" class="btn btn-primary" id="btnPrinter"><i class="icon16 i-print"></i> Imprimir</a>
+
+				<input class="form-control"  type="hidden"  name="txtStatusID" id="txtStatusID" value="<?php echo $objTransactionMaster->statusID; ?>" >
+
+				
+				<a href="#" class="btn btn-flat btn-info" id="btnNewItem" ><i class="icon16 i-print"></i> AGREGAR PRO</a>
+				<a href="#" class="btn btn-flat btn-danger" id="btnDeleteItem" ><i class="icon16 i-print"></i> ELIMINAR PRO</a>		
+				<a href="#" class="btn btn-flat btn-success" id="btnNewItemCatalog" > <i class="icon16 i-print"></i> NUEVO PRO</a>
+				<a href="<?php echo site_url(); ?>app_invoice_billing/index" id="btnBack" class="btn btn-flat btn-inverse" ><i class="icon16 i-rotate"></i> REGRESAR</a>    				
+				<a href="<?php echo site_url(); ?>app_invoice_billing/add.aspx" class="btn btn-flat btn-info" id="btnNew"><i class="icon16 i-checkmark-4"></i> NUEVA FAC</a>
+				<a href="#" class="btn btn-flat btn-danger" id="btnDelete"><i class="icon16 i-remove"></i> ELIMINAR FAC</a>	
+				<a href="#" class="btn btn-flat btn-primary" id="btnPrinter"><i class="icon16 i-print"></i> IMPRIMIR</a>
+
+				<?php
+				$counter = 0;
+				if($objListWorkflowStage)
+				foreach($objListWorkflowStage as $ws){					
+					$counter++;
+
+					if($counter == 1){
+					echo "<a href='#' class='btn btn-flat btn-inverse btnAcept'  data-valueworkflow='".$ws->workflowStageID."'   > <i class='icon16 i-checkmark-4'></i>  ".$ws->name."</a> ";							
+					}
+					else{
+					echo "<a href='#' class='btn btn-flat btn-success btnAcept' data-valueworkflow='".$ws->workflowStageID."'  > <i class='icon16 i-checkmark-4'></i>  ".$ws->name."</a> ";
+					}
+				}
+				?>
+
+				
+
 				<input class="form-control"  type="text"  name="txtScanerCodigo" id="txtScanerCodigo" value="">
-				<div class="row">
-					<div class="col-lg-4">
-						<div class="form-group">
-								<!--<label class="col-lg-2 control-label" for="selectFilter">Estado</label>-->
-								<div class="col-lg-12">
-									<select name="txtStatusID" id="txtStatusID" class="select2">
-										<option></option>																
-										<?php
-										if($objListWorkflowStage)
-										foreach($objListWorkflowStage as $ws){
-											
-											if($ws->workflowStageID == $objTransactionMaster->statusID)
-												echo "<option value='".$ws->workflowStageID."' selected>".$ws->name."</option>";
-											else 
-												echo "<option value='".$ws->workflowStageID."' >".$ws->name."</option>";
-										}
-										?>
-									</select>
-								</div>
-							</div>
-					</div>
-				</div>
+																
+				
+									
 				
 
 

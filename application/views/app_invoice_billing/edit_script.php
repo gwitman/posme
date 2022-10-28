@@ -306,7 +306,9 @@
 		});
 		
 		//Evento Agregar el Usuario
-		$(document).on("click","#btnAcept",function(){
+		$(document).on("click",".btnAcept",function(){
+				var valueWorkflow = $(this).data("valueworkflow");
+				$("#txtStatusID").val(valueWorkflow);			
 				fnEnviarFactura();
 			
 		});
