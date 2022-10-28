@@ -52,7 +52,7 @@ class Library {
         
 	}
 
-    function executePrinter(){    
+    function executePrinter($dataSetValores){    
 		
 		$this->printer->setJustification(Printer::JUSTIFY_CENTER);
 

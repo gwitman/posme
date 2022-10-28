@@ -1388,9 +1388,48 @@ class App_Invoice_Billing extends CI_Controller {
 	function viewPrinterDirect(){
 		try{
 			
+			//Librerias		
+			//
+			////////////////////////////////////////
+			////////////////////////////////////////
+			////////////////////////////////////////
+			$this->load->model("UserWarehouse_Model");
+			$this->load->model("Customer_Model");
+			$this->load->model("Natural_Model");
+			$this->load->model("Legal_Model");
+			$this->load->model("Transaction_Causal_Model");
+			$this->load->model("List_Price_Model");
+			$this->load->model("Transaction_Master_Model");
+			$this->load->model("Transaction_Master_Info_Model");
+			$this->load->model("Transaction_Master_Detail_Model");
+			
+			$this->load->model("Transaction_Master_Detail_Credit_Model");	
+			$this->load->model("Transaction_Master_Concept_Model");
+			$this->load->model("Company_Currency_Model");
+			
+			$this->load->model("Provider_Model");			
 			$this->load->library('core_web_printer_direct/library.php');			
+
+			//Obtener el componente de Item
+			$objComponentItem	= $this->core_web_tools->getComponentIDBy_ComponentName("tb_item");
+			if(!$objComponentItem)
+			throw new Exception("EL COMPONENTE 'tb_item' NO EXISTE...");
+			
+
+			$uri					= $this->uri->uri_to_assoc(3);						
+			$companyID				= $uri["companyID"];
+			$transactionID			= $uri["transactionID"];	
+			$transactionMasterID	= $uri["transactionMasterID"];	
+			
+			$dataView["objTransactionMaster"]					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
+			$dataView["objTransactionMasterInfo"]				= $this->Transaction_Master_Info_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
+			$dataView["objTransactionMasterDetail"]				= $this->Transaction_Master_Detail_Model->get_rowByTransaction($companyID,$transactionID,$transactionMasterID);
+			$dataView["objTransactionMasterDetailWarehouse"]	= $this->Transaction_Master_Detail_Model->get_rowByTransactionAndWarehouse($companyID,$transactionID,$transactionMasterID);
+			$dataView["objTransactionMasterDetailConcept"]		= $this->Transaction_Master_Concept_Model->get_rowByTransactionMasterConcept($companyID,$transactionID,$transactionMasterID,$objComponentItem->componentID);
+			
+
 			$objPrinter = new Library();
-			$objPrinter->executePrinter();
+			$objPrinter->executePrinter($dataView);
 
 		}
 		catch(Exception $ex){
