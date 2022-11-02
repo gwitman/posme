@@ -7,7 +7,7 @@ WHERE
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '1'
+	tb_company_parameter.value = '20'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PRICE';
@@ -21,7 +21,7 @@ WHERE
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'true'
+	tb_company_parameter.value = 'false'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PAYMENT_SENDBOX';
@@ -41,25 +41,25 @@ WHERE
 	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_REPORT';
 
 
-UPDATE tb_company SET NAME = 'posMe' , address = 'Multicentro las america, Managua Nicaragua' WHERE companyID = 2;
+UPDATE tb_company SET NAME = 'Instituto la VID' , address = 'De la ucan 1 1/2 al sur. Chinandega' WHERE companyID = 2;
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'Witman Jose Gonzalez Rostran'
+	tb_company_parameter.value = 'Antonio Jose Delgado Melendez'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_NAME';
 		
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'Multicentro las america, Managua Nicaragua'
+	tb_company_parameter.value = 'De la ucan 1 1/2 al sur. Chinandega'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ADDRESS';
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '2022-12-31'
+	tb_company_parameter.value = '2023-11-01'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_LICENSE_EXPIRED';
@@ -73,14 +73,14 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '8712-5827'
+	tb_company_parameter.value = '8975-7526'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PHONE';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '8712-5827'
+	tb_company_parameter.value = '8975-7526'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_PHONE';
@@ -94,46 +94,46 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_invoice_billing/viewRegisterFidLocal'
+	tb_company_parameter.value = 'app_invoice_billing/viewRegisterVariedadesCarlosLuis'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'INVOICE_URL_PRINTER';
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_box_share/viewRegister'
+	tb_company_parameter.value = 'app_box_share/viewRegisterVariedadesCarlosLuis'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'BOX_SHARE_URL_PRINTER';
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_box_sharecapital/viewRegister'
+	tb_company_parameter.value = 'app_box_sharecapital/viewRegisterVariedadesCarlosLuis'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'BOX_SHARECAPITAL_URL_PRINTER';
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_box_canceldocument/viewRegister'
+	tb_company_parameter.value = 'app_box_canceldocument/viewRegisterVariedadesCarlosLuis'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'BOX_CANCELDOCUMENT_URL_PRINTER';
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'flc_witman'
+	tb_company_parameter.value = 'flc_intituto_l'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_CXC_WSDL_SIN_RIESGO_USUARIO';	
 	
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '281-180389-0004R'
+	tb_company_parameter.value = '000-000000-00000'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ID';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '281-180389-0004R'
+	tb_company_parameter.value = '000-000000-00000'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_COMPANY_IDENTIFIER';
