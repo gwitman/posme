@@ -314,6 +314,19 @@
 			fnShowNotification("Seleccionar el Cliente","error",timerNotification);
 			result = false;
 		}
+
+		$(".row_razon").each(function(obj,i){  
+			var saldoInicial =  $($(i).find(".txtDetailShareReference2")[0]).text() ;
+			var amountShare = $($(i).find(".txtDetailShare")[0]).val();
+
+			saldoInicial = fnFormatFloat(saldoInicial);
+			amountShare = fnFormatFloat(amountShare);
+			if(amountShare > saldoInicial){
+				fnShowNotification("El monto del abono en la factura es mayor quel saldo","error",timerNotification);
+				result = false;
+			}
+
+		});
 		
 		return result;
 	}

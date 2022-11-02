@@ -314,6 +314,7 @@ class App_Box_Share extends CI_Controller {
 			$objTMInfoNew["referenceClientName"]		= $this->input->post("txtReferenceClientName");
 			$objTMInfoNew["referenceClientIdentifier"]	= $this->input->post("txtReferenceClientIdentifier");
 			$objTMInfoNew["receiptAmount"]				= helper_StringToNumber($this->input->post("txtReceiptAmount",0));
+			$objTMInfoNew["changeAmount"]				= helper_StringToNumber($this->input->post("txtChangeAmount",0));
 			$objTMInfoNew["reference1"]				= helper_StringToNumber($this->input->post("txtBalanceStart",0));
 			$objTMInfoNew["reference2"]				= helper_StringToNumber($this->input->post("txtBalanceFinish",0));
 			
@@ -1351,7 +1352,60 @@ class App_Box_Share extends CI_Controller {
 			);
 			
 			//Set Detalle del Comprobante
-			$pdf->ezText("\nDETALLE",FONT_SIZE_BODY_INVICE);			
+			$pdf->ezText("\nSALDO",FONT_SIZE_BODY_INVICE);			
+			$data		= array();
+			$saldos			= $saldos;
+			$saldoAnterior 	= 0;
+			$saldoNuevo 	= 0;
+			$register		= 0;
+			if($datView["objTMD"])
+			foreach($datView["objTMD"] as $row){
+				$register++;
+
+				if($register > 1)
+				break;
+				
+				$objCustomerCreditDocument 	= $this->Customer_Credit_Document_Model->get_rowByPK($row->componentItemID);
+				$saldoAnterior 		= $saldos == "Individuales"? round($row->reference2,0) : round($datView["objTMI"]->reference1,0);
+				$saldoNuevo 		= $saldos == "Individuales"? round($row->reference4,0) : round($datView["objTMI"]->reference2,0);
+				
+				$data = array( 					
+					array(
+						'field1'=>'Saldo Anterior',
+						'field2'=>$saldoAnterior
+					),
+					array(
+						'field1'=>'Nuevo Saldo',
+						'field2'=>$saldoNuevo
+					)
+					
+				);		
+				$pdf->ezTable(
+					$data,
+					array('field1'=>'','field2'=>''),
+					'',
+					array(
+						'showHeadings'	=> 0,
+						'showLines' 	=> 0,
+						'shaded'		=> 0,
+						'xPos'			=>'left',
+						'xOrientation'	=>'right',
+						'width'			=>$width,					
+						'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+						'colGap' 		=>0,
+						'rowGap' 		=>0,
+						'cols'			=>array(
+							'field1'=>array('justification'=>'left','width'=>75,'spacing' => $spacing),
+							'field2'=>array('justification'=>'left','heigth' => 40,'spacing' => $spacing)						
+						) 
+					)
+				);
+			
+			}
+
+
+			//Set Detalle del Comprobante
+			$pdf->ezText("\nDETALLE DE ABONO",FONT_SIZE_BODY_INVICE);			
 			$data		= array();
 			$saldos			= $saldos;
 			$saldoAnterior 	= 0;
@@ -1366,19 +1420,11 @@ class App_Box_Share extends CI_Controller {
 					array(
 						'field1'=>'Factura',
 						'field2'=>$row->reference1				
-					),
-					array(
-						'field1'=>'Saldo Anterior',
-						'field2'=>$saldoAnterior
-					),				
+					),							
 					array(
 						'field1'=>'Abono',
 						'field2'=>round($row->amount,2)
-					),
-					array(
-						'field1'=>'Nuevo Saldo',
-						'field2'=>$saldoNuevo
-					),
+					),					
 					array(
 						'field1'=>'Moneda',
 						'field2'=>$objCustomerCreditDocument->currencyName
@@ -1408,9 +1454,42 @@ class App_Box_Share extends CI_Controller {
 			}
 			
 		
+			$pdf->ezText("\nCAJA",FONT_SIZE_BODY_INVICE);	
 			
-			
-			
+			$data = array( 
+				array(
+					'field1'=>'Ingreso',
+					'field2'=>round($datView["objTMI"]->receiptAmount,0) 				
+				),
+				array(
+					'field1'=>'Abono total',
+					'field2'=>round($datView["objTM"]->amount,0)	
+				),
+				array(
+					'field1'=>'Cambio',
+					'field2'=>round($datView["objTMI"]->changeAmount,0)
+				)
+			);		
+			$pdf->ezTable(
+				$data,
+				array('field1'=>'','field2'=>''),
+				'',
+				array(
+					'showHeadings'	=> 0,
+					'showLines' 	=> 0,
+					'shaded'		=> 0,
+					'xPos'			=>'left',
+					'xOrientation'	=>'right',
+					'width'			=>$width,					
+					'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+					'colGap' 		=>0,
+					'rowGap' 		=>0,
+					'cols'			=>array(
+						'field1'=>array('justification'=>'left','width'=>75,'spacing' => $spacing),
+						'field2'=>array('justification'=>'left','heigth' => 40,'spacing' => $spacing)						
+					) 
+				)
+			);
 			
 					
 			//Set Pie		

@@ -140,7 +140,7 @@ WHERE
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '00001'
+	tb_company_parameter.value = '00002'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'INVENTORY_ITEM_WAREHOUSE_DEFAULT';
@@ -153,9 +153,17 @@ WHERE
 	tb_parameter.name = 'INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT_AND_AMORTIZACION';	
 
 
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = 'false'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT';
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
 	tb_company_parameter.value = '1'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CREDIT_INTERES_MULTIPLO';	
+
+
+	

@@ -293,7 +293,7 @@
 											
 										</td>
 										<td><text id="txtDocument"><?php echo $value->reference1; ?></text></td>
-										<td><text id="txtBalanceStartShare"><?php echo number_format($value->reference2,2); ?></text></td>
+										<td><text id="txtBalanceStartShare" class="txtDetailShareReference2"><?php echo number_format($value->reference2,2); ?></text></td>
 										<td>
 											<input class="form-control txtDetailShare txt-numeric"  type="text" id="txtDetailShare"  name="txtDetailShare[]"  value="<?php echo  number_format($value->amount,2); ?>" />
 										</td>
@@ -333,7 +333,7 @@
 								<tr>
 									<th>CAMBIO</th>
 									<td >
-										<input type="text" id="txtChangeAmount" name="txtChangeAmount" readonly class="col-lg-12 txt-numeric" value="" style="text-align:right"/>
+										<input type="text" id="txtChangeAmount" name="txtChangeAmount" readonly class="col-lg-12 txt-numeric" value="<?php echo number_format($objTransactionMasterInfo->changeAmount,2); ?>" style="text-align:right"/>
 									</td>
 								</tr>
 							</tbody>
@@ -383,7 +383,7 @@
 				
 			</td>
 			<td><text id="txtDocument"></text></td>
-			<td><text id="txtBalanceStartShare"></text></td>
+			<td><text id="txtBalanceStartShare" class="txtDetailShareReference2" ></text></td>
 			<td>
 				<input class="form-control txtDetailShare txt-numeric"  type="text" id="txtDetailShare"  name="txtDetailShare[]"  value="" />
 			</td>
