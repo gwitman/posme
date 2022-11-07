@@ -2404,6 +2404,336 @@ class App_Invoice_Billing extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}
+	function viewRegisterInstitutoLaVid(){
+		//Factura en Impresora Termica 
+		//O impresora de ticket, con ancho de 3.2 pulgadas
+		//O equivalente a 8 centimetro
+		//Formato de papel rollo.
+		
+		
+		try{ 
+		
+			log_message("ERROR","preuba de impresora");
+			
+			//AUTENTICADO
+			if(!$this->core_web_authentication->isAuthenticated())
+			throw new Exception(USER_NOT_AUTENTICATED);
+			$dataSession		= $this->session->all_userdata();
+			
+			//PERMISO SOBRE LA FUNCION
+			if(APP_NEED_AUTHENTICATION == true){
+						$permited = false;
+						$permited = $this->core_web_permission->urlPermited($this->router->class,"index",$this->config->item('url_suffix'),$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+						
+						if(!$permited)
+						throw new Exception(NOT_ACCESS_CONTROL);
+						
+							
+						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+						if ($resultPermission 	== PERMISSION_NONE)
+						throw new Exception(NOT_ALL_EDIT);		
+
+			}	 
+			
+			$uri						= $this->uri->uri_to_assoc(3);						
+			$transactionID				= $uri["transactionID"];			
+			$transactionMasterID		= $uri["transactionMasterID"];				
+			$companyID 					= $dataSession["user"]->companyID;		
+			$branchID 					= $dataSession["user"]->branchID;		
+			$roleID 					= $dataSession["role"]->roleID;		
+			
+			//Cargar Libreria
+			$this->load->library('core_web_pdf/src/EXTCezpdf.php');			
+			$this->load->model("Transaction_Master_Model");
+			$this->load->model("Transaction_Master_Detail_Model");	
+			$this->load->model("Transaction_Master_Info_Model");	
+			$this->load->model("Transaction_Causal_Model");
+			$this->load->model("core/Company_Model"); 
+			$this->load->model("core/Currency_Model"); 
+			$this->load->model("core/User_Model");
+			$this->load->model("Warehouse_Model"); 
+			$this->load->model("core/Branch_Model");
+			$this->load->model("Customer_Model");
+			
+			
+			
+			//Crear Objetos
+			$pdf 	= new EXTCezpdf(
+				PAGE_INVOICE,'portrait','none',array()
+			);
+			
+			//Estilo de letra
+			//$pdf->selectFont('./fonts/Courier.afm');
+			$pdf->ezSetCmMargins(
+				TOP_MARGIN_INVOICE,BOTTOM_MARGIN_INVOICE,LEFT_MARGIN_INVOICE,
+				RIGHT_MARGIN_INVOICE
+			);
+			$width 	= $pdf->EXTGetWidth();
+			
+			
+			log_message("ERROR","preuba de impresora 003");
+			
+			//Get Component
+			$objComponent		= $this->core_web_tools->getComponentIDBy_ComponentName("tb_company");
+			$objParameter		= $this->core_web_parameter->getParameter("CORE_COMPANY_LOGO",$companyID);
+			$objParameterPhone	= $this->core_web_parameter->getParameter("CORE_PROPIETARY_PHONE",$companyID);
+			$objCompany 		= $this->Company_Model->get_rowByPK($companyID);			
+			$spacing 			= 0.5;
+			
+			//Get Documento					
+			$datView["objTM"]	 					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
+			$datView["objTMI"]						= $this->Transaction_Master_Info_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
+			$datView["objTMD"]						= $this->Transaction_Master_Detail_Model->get_rowByTransaction($companyID,$transactionID,$transactionMasterID);
+			$datView["objTM"]->transactionOn 		= date_format(date_create($datView["objTM"]->transactionOn),"Y-m-d");
+			$datView["objUser"] 					= $this->User_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->createdAt,$datView["objTM"]->createdBy);
+			$datView["Identifier"]					= $this->core_web_parameter->getParameter("CORE_COMPANY_IDENTIFIER",$companyID);
+			$datView["objBranch"]					= $this->Branch_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->branchID);
+			$datView["objStage"]					= $this->core_web_workflow->getWorkflowStage("tb_transaction_master_billing","statusID",$datView["objTM"]->statusID,$companyID,$branchID,$roleID);
+			$datView["objTipo"]						= $this->Transaction_Causal_Model->getByCompanyAndTransactionAndCausal($companyID,$datView["objTM"]->transactionID,$datView["objTM"]->transactionCausalID);
+			$datView["objCustumer"]					= $this->Customer_Model->get_rowByEntity($companyID,$datView["objTM"]->entityID);
+			$datView["objCurrency"]					= $this->Currency_Model->get_rowByPK($datView["objTM"]->currencyID);
+			$prefixCurrency 						= $datView["objCurrency"]->simbol." ";
+			
+			log_message("ERROR","preuba de impresora 004");
+			
+			//Set Nombre del Reporte
+			$reportName		= "DOC_INVOICE";
+			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));			
+			$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*.$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
+			
+			log_message("ERROR","preuba de impresora 005");
+			$pdf->ezText("::".strtoupper($objCompany->name)."::\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			//$pdf->ezText("VARIEDADES"."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			//$pdf->ezText("VARIEDADES CARLOS LUIS"."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			$pdf->ezText("#".$datView["objTM"]->transactionNumber."\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			$pdf->ezText("RUC ".$datView["Identifier"]->value."\n\n",FONT_SIZE_TITLE_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			log_message("ERROR","preuba de impresora 006");
+			
+			$cedulaCliente = $datView["objTMI"]->referenceClientIdentifier == "" ? $datView["objCustumer"]->customerNumber :  $datView["objTMI"]->referenceClientIdentifier;
+			$nombreCliente = $datView["objTMI"]->referenceClientName  == "" ? $datView["objCustumer"]->firstName : $datView["objTMI"]->referenceClientName ;
+			
+			$data = array( 
+				array('field1'=>'Fecha'			,'field2'=>$datView["objTM"]->createdOn	 		) ,
+				array('field1'=>'Estado'		,'field2'=>$datView["objStage"][0]->display	 		) ,
+				array('field1'=>'Vendedor'		,'field2'=>$datView["objUser"]->nickname     		) ,
+				//array('field1'=>'Tienda'		,'field2'=>$datView["objBranch"]->name   	 		) ,
+				array('field1'=>'Tipo'			,'field2'=>$datView["objTipo"]->name   	 			) ,
+				//array('field1'=>'Tipo Cambio'	,'field2'=>$prefixCurrency.$datView["objTM"]->exchangeRate) ,
+				array('field1'=>'Cliente'		,'field2'=>$cedulaCliente   ) ,
+				array('field1'=>'Nombre'		,'field2'=>$nombreCliente	) 
+			);		
+			
+			$pdf->ezTable(
+				$data,
+				array('field1'=>'','field2'=>''),
+				'',
+				array(
+					'showHeadings'	=> 0,
+					'showLines' 	=> 0,
+					'shaded'		=> 0,
+					'xPos'			=>'left',
+					'xOrientation'	=>'right',
+					'width'			=>$width,					
+					'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+					'colGap' 		=>0,
+					'rowGap' 		=>0,
+					'cols'			=>array(
+						'field1'=>array('justification'=>'left','width'=>75,'spacing' => $spacing),
+						'field2'=>array('justification'=>'left','heigth' => 40,'spacing' => $spacing)						
+					) 
+				)
+			);
+			
+			$pdf->ezText("\n",FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			
+			//Primer Encabezdo del detalle
+			//$data		= array();
+			//$pdf->ezTable(
+			//	$data,
+			//	array('field1'=>'Codigo','field2'=>'Nombre'),
+			//	'',				
+			//	array(
+			//		'showHeadings'	=>1,
+			//		'showLines'		=>0,					
+			//		'xPos'			=>'left',
+			//		'xOrientation'	=>'right',					
+			//		'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+			//		'rowGap'		=>0,					
+			//		'colGap' 		=>0,
+			//		'cols'			=>array(
+			//			'field1'=>array('justification'=>'left','width'=>60,'spacing' => $spacing),
+			//			'field2'=>array('justification'=>'left','width' => 140,'spacing' => $spacing)			
+			//		) 
+			//	)
+			//);
+			
+			
+			//Segundo Encabezado del detalle			
+			$data		= array();
+			$pdf->ezTable(
+				$data,
+				array('field1'=>'Cantidad','field2'=>'Precio','field3'=>'Total'),
+				'',				
+				array(
+					'showHeadings'	=>1,
+					'showLines'		=>0,					
+					'xPos'			=>'left',
+					'xOrientation'	=>'right',					
+					'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+					'showBgCol'		=>1,
+					'rowGap'		=>0,					
+					'colGap' 		=>0,
+					'cols'			=>array(
+						'field1'=>array('justification'=>'left','width'=>60,'spacing' => $spacing,'bgcolor'=>array(0.5,0.5,0.5) ),
+						'field2'=>array('justification'=>'left','width' => 70,'spacing' => $spacing),		
+						'field3'=>array('justification'=>'left','width' => 70,'spacing' => $spacing)				
+					) 
+				)
+			);
+			
+			
+			
+			$data1		= array();			
+			$subtotal 	= 0;
+			$iva 		= 0;
+			$total 		= 0;
+			$cambio		= 0;
+			
+			if($datView["objTMD"])
+			foreach($datView["objTMD"] as $row){								
+			
+				//Primer linea del detalle
+				$data		= array();
+				$pdf->ezTable(
+					$data,
+					array('field1'=>substr($row->itemNumber,4,7),'field2'=>strtolower(substr($row->itemName,0,15))),
+					'',				
+					array(
+						'showHeadings'	=>1,
+						'showLines'		=>0,						
+						'xPos'			=>'left',
+						'xOrientation'	=>'right',						
+						'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+						'rowGap'		=>0,
+						'colGap' 		=>0,
+						'cols'			=>array(
+							'field1'=>array('justification'=>'left','width'=>60,'spacing' => $spacing),
+							'field2'=>array('justification'=>'left','width' => 140,'spacing' => $spacing)			
+						) 
+					)
+				);
+				
+				
+				//Segundo linea del detalle			
+				$data		= array();
+				$pdf->ezTable(
+					$data,
+					array(
+						'field1'=>number_format(round($row->quantity,2),2,'.',','),
+						'field2'=>$prefixCurrency.number_format(round($row->unitaryPrice,2),2,'.',','),
+						'field3'=>$prefixCurrency.number_format(round($row->amount,2),2,'.',',')
+					),
+					'',				
+					array(
+						'showHeadings'	=>1,
+						'showLines'		=>0,						
+						'xPos'			=>'left',
+						'xOrientation'	=>'right',						
+						'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+						'rowGap'		=>0,
+						'colGap' 		=>0,
+						'cols'			=>array(
+							'field1'=>array('justification'=>'left','width'=>60,'spacing' => $spacing),
+							'field2'=>array('justification'=>'right','width' => 70,'spacing' => $spacing),		
+							'field3'=>array('justification'=>'right','width' => 70,'spacing' => $spacing)				
+						) 
+					)
+				);
+				
+			
+				////////////////////////////////////
+				$iva		= $iva + ($row->tax1 * $row->quantity);
+				$total		= $total + $row->amount;
+				$subtotal	= $total - $iva;
+			}
+			
+			
+			$iva 		= number_format(round($iva,2),2,'.',',');
+			$total 		= number_format(round($total,2),2,'.',',');
+			$subtotal 	= number_format(round($subtotal,2),2,'.',',');
+			$cambio		= ($datView["objTMI"]->receiptAmount - $datView["objTM"]->amount);
+			$cambio 	= number_format(round($cambio,2),2,'.',',');
+			
+			$pdf->ezText("\n",FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			log_message("ERROR","preuba de impresora 010");
+			
+			//Resumen
+			$data = array( 
+				//array('field1'=>'Sub Total'	,'field2'=>$prefixCurrency.$subtotal 	) ,
+				//array('field1'=>'Iva'		,'field2'=>$prefixCurrency.$iva 			) ,
+				array('field1'=>'Total'		,'field2'=>$prefixCurrency.$total		) ,
+				array('field1'=>'Cambio'	,'field2'=>$prefixCurrency.$cambio		) 
+			);		
+			$pdf->ezTable(
+				$data,
+				array('field1'=>'','field2'=>''),
+				'',
+				array(
+					'showHeadings'	=> 0,
+					'showLines' 	=> 0,
+					'shaded'		=> 0,
+					'xPos'			=>'left',
+					'xOrientation'	=>'right',
+					'width'			=>$width,
+					'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+					'colGap' 		=>0,
+					'rowGap' 		=>0,
+					'cols'			=>array(
+						'field1'=>array('justification'=>'right','width'=>120,'spacing' => $spacing),
+						'field2'=>array('justification'=>'right','heigth' => 80,'spacing' => $spacing)						
+					) 
+				)
+			);
+			
+			
+			//Set Firma del Comprobante						
+			$pdf->ezText("\n\n\ngracias por su compra",						
+			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			
+			$pdf->ezText("\ncontamos con servicios a ",									
+			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			
+			$pdf->ezText("\ndomicilio en el municipio de malpaisillo.",									
+			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			
+			$pdf->ezText("\n***************************",						
+			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			
+			$pdf->ezText("\nTelefono de tienda:",						
+			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			
+			$pdf->ezText("\n".$objParameterPhone->value,						
+			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			
+			$pdf->ezText("\n".$objCompany->address,
+			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			
+			$pdf->ezText("\nsistema:+(505) 8712-5827",						
+			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			
+			//Set Pie		
+			$pdf->EXTCreateFooter();
+			//OutPut
+			$pdf->ezStream(array('Content-Disposition' => $reportName)); 
+			
+			log_message("ERROR","preuba de impresora 015");
+			
+			
+		}
+		catch(Exception $ex){
+			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
+		}
+	}
 
 }
 ?>

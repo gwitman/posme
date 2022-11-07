@@ -1502,6 +1502,309 @@ class App_Box_Share extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}
+	function viewRegisterInstitutoLaVid(){
+		try{ 
+			//AUTENTICADO
+			if(!$this->core_web_authentication->isAuthenticated())
+			throw new Exception(USER_NOT_AUTENTICATED);
+			$dataSession		= $this->session->all_userdata();
+			
+			//PERMISO SOBRE LA FUNCION
+			if(APP_NEED_AUTHENTICATION == true){
+						$permited = false;
+						$permited = $this->core_web_permission->urlPermited($this->router->class,"index",$this->config->item('url_suffix'),$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+						
+						if(!$permited)
+						throw new Exception(NOT_ACCESS_CONTROL);
+						
+							
+						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+						if ($resultPermission 	== PERMISSION_NONE)
+						throw new Exception(NOT_ALL_EDIT);		
+			}	 
+			
+			$uri						= $this->uri->uri_to_assoc(3);						
+			$transactionID				= $uri["transactionID"];			
+			$transactionMasterID		= $uri["transactionMasterID"];				
+			$saldos						= $uri["saldos"];	
+			$companyID 					= $dataSession["user"]->companyID;		
+			$branchID 					= $dataSession["user"]->branchID;		
+			$roleID 					= $dataSession["role"]->roleID;		
+			
+			
+			//Cargar Libreria
+			$this->load->library('core_web_pdf/src/EXTCezpdf.php');			
+			$this->load->model("Transaction_Master_Model");
+			$this->load->model("Transaction_Master_Detail_Model");	
+			$this->load->model("Transaction_Master_Info_Model");
+			$this->load->model("core/Company_Model"); 
+			$this->load->model("core/User_Model");
+			$this->load->model("Customer_Credit_Document_Model");
+		
+			$this->load->model("Provider_Model");
+			$this->load->model("Legal_Model");
+			$this->load->model("Natural_Model");
+			$this->load->model("core/Branch_Model");
+			$this->load->model("Customer_Model");
+				
+			
+			//Crear Objetos
+			$pdf 	= new EXTCezpdf(PAGE_INVOICE,'portrait','none',array());
+			//$pdf->selectFont('./fonts/Courier.afm');
+			$pdf->ezSetCmMargins(TOP_MARGIN_INVOICE,BOTTOM_MARGIN_INVOICE,LEFT_MARGIN_INVOICE,RIGHT_MARGIN_INVOICE);
+			$width 	= $pdf->EXTGetWidth();
+									
+			
+			//Get Component
+			$objComponent	= $this->core_web_tools->getComponentIDBy_ComponentName("tb_company");
+			//Get Logo
+			$objParameter	= $this->core_web_parameter->getParameter("CORE_COMPANY_LOGO",$companyID);
+			//Get Company
+			$objCompany 	= $this->Company_Model->get_rowByPK($companyID);			
+			//Get Documento				
+			
+			$datView["objTM"]	 					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
+			$datView["objTMD"]						= $this->Transaction_Master_Detail_Model->get_rowByTransactionToShare($companyID,$transactionID,$transactionMasterID);
+			$datView["objTMI"]						= $this->Transaction_Master_Info_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
+			$datView["objTM"]->transactionOn 		= date_format(date_create($datView["objTM"]->transactionOn),"Y-m-d");
+			$datView["objUser"] 					= $this->User_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->createdAt,$datView["objTM"]->createdBy);
+			$datView["objBranch"]					= $this->Branch_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->branchID);
+			$datView["objCustumer"]					= $this->Customer_Model->get_rowByEntity($companyID,$datView["objTM"]->entityID);
+			$datView["objNatural"]					= $this->Natural_Model->get_rowByPK($companyID,$datView["objCustumer"]->branchID,$datView["objCustumer"]->entityID);
+			$datView["tipoCambio"]					= round($datView["objTM"]->exchangeRate + $this->core_web_parameter->getParameter("ACCOUNTING_EXCHANGE_SALE",$companyID)->value,2);
+			
+			//Set Nombre del Reporte
+			$reportName		= "DOC_ENTRADA_CANCELACION_FACTURA";
+			//Set Informacion File
+			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));
+			//Set Titulo			
+			$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
+			
+			//Set Encambezado del comprobante
+			//$pdf->ezText("VARIEDADES"."",FONT_SIZE,array('justification'=>'center'));
+			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
+			$pdf->ezText("::".strtoupper($objCompany->name)."::",FONT_SIZE,array('justification'=>'center' ));
+			$pdf->ezText("ABONO:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
+
+			$spacing 			= 0.5;
+			
+			$data = array( 
+				array(
+					'field1'=>'Fecha',
+					'field2'=>$datView["objTM"]->transactionOn					
+				),
+				array(
+					'field1'=>'Vendedor',
+					'field2'=>$datView["objUser"]->nickname				
+				),
+				array(
+					'field1'=>'Cliente',
+					'field2'=>$datView["objCustumer"]->customerNumber			
+				),				
+				array(
+					'field1'=>'Estado',
+					'field2'=>$datView["objTM"]->workflowStageName					
+				)
+			);		
+			$pdf->ezTable(
+				$data,
+				array('field1'=>'','field2'=>''),
+				'',
+				array(
+					'showHeadings'	=> 0,
+					'showLines' 	=> 0,
+					'shaded'		=> 0,
+					'xPos'			=>'left',
+					'xOrientation'	=>'right',
+					'width'			=>$width,					
+					'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+					'colGap' 		=>0,
+					'rowGap' 		=>0,
+					'cols'			=>array(
+						'field1'=>array('justification'=>'left','width'=>75,'spacing' => $spacing),
+						'field2'=>array('justification'=>'left','heigth' => 40,'spacing' => $spacing)						
+					) 
+				)
+			);
+			
+			
+			//Set Comentario del Comprobante
+			$pdf->ezText("\nCLIENTE",FONT_SIZE_BODY_INVICE);
+			$data	= array(
+				//array('field1'=> $datView["objNatural"]->firstName."/".$datView["objTM"]->note."...")
+				array('field1'=> $datView["objNatural"]->firstName)
+			);
+			$pdf->ezTable(
+				$data,
+				array('field1'=>''),
+				'',
+				array(
+					'showHeadings'	=> 0,
+					'showLines' 	=> 0,
+					'shaded'		=> 0,
+					'xPos'			=>'left',
+					'xOrientation'	=>'right',
+					'width'			=>$width,					
+					'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+					'colGap' 		=>0,
+					'rowGap' 		=>0,
+					'cols'			=>array(
+						'field1'=>array('justification'=>'left','width'=>200,'spacing' => $spacing)
+					) 
+				)
+			);
+			
+			//Set Detalle del Comprobante
+			$pdf->ezText("\nSALDO",FONT_SIZE_BODY_INVICE);			
+			$data		= array();
+			$saldos			= $saldos;
+			$saldoAnterior 	= 0;
+			$saldoNuevo 	= 0;
+			$register		= 0;
+			if($datView["objTMD"])
+			foreach($datView["objTMD"] as $row){
+				$register++;
+
+				if($register > 1)
+				break;
+				
+				$objCustomerCreditDocument 	= $this->Customer_Credit_Document_Model->get_rowByPK($row->componentItemID);
+				$saldoAnterior 		= $saldos == "Individuales"? round($row->reference2,0) : round($datView["objTMI"]->reference1,0);
+				$saldoNuevo 		= $saldos == "Individuales"? round($row->reference4,0) : round($datView["objTMI"]->reference2,0);
+				
+				$data = array( 					
+					array(
+						'field1'=>'Saldo Anterior',
+						'field2'=>$saldoAnterior
+					),
+					array(
+						'field1'=>'Nuevo Saldo',
+						'field2'=>$saldoNuevo
+					)
+					
+				);		
+				$pdf->ezTable(
+					$data,
+					array('field1'=>'','field2'=>''),
+					'',
+					array(
+						'showHeadings'	=> 0,
+						'showLines' 	=> 0,
+						'shaded'		=> 0,
+						'xPos'			=>'left',
+						'xOrientation'	=>'right',
+						'width'			=>$width,					
+						'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+						'colGap' 		=>0,
+						'rowGap' 		=>0,
+						'cols'			=>array(
+							'field1'=>array('justification'=>'left','width'=>75,'spacing' => $spacing),
+							'field2'=>array('justification'=>'left','heigth' => 40,'spacing' => $spacing)						
+						) 
+					)
+				);
+			
+			}
+
+
+			//Set Detalle del Comprobante
+			$pdf->ezText("\nDETALLE DE ABONO",FONT_SIZE_BODY_INVICE);			
+			$data		= array();
+			$saldos			= $saldos;
+			$saldoAnterior 	= 0;
+			$saldoNuevo 	= 0;
+			if($datView["objTMD"])
+			foreach($datView["objTMD"] as $row){
+				$objCustomerCreditDocument 	= $this->Customer_Credit_Document_Model->get_rowByPK($row->componentItemID);
+				$saldoAnterior 		= $saldos == "Individuales"? round($row->reference2,0) : round($datView["objTMI"]->reference1,0);
+				$saldoNuevo 		= $saldos == "Individuales"? round($row->reference4,0) : round($datView["objTMI"]->reference2,0);
+				
+				$data = array( 
+					array(
+						'field1'=>'Factura',
+						'field2'=>$row->reference1				
+					),							
+					array(
+						'field1'=>'Abono',
+						'field2'=>round($row->amount,2)
+					),					
+					array(
+						'field1'=>'Moneda',
+						'field2'=>$objCustomerCreditDocument->currencyName
+					)
+				);		
+				$pdf->ezTable(
+					$data,
+					array('field1'=>'','field2'=>''),
+					'',
+					array(
+						'showHeadings'	=> 0,
+						'showLines' 	=> 0,
+						'shaded'		=> 0,
+						'xPos'			=>'left',
+						'xOrientation'	=>'right',
+						'width'			=>$width,					
+						'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+						'colGap' 		=>0,
+						'rowGap' 		=>0,
+						'cols'			=>array(
+							'field1'=>array('justification'=>'left','width'=>75,'spacing' => $spacing),
+							'field2'=>array('justification'=>'left','heigth' => 40,'spacing' => $spacing)						
+						) 
+					)
+				);
+			
+			}
+			
+		
+			$pdf->ezText("\nCAJA",FONT_SIZE_BODY_INVICE);	
+			
+			$data = array( 
+				array(
+					'field1'=>'Ingreso',
+					'field2'=>round($datView["objTMI"]->receiptAmount,0) 				
+				),
+				array(
+					'field1'=>'Abono total',
+					'field2'=>round($datView["objTM"]->amount,0)	
+				),
+				array(
+					'field1'=>'Cambio',
+					'field2'=>round($datView["objTMI"]->changeAmount,0)
+				)
+			);		
+			$pdf->ezTable(
+				$data,
+				array('field1'=>'','field2'=>''),
+				'',
+				array(
+					'showHeadings'	=> 0,
+					'showLines' 	=> 0,
+					'shaded'		=> 0,
+					'xPos'			=>'left',
+					'xOrientation'	=>'right',
+					'width'			=>$width,					
+					'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+					'colGap' 		=>0,
+					'rowGap' 		=>0,
+					'cols'			=>array(
+						'field1'=>array('justification'=>'left','width'=>75,'spacing' => $spacing),
+						'field2'=>array('justification'=>'left','heigth' => 40,'spacing' => $spacing)						
+					) 
+				)
+			);
+			
+					
+			//Set Pie		
+			$pdf->EXTCreateFooter();
+			//OutPut
+			$pdf->ezStream(array('Content-Disposition' => $reportName)); 
+			
+		}
+		catch(Exception $ex){
+			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
+		}
+	}
 	
 	
 }

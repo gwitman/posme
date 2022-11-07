@@ -7,7 +7,7 @@ WHERE
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '20'
+	tb_company_parameter.value = '80'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PRICE';
@@ -41,7 +41,7 @@ WHERE
 	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_REPORT';
 
 
-UPDATE tb_company SET NAME = 'Instituto la VID' , address = 'De la ucan 1 1/2 al sur. Chinandega' WHERE companyID = 2;
+UPDATE tb_company SET NAME = 'Instituto la VID' , address = 'Chinandega, San Agustin 1c al sur' WHERE companyID = 2;
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
@@ -52,7 +52,7 @@ WHERE
 		
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'De la ucan 1 1/2 al sur. Chinandega'
+	tb_company_parameter.value = 'Chinandega, San Agustin 1c al sur'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ADDRESS';
@@ -73,14 +73,14 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '8975-7526'
+	tb_company_parameter.value = 'TIGO: 8963-3737 | CLARO: 8902-3679'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PHONE';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '8975-7526'
+	tb_company_parameter.value = 'TIGO: 8963-3737 | CLARO: 8902-3679'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_PHONE';
@@ -94,25 +94,25 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_invoice_billing/viewRegisterVariedadesCarlosLuis'
+	tb_company_parameter.value = 'app_invoice_billing/viewRegisterInstitutoLaVid'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'INVOICE_URL_PRINTER';
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_box_share/viewRegisterVariedadesCarlosLuis'
+	tb_company_parameter.value = 'app_box_share/viewRegisterInstitutoLaVid'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'BOX_SHARE_URL_PRINTER';
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_box_sharecapital/viewRegisterVariedadesCarlosLuis'
+	tb_company_parameter.value = 'app_box_sharecapital/viewRegisterInstitutoLaVid'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'BOX_SHARECAPITAL_URL_PRINTER';
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_box_canceldocument/viewRegisterVariedadesCarlosLuis'
+	tb_company_parameter.value = 'app_box_canceldocument/viewRegisterInstitutoLaVid'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'BOX_CANCELDOCUMENT_URL_PRINTER';
@@ -126,14 +126,14 @@ WHERE
 	
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '000-000000-00000'
+	tb_company_parameter.value = '081-040573-0000D'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ID';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '000-000000-00000'
+	tb_company_parameter.value = '081-040573-0000D'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_COMPANY_IDENTIFIER';

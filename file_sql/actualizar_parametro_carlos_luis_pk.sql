@@ -40,7 +40,7 @@ WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_REPORT';
 
-UPDATE tb_company SET NAME = 'Variedades Carlos Luis' , address = 'Disnorte 1 1/2c al este' WHERE companyID = 2;
+UPDATE tb_company SET NAME = 'Variedades Carlos Luis PK' , address = 'Disnorte 1 1/2c al oeste' WHERE companyID = 2;
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
@@ -51,7 +51,7 @@ WHERE
 		
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'Disnorte, 1 1/2c al este.'
+	tb_company_parameter.value = 'Disnorte, 1 1/2c al oeste.'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ADDRESS';
