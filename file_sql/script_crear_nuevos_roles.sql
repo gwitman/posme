@@ -7,8 +7,8 @@ insert into tb_role(
 ) 
 select 	
 	companyID,branchID,
-	REPLACE(cc.`name`,@nameCompanyOrigen,@nameCompany) as `name`,description,
-	createdOn,'core_dashboards' as urlDefault,0 as isAdmin,createdBy ,isActive
+	REPLACE(cc.`name`,@nameCompanyOrigen,@nameCompany) as `name`,description,0 as isAdmin,
+	createdOn,'core_dashboards' as urlDefault,createdBy ,isActive
 from 
 	tb_role cc 
 where
