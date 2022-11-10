@@ -16,6 +16,42 @@ class core_web_authentication {
    public function __construct(){		
         $this->CI = & get_instance();
    }
+
+   function getValueLicense($companyID){
+
+		
+		$objParameterISleep			= $this->CI->core_web_parameter->getParameter("CORE_SLEEP",$companyID);
+		$objParameterISleep			= $objParameterISleep->value;
+
+		$objParameterTipoPlan		= $this->CI->core_web_parameter->getParameter("CORE_TIPO_PLAN",$companyID);
+		$objParameterTipoPlan		= $objParameterTipoPlan->value;
+
+		$objParameterExpiredLicense	= $this->CI->core_web_parameter->getParameter("CORE_LICENSE_EXPIRED",$companyID);
+		$objParameterExpiredLicense	= $objParameterExpiredLicense->value;
+		$objParameterExpiredLicense = DateTime::createFromFormat('Y-m-d',$objParameterExpiredLicense);		
+		
+		$fechaNow  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  			
+		
+		
+		if( 
+				$fechaNow >  
+				$objParameterExpiredLicense && $objParameterTipoPlan != "MENSUALIDAD" 
+		){
+			//log_message("ERROR","diferencia de dias:");
+			$diff = $objParameterExpiredLicense->diff($fechaNow);
+			$days = abs($diff->days);
+			$days = $days + $objParameterISleep ;						
+			
+			if($days > 60)
+			$days = 60;
+
+			sleep($days);
+		}
+		
+
+		return true;
+	}
+
    function get_UserBy_PasswordAndNickname($nickname,$password){
 		$this->CI->load->model("core/User_Model");
 		$this->CI->load->model("core/Role_Model");

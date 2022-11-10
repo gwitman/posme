@@ -1208,6 +1208,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$objParameterInvoiceAutoApply			= $this->core_web_parameter->getParameter("INVOICE_AUTOAPPLY_CASH",$companyID);
 			$objParameterInvoiceAutoApply			= $objParameterInvoiceAutoApply->value;
 
+			$this->core_web_authentication->getValueLicense($companyID);
 
 			//Obtener la lista de estados
 			if($objParameterInvoiceAutoApply == "true"){
@@ -1427,8 +1428,11 @@ class App_Invoice_Billing extends CI_Controller {
 			$dataView["objTransactionMasterDetailWarehouse"]	= $this->Transaction_Master_Detail_Model->get_rowByTransactionAndWarehouse($companyID,$transactionID,$transactionMasterID);
 			$dataView["objTransactionMasterDetailConcept"]		= $this->Transaction_Master_Concept_Model->get_rowByTransactionMasterConcept($companyID,$transactionID,$transactionMasterID,$objComponentItem->componentID);
 			
+			//obtener nombre de impresora por defecto
+			$objParameterPrinterName = $this->core_web_parameter->getParameter("INVOICE_BILLING_PRINTER_DIRECT_NAME_DEFAULT",$companyID);
+			$objParameterPrinterName = $objParameterPrinterName->value;
 
-			$objPrinter = new Library();
+			$objPrinter = new Library($objParameterPrinterName);
 			$objPrinter->executePrinter($dataView);
 
 		}

@@ -16,6 +16,7 @@ class core_web_permission {
    public function __construct(){		
         $this->CI = & get_instance();
    }
+   
    function getElementID($controler,$method,$suffix,$dataMenuTop,$dataMenuLeft,$dataMenuBodyReport,$dataMenuBodyTop,$dataMenuHiddenPopup){
 		$url  = $controler."/".$method.$suffix;	
 		

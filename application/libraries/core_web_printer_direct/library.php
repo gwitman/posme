@@ -45,8 +45,8 @@ class Library {
     var $connectorWindowPrinter;
     var $printer;
 
-    function Library(){	
-        $this->nombre_impresora           = "POS-80-Series USB";
+    function Library($printerName){	
+        $this->nombre_impresora           = $printerName;
         $this->connectorWindowPrinter     = new WindowsPrintConnector($this->nombre_impresora);
         $this->printer                    = new Printer($this->connectorWindowPrinter);
         

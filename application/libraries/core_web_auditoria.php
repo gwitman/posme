@@ -16,6 +16,8 @@ class core_web_auditoria {
    public function __construct(){		
         $this->CI = & get_instance(); 
    }
+
+   
    function setAuditCreated(&$obj,$dataUser){
    			$obj["createdOn"]			= date("Y-m-d H:i:s");					
 			$obj["createdBy"]			= $dataUser["user"]->userID;

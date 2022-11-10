@@ -44,13 +44,13 @@ class App_Inventory_Itemmasive extends CI_Controller {
 				$targetComponentID			= 0;	
 				$parameter["{companyID}"]	= $this->session->userdata('user')->companyID;
 				$dataViewData				= $this->core_web_view->getViewDefault($this->session->userdata('user'),$objComponent->componentID,CALLERID_LIST,$targetComponentID,$resultPermission,$parameter);			
-				$dataViewRender				= $this->core_web_view->renderGreed($dataViewData,'ListView',"fnTableSelectedRow");
+				$dataViewRender				= $this->core_web_view->renderGreedWithHtmlInFild($dataViewData,'ListView',"fnTableSelectedRow");
 			}
 			//Otra vista
 			else{									
 				$parameter["{companyID}"]	= $this->session->userdata('user')->companyID;
 				$dataViewData				= $this->core_web_view->getViewBy_DataViewID($this->session->userdata('user'),$objComponent->componentID,$dataViewID,CALLERID_LIST,$resultPermission,$parameter); 			
-				$dataViewRender				= $this->core_web_view->renderGreed($dataViewData,'ListView',"fnTableSelectedRow");
+				$dataViewRender				= $this->core_web_view->renderGreedWithHtmlInFild($dataViewData,'ListView',"fnTableSelectedRow");
 			} 
 			 
 			//Renderizar Resultado
@@ -123,33 +123,54 @@ class App_Inventory_Itemmasive extends CI_Controller {
 			if(!$objComponentItem)
 			throw new Exception("EL COMPONENTE 'tb_item' NO EXISTE...");
 			
+			log_message("ERROR",print_r("foreach productos",true));	
 			
-			//Obtener Lista de Productos			
-			$objBarCode 	= new barcode();
-			$objListaItem 		= $this->Item_Model->get_rowsByPK($companyID,$listItem);	
-
 			//Actualizar lso codigos de barra
-			foreach($objListaItem as $item)
+			$objListaItemPrinter = array();			
+			foreach($listItem as $itemWitCantidad)
 			{
-				$item->barCode	= $item->barCode == "" ? "B".$item->itemNumber  : $item->barCode;
-				$objNewItem["barCode"] = $item->barCode;
-				$row_affected 	= $this->Item_Model->update($companyID,$item->itemID,$objNewItem);
-				
-				$directory=  PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentItem->componentID."/component_item_".$item->itemID;
-				$pathFileCodeBarra = PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentItem->componentID."/component_item_".$item->itemID."/barcode.jpg";
-				
-				if(!file_exists($directory))
-				mkdir($directory, 0700);
-			
-				
-				$objBarCode->generate( $pathFileCodeBarra, $item->barCode, "40", "horizontal", "code128", false, 3 );
+
+				$itemWitCantidadTmp	= explode("-",$itemWitCantidad);
+				$itemID 	= $itemWitCantidadTmp[0];
+				$cantidad 	= $itemWitCantidadTmp[1];			
+
+				//Obtener Lista de Productos		
+				log_message("ERROR",print_r("Lista de productos",true));	
+				log_message("ERROR",print_r($itemID,true));	
+
+				$objBarCode 		= new barcode();
+				$objItem 			= $this->Item_Model->get_rowByPK($companyID,$itemID);
+				log_message("ERROR",print_r($objItem,true));	
+
+				if($objItem == null)
+				{}		
+				else{	
+					$objItem->barCode	= $objItem->barCode == "" ? "B".$objItem->itemNumber  : $objItem->barCode;
+
+					$objNewItem["barCode"] = $objItem->barCode;
+					$row_affected 	= $this->Item_Model->update($companyID,$objItem->itemID,$objNewItem);
+					
+					$directory=  PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentItem->componentID."/component_item_".$objItem->itemID;
+					$pathFileCodeBarra = PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentItem->componentID."/component_item_".$objItem->itemID."/barcode.jpg";
+					
+					if(!file_exists($directory))
+					mkdir($directory, 0700);
+					
+					$objBarCode->generate( $pathFileCodeBarra, $objItem->barCode, "40", "horizontal", "code128", false, 3 );
+
+					for($i = 0; $i < $cantidad ; $i++){
+						$objItemTempory = $this->Item_Model->get_rowByPK($companyID,$itemID);
+						array_push($objListaItemPrinter,$objItemTempory);
+					}
+
+				}
 			}
 					
 					
-			
+			log_message("ERROR",print_r($objListaItemPrinter,true));	
 			$data["objComponentItem"] = $objComponentItem;
 			$data["objComponent"] = $objComponent;
-			$data["objListaItem"] = $objListaItem;
+			$data["objListaItem"] = $objListaItemPrinter;
 			$this->load->view("app_inventory_itemmasive/printer_barcode",$data);	
 			
 			
