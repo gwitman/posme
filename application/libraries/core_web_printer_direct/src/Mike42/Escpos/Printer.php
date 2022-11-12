@@ -458,7 +458,7 @@ class Printer
     {
         self::validateInteger($size, 0, 3, __FUNCTION__);
         $rasterData = $img -> toRasterFormat();
-        $header = Printer::dataHeader([$img -> getWidthBytes(), $img -> getHeight()], true);
+        $header = Printer::dataHeader([  $img -> getWidthBytes()  , $img -> getHeight()    ], true);
         $this -> connector -> write(self::GS . "v0" . chr($size) . $header);
         $this -> connector -> write($rasterData);
     }

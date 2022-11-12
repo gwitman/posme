@@ -105,6 +105,12 @@ class App_Invoice_Billing extends CI_Controller {
 			$objParameterInvoiceBillingQuantityZero					= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
 			$dataView["objParameterInvoiceBillingQuantityZero"]		= $objParameterInvoiceBillingQuantityZero->value;
 
+			$objParameterInvoiceBillingPrinterDirect				= $this->core_web_parameter->getParameter("INVOICE_BILLING_PRINTER_DIRECT",$companyID);
+			$dataView["objParameterInvoiceBillingPrinterDirect"]	= $objParameterInvoiceBillingPrinterDirect->value;
+
+			$objParameterInvoiceBillingPrinterDirectUrl					= $this->core_web_parameter->getParameter("INVOICE_BILLING_PRINTER_DIRECT_URL",$companyID);
+			$dataView["objParameterInvoiceBillingPrinterDirectUrl"]		= $objParameterInvoiceBillingPrinterDirectUrl->value;
+
 			//Tipo de Factura
 			$dataView["urlPrinterDocument"]						= $urlPrinterDocument->value;
 			$dataView["objTransactionMaster"]					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
@@ -1404,13 +1410,22 @@ class App_Invoice_Billing extends CI_Controller {
 			$this->load->model("Transaction_Master_Info_Model");
 			$this->load->model("Transaction_Master_Detail_Model");
 			
+			
 			$this->load->model("Transaction_Master_Detail_Credit_Model");	
 			$this->load->model("Transaction_Master_Concept_Model");
 			$this->load->model("Company_Currency_Model");
-			
 			$this->load->model("Provider_Model");			
-			$this->load->library('core_web_printer_direct/library.php');			
+			$this->load->model("core/Company_Model");			
+			$this->load->model("core/Currency_Model"); 
+			$this->load->model("core/User_Model");
+			$this->load->model("core/Branch_Model");
+			$this->load->model("core/Workflow_Stage_Model");
 
+			log_message("ERROR","imprmir imporesora directo inicio");	
+			
+			
+
+			
 			//Obtener el componente de Item
 			$objComponentItem	= $this->core_web_tools->getComponentIDBy_ComponentName("tb_item");
 			if(!$objComponentItem)
@@ -1421,6 +1436,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$companyID				= $uri["companyID"];
 			$transactionID			= $uri["transactionID"];	
 			$transactionMasterID	= $uri["transactionMasterID"];	
+
 			
 			$dataView["objTransactionMaster"]					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
 			$dataView["objTransactionMasterInfo"]				= $this->Transaction_Master_Info_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
@@ -1428,11 +1444,31 @@ class App_Invoice_Billing extends CI_Controller {
 			$dataView["objTransactionMasterDetailWarehouse"]	= $this->Transaction_Master_Detail_Model->get_rowByTransactionAndWarehouse($companyID,$transactionID,$transactionMasterID);
 			$dataView["objTransactionMasterDetailConcept"]		= $this->Transaction_Master_Concept_Model->get_rowByTransactionMasterConcept($companyID,$transactionID,$transactionMasterID,$objComponentItem->componentID);
 			
+			
+			$dataView["objComponentCompany"]			= $this->core_web_tools->getComponentIDBy_ComponentName("tb_company");
+			$dataView["objParameterLogo"]				= $this->core_web_parameter->getParameter("CORE_COMPANY_LOGO",$companyID);
+			$dataView["objParameterPhoneProperty"]		= $this->core_web_parameter->getParameter("CORE_PROPIETARY_PHONE",$companyID);
+			$dataView["objCompany"] 					= $this->Company_Model->get_rowByPK($companyID);			
+			$dataView["objUser"] 						= $this->User_Model->get_rowByPK($companyID,$dataView["objTransactionMaster"]->createdAt,$dataView["objTransactionMaster"]->createdBy);
+			$dataView["Identifier"]						= $this->core_web_parameter->getParameter("CORE_COMPANY_IDENTIFIER",$companyID);
+			$dataView["objBranch"]						= $this->Branch_Model->get_rowByPK($companyID,$dataView["objTransactionMaster"]->branchID);
+			$dataView["objTipo"]						= $this->Transaction_Causal_Model->getByCompanyAndTransactionAndCausal($companyID,$dataView["objTransactionMaster"]->transactionID,$dataView["objTransactionMaster"]->transactionCausalID);
+			$dataView["objCustumer"]					= $this->Customer_Model->get_rowByEntity($companyID,$dataView["objTransactionMaster"]->entityID);
+			$dataView["objCurrency"]					= $this->Currency_Model->get_rowByPK($dataView["objTransactionMaster"]->currencyID);
+			$dataView["prefixCurrency"]					= $dataView["objCurrency"]->simbol." ";
+			$dataView["cedulaCliente"] 					= $dataView["objTransactionMasterInfo"]->referenceClientIdentifier == "" ? $dataView["objCustumer"]->customerNumber :  $dataView["objTransactionMasterInfo"]->referenceClientIdentifier;
+			$dataView["nombreCliente"] 					= $dataView["objTransactionMasterInfo"]->referenceClientName  == "" ? $dataView["objCustumer"]->firstName : $dataView["objTransactionMasterInfo"]->referenceClientName ;
+			$dataView["objStage"]						= $this->Workflow_Stage_Model->get_rowByWorkflowStageIDOnly($dataView["objTransactionMaster"]->statusID);
+
 			//obtener nombre de impresora por defecto
 			$objParameterPrinterName = $this->core_web_parameter->getParameter("INVOICE_BILLING_PRINTER_DIRECT_NAME_DEFAULT",$companyID);
 			$objParameterPrinterName = $objParameterPrinterName->value;
-
-			$objPrinter = new Library($objParameterPrinterName);
+			log_message("ERROR","imprmir imporesora directo fin");
+			
+			
+			$this->load->library('core_web_printer_direct/library.php');						
+			$objPrinter = new Library();
+			$objPrinter->configurationPrinter($objParameterPrinterName);
 			$objPrinter->executePrinter($dataView);
 
 		}

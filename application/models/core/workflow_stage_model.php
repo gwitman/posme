@@ -141,6 +141,43 @@ class Workflow_Stage_Model extends CI_Model  {
 		return $recordSet->result();
 
    }
+   function get_rowByWorkflowStageIDOnly($workflowStageID){
+
+		$this->db->select("e.workflowID,e.componentID,e.workflowStageID,e.name,e.description,e.display,e.flavorID,e.editableParcial,e.editableTotal,e.eliminable,e.aplicable,e.vinculable,e.isActive");
+
+		$this->db->from("tb_workflow_stage e");
+
+		$this->db->where("e.workflowStageID",$workflowStageID);	
+
+		$this->db->where("e.isActive",1);
+
+		
+
+		//Ejecutar Consulta
+
+		$recordSet = $this->db->get();
+
+		
+
+		//Obtener errores
+
+		if($this->db->_error_message())
+
+		return null; 
+
+		
+
+		if($recordSet->num_rows() == 0)
+
+		return null;
+
+		
+
+		//Resultado
+
+		return $recordSet->result();
+
+	}
 
    function get_rowByWorkflowIDAndFlavorID_Init($workflowID,$flavorID){
 

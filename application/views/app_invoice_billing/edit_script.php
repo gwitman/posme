@@ -8,6 +8,8 @@
 	var varDetail 				= JSON.parse('<?php echo json_encode($objTransactionMasterDetail); ?>');	
 	var varDetailWarehouse		= JSON.parse('<?php echo json_encode($objTransactionMasterDetailWarehouse); ?>');	
 	var varDetailConcept 		= JSON.parse('<?php echo json_encode($objTransactionMasterDetailConcept); ?>');	
+	var varParameterInvoiceBillingPrinterDirect		= <?php echo $objParameterInvoiceBillingPrinterDirect; ?>;	
+	var varParameterInvoiceBillingPrinterDirectUrl	= '<?php echo $objParameterInvoiceBillingPrinterDirectUrl; ?>';	
 	var varTransactionCausalID	= <?php echo $objTransactionMaster->transactionCausalID; ?>;	
 	var varCustomerCrediLineID	= <?php echo $objTransactionMaster->reference4; ?>;	
 	var varPermisos				= JSON.parse('<?php echo json_encode($objListaPermisos); ?>');
@@ -284,10 +286,40 @@
 		
 		
 		//Imprimir Documento
-		$(document).on("click","#btnPrinter",function(){
-			
-			$("#modalDialogOpenPrimter").dialog("open");
-			return
+		$(document).on("click","#btnPrinter",function(){			
+
+			if(varParameterInvoiceBillingPrinterDirect == true){
+				
+				var url="<?php echo site_url(); ?>"+varParameterInvoiceBillingPrinterDirectUrl;
+				url = url+
+				"/companyID/"+"<?php echo $objTransactionMaster->companyID; ?>" + 
+				"/transactionID/"+"<?php echo $objTransactionMaster->transactionID; ?>"+
+				"/transactionMasterID/"+"<?php echo $objTransactionMaster->transactionMasterID; ?>";
+
+				fnWaitOpen();	
+				$.ajax({									
+					cache       : false,
+					dataType    : 'json',
+					type        : 'GET',
+					url  		: url,
+					success		: function(){
+						fnWaitClose();						
+					},
+					error:function(xhr,data){	
+						debugger;
+						console.info("complete data error");									
+						console.info(data);
+						console.info(xhr);
+						fnWaitClose();
+						//fnShowNotification("Error 505","error");
+					}
+				});	
+				return;
+			}
+			else{
+				$("#modalDialogOpenPrimter").dialog("open");
+				return
+			}
 			
 		});
 		//Cambios
