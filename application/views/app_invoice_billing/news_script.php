@@ -406,13 +406,7 @@
 		
 		//Validar Detalle
 		//
-		///////////////////////////////////////////////
-		//Validar Cuentas del Comprobantes
-		if(objTableDetail.fnGetData().length == 0){
-			fnShowNotification("La factura no tiene productos","error",timerNotification);
-			result = false;
-		};		
-
+		///////////////////////////////////////////////		
 		var cantidadTotalesEnZero = jLinq.from(objTableDetail.fnGetData()).where(function(obj){ return obj[8] == 0;}).select().length ;
 		if(cantidadTotalesEnZero > 0){
 			fnShowNotification("No pueden haber totales en 0","error",timerNotification);

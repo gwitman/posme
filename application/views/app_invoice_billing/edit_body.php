@@ -50,7 +50,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mas <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#dropdown" data-toggle="tab">Comentario</a></li>
-							<li id="btnClickArchivo"><a href="#dropdown-file" data-toggle="tab">Archivos</a></li>
+							<li><a id="btnClickArchivo" href="#" target="blanck"  data-toggle="tab">Archivos</a></li>
 						 </ul>
 					</li>
 				</ul>

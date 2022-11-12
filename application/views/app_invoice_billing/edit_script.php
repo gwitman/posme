@@ -22,26 +22,27 @@
 	
 
 	
-	for(var i = 0 ; i < varDetail.length;i++){
-		//Obtener Iva
-		var tmp_ = jLinq.from(varDetailConcept).where(function(obj){ return obj.componentItemID == varDetail[i].componentItemID && obj.name == "IVA" }).select();
-		var iva_ = (tmp_.length <= 0 ? 0 : parseFloat(tmp_[0].valueOut));
-		
-		//Rellenar Datos
-		tmpData.push([
-			0,
-			varDetail[i].transactionMasterDetailID,
-			varDetail[i].componentItemID,
-			varDetail[i].itemNumber,
-			"'"+varDetail[i].itemName + "'", 
-			varDetail[i].unitMeasureName,
-			fnFormatNumber(varDetail[i].quantity,2),
-			fnFormatNumber(varDetail[i].unitaryPrice,4),/*precio sistema*/
-			fnFormatNumber(varDetail[i].unitaryPrice * varDetail[i].quantity,2), /*precio por cantidad*/							
-			fnFormatNumber(iva_,2)
-		]);
-	}
-		
+	if(varDetail != null){
+		for(var i = 0 ; i < varDetail.length;i++){
+			//Obtener Iva
+			var tmp_ = jLinq.from(varDetailConcept).where(function(obj){ return obj.componentItemID == varDetail[i].componentItemID && obj.name == "IVA" }).select();
+			var iva_ = (tmp_.length <= 0 ? 0 : parseFloat(tmp_[0].valueOut));
+			
+			//Rellenar Datos
+			tmpData.push([
+				0,
+				varDetail[i].transactionMasterDetailID,
+				varDetail[i].componentItemID,
+				varDetail[i].itemNumber,
+				"'"+varDetail[i].itemName + "'", 
+				varDetail[i].unitMeasureName,
+				fnFormatNumber(varDetail[i].quantity,2),
+				fnFormatNumber(varDetail[i].unitaryPrice,4),/*precio sistema*/
+				fnFormatNumber(varDetail[i].unitaryPrice * varDetail[i].quantity,2), /*precio por cantidad*/							
+				fnFormatNumber(iva_,2)
+			]);
+		}
+	}	
 	//Obtener informacion del cliente	
 	fnWaitOpen();	
 	$.ajax({									
@@ -414,6 +415,7 @@
 		});
 		//Ir a archivos
 		$(document).on("click","#btnClickArchivo",function(){
+			debugger;
 			window.open("<?php echo site_url()."core_elfinder/index/componentID/".$objComponentBilling->componentID."/componentItemID/".$objTransactionMaster->transactionMasterID; ?>","blanck");
 		});
 		//Cambio en los recibido
@@ -618,10 +620,10 @@
 		//
 		///////////////////////////////////////////////
 		//Validar Cuentas del Comprobantes
-		if(objTableDetail.fnGetData().length == 0){
-			fnShowNotification("La factura no tiene productos","error",timerNotification);
-			result = false;
-		};
+		//if(objTableDetail.fnGetData().length == 0){
+		//	fnShowNotification("La factura no tiene productos","error",timerNotification);
+		//	result = false;
+		//};
 		
 		var cantidadTotalesEnZero = jLinq.from(objTableDetail.fnGetData()).where(function(obj){ return obj[8] == 0;}).select().length ;
 		if(cantidadTotalesEnZero > 0){

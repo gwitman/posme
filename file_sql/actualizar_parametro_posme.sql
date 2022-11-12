@@ -47,7 +47,7 @@ WHERE
 	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_FUNCTION';	
 
 
-UPDATE tb_company SET NAME = 'posMe' , address = 'Frente a union fenosa' WHERE companyID = 2;
+UPDATE tb_company SET NAME = 'posMe' , address = 'Managua, Nicaragua, Multicentro las america modulo A25' WHERE companyID = 2;
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
@@ -58,7 +58,7 @@ WHERE
 		
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'Frente a union fenosa'
+	tb_company_parameter.value = 'Managua, Nicaragua, Multicentro las america modulo A25'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ADDRESS';
@@ -132,14 +132,14 @@ WHERE
 	
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '281-180389-0004R'
+	tb_company_parameter.value = '121-180371-0004R'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ID';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '281-180389-0004R'
+	tb_company_parameter.value = '121-180371-0004R'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_COMPANY_IDENTIFIER';
@@ -153,7 +153,7 @@ WHERE
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'true'
+	tb_company_parameter.value = 'false'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT_AND_AMORTIZACION';	

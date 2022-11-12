@@ -169,6 +169,7 @@ Agregar Logo Tipo
 
 		
 Ejecutar el Script de Limpieza e Inicializacion de Base de Datos
+		password:	root1.2Blandon
 		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\clear_importar_data_base.sql		
 
 

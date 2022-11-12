@@ -851,7 +851,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$dateOn 								= date_format(date_create($dateOn),"Y-m-d");
 			$exchangeRate 							= $this->core_web_currency->getRatio($companyID,$dateOn,1,$objCurrencyDolares->currencyID,$objCurrencyCordoba->currencyID);
 			
-
+ 
 			if($this->core_web_accounting->cycleIsCloseByDate($dataSession["user"]->companyID,$this->input->post("txtDate")))
 			throw new Exception("EL DOCUMENTO NO PUEDE INGRESAR, EL CICLO CONTABLE ESTA CERRADO");
 			
