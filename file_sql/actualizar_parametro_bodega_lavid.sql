@@ -40,7 +40,7 @@ WHERE
 	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_REPORT';
 
 
-UPDATE tb_company SET NAME = 'LIBRERIA GUILLET' , address = 'Multicentro las america, Managua Nicaragua' WHERE companyID = 2;
+UPDATE tb_company SET NAME = 'BODEGAS LA VID' , address = 'Multicentro las america, Managua Nicaragua' WHERE companyID = 2;
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
@@ -118,7 +118,7 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'flc_lireria_guillete'
+	tb_company_parameter.value = 'flc_bodegas_lavid'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_CXC_WSDL_SIN_RIESGO_USUARIO';	

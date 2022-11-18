@@ -5,7 +5,6 @@ WHERE
 	tb_parameter.name = 'CORE_TIPO_PLAN';
 
 
-
 UPDATE tb_company_parameter, tb_parameter  SET 
 	tb_company_parameter.value = '1'
 WHERE
@@ -21,7 +20,7 @@ WHERE
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'true'
+	tb_company_parameter.value = 'false'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PAYMENT_SENDBOX';
@@ -41,11 +40,11 @@ WHERE
 	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_REPORT';
 
 
-UPDATE tb_company SET NAME = 'posMe developer' , address = 'Multicentro las america, Managua Nicaragua' WHERE companyID = 2;
+UPDATE tb_company SET NAME = 'LABORATORIO BIO-SALUD' , address = 'Multicentro las america, Managua Nicaragua' WHERE companyID = 2;
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'Witman Jose Gonzalez Rostran'
+	tb_company_parameter.value = 'Jose Josias Lopez Lopez'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_NAME';
@@ -94,46 +93,46 @@ WHERE
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_invoice_billing/viewRegisterFidLocal'
+	tb_company_parameter.value = 'app_invoice_billing/viewRegisterVariedadesCarlosLuis'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'INVOICE_URL_PRINTER';
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_box_share/viewRegister'
+	tb_company_parameter.value = 'app_box_share/viewRegisterVariedadesCarlosLuis'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'BOX_SHARE_URL_PRINTER';
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_box_sharecapital/viewRegister'
+	tb_company_parameter.value = 'app_box_sharecapital/viewRegisterVariedadesCarlosLuis'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'BOX_SHARECAPITAL_URL_PRINTER';
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'app_box_canceldocument/viewRegister'
+	tb_company_parameter.value = 'app_box_canceldocument/viewRegisterVariedadesCarlosLuis'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'BOX_CANCELDOCUMENT_URL_PRINTER';
 	
 	
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'flc_witman'
+	tb_company_parameter.value = 'flc_lab_bio_salud'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_CXC_WSDL_SIN_RIESGO_USUARIO';	
 	
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '281-180389-0004R'
+	tb_company_parameter.value = '281-000000-0000R'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_PROPIETARY_ID';
 	
 		
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = '281-180389-0004R'
+	tb_company_parameter.value = '281-000000-0000R'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CORE_COMPANY_IDENTIFIER';
@@ -147,7 +146,7 @@ WHERE
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'true'
+	tb_company_parameter.value = 'false'
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT_AND_AMORTIZACION';	
@@ -164,6 +163,3 @@ UPDATE tb_company_parameter, tb_parameter  SET
 WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'CREDIT_INTERES_MULTIPLO';	
-
-
-	
