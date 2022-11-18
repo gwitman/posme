@@ -133,7 +133,7 @@ insert into tb_membership (branchID,companyID,roleID,userID)
 select 
     m.branchID,
 	m.companyID,
-	m.roleID,
+	urd.roleID,
 	dd.userID
 from 
 	tb_membership m 
@@ -149,10 +149,27 @@ from
 				x.email = CONCAT(@userFacturador,@domainDestino)  or 
 				x.email = CONCAT(@userSupervisor,@domainDestino)  	
 	) as dd on dd.email = replace(u.email ,@domainOrigen,'')
+	
+	inner join tb_role ur on 	
+		ur.roleID = m.roleID 
+		
+	inner join (
+			select 
+				z.roleID,
+				replace(z.name ,replace(@nameCompany,'@',''),'') as nombrez
+			from 
+				tb_role z
+			where 
+				z.name = CONCAT(replace(@domainDestino,'@',''),'@',@userAdministrador)  or 
+				z.name = CONCAT(replace(@domainDestino,'@',''),'@',@userFacturador)  or 
+				z.name = CONCAT(replace(@domainDestino,'@',''),'@',@userSupervisor)  	
+	) as urd on urd.nombrez  = replace( ur.name , replace(@nameCompanyOrigen,'@',''),'')
+		
 where		
 	u.email = CONCAT(@userAdministrador,@domainOrigen)  or 
 	u.email = CONCAT(@userFacturador,@domainOrigen)  or 
 	u.email = CONCAT(@userSupervisor,@domainOrigen) ;
+	
 	
 
 
