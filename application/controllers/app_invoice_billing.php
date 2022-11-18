@@ -1928,6 +1928,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$this->load->model("Warehouse_Model"); 
 			$this->load->model("core/Branch_Model");
 			$this->load->model("Customer_Model");
+			$this->load->model("core/Currency_Model"); 
 			
 			
 			//Crear Objetos
@@ -1953,7 +1954,9 @@ class App_Invoice_Billing extends CI_Controller {
 			$datView["objStage"]					= $this->core_web_workflow->getWorkflowStage("tb_transaction_master_billing","statusID",$datView["objTM"]->statusID,$companyID,$branchID,$roleID);
 			$datView["objTipo"]						= $this->Transaction_Causal_Model->getByCompanyAndTransactionAndCausal($companyID,$datView["objTM"]->transactionID,$datView["objTM"]->transactionCausalID);
 			$datView["objCustumer"]					= $this->Customer_Model->get_rowByEntity($companyID,$datView["objTM"]->entityID);
-			
+			$datView["objCurrency"]					= $this->Currency_Model->get_rowByPK($datView["objTM"]->currencyID);
+			$prefixCurrency 						= $datView["objCurrency"]->simbol." "; 
+
 			//Set Nombre del Reporte
 			$reportName		= "DOC_INVOICE";
 			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));			
@@ -1969,6 +1972,7 @@ class App_Invoice_Billing extends CI_Controller {
 				array('field1'=>'<b>Cajero</b>'			,'field2'=>$datView["objUser"]->nickname     		) ,
 				array('field1'=>'<b>Tienda</b>'			,'field2'=>$datView["objBranch"]->name   	 		) ,
 				array('field1'=>'<b>Tipo</b>'			,'field2'=>$datView["objTipo"]->name   	 			) ,
+				array('field1'=>'<b>Moneda</b>'			,'field2'=>$prefixCurrency   	 			) ,
 				array('field1'=>'<b>Tipo Cambio</b>'	,'field2'=>$datView["objTM"]->exchangeRate 			) ,
 				array('field1'=>'<b>Cliente</b>'		,'field2'=>$datView["objCustumer"]->customerNumber	) 
 			);		

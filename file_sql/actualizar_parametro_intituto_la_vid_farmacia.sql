@@ -40,8 +40,16 @@ WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_REPORT';
 
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = 'Cordoba'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'ACCOUNTING_CURRENCY_NAME_FUNCTION';
 
-UPDATE tb_company SET NAME = 'Instituto la VID' , address = 'Chinandega, San Agustin 1c al sur' WHERE companyID = 2;
+	
+
+
+UPDATE tb_company SET NAME = 'Instituto la VID Farm' , address = 'Chinandega, San Agustin 1c al sur' WHERE companyID = 2;
 
 
 UPDATE tb_company_parameter, tb_parameter  SET 
@@ -146,12 +154,6 @@ WHERE
 	tb_parameter.name = 'INVENTORY_ITEM_WAREHOUSE_DEFAULT';
 
 
-UPDATE tb_company_parameter, tb_parameter  SET 
-	tb_company_parameter.value = 'true'
-WHERE
-	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = 'INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT_AND_AMORTIZACION';	
-
 
 UPDATE tb_company_parameter, tb_parameter  SET 
 	tb_company_parameter.value = 'false'
@@ -166,4 +168,15 @@ WHERE
 	tb_parameter.name = 'CREDIT_INTERES_MULTIPLO';	
 
 
-	
+
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = 'false'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'INVOICE_BILLING_PRINTER_DIRECT';	
+
+UPDATE tb_company_parameter, tb_parameter  SET 
+	tb_company_parameter.value = 'false'
+WHERE
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = 'INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT_AND_AMORTIZACION';	
