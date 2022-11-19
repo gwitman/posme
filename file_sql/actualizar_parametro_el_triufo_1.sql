@@ -97,28 +97,28 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_box_canceldocument/viewRegisterVariedadesCarlosLuis" 
+	tb_company_parameter.value = "app_box_canceldocument/viewRegisterFormatoPaginaTicket" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "BOX_CANCELDOCUMENT_URL_PRINTER";## URL PARA LA IMPRESION DE CANCELACION 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_box_sharecapital/viewRegisterVariedadesCarlosLuis" 
+	tb_company_parameter.value = "app_box_sharecapital/viewRegisterFormatoPaginaTicket" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "BOX_SHARECAPITAL_URL_PRINTER";## URL PARA LA IMPRESION DE ABONOS AL CAPITAL 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_box_share/viewRegisterVariedadesCarlosLuis" 
+	tb_company_parameter.value = "app_box_share/viewRegisterFormatoPaginaTicket" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "BOX_SHARE_URL_PRINTER";## URL PARA LA IMPRESION DE ABONOS 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_invoice_billing/viewRegisterVariedadesCarlosLuis" 
+	tb_company_parameter.value = "app_invoice_billing/viewRegisterFormatoPaginaTicket" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "INVOICE_URL_PRINTER";## URLs PARA LA IMPRESION DE FACTURA 

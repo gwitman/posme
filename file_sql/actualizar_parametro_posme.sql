@@ -97,28 +97,28 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_box_canceldocument/viewRegisterFidLocal" 
+	tb_company_parameter.value = "app_box_canceldocument/viewRegisterFormatoPaginaNormal" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "BOX_CANCELDOCUMENT_URL_PRINTER";## URL PARA LA IMPRESION DE CANCELACION 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_box_sharecapital/viewRegister" 
+	tb_company_parameter.value = "app_box_sharecapital/viewRegisterFormatoPaginaNormal" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "BOX_SHARECAPITAL_URL_PRINTER";## URL PARA LA IMPRESION DE ABONOS AL CAPITAL 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_box_share/viewRegister" 
+	tb_company_parameter.value = "app_box_share/viewRegisterFormatoPaginaNormal" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "BOX_SHARE_URL_PRINTER";## URL PARA LA IMPRESION DE ABONOS 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_invoice_billing/viewRegister" 
+	tb_company_parameter.value = "app_invoice_billing/viewRegisterFormatoPaginaNormal" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "INVOICE_URL_PRINTER";## URLs PARA LA IMPRESION DE FACTURA 
