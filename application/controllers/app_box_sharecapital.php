@@ -901,7 +901,7 @@ class App_Box_Sharecapital extends CI_Controller {
 		}
 	}
 	
-	function viewRegister(){
+	function viewRegisterFormatoPaginaNormal(){
 		try{ 
 			//AUTENTICADO
 			if(!$this->core_web_authentication->isAuthenticated())
@@ -1089,7 +1089,412 @@ class App_Box_Sharecapital extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}
-	
+	function viewRegisterFormatoPaginaTicket(){
+		try{ 
+			//AUTENTICADO
+			if(!$this->core_web_authentication->isAuthenticated())
+			throw new Exception(USER_NOT_AUTENTICATED);
+			$dataSession		= $this->session->all_userdata();
+			
+			//PERMISO SOBRE LA FUNCION
+			if(APP_NEED_AUTHENTICATION == true){
+						$permited = false;
+						$permited = $this->core_web_permission->urlPermited($this->router->class,"index",$this->config->item('url_suffix'),$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+						
+						if(!$permited)
+						throw new Exception(NOT_ACCESS_CONTROL);
+						
+							
+						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+						if ($resultPermission 	== PERMISSION_NONE)
+						throw new Exception(NOT_ALL_EDIT);		
+			}	 
+			
+			$uri						= $this->uri->uri_to_assoc(3);						
+			$transactionID				= $uri["transactionID"];			
+			$transactionMasterID		= $uri["transactionMasterID"];				
+			$companyID 					= $dataSession["user"]->companyID;		
+			$branchID 					= $dataSession["user"]->branchID;		
+			$roleID 					= $dataSession["role"]->roleID;		
+			
+			
+			//Cargar Libreria
+			$this->load->library('core_web_pdf/src/EXTCezpdf.php');			
+			$this->load->model("Transaction_Master_Model");
+			$this->load->model("Transaction_Master_Detail_Model");	
+			$this->load->model("core/Company_Model"); 
+			$this->load->model("core/User_Model");
+			$this->load->model("Customer_Credit_Document_Model");
+		
+			$this->load->model("Provider_Model");
+			$this->load->model("Legal_Model");
+			$this->load->model("Natural_Model");
+			$this->load->model("core/Branch_Model");
+			$this->load->model("Customer_Model");
+				
+			
+			//Crear Objetos
+			$pdf 	= new EXTCezpdf(PAGE_INVOICE,'portrait','none',array());
+			//$pdf->selectFont('./fonts/Courier.afm');
+			$pdf->ezSetCmMargins(TOP_MARGIN_INVOICE,BOTTOM_MARGIN_INVOICE,LEFT_MARGIN_INVOICE,RIGHT_MARGIN_INVOICE);
+			$width 	= $pdf->EXTGetWidth();
+									
+			
+			//Get Component
+			$objComponent	= $this->core_web_tools->getComponentIDBy_ComponentName("tb_company");
+			//Get Logo
+			$objParameter	= $this->core_web_parameter->getParameter("CORE_COMPANY_LOGO",$companyID);
+			//Get Company
+			$objCompany 	= $this->Company_Model->get_rowByPK($companyID);			
+			//Get Documento				
+			
+			$datView["objTM"]	 					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
+			$datView["objTMD"]						= $this->Transaction_Master_Detail_Model->get_rowByTransactionToShare($companyID,$transactionID,$transactionMasterID);
+			$datView["objTM"]->transactionOn 		= date_format(date_create($datView["objTM"]->transactionOn),"Y-m-d");
+			$datView["objUser"] 					= $this->User_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->createdAt,$datView["objTM"]->createdBy);
+			$datView["objBranch"]					= $this->Branch_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->branchID);
+			$datView["objCustumer"]					= $this->Customer_Model->get_rowByEntity($companyID,$datView["objTM"]->entityID);
+			$datView["objNatural"]					= $this->Natural_Model->get_rowByPK($companyID,$datView["objCustumer"]->branchID,$datView["objCustumer"]->entityID);
+			$datView["tipoCambio"]					= round($datView["objTM"]->exchangeRate + $this->core_web_parameter->getParameter("ACCOUNTING_EXCHANGE_SALE",$companyID)->value,2);
+			
+			//Set Nombre del Reporte
+			$reportName		= "DOC_ENTRADA_CANCELACION_FACTURA";
+			//Set Informacion File
+			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));
+			//Set Titulo			
+			$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
+
+			//Set Encambezado del comprobante
+			//$pdf->ezText("VARIEDADES"."",FONT_SIZE,array('justification'=>'center'));
+			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
+			$pdf->ezText("::".strtoupper($objCompany->name)."::",FONT_SIZE,array('justification'=>'center' ));
+			$pdf->ezText("ABONO AL CAPITAL:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
+			$spacing 			= 0.5;
+
+			
+			$data = array( 
+				array(
+					'field1'=>'Fecha',
+					'field2'=>$datView["objTM"]->transactionOn					
+				),
+				array(
+					'field1'=>'Vendedor',
+					'field2'=>$datView["objUser"]->nickname				
+				),
+				array(
+					'field1'=>'Cliente',
+					'field2'=>$datView["objCustumer"]->customerNumber			
+				),				
+				array(
+					'field1'=>'Estado',
+					'field2'=>$datView["objTM"]->workflowStageName					
+				)
+			);		
+			$pdf->ezTable(
+				$data,
+				array('field1'=>'','field2'=>''),
+				'',
+				array(
+					'showHeadings'	=> 0,
+					'showLines' 	=> 0,
+					'shaded'		=> 0,
+					'xPos'			=>'left',
+					'xOrientation'	=>'right',
+					'width'			=>$width,					
+					'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+					'colGap' 		=>0,
+					'rowGap' 		=>0,
+					'cols'			=>array(
+						'field1'=>array('justification'=>'left','width'=>75,'spacing' => $spacing),
+						'field2'=>array('justification'=>'left','heigth' => 40,'spacing' => $spacing)						
+					) 
+				)
+			);
+			
+			
+			//Set Comentario del Comprobante
+			$pdf->ezText("\nCLIENTE",FONT_SIZE_BODY_INVICE);
+			$data	= array(
+				//array('field1'=> $datView["objNatural"]->firstName."/".$datView["objTM"]->note."...")
+				array('field1'=> $datView["objNatural"]->firstName)
+			);
+			$pdf->ezTable(
+				$data,
+				array('field1'=>''),
+				'',
+				array(
+					'showHeadings'	=> 0,
+					'showLines' 	=> 0,
+					'shaded'		=> 0,
+					'xPos'			=>'left',
+					'xOrientation'	=>'right',
+					'width'			=>$width,					
+					'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+					'colGap' 		=>0,
+					'rowGap' 		=>0,
+					'cols'			=>array(
+						'field1'=>array('justification'=>'left','width'=>200,'spacing' => $spacing)
+					) 
+				)
+			);
+			
+			//Set Detalle del Comprobante
+			$pdf->ezText("\nDETALLE",FONT_SIZE_BODY_INVICE);			
+			$data		= array();
+			if($datView["objTMD"])
+			foreach($datView["objTMD"] as $row){
+				$objCustomerCreditDocument 	= $this->Customer_Credit_Document_Model->get_rowByPK($row->componentItemID);
+				
+				
+				$data = array( 
+					array(
+						'field1'=>'Factura',
+						'field2'=>$row->reference1				
+					),
+					array(
+						'field1'=>'Saldo Anterior',
+						'field2'=>round($row->reference2,0)
+					),				
+					array(
+						'field1'=>'Abono',
+						'field2'=>round($row->amount,2)
+					),
+					array(
+						'field1'=>'Nuevo Saldo',
+						'field2'=>round($row->reference4,0)
+					),
+					array(
+						'field1'=>'Moneda',
+						'field2'=>$objCustomerCreditDocument->currencyName
+					)
+				);		
+				$pdf->ezTable(
+					$data,
+					array('field1'=>'','field2'=>''),
+					'',
+					array(
+						'showHeadings'	=> 0,
+						'showLines' 	=> 0,
+						'shaded'		=> 0,
+						'xPos'			=>'left',
+						'xOrientation'	=>'right',
+						'width'			=>$width,					
+						'fontSize' 		=>FONT_SIZE_BODY_INVICE,	
+						'colGap' 		=>0,
+						'rowGap' 		=>0,
+						'cols'			=>array(
+							'field1'=>array('justification'=>'left','width'=>75,'spacing' => $spacing),
+							'field2'=>array('justification'=>'left','heigth' => 40,'spacing' => $spacing)						
+						) 
+					)
+				);
+			
+			}
+			
+		
+			
+			
+			
+			
+					
+			//Set Pie		
+			$pdf->EXTCreateFooter();
+			//OutPut
+			$pdf->ezStream(array('Content-Disposition' => $reportName)); 
+			
+		}
+		catch(Exception $ex){
+			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
+		}
+	}
+	function viewRegisterFidLocal(){
+		try{ 
+			//AUTENTICADO
+			if(!$this->core_web_authentication->isAuthenticated())
+			throw new Exception(USER_NOT_AUTENTICATED);
+			$dataSession		= $this->session->all_userdata();
+			
+			//PERMISO SOBRE LA FUNCION
+			if(APP_NEED_AUTHENTICATION == true){
+						$permited = false;
+						$permited = $this->core_web_permission->urlPermited($this->router->class,"index",$this->config->item('url_suffix'),$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+						
+						if(!$permited)
+						throw new Exception(NOT_ACCESS_CONTROL);
+						
+							
+						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+						if ($resultPermission 	== PERMISSION_NONE)
+						throw new Exception(NOT_ALL_EDIT);		
+			}	 
+			
+			$uri						= $this->uri->uri_to_assoc(3);						
+			$transactionID				= $uri["transactionID"];			
+			$transactionMasterID		= $uri["transactionMasterID"];				
+			$companyID 					= $dataSession["user"]->companyID;		
+			$branchID 					= $dataSession["user"]->branchID;		
+			$roleID 					= $dataSession["role"]->roleID;		
+			
+			
+			//Cargar Libreria
+			$this->load->library('core_web_pdf/src/EXTCezpdf.php');			
+			$this->load->model("Transaction_Master_Model");
+			$this->load->model("Transaction_Master_Detail_Model");	
+			$this->load->model("core/Company_Model"); 
+			$this->load->model("core/User_Model");
+			$this->load->model("Customer_Credit_Document_Model");
+		
+			$this->load->model("Provider_Model");
+			$this->load->model("Legal_Model");
+			$this->load->model("Natural_Model");
+			$this->load->model("core/Branch_Model");
+			$this->load->model("Customer_Model");
+				
+			
+			//Crear Objetos
+			$pdf 	= new EXTCezpdf(PAGE_SIZE,'portrait','none',array());
+			$pdf->selectFont('./fonts/Courier.afm');
+			$pdf->ezSetCmMargins(TOP_MARGIN,BOTTOM_MARGIN,LEFT_MARGIN,RIGHT_MARGIN);
+			$width 	= $pdf->EXTGetWidth();
+									
+			
+			//Get Component
+			$objComponent	= $this->core_web_tools->getComponentIDBy_ComponentName("tb_company");
+			//Get Logo
+			$objParameter	= $this->core_web_parameter->getParameter("CORE_COMPANY_LOGO",$companyID);
+			//Get Company
+			$objCompany 	= $this->Company_Model->get_rowByPK($companyID);			
+			//Get Documento				
+			
+			$datView["objTM"]	 					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
+			$datView["objTMD"]						= $this->Transaction_Master_Detail_Model->get_rowByTransactionToShare($companyID,$transactionID,$transactionMasterID);
+			$datView["objTM"]->transactionOn 		= date_format(date_create($datView["objTM"]->transactionOn),"Y-m-d");
+			$datView["objUser"] 					= $this->User_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->createdAt,$datView["objTM"]->createdBy);
+			$datView["objBranch"]					= $this->Branch_Model->get_rowByPK($datView["objTM"]->companyID,$datView["objTM"]->branchID);
+			$datView["objCustumer"]					= $this->Customer_Model->get_rowByEntity($companyID,$datView["objTM"]->entityID);
+			$datView["objNatural"]					= $this->Natural_Model->get_rowByPK($companyID,$datView["objCustumer"]->branchID,$datView["objCustumer"]->entityID);
+			$datView["tipoCambio"]					= round($datView["objTM"]->exchangeRate + $this->core_web_parameter->getParameter("ACCOUNTING_EXCHANGE_SALE",$companyID)->value,2);
+			
+			//Set Nombre del Reporte
+			$reportName		= "DOC_ENTRADA_CANCELACION_FACTURA";
+			//Set Informacion File
+			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));
+			//Set Titulo			
+			$pdf->EXTCreateHeader("::".$objCompany->name." ABONO AL CAPITAL"."::",$objComponent->componentID,$objParameter->value,$dataSession);
+			//Set Encambezado del comprobante
+			$pdf->ezText("<b>DOCUMENTO NO:".$datView["objTM"]->transactionNumber."</b>\n\n\n\n",FONT_SIZE,array('justification'=>'center'));
+			
+			
+			$data = array( 
+				array(
+					'field1'=>'<b>Fecha</b>',
+					'field2'=>$datView["objTM"]->transactionOn,
+					'field3'=>'<b>Referencia1</b>',
+					'field4'=>$datView["objTM"]->reference1
+				),
+				array(
+					'field1'=>'<b>Cliente</b>',
+					'field2'=>$datView["objCustumer"]->customerNumber." ".$datView["objNatural"]->firstName ." ". $datView["objNatural"]->lastName,
+					'field3'=>'<b>Referencia2</b>',
+					'field4'=>$datView["objTM"]->reference2
+				),
+				array(
+					'field1'=>'<b>Estado</b>',
+					'field2'=>$datView["objTM"]->workflowStageName,
+					'field3'=>'<b>Referencia3</b>',
+					'field4'=>$datView["objTM"]->reference3
+				),
+				array(
+					'field1'=>'<b>Tipo Cambio</b>',
+					'field2'=>$datView["tipoCambio"],
+					'field3'=>'<b>Cajero</b>',
+					'field4'=>$datView["objUser"]->nickname
+				)
+			);		
+			$pdf->ezTable(
+				$data,
+				array('field1'=>'','field2'=>'','field3' => '','field4'=>'' ),
+				'',
+				array(
+					'showHeadings'=>0,'showLines' => 0 ,
+					'shaded'=>0,'xPos'=>'left','xOrientation'=>'right',
+					'width'=>$width,
+					'fontSize' => FONT_SIZE,	
+					'colGap' => 0,
+					'rowGap' => 0.5,
+					'cols'=>array(
+						'field1'=>array('justification'=>'left','width'=>66),
+						'field2'=>array('justification'=>'left'),
+						'field3'=>array('justification'=>'left','width'=>66),
+						'field4'=>array('justification'=>'left'),
+						'field5'=>array('justification'=>'left','width'=>35),
+						'field6'=>array('justification'=>'left')
+					) 
+				)
+			);
+			
+			//Set Comentario del Comprobante
+			$pdf->ezText("\n<b>Comentario</b>",FONT_SIZE);
+			$data	= array(
+				array('field1'=> $datView["objTM"]->note."...")
+			);
+			$pdf->ezTable(
+				$data,
+				array('field1'=>''),
+				'',
+				array(
+					'showHeadings'=>0,'shaded'=>0,'xPos'=>'left',
+					'xOrientation'=>'right','width'=>$width,
+					'showLines'=>0, 	
+					'fontSize' => FONT_SIZE,	
+					'colGap' => 0
+				)
+			);
+			
+			//Set Detalle del Comprobante
+			$pdf->ezText("\n\n<b>Detalle</b>",FONT_SIZE);			
+			$data		= array();
+			if($datView["objTMD"])
+			foreach($datView["objTMD"] as $row){
+				$objCustomerCreditDocument 	= $this->Customer_Credit_Document_Model->get_rowByPK($row->componentItemID);
+				$data[] 					= array('field1'=>$row->reference1,'field2'=>round($row->reference2,2),'field3'=>$row->amount,'field4'=>round($row->reference4,2),'field5'=>$objCustomerCreditDocument->currencyName);
+			}
+			
+			$pdf->ezTable(
+				$data,
+				array('field1'=>'Documento','field2'=>'Saldo Anterior','field3'=>'Monto','field4'=>'Saldo Nuevo','field5'=>'Moneda'),
+				'',				
+				array(
+					'showHeadings'=>1,'showLines'=>4,'shaded'=>0,
+					'xPos'=>'left','xOrientation'=>'right',
+					'width'=>$width,
+					'fontSize' => FONT_SIZE,	
+					'colGap' => 0
+				)
+			);
+			
+			
+			//Set Firma del Comprobante
+			$pdf->ezText("\n\n<b>Firma</b>\n");
+			$pdf->ezText("<b>Dir:</b>".$datView["objCustumer"]->reference1."");			
+			$pdf->ezText("<b>C$ BAC: 361-727-506</b>  <b>C$ BANPRO: 100-2000-0118-404</b> fecha:<b>".$datView["objTM"]->createdOn."</b>");
+			$margin_left_pint = (LEFT_MARGIN / 2.54)*72;
+			$y				  = $pdf->y;
+			$pdf->setColor(255,255,255);
+			$pdf->setStrokeColor(0,0,0);
+			$pdf->setLineStyle(1);
+			//$pdf->line($margin_left_pint ,$y+10,($width + $margin_left_pint)/2,$y+10);
+					
+			//Set Pie		
+			$pdf->EXTCreateFooter();
+			//OutPut
+			$pdf->ezStream(array('Content-Disposition' => $reportName)); 
+			
+		}
+		catch(Exception $ex){
+			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
+		}
+	}	
 	function viewRegisterVariedadesCarlosLuis(){
 		try{ 
 			//AUTENTICADO
