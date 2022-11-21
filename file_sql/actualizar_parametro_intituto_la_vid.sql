@@ -167,7 +167,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "TIGO: 8963-3737 | CLARO: 8902-3679" 
+	tb_company_parameter.value = "TIGO: 8975-7526 | CLARO: 8704-3636" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_PROPIETARY_PHONE";## TELEFONO DEL PROPIETARIO 
@@ -209,7 +209,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "true" 
+	tb_company_parameter.value = "false" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "INVOICE_BILLING_PRINTER_DIRECT";## Imprimir directo en la impresora 
@@ -489,7 +489,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "TIGO: 8963-3737 | CLARO: 8902-3679" 
+	tb_company_parameter.value = "TIGO: 8975-7526 | CLARO: 8704-3636" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_PHONE";## TELEFONO DE LA FACTURACION 
@@ -692,6 +692,6 @@ WHERE
 
 
 UPDATE tb_company SET 
-	NAME = 'Instituto la VID' , address = 'Chinandega, San Agustin 1c al sur' 
+	NAME = 'INSTITUTO NATURISTA LA VID' , address = 'Chinandega, San Agustin 1c al sur' 
 WHERE 
 	companyID = 2; ##Actualizar el nombre de la compania

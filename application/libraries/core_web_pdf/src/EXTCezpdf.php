@@ -44,6 +44,21 @@ class EXTCezpdf extends Cezpdf {
 		$this->ezText("<b>".strtoupper($companyName)."</b>\n\n\n",FONT_SIZE_TITLE,array('justification'=>'center'));
 		
 	}	
+	function EXTCreateHeaderPrinterTicketAndTermica80cmCuadrado($companyName,$componentID,$logoName,$sessionData){
+	
+		if(!$sessionData)
+		throw new Exception("NO VARIABLE DE SESSION ACTIVA");		
+		$companyID = $sessionData["user"]->companyID;
+		$this->addJpegFromFile(
+			PATH_FILE_OF_APP_ROOT.'/img/logos/'.$logoName,
+			65,
+			$this->ez['pageHeight'] - 90 - 0,
+			90, /*ancho*/
+			90 /*alto*/
+		);
+		$this->ezText("<b>".strtoupper($companyName)."</b>\n\n\n",FONT_SIZE_TITLE,array('justification'=>'center'));
+		
+	}	
 	function EXTCreateFooter(){
 		for($i = 1; $i <= $this->ezPageCount; $i++ ){
 			$rightMargin	= $this->ez['rightMargin'];

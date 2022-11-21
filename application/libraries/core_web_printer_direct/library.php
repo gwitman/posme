@@ -67,7 +67,7 @@ class Library {
     function executePrinter($dataSetValores){    
 		echo print_r($dataSetValores,true);
 		$this->printer->setJustification(Printer::JUSTIFY_CENTER);
-		$pathImg = PATH_FILE_OF_APP_ROOT.'/img/logos/invoice-direct-'.$dataSetValores["objParameterLogo"]->value;
+		$pathImg = PATH_FILE_OF_APP_ROOT.'/img/logos/direct-ticket-'.$dataSetValores["objParameterLogo"]->value;
 
 		$logo = EscposImage::load($pathImg, false);
 		$this->printer->bitImage($logo,1);
