@@ -2097,11 +2097,11 @@ class App_Invoice_Billing extends CI_Controller {
 			$pdf->ezText("\n\n\ngracias por su compra",						
 			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			
-			$pdf->ezText("\ncontamos con servicios a ",									
-			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			//$pdf->ezText("\ncontamos con servicios a ",									
+			//FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			
-			$pdf->ezText("\ndomicilio en el municipio de malpaisillo.",									
-			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
+			//$pdf->ezText("\ndomicilio en el municipio de malpaisillo.",									
+			//FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
 			
 			$pdf->ezText("\n***************************",						
 			FONT_SIZE_BODY_INVICE,array('justification'=>'center','spacing' => $spacing ));
