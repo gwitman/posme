@@ -95,7 +95,7 @@
 				console.info(obj);
 				objListaCustomerCredit 	= obj.array;
 				var saldoTotal 			= 0;				
-				objListaCustomerCredit.forEach(function(obj,inl){ saldoTotal = saldoTotal +  fnFormatFloat(obj.balance,2);});
+				objListaCustomerCredit.forEach(function(obj,inl){ saldoTotal = saldoTotal +  fnFormatFloat(obj.remaining,2);});
 				
 				saldoTotal = fnFormatNumber(saldoTotal,2);
 				$("#txtBalanceStart").val(saldoTotal);
@@ -130,7 +130,7 @@
 		
 		var objBalancesDocument = 
 		jLinq.from(objListaCustomerCredit).where(function(obj){ return obj.documentNumber == objResponse[4]}).select()[0];
-		objBalancesDocument.balance = fnFormatNumber(objBalancesDocument.balance,2);
+		objBalancesDocument.balance = fnFormatNumber(objBalancesDocument.remaining,2);
 		
 		var objRow 						= {};
 		objRow.checked 					= false;
