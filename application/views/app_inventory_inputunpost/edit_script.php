@@ -4,6 +4,7 @@
 	var numberDecimalSummary		= 2;
 	var numberDecimalSummaryRound	= false;
 	var objTableDetailTransaction 	= {};
+	var objListaProductos			= {};
 	
 	$(document).ready(function(){					
 		//Inicializar Controles		
@@ -21,7 +22,7 @@
 						$listrow = [];									
 						foreach($objTMD as $i)
 						{
-						$listrow[] = "[0,".$i->componentItemID.",".$i->transactionMasterDetailID.",'".$i->itemNumber."','".str_replace('\'','',$i->itemName)."','".$i->unitMeasureName."',fnFormatNumber(".$i->quantity.",numberDecimal),fnFormatNumber(".$i->unitaryCost.",numberDecimal),fnFormatNumber(".($i->unitaryCost * $i->quantity).",2)]";
+						$listrow[] = "[0,".$i->componentItemID.",".$i->transactionMasterDetailID.",'".$i->itemNumber."','".str_replace('\'','',$i->itemName)."','".$i->unitMeasureName."',fnFormatNumber(".$i->quantity.",numberDecimal),fnFormatNumber(".$i->unitaryCost.",numberDecimal),fnFormatNumber(".($i->unitaryAmount).",2)]";
 						}
 						echo implode(",",$listrow);
 					}
@@ -69,6 +70,12 @@
 							"mRender"	: function ( data, type, full ) {
 								return '<input type="text" class="col-lg-12 txtDetailCost txt-numeric" value="'+data+'" name="txtDetailCost[]" />';
 							}
+						},
+						{
+							"aTargets"	: [ 8 ],//precio
+							"mRender"	: function ( data, type, full ) {
+								return '<input type="text" class="col-lg-12 txtDetailPrice txt-numeric" value="'+data+'" name="txtDetailPrice[]" />';
+							}
 						}
 			]							
 		});
@@ -97,6 +104,12 @@
 		$(document).on("click","#btnClearOrdenCompra",function(){
 					$("#txtTransactionMasterIDOrdenCompra").val("");
 					$("#txtTransactionNumberOrdenCompra").val("");
+		});
+
+		$(document).on("click","#btnNewItemCatalog",function(){
+			var url_request 			= "<?php echo site_url(); ?>app_inventory_item/add/callback/fnObtenerListadoProductos";
+			window.open(url_request,"MsgWindow","width=700,height=600");
+			window.fnObtenerListadoProductos = fnObtenerListadoProductos; 			
 		});
 		
 		
@@ -226,9 +239,36 @@
 		});
 	});
 	
+	
+
 	//Funciones
 	////////////////////////////
 	////////////////////////////
+	function fnObtenerListadoProductos(){
+		fnWaitClose();
+		$.ajax(
+		{									
+			cache       : false,
+			dataType    : 'json',
+			type        : 'GET',																	
+			url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"0"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"0"}'),		
+			success		: fnFillListaProductos,
+			error:function(xhr,data)
+			{	
+				console.info("complete data error");									
+				fnWaitClose();
+				fnShowNotification("Error 505","error");
+			}
+		});
+	}
+	function fnFillListaProductos(data)
+	{
+		console.info("complete success data");
+		fnWaitClose();		
+		objListaProductos = data.objGridView;
+		
+	}
+
 	function validateForm(){
 		var result 				= true;
 		var timerNotification 	= 15000;
@@ -272,6 +312,7 @@
 		objRow.cost 					= 0;
 		objRow.lote 					= "";
 		objRow.vencimiento				= "";
+		objRow.price					= 0;
 		
 		//Berificar que el Item ya esta agregado 
 		if(jLinq.from(objTableDetailTransaction.fnGetData()).where(function(obj){ return obj[1] == objRow.itemID;}).select().length > 0 ){
@@ -279,7 +320,7 @@
 			return;
 		}
 		
-		objTableDetailTransaction.fnAddData([objRow.checked,objRow.itemID,objRow.transactionMasterDetail,objRow.itemNumber,objRow.itemName,objRow.itemUM,objRow.quantity,objRow.cost]);
+		objTableDetailTransaction.fnAddData([objRow.checked,objRow.itemID,objRow.transactionMasterDetail,objRow.itemNumber,objRow.itemName,objRow.itemUM,objRow.quantity,objRow.cost,objRow.price]);
 		refreschChecked();
 		
 	}

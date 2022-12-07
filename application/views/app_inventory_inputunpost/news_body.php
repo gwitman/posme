@@ -205,9 +205,9 @@
 
 															<div class="input-group">
 
-																<input type="hidden" id="txtProviderID" name="txtProviderID" value="">
+																<input type="hidden" id="txtProviderID" name="txtProviderID" value="<?php echo $providerDefault->entityID; ?>">
 
-																<input class="form-control" readonly id="txtProviderDescription" type="txtProviderDescription" value="">
+																<input class="form-control" readonly id="txtProviderDescription" type="txtProviderDescription" value="<?php echo $providerDefault->providerNumber; ?> / <?php echo $providerNaturalDefault->firstName; ?>">
 
 																
 
@@ -405,6 +405,7 @@
 
 									<a href="#" class="btn btn-flat btn-danger" id="btnDeleteDetailTransaction" >Eliminar</a>
 
+									<a href="#" class="btn btn-flat btn-success" id="btnNewItemCatalog" >Nuevo producto</a>
 									<!-- detalle del movimiento-->
 
 									<div class="row">
@@ -434,6 +435,8 @@
                                                     <th>Cantidad</th>
 
 													<th>Costo</th>
+
+													<th>Precio</th>
 
                                                   </tr>
 

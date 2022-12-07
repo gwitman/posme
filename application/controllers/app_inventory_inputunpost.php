@@ -820,7 +820,10 @@ class App_Inventory_Inputunpost extends CI_Controller {
 
 			$arrayListLote	 							= $this->input->post("txtDetailLote");			
 
-			$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");			
+			$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");		
+			
+			$arrayPrice 								= $this->input->post("txtDetailPrice");			
+			
 
 			
 
@@ -839,6 +842,8 @@ class App_Inventory_Inputunpost extends CI_Controller {
 					$lote 									= $arrayListLote[$key];
 
 					$vencimiento							= $arrayListVencimiento[$key];
+
+					$unitaryPrice 							= $arrayPrice[$key];
 
 					
 
@@ -860,13 +865,13 @@ class App_Inventory_Inputunpost extends CI_Controller {
 
 					
 
-					$objTMD["unitaryAmount"]				= 0;
+					$objTMD["unitaryAmount"]				= $unitaryPrice;
 
 					$objTMD["amount"] 						= 0;										
 
 					$objTMD["discount"]						= 0;
 
-					$objTMD["unitaryPrice"]					= 0;
+					$objTMD["unitaryPrice"]					= $unitaryPrice;
 
 					$objTMD["promotionID"] 					= 0;
 
@@ -977,6 +982,8 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			$this->load->model("Transaction_Master_Model");
 			$this->load->model("Transaction_Master_Detail_Model");	
 			$this->load->model("Item_Model");			
+			$this->load->model("List_Price_Model");
+			$this->load->model("Price_Model");
 			$this->load->library('core_web_csv/csvreader'); 		
 
 			
@@ -1035,7 +1042,11 @@ class App_Inventory_Inputunpost extends CI_Controller {
 
 			throw new Exception("EL DOCUMENTO NO PUEDE ACTUALIZARCE, EL CICLO CONTABLE ESTA CERRADO");
 
-			
+
+			//Obtener lista de precio
+			$objParameterPriceDefault					= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
+			$listPriceID 								= $objParameterPriceDefault->value;
+			$objTipePrice 								= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
 
 			//Actualizar Maestro
 
@@ -1115,6 +1126,8 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			$arrayListLote	 							= $this->input->post("txtDetailLote");			
 
 			$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");			
+
+			$arrayPrice 								= $this->input->post("txtDetailPrice");			
 
 			$archivoCSV 								= $this->input->post("txtFileImport");			
 			
@@ -1212,10 +1225,24 @@ class App_Inventory_Inputunpost extends CI_Controller {
 
 						$vencimiento							= $arrayListVencimiento[$key];
 
+						$unitaryPrice 							= $arrayPrice[$key];
+
 						
-
+						foreach($objTipePrice as $priceT)
+						{			
+								$typePriceID					= $priceT->catalogItemID;																					
+								$dataUpdatePrice["price"] 		= $unitaryPrice;
+								$dataUpdatePrice["percentage"] 	= 
+																$objItem->cost == 0 ? 
+																	($unitaryPrice / 100) : 
+																	(((100 * $unitaryPrice) / $objItem->cost) - 100);
+																	
+								
+								$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
+								
+						}
+						
 						//Nuevo Detalle
-
 						if($transactionMasterDetailID == 0){						
 
 							$objTMD 								= array();
@@ -1238,13 +1265,13 @@ class App_Inventory_Inputunpost extends CI_Controller {
 
 							
 
-							$objTMD["unitaryAmount"]				= 0;
+							$objTMD["unitaryAmount"]				= $unitaryPrice;
 
 							$objTMD["amount"] 						= 0;										
 
 							$objTMD["discount"]						= 0;
 
-							$objTMD["unitaryPrice"]					= 0;
+							$objTMD["unitaryPrice"]					= $unitaryPrice;
 
 							$objTMD["promotionID"] 					= 0;
 
@@ -1291,6 +1318,10 @@ class App_Inventory_Inputunpost extends CI_Controller {
 							$objTMDNew["quantity"] 						= $quantity;
 
 							$objTMDNew["unitaryCost"]					= $cost;
+
+							$objTMDNew["unitaryPrice"]					= $unitaryPrice;
+							
+							$objTMDNew["unitaryAmount"]					= $unitaryPrice;
 
 							$objTMDNew["cost"] 							= $objTMDNew["quantity"] * $objTMDNew["unitaryCost"];
 
@@ -1485,22 +1516,15 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			////////////////////////////////////////
 
 			$this->load->model("UserWarehouse_Model"); 
-
-			$this->load->model("Transaction_Master_Model"); 			
-
+			$this->load->model("Transaction_Master_Model"); 
 			$this->load->model("Transaction_Master_Detail_Model");
-
 			$this->load->model("Warehouse_Model");
-
 			$this->load->model("Provider_Model");
-
 			$this->load->model("Natural_Model");
-
 			$this->load->model("core/User_Model");
-
 			$this->load->model("Natural_Model");
-
 			$this->load->model("Legal_Model");
+			$this->load->model("List_Price_Model");
 
 			
 
@@ -1575,6 +1599,8 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			
 
 			
+			$objListPrice 						= $this->List_Price_Model->getListPriceToApply($companyID);
+			$datView["objListPrice"]			= $objListPrice;
 
 			//Obtener el Registro	
 
@@ -1682,12 +1708,13 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			//Library
 
 			$this->load->model("UserWarehouse_Model");
-
 			$this->load->model("Warehouse_Model");
-
 			$this->load->model("Employee_Model");
-
 			$this->load->model("Natural_Model");
+			$this->load->model("Entity_Model"); 	
+			$this->load->model("Legal_Model");
+			$this->load->model("Provider_Model");				
+			$this->load->model("List_Price_Model");
 
 			
 
@@ -1748,12 +1775,20 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			$warehouseDefault 					= $objParameterWarehouseDefault->value;
 			$dataView["warehouseDefault"]		= $warehouseDefault;
 
+			$objParameterProviderDefault		= $this->core_web_parameter->getParameter("CXP_PROVIDER_DEFAULT",$companyID);
+			$objParameterProviderDefault 		= $objParameterProviderDefault->value;
+
+			$dataView["providerDefault"]	 		= $this->Provider_Model->get_rowByProviderNumber($companyID,$objParameterProviderDefault);
+			$dataView["providerNaturalDefault"]	 	= $this->Natural_Model->get_rowByPK($companyID,$dataView["providerDefault"]->branchID,$dataView["providerDefault"]->entityID);
+			
+
+
+			$objListPrice 						= $this->List_Price_Model->getListPriceToApply($companyID);
+			$dataView["objListPrice"]			= $objListPrice;
+
 			$dataView["objComponentItem"] 			= $objComponentItem;
-
 			$dataView["objComponentProvider"] 		= $objComponentProvider;
-
 			$dataView["objComponentInputSinPost"]	= $objComponentInputSinPost;
-
 			$dataView["objComponentOrdenCompra"]	= $objComponentOrdenCompra;
 
 			
