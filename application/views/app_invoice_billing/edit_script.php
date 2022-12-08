@@ -489,8 +489,9 @@
 		objListaProductos = data.objGridView;
 		
 	}
-		function fnCompleteGetCustomerCreditLine (data)
+	function fnCompleteGetCustomerCreditLine (data)
 	{
+
 		console.info("complete success data");
 		fnWaitClose();
 		tmpInfoClient = data;
@@ -502,15 +503,15 @@
 		if(tmpInfoClient.objListCustomerCreditLine != null)
 		for(var i = 0; i< tmpInfoClient.objListCustomerCreditLine.length;i++){
 			if(i==0 && varCustomerCrediLineID == 0){
-				$("#txtCustomerCreditLineID").append("<option value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"' selected>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber +"</option>");
+				$("#txtCustomerCreditLineID").append("<option value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"' selected>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber + " " +tmpInfoClient.objListCustomerCreditLine[i].line  +"</option>");
 				$("#txtCustomerCreditLineID").val(tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID);
 			}
 			else if( varCustomerCrediLineID == tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID){
-				$("#txtCustomerCreditLineID").append("<option value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"' selected>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber +"</option>");
+				$("#txtCustomerCreditLineID").append("<option value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"' selected>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber + " " +tmpInfoClient.objListCustomerCreditLine[i].line  + "</option>");
 				$("#txtCustomerCreditLineID").val(tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID);
 			}
 			else
-				$("#txtCustomerCreditLineID").append("<option  value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"'>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber +"</option>");
+				$("#txtCustomerCreditLineID").append("<option  value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"'>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber + " " +tmpInfoClient.objListCustomerCreditLine[i].line  +"</option>");
 		}
 		
 		//Habilitar la compra al contado o al credito

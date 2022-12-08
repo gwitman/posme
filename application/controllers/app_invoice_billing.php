@@ -345,6 +345,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$this->load->model("Customer_Credit_Model");		
 			$this->load->model("core/Catalog_Item_Model");							
 			$this->load->library("financial/financial_amort");
+			$this->load->library('core_web_csv/csvreader'); 
 			
 			
 			//Obtener el Componente de Transacciones Facturacion
@@ -437,17 +438,71 @@ class App_Invoice_Billing extends CI_Controller {
 			}
 			
 			
-			//Actualizar Detalle
-			$listTransactionDetalID 					= $this->input->post("txtTransactionMasterDetailID");
-			$arrayListItemID 							= $this->input->post("txtItemID");
-			$arrayListQuantity	 						= $this->input->post("txtQuantity");
-			$arrayListPrice		 						= $this->input->post("txtPrice");
-			$arrayListSubTotal	 						= $this->input->post("txtSubTotal");
-			$arrayListIva		 						= $this->input->post("txtIva");
-			$arrayListLote	 							= $this->input->post("txtDetailLote");			
-			$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");	
 			
+			//Leer archivo
+			$path 	= PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentBilling->componentID."/component_item_".$transactionMasterID;			
+			$path 	= $path.'/procesar.csv';
 			
+			if (file_exists($path))
+			{
+				//Actualizar Detalle
+				$listTransactionDetalID 					= array();
+				$arrayListItemID 							= array();
+				$arrayListQuantity	 						= array();
+				$arrayListPrice		 						= array();
+				$arrayListSubTotal	 						= array();
+				$arrayListIva		 						= array();
+				$arrayListLote	 							= array();
+				$arrayListVencimiento						= array();
+				
+
+				$objParameterDeliminterCsv	= $this->core_web_parameter->getParameter("CORE_CSV_SPLIT",$companyID);
+				$characterSplie = $objParameterDeliminterCsv->value;
+				
+				//Obtener los registro del archivo
+				$this->csvreader->separator = $characterSplie;
+				$table 			= $this->csvreader->parse_file($path); 
+				
+				
+				$fila 			= 0;
+				if($table)
+				foreach ($table as $row) 
+				{	
+					$fila++;
+					$codigo 		= $row["Codigo"];
+					$description 	= $row["Nombre"];
+					$cantidad 		= $row["Cantidad"];
+					$costo 			= $row["Costo"];						
+					$objItem		= $this->Item_Model->get_rowByCode($companyID,$codigo);		
+
+
+				}
+			}
+			else{
+				//Actualizar Detalle
+				$listTransactionDetalID 					= $this->input->post("txtTransactionMasterDetailID");
+				$arrayListItemID 							= $this->input->post("txtItemID");
+				$arrayListQuantity	 						= $this->input->post("txtQuantity");
+				$arrayListPrice		 						= $this->input->post("txtPrice");
+				$arrayListSubTotal	 						= $this->input->post("txtSubTotal");
+				$arrayListIva		 						= $this->input->post("txtIva");
+				$arrayListLote	 							= $this->input->post("txtDetailLote");			
+				$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");	
+				
+			}
+					
+
+				
+					
+			//log_message("ERROR",print_r($listTransactionDetalID,true));
+			//log_message("ERROR",print_r($arrayListItemID,true));
+			//log_message("ERROR",print_r($arrayListQuantity,true));
+			//log_message("ERROR",print_r($arrayListPrice,true));
+			//log_message("ERROR",print_r($arrayListSubTotal,true));
+			//log_message("ERROR",print_r($arrayListIva,true));
+			//log_message("ERROR",print_r($arrayListLote,true));
+			//log_message("ERROR",print_r($arrayListVencimiento,true));
+
 			//Ingresar la configuracion de precios			
 			$objParameterPriceDefault	= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
 			$listPriceID 	= $objParameterPriceDefault->value;
@@ -478,10 +533,7 @@ class App_Invoice_Billing extends CI_Controller {
 					$objCompanyComponentConcept 			= $this->Company_Component_Concept_Model->get_rowByPK($companyID,$objComponentItem->componentID,$itemID,"IVA");
 					
 					//$price 								= $objItem->cost * ( 1 + ($objPrice->percentage/100));
-					$price 									= $arrayListPrice[$key];
-					log_message("ERROR","mostrar precio");
-					log_message("ERROR",$price);
-					
+					$price 									= $arrayListPrice[$key];					
 					$ivaPercentage							= ($objCompanyComponentConcept != null ? $objCompanyComponentConcept->valueOut : 0 );					
 					$unitaryAmount 							= $price * (1 + $ivaPercentage);					
 					$tax1 									= $price * $ivaPercentage;
@@ -499,9 +551,6 @@ class App_Invoice_Billing extends CI_Controller {
 										
 					//Nuevo Detalle
 					if($transactionMasterDetailID == 0){	
-
-						log_message("ERROR","Actualizar Lista de Precio 00125");
-						
 						
 						$objTMD 								= NULL;
 						$objTMD["companyID"] 					= $objTM->companyID;
@@ -553,8 +602,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$this->Transaction_Master_Detail_Credit_Model->insert($objTMDC);
 						
 						//Actualizar el Precio
-						log_message("ERROR","Actualizar Lista de Precio 001");
-						
 						if($objUpdatePrice)
 						{
 							foreach($objTipePrice as $priceT)
@@ -564,10 +611,8 @@ class App_Invoice_Billing extends CI_Controller {
 									$dataUpdatePrice["percentage"] 	= 
 																	$objItem->cost == 0 ? 
 																		($price / 100) : 
-																		(((100 * $price) / $objItem->cost) - 100);
-																		
-									log_message("ERROR","Actualizar Lista de Precio");
-									log_message("ERROR",print_r($dataUpdatePrice,true));
+																		(((100 * $price) / $objItem->cost) - 100);																		
+									
 									$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
 									
 							}
@@ -577,12 +622,9 @@ class App_Invoice_Billing extends CI_Controller {
 					}					
 					//Editar Detalle
 					else{
-						log_message("ERROR","actualizar detalle");						
+						
 						$objTMDC  								= $this->Transaction_Master_Detail_Credit_Model->get_rowByPK($transactionMasterDetailID);
 						$objTMDC								= NULL;
-						log_message("ERROR",$price);
-						
-						log_message("ERROR","precio despues de la validacion de dolares. ".$price);
 						
 						$objTMDNew 								= null;
 						$objTMDNew["quantity"] 					= $quantity;					//cantidad
@@ -600,8 +642,7 @@ class App_Invoice_Billing extends CI_Controller {
 						
 						$tax1Total								= $tax1Total + $tax1;
 						$subAmountTotal							= $subAmountTotal + ($quantity * $price);
-						$amountTotal							= $amountTotal + $objTMDNew["amount"];
-						log_message("ERROR",print_r($objTMDNew,true));
+						$amountTotal							= $amountTotal + $objTMDNew["amount"];						
 						$this->Transaction_Master_Detail_Model->update($companyID,$transactionID,$transactionMasterID,$transactionMasterDetailID,$objTMDNew);	
 
 						$objTMDC["reference1"]					= $this->input->post("txtFixedExpenses");
@@ -942,6 +983,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$this->Transaction_Master_Info_Model->insert($objTMInfo);
 			
 
+
 			//Recorrer la lista del detalle del documento
 			$arrayListItemID 							= $this->input->post("txtItemID");
 			$arrayListQuantity	 						= $this->input->post("txtQuantity");	
@@ -1062,8 +1104,7 @@ class App_Invoice_Billing extends CI_Controller {
 																	($price / 100) : 
 																	(((100 * $price) / $objItem->cost) - 100);
 																	
-								log_message("ERROR","Actualizar Lista de Precio");
-								log_message("ERROR",print_r($dataUpdatePrice,true));
+								
 								$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
 								
 						}
