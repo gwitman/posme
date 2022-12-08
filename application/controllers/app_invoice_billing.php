@@ -446,7 +446,7 @@ class App_Invoice_Billing extends CI_Controller {
 			if (file_exists($path))
 			{
 				//Actualizar Detalle
-				$listTransactionDetalID 					= array();
+				$listTransactionDetalID = array();
 				$arrayListItemID 							= array();
 				$arrayListQuantity	 						= array();
 				$arrayListPrice		 						= array();
