@@ -639,14 +639,16 @@
 		};		
 		
 		for(var i = 0; i < objTableDetail.fnGetData().length; i++){
+			debugger;
 			var rowTable = objTableDetail.fnGetData()[i];
 			var rowTableItemID 		 = rowTable[2];
 			var rowTableItemQuantity = rowTable[6];
+			var rowTableItemNumber = rowTable[3];
 			var rowTableItemNombre = rowTable[4];
 			var objProducto = jLinq.from(objListaProductos).where(function(obj){ return obj.itemID == rowTableItemID}).select();
 			
 			if(objProducto.length == 0){
-				fnShowNotification("Producto no se encuentra en inventario","error",timerNotification);
+				fnShowNotification("Linea "+(i+1)+" producto no se encuentra en inventario '"+rowTableItemNumber + " " + rowTableItemNombre+"'" ,"error",timerNotification);
 				result = false;	
 			}
 			

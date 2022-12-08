@@ -442,11 +442,14 @@ class App_Invoice_Billing extends CI_Controller {
 			//Leer archivo
 			$path 	= PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentBilling->componentID."/component_item_".$transactionMasterID;			
 			$path 	= $path.'/procesar.csv';
+
+			$pathNew 	= PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentBilling->componentID."/component_item_".$transactionMasterID;			
+			$pathNew 	= $pathNew.'/procesado.csv';
 			
 			if (file_exists($path))
 			{
 				//Actualizar Detalle
-				$listTransactionDetalID = array();
+				$listTransactionDetalID 					= array();
 				$arrayListItemID 							= array();
 				$arrayListQuantity	 						= array();
 				$arrayListPrice		 						= array();
@@ -464,6 +467,7 @@ class App_Invoice_Billing extends CI_Controller {
 				$table 			= $this->csvreader->parse_file($path); 
 				
 				
+				rename($path,$pathNew);
 				$fila 			= 0;
 				if($table)
 				foreach ($table as $row) 
@@ -472,9 +476,22 @@ class App_Invoice_Billing extends CI_Controller {
 					$codigo 		= $row["Codigo"];
 					$description 	= $row["Nombre"];
 					$cantidad 		= $row["Cantidad"];
-					$costo 			= $row["Costo"];						
-					$objItem		= $this->Item_Model->get_rowByCode($companyID,$codigo);		
+					$precio 		= $row["Precio"];											
+					$objItem		= $this->Item_Model->get_rowByCode($companyID,$codigo);
 
+					
+
+					array_push($listTransactionDetalID, 0);
+					array_push($arrayListItemID, $objItem->itemID);
+					array_push($arrayListQuantity, $cantidad);
+					array_push($arrayListPrice, $precio);
+
+					//$arrayListSubTotal		= SUB TOTAL ES UN SOLO NUMERO
+					//$arrayListIva		 		= IVA ES UN SOLO NUMERO POR QUE ES EL TOTAL
+
+					array_push($arrayListLote, '');
+					array_push($arrayListVencimiento, '');
+					
 
 				}
 			}
@@ -493,15 +510,29 @@ class App_Invoice_Billing extends CI_Controller {
 					
 
 				
-					
-			//log_message("ERROR",print_r($listTransactionDetalID,true));
-			//log_message("ERROR",print_r($arrayListItemID,true));
-			//log_message("ERROR",print_r($arrayListQuantity,true));
-			//log_message("ERROR",print_r($arrayListPrice,true));
-			//log_message("ERROR",print_r($arrayListSubTotal,true));
-			//log_message("ERROR",print_r($arrayListIva,true));
-			//log_message("ERROR",print_r($arrayListLote,true));
-			//log_message("ERROR",print_r($arrayListVencimiento,true));
+			log_message("ERROR","Revisar variable");		
+			log_message("ERROR",print_r($listTransactionDetalID,true));
+
+			log_message("ERROR","Revisar variable 1");	
+			log_message("ERROR",print_r($arrayListItemID,true));
+
+			log_message("ERROR","Revisar variable 2");	
+			log_message("ERROR",print_r($arrayListQuantity,true));
+
+			log_message("ERROR","Revisar variable 3");	
+			log_message("ERROR",print_r($arrayListPrice,true));
+
+			log_message("ERROR","Revisar variable 4");	
+			log_message("ERROR",print_r($arrayListSubTotal,true));
+
+			log_message("ERROR","Revisar variable 5");	
+			log_message("ERROR",print_r($arrayListIva,true));
+
+			log_message("ERROR","Revisar variable 6");				
+			log_message("ERROR",print_r($arrayListLote,true));
+
+			log_message("ERROR","Revisar variable 7");	
+			log_message("ERROR",print_r($arrayListVencimiento,true));
 
 			//Ingresar la configuracion de precios			
 			$objParameterPriceDefault	= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
