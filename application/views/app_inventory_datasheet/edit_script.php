@@ -2,8 +2,27 @@
 				<script>		
 					var objItemDataSheetDetail 	= {};					
 					var objDataSource 			= [];
-					var objDataSource 			= JSON.parse('<?php echo json_encode($objListProvider); ?>');	
-
+					var objDataSource 			= JSON.parse('<?php echo json_encode($objItemDataSheetDetail); ?>');	
+					var objTmpDataSource 		= [];
+					if(objDataSource != null){
+						for(var i = 0 ; i < objDataSource.length;i++){							
+							//Rellenar Datos
+							objTmpDataSource.push([
+								0,								
+								objDataSource[i].itemDataSheetID,
+								objDataSource[i].itemID,
+								objDataSource[i].itemDataSheetDetailID,
+								0 , /*tipo de relacion */	
+								objDataSource[i].itemNumber,
+								objDataSource[i].name,
+								'Unidad',
+								fnFormatNumber(objDataSource[i].quantity,2), /*cantidad */
+								0,
+								0
+							]);
+						}
+					}
+					
 					$(document).ready(function(){
 						//Regresar a la lista
 						$(document).on("click","#btnBack",function(){
@@ -25,7 +44,7 @@
 							"bFilter"		: false,
 							"bSort"			: false,
 							"bInfo"			: false,
-							"aaData"		: objDataSource,
+							"aaData"		: objTmpDataSource,
 							"bAutoWidth"	: false,
 							"aoColumnDefs": [ 
 										{

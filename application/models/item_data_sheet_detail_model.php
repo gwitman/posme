@@ -32,6 +32,32 @@ class Item_Data_Sheet_Detail_Model extends CI_Model  {
 		return $this->db->affected_rows(); 
 
    } 
+   function deleteWhereDataSheet($itemDataSheetID){
+
+		$data["isActive"] = 0;
+
+		$this->db->where('itemDataSheetID', $itemDataSheetID);
+
+		$this->db->update('tb_item_data_sheet_detail', $data);
+
+		return $this->db->affected_rows(); 
+
+	}
+
+	function deleteWhereIDNotIn($itemDataSheetID,$listDSD_ID){
+
+		$data["isActive"] = 0;
+
+		$this->db->where('itemDataSheetID', $itemDataSheetID);
+
+		$this->db->where_not_in('itemDataSheetDetailID', $listDSD_ID);
+
+		$this->db->update('tb_item_data_sheet_detail', $data);
+
+		return $this->db->affected_rows(); 
+
+	}
+
 
    function insert($data){
 
@@ -45,9 +71,10 @@ class Item_Data_Sheet_Detail_Model extends CI_Model  {
 
    function get_rowByPK($itemDataSheetDetailID){
 
-		$this->db->select("i.itemDataSheetDetailID,i.itemDataSheetID,i.itemID,i.quantity,i.relatedItemID,i.isActive");
+		$this->db->select("i.itemDataSheetDetailID,i.itemDataSheetID,i.itemID,i.quantity,i.relatedItemID,i.isActive ,tm.itemNumber,tm.name ");
 
-		$this->db->from("tb_item_data_sheet_detail i");		
+		$this->db->from("tb_item_data_sheet_detail i");
+        $this->db->join("tb_item tm","i.itemID = tm.itemID");
 
 		$this->db->where("i.itemDataSheetDetailID",$itemDataSheetDetailID);
 
@@ -83,9 +110,10 @@ class Item_Data_Sheet_Detail_Model extends CI_Model  {
 
    function get_rowByItemDataSheet($itemDataSheetID){    
 
-		$this->db->select("i.itemDataSheetDetailID,i.itemDataSheetID,i.itemID,i.quantity,i.relatedItemID,i.isActive");
+		$this->db->select("i.itemDataSheetDetailID,i.itemDataSheetID,i.itemID,i.quantity,i.relatedItemID,i.isActive,tm.itemNumber,tm.name ");
 
 		$this->db->from("tb_item_data_sheet_detail i");		
+        $this->db->join("tb_item tm","i.itemID = tm.itemID");
 
 		$this->db->where("i.itemDataSheetID",$itemDataSheetID);
 
