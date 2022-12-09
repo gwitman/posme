@@ -369,21 +369,14 @@
 												<option></option>																
 
 												<?php
-
 												$count = 0;
-
 												if($objListTypePrice)
-
 												foreach($objListTypePrice as $price){
 
-													if($count == 0 )
-
+													if($price->catalogItemID == $objParameterTypePreiceDefault )
 													echo "<option value='".$price->catalogItemID."' selected >".$price->display."</option>";
-
 													else
-
 													echo "<option value='".$price->catalogItemID."'  >".$price->display."</option>";
-
 													$count++;
 
 												}

@@ -35,6 +35,7 @@ class App_Inventory_Item extends CI_Controller {
 			$this->load->model("ProviderItem_Model"); 			
 			$this->load->model("Warehouse_Model");
 			$this->load->model("ItemCategory_Model");
+			$this->load->model("Price_Model");
 			$this->load->model("Company_Component_Concept_Model");
 			
 			
@@ -61,7 +62,12 @@ class App_Inventory_Item extends CI_Controller {
 			if(!$objComponentProvider)
 			throw new Exception("EL COMPONENTE 'tb_provider' NO EXISTE...");
 			
-			
+			$objParameterTypePreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_TYPE_PRICE",$companyID);
+			$objParameterTypePreiceDefault			= $objParameterTypePreiceDefault->value;
+
+			$objParameterListPreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
+			$objParameterListPreiceDefault			= $objParameterListPreiceDefault->value;
+
 			//Obtener Informacion
 			$dataView["objComponent"] 				= $objComponent;
 			$dataView["componentProviderID"]		= $objComponentProvider->componentID;
@@ -76,8 +82,14 @@ class App_Inventory_Item extends CI_Controller {
 			$dataView["objListUnitMeasure"]			= $this->core_web_catalog->getCatalogAllItem("tb_item","unitMeasureID",$companyID);
 			$dataView["objListDisplay"]				= $this->core_web_catalog->getCatalogAllItem("tb_item","displayID",$companyID);
 			$dataView["objListDisplayUnitMeasure"]	= $this->core_web_catalog->getCatalogAllItem("tb_item","displayUnitMeasureID",$companyID);
-			$dataView["callback"]					= $callback;
+			$dataView["objListTypePreice"]			= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
 			
+
+			$dataView["objParameterTypePreiceDefault"]			= $objParameterTypePreiceDefault;
+			$dataView["objParameterListPreiceDefault"]			= $objParameterListPreiceDefault;
+			$dataView["callback"]					= $callback;
+			$dataView["objListPriceItem"]			= $this->Price_Model->get_rowByItemID($companyID,$dataView["objParameterListPreiceDefault"],$itemID);
+
 					
 			//Renderizar Resultado
 			$dataSession["notification"]	= $this->core_web_error->get_error($dataSession["user"]->userID);
@@ -350,7 +362,7 @@ class App_Inventory_Item extends CI_Controller {
 							$objItemTmp				= $this->Item_Model->get_rowByCode($companyID,
 								$objItem["itemNumber"]);
 								
-							log_message("ERROR",print_r($objItemTmp->itemID,true));
+							
 								
 							$typePriceID			= $price->catalogItemID;
 							
@@ -507,32 +519,39 @@ class App_Inventory_Item extends CI_Controller {
 						
 						//Ingresar la configuracion de precios
 						//por defecto con 0% de utilidad
+						$arrayListPrecioValue 	= $this->input->post("txtDetailTypePriceValue");
+						$arrayTypePrecioId 		= $this->input->post("txtDetailTypePriceID");
+						$arrayListPrecioID 		= $this->input->post("txtDetailListPriceID");
+
 						$objParameterPriceDefault	= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
 						$listPriceID 	= $objParameterPriceDefault->value;
-						$objTipePrice 	= 
-						$this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",
-							$companyID);
-							
-						foreach($objTipePrice as $price)
+						$objTipePrice 	= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
+
+						
+						foreach($arrayTypePrecioId as $key => $price)
 						{				
 								
 								$typePriceID				= 0;	
-								$typePriceID				= $price->catalogItemID;
+								$typePriceID				= $arrayTypePrecioId[$key];
+								$listPriceID				= $arrayListPrecioID[$key];
+								$priceValue					= $arrayListPrecioValue[$key];
 								
 								
 								//Insert register to price
 								$dataPrice["companyID"] 	= $companyID;
 								$dataPrice["listPriceID"] 	= $listPriceID;
 								$dataPrice["itemID"] 		= $itemID;
-								$dataPrice["typePriceID"] 	= $typePriceID;							
-								$dataPrice["price"] 		= 0;
+								$dataPrice["typePriceID"] 	= $typePriceID;
+								$dataPrice["price"] 		= $priceValue;
 								$dataPrice["percentage"] 	= 0;
 										
-								$objPrice = $this->Price_Model->get_rowByPK($companyID,$listPriceID,$itemID,$typePriceID);
-								
+								$objPrice = $this->Price_Model->get_rowByPK($companyID,$listPriceID,$itemID,$typePriceID);								
 								if($objPrice == null )
 								{
 									$this->Price_Model->insert($dataPrice);
+								}
+								else{
+									$this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataPrice);
 								}
 						}
 						
@@ -546,8 +565,7 @@ class App_Inventory_Item extends CI_Controller {
 					
 					
 					//Generar la Imagen del Codigo de Barra
-					$pathFileCodeBarra = PATH_FILE_OF_APP."/company_".$companyID.
-					"/component_".$objComponent->componentID."/component_item_".$itemID."/barcode.jpg";
+					$pathFileCodeBarra = PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponent->componentID."/component_item_".$itemID."/barcode.jpg";
 					
 					
 					$objBarCode 	= new barcode();
@@ -610,7 +628,12 @@ class App_Inventory_Item extends CI_Controller {
 			$objParameterWarehouseDefault	= $this->core_web_parameter->getParameter("INVENTORY_ITEM_WAREHOUSE_DEFAULT",$companyID);
 			$warehouseDefault 				= $objParameterWarehouseDefault->value;
 			
-			
+			$objParameterTypePreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_TYPE_PRICE",$companyID);
+			$objParameterTypePreiceDefault			= $objParameterTypePreiceDefault->value;
+
+			$objParameterListPreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
+			$objParameterListPreiceDefault			= $objParameterListPreiceDefault->value;
+
 			$dataView["objListWarehouse"]			= $this->Warehouse_Model->getByCompany($companyID);
 			$dataView["objListInventoryCategory"]	= $this->ItemCategory_Model->getByCompany($companyID);
 			$dataView["objListWorkflowStage"]		= $this->core_web_workflow->getWorkflowInitStage("tb_item","statusID",$companyID,$branchID,$roleID);
@@ -618,8 +641,13 @@ class App_Inventory_Item extends CI_Controller {
 			$dataView["objListUnitMeasure"]			= $this->core_web_catalog->getCatalogAllItem("tb_item","unitMeasureID",$companyID);
 			$dataView["objListDisplay"]				= $this->core_web_catalog->getCatalogAllItem("tb_item","displayID",$companyID);
 			$dataView["objListDisplayUnitMeasure"]	= $this->core_web_catalog->getCatalogAllItem("tb_item","displayUnitMeasureID",$companyID);
+			$dataView["objListTypePreice"]			= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
 			$dataView["warehouseDefault"]			= $warehouseDefault;
-			$dataView["callback"]					= $callback;
+			
+
+			$dataView["objParameterTypePreiceDefault"]			= $objParameterTypePreiceDefault;
+			$dataView["objParameterListPreiceDefault"]			= $objParameterListPreiceDefault;
+			$dataView["callback"]								= $callback;
 			
 			//Renderizar Resultado 
 			$dataSession["notification"]	= $this->core_web_error->get_error($dataSession["user"]->userID);

@@ -50,6 +50,7 @@
 											<ul class="dropdown-menu">
 												<li><a href="#dropdown" data-toggle="tab">Comentario</a></li>
 												<li><a href="#dropdown-file" data-toggle="tab">Archivos</a></li>
+												<li><a href="#price" data-toggle="tab">Precios</a></li>
 											 </ul>
 										</li>
 									</ul>
@@ -395,6 +396,42 @@
 										</div>
 										<div class="tab-pane fade" id="dropdown-file">
 											
+										</div>
+										<div class="tab-pane fade" id="price">
+											<div class="row">
+												<div class="col-lg-12">
+													<table class="table table-bordered">
+														<thead>
+														  <tr>																													  	
+															<th>Tipo de Precio</th>
+															<th>Precio</th>
+														  </tr>
+														</thead>
+														<tbody id="body_detail_precio">																
+															<?php
+															if($objListTypePreice)
+															foreach($objListTypePreice as $ws){																
+																	?>
+																	<tr class="row_price">
+																		<td>
+																			<input type="hidden" class="txtDetailListPriceID" name="txtDetailListPriceID[]" value="<?php echo $objParameterListPreiceDefault; ?>"></input>
+																			<input type="hidden" class="txtDetailTypePriceID" name="txtDetailTypePriceID[]" value="<?php echo $ws->catalogItemID; ?>"></input>
+																			<?php echo $ws->name; ?>
+																		</td>																		
+																		<td>
+																			<input class="form-control"  type="text" id="txtDetailTypePriceValue" name="txtDetailTypePriceValue[]" value="0">
+																		</td>
+																		
+																	</tr>
+																	<?php
+																
+															}
+															?>
+														</tbody>
+													</table>
+													
+												</div><!-- End .col-lg-12  --> 
+											</div><!-- End .row-fluid  -->
 										</div>
 									</div>    
 							 

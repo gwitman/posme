@@ -1,4 +1,18 @@
 UPDATE  tb_company_parameter,tb_parameter SET 
+	tb_company_parameter.value = "154" 
+WHERE 
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = "INVOICE_DEFAULT_TYPE_PRICE";## Tipo de precio por defecto
+
+
+UPDATE  tb_company_parameter,tb_parameter SET 
+	tb_company_parameter.value = "PRO00000131" 
+WHERE 
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = "CXP_PROVIDER_DEFAULT";## Proveedor por defecto
+
+
+UPDATE  tb_company_parameter,tb_parameter SET 
 	tb_company_parameter.value = "false" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 

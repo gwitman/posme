@@ -1286,6 +1286,9 @@ class App_Invoice_Billing extends CI_Controller {
 			$objParameterInvoiceAutoApply			= $this->core_web_parameter->getParameter("INVOICE_AUTOAPPLY_CASH",$companyID);
 			$objParameterInvoiceAutoApply			= $objParameterInvoiceAutoApply->value;
 
+			$objParameterTypePreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_TYPE_PRICE",$companyID);
+			$objParameterTypePreiceDefault			= $objParameterTypePreiceDefault->value;
+
 			$this->core_web_authentication->getValueLicense($companyID);
 
 			//Obtener la lista de estados
@@ -1299,27 +1302,28 @@ class App_Invoice_Billing extends CI_Controller {
 			
 			
 			//Tipo de Factura
-			$dataView["companyID"]				= $dataSession["user"]->companyID;
-			$dataView["userID"]					= $dataSession["user"]->userID;
-			$dataView["userName"]				= $dataSession["user"]->nickname;
-			$dataView["roleID"]					= $dataSession["role"]->roleID;
-			$dataView["roleName"]				= $dataSession["role"]->name;
-			$dataView["branchID"]				= $dataSession["branch"]->branchID;
-			$dataView["branchName"]				= $dataSession["branch"]->name;
-			$dataView["exchangeRate"]			= $this->core_web_currency->getRatio($companyID,date("Y-m-d"),1,$targetCurrency->currencyID,$objCurrency->currencyID);			
-			$dataView["listCurrency"]			= $objListCurrency;
-			$dataView["objListPrice"]			= $objListPrice;
-			$dataView["objComponentItem"]		= $objComponentItem;
-			$dataView["objComponentCustomer"]	= $objComponentCustomer;
-			$dataView["objCaudal"]				= $this->Transaction_Causal_Model->getCausalByBranch($companyID,$transactionID,$branchID);			
-			$dataView["warehouseID"]			= $dataView["objCaudal"][0]->warehouseSourceID;
-			$dataView["objListWarehouse"]		= $this->UserWarehouse_Model->getRowByUserID($companyID,$userID);			
-			$dataView["objCustomerDefault"]		= $this->Customer_Model->get_rowByCode($companyID,$customerDefault->value);
-			$dataView["objListTypePrice"]		= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
-			$dataView["objListZone"]			= $this->core_web_catalog->getCatalogAllItem("tb_transaction_master_info_billing","zoneID",$companyID);			
-			$dataView["listProvider"]			= $this->Provider_Model->get_rowByCompany($companyID);
-			$dataView["objListaPermisos"]		= $dataSession["menuHiddenPopup"];
-
+			$dataView["companyID"]							= $dataSession["user"]->companyID;
+			$dataView["userID"]								= $dataSession["user"]->userID;
+			$dataView["userName"]							= $dataSession["user"]->nickname;
+			$dataView["roleID"]								= $dataSession["role"]->roleID;
+			$dataView["roleName"]							= $dataSession["role"]->name;
+			$dataView["branchID"]							= $dataSession["branch"]->branchID;
+			$dataView["branchName"]							= $dataSession["branch"]->name;
+			$dataView["exchangeRate"]						= $this->core_web_currency->getRatio($companyID,date("Y-m-d"),1,$targetCurrency->currencyID,$objCurrency->currencyID);			
+			$dataView["listCurrency"]						= $objListCurrency;
+			$dataView["objListPrice"]						= $objListPrice;
+			$dataView["objComponentItem"]					= $objComponentItem;
+			$dataView["objComponentCustomer"]				= $objComponentCustomer;
+			$dataView["objCaudal"]							= $this->Transaction_Causal_Model->getCausalByBranch($companyID,$transactionID,$branchID);			
+			$dataView["warehouseID"]						= $dataView["objCaudal"][0]->warehouseSourceID;
+			$dataView["objListWarehouse"]					= $this->UserWarehouse_Model->getRowByUserID($companyID,$userID);			
+			$dataView["objCustomerDefault"]					= $this->Customer_Model->get_rowByCode($companyID,$customerDefault->value);
+			$dataView["objListTypePrice"]					= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
+			$dataView["objListZone"]						= $this->core_web_catalog->getCatalogAllItem("tb_transaction_master_info_billing","zoneID",$companyID);			
+			$dataView["listProvider"]						= $this->Provider_Model->get_rowByCompany($companyID);
+			$dataView["objListaPermisos"]					= $dataSession["menuHiddenPopup"];
+			$dataView["objParameterTypePreiceDefault"] 		= $objParameterTypePreiceDefault;
+			
 			$objParameterInvoiceBillingQuantityZero					= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
 			$dataView["objParameterInvoiceBillingQuantityZero"]		= $objParameterInvoiceBillingQuantityZero->value;
 
