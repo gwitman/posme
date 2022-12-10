@@ -322,7 +322,7 @@ class core_web_permission {
 		//Dormir el sistema cuando el tipo de Licencia es PERMANENTE y la fecha actual es mayor a la fecha limite de licencia
 		//En tal caso, dormir el sistema	
 		$fechaNow  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  	
-		if( $fechaNow >  $objParameterExpiredLicense && $objParameterTipoPlan != "MENSUALIDAD" ){		
+		if( $fechaNow >  $objParameterExpiredLicense && $objParameterTipoPlan != "MEMBRESIA" ){		
 			$diff = $objParameterExpiredLicense->diff($fechaNow);
 			$days = abs($diff->days);
 			$days = $days + $objParameterISleep ;						
