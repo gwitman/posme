@@ -80,17 +80,21 @@
 
 					</div>
 					<div class="col-lg-6">	
+						
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
-								<div class="icon"><i class="icon20 i-health"></i></div> 
-								<h4>posMe</h4>
+								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
+								<h4>Consejo</h4>
 								<a href="#" class="minimize"></a>
 							</div><!-- End .panel-heading -->
 						
 							<div class="panel-body">
-								<img class="img-featured" style="width:300px;height:200px" src="<?php echo base_url();?>/img/logos/dashboard_posme.jpeg">
+							   <blockquote>
+									<p>.......</p>									
+									<small>posMe</small>
+								</blockquote>
 							</div><!-- End .panel-body -->
-						</div><!-- End .widget -->		
+						</div><!-- End .widget -->	
 
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
@@ -124,6 +128,18 @@
 
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
+								<div class="icon"><i class="icon20 i-health"></i></div> 
+								<h4>posMe</h4>
+								<a href="#" class="minimize"></a>
+							</div><!-- End .panel-heading -->
+						
+							<div class="panel-body">
+								<img class="img-featured" style="width:300px;height:200px" src="<?php echo base_url();?>/img/logos/dashboard_posme.jpeg">
+							</div><!-- End .panel-body -->
+						</div><!-- End .widget -->		
+
+						<div class="panel" style="margin-bottom:20px;">
+							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
 								<h4>Usuario</h4>
 								<a href="#" class="minimize"></a>
@@ -135,7 +151,9 @@
 									<small>posMe</small>
 								</blockquote>
 							</div><!-- End .panel-body -->
-						</div><!-- End .widget -->								
+						</div><!-- End .widget -->		
+						
+						
 					</div>
 				</div>
 				
