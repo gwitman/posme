@@ -221,90 +221,77 @@ class core_web_permission {
    function getValueLicense($companyID,$url)
    {
 
-	//Validar Parametro de maximo de usuario.
+		
+		log_message("ERROR","validar licencia ".$url);
+		$this->CI->load->model("core/User_Permission_Model");
+		$this->CI->load->model("core/User_Model");
 
-	$objParameterMAX_USER = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_MAX_USER",$dataSession["user"]->companyID);
+		//Validar Parametro de maximo de usuario.
+		$objParameterMAX_USER 		= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_MAX_USER",$companyID);
 
-	if(!$objParameterMAX_USER && $continue){
+		$parameterFechaExpiration 	= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$companyID);
+		$parameterFechaExpiration 	= $parameterFechaExpiration->value;
+		$parameterFechaExpiration 	= DateTime::createFromFormat('Y-m-d',$parameterFechaExpiration);			
 
-		$continue = false;
+		$objParameterISleep			= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_SLEEP",$companyID);
+		$objParameterISleep			= $objParameterISleep->value;
 
-		$this->core_web_notification->set_message(true,"CONFIGURAR EL PARAMETRO MAX_USER PARA LA EMPRESA...");	
+		$objParameterTipoPlan		= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_TIPO_PLAN",$companyID);
+		$objParameterTipoPlan		= $objParameterTipoPlan->value;
 
-	}
+		$objParameterExpiredLicense	= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$companyID);
+		$objParameterExpiredLicense	= $objParameterExpiredLicense->value;
+		$objParameterExpiredLicense = DateTime::createFromFormat('Y-m-d',$objParameterExpiredLicense);		
 
-	
+		
 
-	if($objParameterMAX_USER->value > 0 && $continue){						
+		
+		//Validar cantidad maxima de usuario
+		if($objParameterMAX_USER->value > 0 ){			
+			$count = $this->CI->User_Model->getCount($companyID);		
+			if(($count + 1) > $objParameterMAX_USER->value ){
+				throw new Exception('
+				<p>A superado el numero maximo de usuario.</p>
 
-		$count = $this->User_Model->getCount($dataSession["user"]->companyID);					
-
-		if(($count + 1) > $objParameterMAX_USER->value ){
-
-			$continue = false;
-
-			$this->core_web_notification->set_message(true,"HA SUPERADO EL NUMERO MAXIMO DE USUARIOS...");	
-
+				<p>telefono de contacto: 8712-5827 para activar licencia</p>
+				<p>realizar el pago de la licencia  aqui &ograve; </p>
+				<p>realizar la transferencia a la siguiente cuenta BAC Dolares: 366-577-484 </p>
+				
+				');
+			}
 		}
 
-	}
 
 
+		//Validar Fecha de expiracion de la licencia
+		$fechaNow  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  						
+		if( $fechaNow >  $parameterFechaExpiration ){
+			throw new Exception('
+			<p>La licencia a expirado.</p>
 
-
-
-
-
-	
-	$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$objUser["user"]->companyID);
-	$parameterFechaExpiration = $parameterFechaExpiration->value;
-	$parameterFechaExpiration = DateTime::createFromFormat('Y-m-d',$parameterFechaExpiration);			
-	
-
-	$fechaNow  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  						
-	if( $fechaNow >  $parameterFechaExpiration ){
-		throw new Exception('
-		<p>La licencia a expirado.</p>
-		<p>realizar el pago de la licencia onLine aquí o </p>
-		<p>realizar la transferencia a la siguiente cuenta BAC Dolares: 366-577-484 </p>
-		<p>telefono de contacto: 8712-5827 </p>
-		');
-	}
-	
-
-
+			<p>telefono de contacto: 8712-5827 para activar licencia</p>
+			<p>realizar el pago de la licencia  aqui &ograve; </p>
+			<p>realizar la transferencia a la siguiente cuenta BAC Dolares: 366-577-484 </p>
+			');
+		}
 		
-	$objParameterISleep			= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_SLEEP",$companyID);
-	$objParameterISleep			= $objParameterISleep->value;
 
-	$objParameterTipoPlan		= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_TIPO_PLAN",$companyID);
-	$objParameterTipoPlan		= $objParameterTipoPlan->value;
+		//Dormir el sistema cuando el tipo de Licencia es PERMANENTE y la fecha actual es mayor a la fecha limite de licencia
+		//En tal caso, dormir el sistema	
+		$fechaNow  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  	
+		if( $fechaNow >  $objParameterExpiredLicense && $objParameterTipoPlan != "MENSUALIDAD" ){		
+			$diff = $objParameterExpiredLicense->diff($fechaNow);
+			$days = abs($diff->days);
+			$days = $days + $objParameterISleep ;						
+			
+			if($days > 60)
+			$days = 60;
 
-	$objParameterExpiredLicense	= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$companyID);
-	$objParameterExpiredLicense	= $objParameterExpiredLicense->value;
-	$objParameterExpiredLicense = DateTime::createFromFormat('Y-m-d',$objParameterExpiredLicense);		
-	
-	$fechaNow  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  			
-	
-	
-	if( 
-			$fechaNow >  
-			$objParameterExpiredLicense && $objParameterTipoPlan != "MENSUALIDAD" 
-	){
-		//log_message("ERROR","diferencia de dias:");
-		$diff = $objParameterExpiredLicense->diff($fechaNow);
-		$days = abs($diff->days);
-		$days = $days + $objParameterISleep ;						
-		
-		if($days > 60)
-		$days = 60;
+			sleep($days);
+		}		
 
-		sleep($days);
+	
 	}
-	
-
-	return true;
-}
   
 }
 
