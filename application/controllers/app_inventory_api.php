@@ -43,7 +43,7 @@ class App_Inventory_Api extends CI_Controller {
 			
 			$query				= "
 			SET @resultMayorization 	= '0';
-			##--CALL pr_inventory_create_transaction_output_by_formulated('".$companyID."','".$branchID."','".$loginID."','".$componentPeriodID."','".$componentCycleID."',@resultMayorization);
+			CALL pr_inventory_create_transaction_output_by_formulated('".$companyID."','".$branchID."','".$loginID."','".$componentPeriodID."','".$componentCycleID."',@resultMayorization);
 			SELECT @resultMayorization as codigo;
 			";
 			
