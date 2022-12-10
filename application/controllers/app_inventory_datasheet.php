@@ -442,6 +442,8 @@ class App_Inventory_Datasheet extends CI_Controller {
 
 			$this->load->model("Item_Data_Sheet_Model");
 
+			$this->load->model("Item_Data_Sheet_Detail_Model");
+
 
 
 			$objComponent							= $this->core_web_tools->getComponentIDBy_ComponentName("tb_item");
@@ -621,9 +623,50 @@ class App_Inventory_Datasheet extends CI_Controller {
 						
 
 						//Actualizar Objeto
-
 						$row_affected 	= $this->Item_Data_Sheet_Model->update($itemDataSheetID,$objNewItemDataSeet);
 						$messageTmp						= "";
+
+
+						//Actualizar Detalle
+						$arrayItemID				= $this->input->post("txtDetailItemID");
+						$arrayItemDataSheetDetailID	= $this->input->post("txtDetailItemDataSheetDetailID");
+						$arrayQuantity				= $this->input->post("txtDetailQuantity");
+
+						log_message("ERROR","Revisar detalle de formula");
+						log_message("ERROR",print_r($arrayItemID,true));
+						log_message("ERROR",print_r($arrayItemDataSheetDetailID,true));
+						log_message("ERROR",print_r($arrayQuantity,true));
+
+						//Eliminar los registros que no estan
+						$this->Item_Data_Sheet_Detail_Model->deleteWhereIDNotIn($itemDataSheetID,$arrayItemDataSheetDetailID);
+
+						if (!empty($arrayItemID)) {
+							foreach ($arrayItemID as $key => $value) {
+								$itemID 								= $value;
+								$dataSheetDetailID						= $arrayItemDataSheetDetailID[$key];
+								$quantity								= $arrayQuantity[$key];
+
+								
+								if ($dataSheetDetailID == 0) {
+									$dataNewItemDataSheetDetail = [];
+									$dataNewItemDataSheetDetail["itemDataSheetID"] 	= $itemDataSheetID;
+									$dataNewItemDataSheetDetail["itemID"] 			= $itemID;
+									$dataNewItemDataSheetDetail["quantity"] 		= $quantity;
+									$dataNewItemDataSheetDetail["relatedItemID"] 	= 0;
+									$dataNewItemDataSheetDetail["isActive"] 		= true;
+									
+									$reId = $this->Item_Data_Sheet_Detail_Model->insert($dataNewItemDataSheetDetail);
+								}
+								else{
+									$dataNewItemDataSheetDetail = [];
+									$dataNewItemDataSheetDetail["itemID"] 	= $itemID;
+									$dataNewItemDataSheetDetail["quantity"] = $quantity;
+									$dataNewItemDataSheetDetail["isActive"] = true;
+									$reId = $this->Item_Data_Sheet_Detail_Model->update($dataSheetDetailID,$dataNewItemDataSheetDetail);
+								}
+
+							}
+						}
 
 					}
 

@@ -184,12 +184,12 @@
 					function onCompleteItem(objResponse){
 						console.info("CALL onCompleteItem");
 						var objRow 						= {};
-						
+						debugger;
 						objRow.checked 					= false;						
 						objRow.itemDataSheetID			= 0;
-						objRow.itemID 					= 0;
+						objRow.itemID 					= objResponse[0];
 						objRow.itemDataSheetDetailID 	= 0;
-						objRow.itemRelatedID 			= objResponse[0];
+						objRow.itemRelatedID 			= 0;
 						objRow.itemNumber 				= objResponse[1];
 						objRow.itemName 				= objResponse[2];
 						objRow.um 						= objResponse[3];
@@ -200,7 +200,7 @@
 						
 						
 						//Berificar que el Item ya esta agregado 
-						if(jLinq.from(objItemDataSheetDetail.fnGetData()).where(function(obj){ return obj[4] == objRow.itemRelatedID;}).select().length > 0 ){
+						if(jLinq.from(objItemDataSheetDetail.fnGetData()).where(function(obj){ return obj[2] == objRow.itemID;}).select().length > 0 ){
 							fnShowNotification("El Item ya esta agregado","error");
 							return;
 						}
