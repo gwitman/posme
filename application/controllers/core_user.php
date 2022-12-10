@@ -136,7 +136,7 @@ class core_user extends CI_Controller {
 					} 					
 					
 					//Validar Parametro de maximo de usuario.
-					$objParameterMAX_USER = $this->core_web_parameter->getParameter("CORE_MAX_USER",$dataSession["user"]->companyID);
+					$objParameterMAX_USER = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_MAX_USER",$dataSession["user"]->companyID);
 					if(!$objParameterMAX_USER && $continue){
 						$continue = false;
 						$this->core_web_notification->set_message(true,"CONFIGURAR EL PARAMETRO MAX_USER PARA LA EMPRESA...");	

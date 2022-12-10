@@ -20,13 +20,13 @@ class core_web_authentication {
    function getValueLicense($companyID){
 
 		
-		$objParameterISleep			= $this->CI->core_web_parameter->getParameter("CORE_SLEEP",$companyID);
+		$objParameterISleep			= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_SLEEP",$companyID);
 		$objParameterISleep			= $objParameterISleep->value;
 
-		$objParameterTipoPlan		= $this->CI->core_web_parameter->getParameter("CORE_TIPO_PLAN",$companyID);
+		$objParameterTipoPlan		= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_TIPO_PLAN",$companyID);
 		$objParameterTipoPlan		= $objParameterTipoPlan->value;
 
-		$objParameterExpiredLicense	= $this->CI->core_web_parameter->getParameter("CORE_LICENSE_EXPIRED",$companyID);
+		$objParameterExpiredLicense	= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$companyID);
 		$objParameterExpiredLicense	= $objParameterExpiredLicense->value;
 		$objParameterExpiredLicense = DateTime::createFromFormat('Y-m-d',$objParameterExpiredLicense);		
 		

@@ -91,14 +91,14 @@ UPDATE  tb_company_parameter,tb_parameter SET
 	tb_company_parameter.value = "0.01" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_PRICE_BY_INVOICE";## PRECIO POR FACTURA , ES LO que se le resgta al balane del core, por cada factura realizada dentro del sistema, siempre y cuando el tipo de pago sea:	CONSUMIBLE
+	tb_parameter.name = "CORE_CUST_PRICE_BY_INVOICE";## PRECIO POR FACTURA , ES LO que se le resgta al balane del core, por cada factura realizada dentro del sistema, siempre y cuando el tipo de pago sea:	CONSUMIBLE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
 	tb_company_parameter.value = "MENSUALIDAD" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_TIPO_PLAN";## TIPO DE PAGO:  CONSUMIBLE O MENSUALIDAD 
+	tb_parameter.name = "CORE_CUST_PRICE_TIPO_PLAN";## TIPO DE PAGO:  CONSUMIBLE O MENSUALIDAD 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
@@ -168,7 +168,7 @@ UPDATE  tb_company_parameter,tb_parameter SET
 	tb_company_parameter.value = "0" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_BALANCE";## Saldo recargado para usar el sistema, estes saldo se consume a medida que se crean facturas. cuando el plan es PREPAGO 
+	tb_parameter.name = "CORE_CUST_PRICE_BALANCE";## Saldo recargado para usar el sistema, estes saldo se consume a medida que se crean facturas. cuando el plan es PREPAGO 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
@@ -203,14 +203,14 @@ UPDATE  tb_company_parameter,tb_parameter SET
 	tb_company_parameter.value = "2023-10-15" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_LICENSE_EXPIRED";## Fecha de expiracion de la licencia 
+	tb_parameter.name = "CORE_CUST_PRICE_LICENCES_EXPIRED";## Fecha de expiracion de la licencia 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
 	tb_company_parameter.value = "10" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_SLEEP";## Dormida despues de pasado el tiempo de espera de la licencia en segundo 
+	tb_parameter.name = "CORE_CUST_PRICE_SLEEP";## Dormida despues de pasado el tiempo de espera de la licencia en segundo 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
@@ -245,7 +245,7 @@ UPDATE  tb_company_parameter,tb_parameter SET
 	tb_company_parameter.value = "X007" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "BD_VERSION";## Versions del sistema 
+	tb_parameter.name = "CORE_CUST_PRICE_VERSION";## Versions del sistema 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
@@ -406,7 +406,7 @@ UPDATE  tb_company_parameter,tb_parameter SET
 	tb_company_parameter.value = "63" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_PRICE";## Precio mensual de la licencia 
+	tb_parameter.name = "CORE_CUST_PRICE";## Precio mensual de la licencia 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
@@ -707,7 +707,7 @@ UPDATE  tb_company_parameter,tb_parameter SET
 	tb_company_parameter.value = "500" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_MAX_USER";## MAXIMO NUMERO DE USUARIOS 
+	tb_parameter.name = "CORE_CUST_PRICE_MAX_USER";## MAXIMO NUMERO DE USUARIOS 
 
 
 UPDATE tb_company SET 

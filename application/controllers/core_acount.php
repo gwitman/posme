@@ -20,10 +20,10 @@ class Core_acount extends CI_Controller {
 		$parameterProduccionClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_CLAVE",APP_COMPANY);
 		$parameterProduccionClave = $parameterProduccionClave->value;
 
-		$parameterPrice= $this->core_web_parameter->getParameter("CORE_PRICE",APP_COMPANY);
+		$parameterPrice= $this->core_web_parameter->getParameter("CORE_CUST_PRICE",APP_COMPANY);
 		$parameterPrice = $parameterPrice->value;		
 
-		$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_TIPO_PLAN",APP_COMPANY);
+		$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_TIPO_PLAN",APP_COMPANY);
 		$parameterTipoPlan = $parameterTipoPlan->value;		
 	
 
@@ -97,14 +97,14 @@ class Core_acount extends CI_Controller {
 			$parameterProduccionClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_CLAVE",$objUser["user"]->companyID);
 			$parameterProduccionClave = $parameterProduccionClave->value;
 
-			$parameterPrice= $this->core_web_parameter->getParameter("CORE_PRICE",$objUser["user"]->companyID);
+			$parameterPrice= $this->core_web_parameter->getParameter("CORE_CUST_PRICE",$objUser["user"]->companyID);
 			$parameterPrice = $parameterPrice->value;
 
-			$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_TIPO_PLAN",$objUser["user"]->companyID);
+			$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_TIPO_PLAN",$objUser["user"]->companyID);
 			$parameterTipoPlan = $parameterTipoPlan->value;
 
 			
-			$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_LICENSE_EXPIRED",$objUser["user"]->companyID);
+			$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$objUser["user"]->companyID);
 			$parameterFechaExpiration = $parameterFechaExpiration->value;
 			$parameterFechaExpiration = DateTime::createFromFormat('Y-m-d',$parameterFechaExpiration);			
 			$pagoCantidadMonto		  = $pagoCantidadDeMeses * $parameterPrice;
@@ -162,10 +162,10 @@ class Core_acount extends CI_Controller {
 			$parameterProduccionClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_CLAVE",APP_COMPANY);
 			$parameterProduccionClave = $parameterProduccionClave->value;
 
-			$parameterPrice= $this->core_web_parameter->getParameter("CORE_PRICE",APP_COMPANY);
+			$parameterPrice= $this->core_web_parameter->getParameter("CORE_CUST_PRICE",APP_COMPANY);
 			$parameterPrice = $parameterPrice->value;		
 
-			$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_TIPO_PLAN",APP_COMPANY);
+			$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_TIPO_PLAN",APP_COMPANY);
 			$parameterTipoPlan = $parameterTipoPlan->value;		
 				
 			//Renderizar					
@@ -340,10 +340,10 @@ class Core_acount extends CI_Controller {
 		$parameterProduccionClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_CLAVE",$dataSession["user"]->companyID);
 		$parameterProduccionClave = $parameterProduccionClave->value;
 
-		$parameterPrice= $this->core_web_parameter->getParameter("CORE_PRICE",$dataSession["user"]->companyID);
+		$parameterPrice= $this->core_web_parameter->getParameter("CORE_CUST_PRICE",$dataSession["user"]->companyID);
 		$parameterPrice = $parameterPrice->value;
 
-		$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_TIPO_PLAN",$dataSession["user"]->companyID);
+		$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_TIPO_PLAN",$dataSession["user"]->companyID);
 		$parameterTipoPlan = $parameterTipoPlan->value;
 
 
@@ -352,7 +352,7 @@ class Core_acount extends CI_Controller {
 		$parameterTemporal3 = $this->core_web_parameter->getParameter("CORE_TEMPORAL003",$dataSession["user"]->companyID);
 		
 		
-		$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_LICENSE_EXPIRED",$dataSession["user"]->companyID);
+		$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$dataSession["user"]->companyID);
 		$parameterFechaExpiration = $parameterFechaExpiration->value;
 		$parameterFechaExpiration = DateTime::createFromFormat('Y-m-d',$parameterFechaExpiration);			
 		$pagoCantidadMonto		  = $pagoCantidadDeMeses * $parameterPrice;
@@ -537,10 +537,10 @@ class Core_acount extends CI_Controller {
 		$parameterProduccionClave = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRODUCCION_CLAVE",$dataSession["user"]->companyID);
 		$parameterProduccionClave = $parameterProduccionClave->value;
 
-		$parameterPrice= $this->core_web_parameter->getParameter("CORE_PRICE",$dataSession["user"]->companyID);
+		$parameterPrice= $this->core_web_parameter->getParameter("CORE_CUST_PRICE",$dataSession["user"]->companyID);
 		$parameterPrice = $parameterPrice->value;
 
-		$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_TIPO_PLAN",$dataSession["user"]->companyID);
+		$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_TIPO_PLAN",$dataSession["user"]->companyID);
 		$parameterTipoPlan = $parameterTipoPlan->value;
 
 		$parameterTemporal1 = $this->core_web_parameter->getParameter("CORE_TEMPORAL001",$dataSession["user"]->companyID);
@@ -548,7 +548,7 @@ class Core_acount extends CI_Controller {
 		$parameterTemporal3 = $this->core_web_parameter->getParameter("CORE_TEMPORAL003",$dataSession["user"]->companyID);
 
 		
-		$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_LICENSE_EXPIRED",$dataSession["user"]->companyID);
+		$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$dataSession["user"]->companyID);
 		$parameterFechaExpirationFecha 	= $parameterFechaExpiration->value;
 		$parameterFechaExpirationFecha 	= DateTime::createFromFormat('Y-m-d',$parameterFechaExpirationFecha);					
 		$fechaNow  				  		= DateTime::createFromFormat('Y-m-d',date("Y-m-d"));
