@@ -1289,7 +1289,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$objParameterTypePreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_TYPE_PRICE",$companyID);
 			$objParameterTypePreiceDefault			= $objParameterTypePreiceDefault->value;
 
-			$this->core_web_authentication->getValueLicense($companyID);
+			$this->core_web_permission->getValueLicense($companyID,$this->router->class."/"."index");
 
 			//Obtener la lista de estados
 			if($objParameterInvoiceAutoApply == "true"){

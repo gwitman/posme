@@ -102,14 +102,12 @@ class Core_acount extends CI_Controller {
 
 			$parameterTipoPlan = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_TIPO_PLAN",$objUser["user"]->companyID);
 			$parameterTipoPlan = $parameterTipoPlan->value;
-
-			
-			$parameterFechaExpiration = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$objUser["user"]->companyID);
-			$parameterFechaExpiration = $parameterFechaExpiration->value;
-			$parameterFechaExpiration = DateTime::createFromFormat('Y-m-d',$parameterFechaExpiration);			
 			$pagoCantidadMonto		  = $pagoCantidadDeMeses * $parameterPrice;
 
+
 			
+			$this->core_web_permission->getValueLicense($objUser["user"]->companyID,$this->router->class."/"."index");
+
 
 			//Procesar Pago
 			if($pagoCantidadMonto > 0 )
@@ -118,20 +116,10 @@ class Core_acount extends CI_Controller {
 			}
 
 			//Validar Fecha de Expiracion
-			$fechaNow  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  						
-			if( $fechaNow >  $parameterFechaExpiration ){
-				throw new Exception('
-				<p>La licencia a expirado.</p>
-				<p>realizar el pago de la licencia onLine aquí o </p>
-				<p>realizar la transferencia a la siguiente cuenta BAC Dolares: 366-577-484 </p>
-				<p>telefono de contacto: 8712-5827 </p>
-				');
-			}
-			
+		
 
 			//Set Variables
-			$params_["message"]	= "Usuario Login: ".$nickname;
-			
+			$params_["message"]	= "Usuario Login: ".$nickname;			
 
 			$this->input->set_cookie("userID",$dataSession[user]->userID,43200,"localhost");
 			$this->input->set_cookie("nickname",$dataSession[user]->nickname,43200,"localhost");
