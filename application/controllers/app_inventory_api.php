@@ -51,13 +51,20 @@ class App_Inventory_Api extends CI_Controller {
 			log_message("ERROR",$query);
 			
 			$resultMayorizate						= $this->Bd_Model->executeProcedureMultiQuery($query);	
+			log_message("ERROR","ejecucion de query 001");
+			log_message("ERROR",print_r($resultMayorizate,true));
+
 			$resultMayorizate						= $this->Log_Model->get_rowByPK($companyID,$branchID,$loginID,'');
 			$resultMayorizateTransactionID			= $this->Log_Model->get_rowByNameParameterOutput($companyID,$branchID,$loginID,'','pr_inventory_create_transaction_output_by_formulated_transactionID');
 			$resultMayorizateTransactionMasterIDID	= $this->Log_Model->get_rowByNameParameterOutput($companyID,$branchID,$loginID,'','pr_inventory_create_transaction_output_by_formulated_transactionMasterID');
 
 			$resultMayorizateTransactionID 			=  $resultMayorizateTransactionID->description;
 			$resultMayorizateTransactionMasterIDID	= $resultMayorizateTransactionMasterIDID->description;
+			log_message("ERROR","ejecucion de query 002");
+			log_message("ERROR",print_r($resultMayorizate,true));
+			log_message("ERROR","ejecucion de query 003");
 			log_message("ERROR",print_r($resultMayorizateTransactionID,true));
+			log_message("ERROR","ejecucion de query 004");
 			log_message("ERROR",print_r($resultMayorizateTransactionMasterIDID,true));
 			
 			//Ingresar en Kardex.
