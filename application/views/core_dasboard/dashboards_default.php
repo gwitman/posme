@@ -73,6 +73,15 @@
 										<th scope="row">CORE_CUST_PRICE_MAX_USER</th>
 										<td><?php echo $objParameterMAX_USER; ?></td>			
 									</tr>
+									<tr>
+										<th scope="row">CORE_CUST_PRICE_VERSION</th>
+										<td><?php echo $objParameterVersion; ?></td>			
+									</tr>
+									<tr>
+										<th scope="row">CORE_CUST_PRICE</th>
+										<td><?php echo $objParameterPrice; ?></td>			
+									</tr>
+									
 								</tbody>
 								</table>
 							</div><!-- End .panel-body -->
@@ -81,7 +90,7 @@
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
-								<h4>Consejo bíblico en posMe.</h4>
+								<h4>Consejo bíblico</h4>
 								<a href="#" class="minimize"></a>
 							</div><!-- End .panel-heading -->
 						
@@ -135,6 +144,36 @@
 									<p>BAC $ 366-577-484</p>
 									<small>posMe</small>
 								</blockquote>
+							</div><!-- End .panel-body -->
+						</div><!-- End .widget -->	
+
+						<div class="panel" style="margin-bottom:20px;">
+							<div class="panel-heading">
+								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
+								<h4>Pago con tarjeta</h4>
+								<a href="#" class="minimize"></a>
+							</div><!-- End .panel-heading -->
+						
+							<div class="panel-body">
+								<form method="POST" action="<?php echo base_url(); ?>core_acount/login"  autocomplete="off">
+
+									<div class="form-group form-material floating" data-plugin="formMaterial">
+										<input type="text" class="form-control" name="txtNickname" />
+										<label class="floating-label">Usuario</label>
+									</div>
+
+									<div class="form-group form-material floating" data-plugin="formMaterial">
+										<input type="password" class="form-control" name="txtPassword" />
+										<label class="floating-label">Contraseña</label>
+									</div>
+
+									
+									<div class="form-group form-material floating hidden-lg-up" id="divPagosMeses" data-plugin="formMaterial">
+										<input type="text" class="form-control" id="txtPagarCantidadDe" name="txtPagarCantidadDe" placeholder="$ 0.00"></input>
+									</div>    
+									
+									<button type="submit" class="btn btn-success btn-block btn-lg m-t-40 hidden-lg-up" id="divPagosMesesBoton" >Pagar</button>
+								</form>
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
 

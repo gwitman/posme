@@ -66,6 +66,14 @@ class core_dashboards extends CI_Controller {
 			$objParameterCreditos						= $objParameterCreditos->value;
 			$dataSession["objParameterCreditos"] 		= $objParameterCreditos;
 
+			$objParameterVersion						= $this->core_web_parameter->getParameter("CORE_CUST_PRICE_VERSION",$companyID);			
+			$objParameterVersion						= $objParameterVersion->value;
+			$dataSession["objParameterVersion"] 		= $objParameterVersion;
+
+			$objParameterPrice							= $this->core_web_parameter->getParameter("CORE_CUST_PRICE",$companyID);			
+			$objParameterPrice							= $objParameterPrice->value;
+			$dataSession["objParameterPrice"] 			= $objParameterPrice;
+
 			$objParameterPriceByInvoice					= $this->core_web_parameter->getParameter("CORE_CUST_PRICE_BY_INVOICE",$companyID);
 			$objParameterPriceByInvoice					= $objParameterPriceByInvoice->value;
 			$dataSession["objParameterPriceByInvoice"] 	= $objParameterPriceByInvoice;

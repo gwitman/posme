@@ -10,7 +10,7 @@ class Biblia_Model extends CI_Model  {
 		$this->db->select("i.versiculoID,i.orden,i.dia,i.capitulo,i.libro,i.versiculo");
 		$this->db->from("tb_biblia i");		
 		$this->db->where("dia >= ",($dia - 3));
-		$this->db->where("dia <= ",($dia + 2));
+		$this->db->where("dia <= ",($dia -1));
 		
 		//Ejecutar Consulta
 		$recordSet = $this->db->get();
