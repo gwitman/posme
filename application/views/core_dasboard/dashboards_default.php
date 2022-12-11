@@ -90,8 +90,8 @@
 						
 							<div class="panel-body">
 							   <blockquote>
-									<p>.......</p>									
-									<small>posMe</small>
+									<p><?php echo $objVersiculo->versiculo; ?></p>									
+									<small><?php echo $objVersiculo->libro; ?> <?php echo $objVersiculo->capitulo; ?></small>
 								</blockquote>
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	

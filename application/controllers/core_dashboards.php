@@ -13,6 +13,8 @@ class core_dashboards extends CI_Controller {
 	function index(){ 
 		try{ 
 		
+			$this->load->model("Biblia_Model"); 
+
 			//AUTENTICACION
 			if(!$this->core_web_authentication->isAuthenticated())
 			throw new Exception(USER_NOT_AUTENTICATED);
@@ -68,9 +70,18 @@ class core_dashboards extends CI_Controller {
 			$objParameterPriceByInvoice					= $objParameterPriceByInvoice->value;
 			$dataSession["objParameterPriceByInvoice"] 	= $objParameterPriceByInvoice;
 
+
 			
+			$diaDelAnnio 								= date("z");
+			$objVersiculo 								= $this->Biblia_Model->get_rowByDay($companyID, $diaDelAnnio);
+			if ($objVersiculo == null) {
+				$objVersiculo = $this->Biblia_Model->get_rowByDay($companyID, 1);
+			}
+
 			
+
 			//Renderizar Resultado
+			$dataSession["objVersiculo"] 	= $objVersiculo;
 			$dataSession["notification"]	= $this->core_web_error->get_error($dataSession["user"]->userID);
 			$dataSession["message"]			= "";
 			$dataSession["head"]			= "";
