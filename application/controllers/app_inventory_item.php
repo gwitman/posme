@@ -281,6 +281,7 @@ class App_Inventory_Item extends CI_Controller {
 					
 					}	
 					
+					$this->core_web_permission->getValueLicense($dataSession["user"]->companyID,$this->router->class."/"."index");
 					//Ingresar Cuenta					
 					$this->db->trans_begin();					
 					$callback  								= $this->input->post("txtCallback"); 

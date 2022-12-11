@@ -540,7 +540,7 @@ class App_Cxc_Customer extends CI_Controller {
 			$exchangeRateTotal 						= 0;
 			$exchangeRateAmount 					= 0;
 			
-			
+			$this->core_web_permission->getValueLicense($dataSession["user"]->companyID,$this->router->class."/"."index");
 			$this->db->trans_begin();
 			$entityID = $this->Entity_Model->insert($objEntity);
 			$callback  					= $this->input->post("txtCallback"); 
