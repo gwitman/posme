@@ -23,7 +23,7 @@ class core_financial {
    //Share:  		Cantidad de Pagos
    //$dateFirstPay:	Primer pag   
    function getAmoritizationSimple($amount,$term,$interes,$share,$dateFirstPay){
-		$tableAmortization;
+		$tableAmortization = array();
 		$year 					= 365;
 		$amountInteres 			= $amount  * ($interes / 100) * $term;
 		$dateLastPay			= $dateFirstPay;
@@ -44,18 +44,18 @@ class core_financial {
 								/ 
 								$share;
 		
-		for($i =0; $i < $share ){
-			$dateLastPay = $dateLastPay + $next;
+		for($i =0; $i < $share; $i++ )
+		{
+			$dateLastPay 	= $dateLastPay + $next;
+			$ii 			= $i;
+			$tableAmortization[$i] 				= array ();
+			$tableAmortization[$i]["share"] 	= $ii;
+			$tableAmortization[$i]["date"] 		= $dateLastPay;
+			$tableAmortization[$i]["amount"] 	= $amount / $share;
+			$tableAmortization[$i]["interes"] 	=  $amountInteres / $share;
+			$tableAmortization[$i]["total"] 	= ($amount / $share) + ($amountInteres / $share);
 			
-			$tableAmortization[$i] = array (
-				'share' 	= $i,
-				'date'		= $dateLastPay,
-				'amount' 	= $amount / $share,
-				'interes'	= $amountInteres / $share,
-				'total'		= ($amount / $share) + ($amountInteres / $share)
-			);
 			
-			$i++;
 		}	
    }
 }

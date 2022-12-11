@@ -125,7 +125,7 @@ class core_web_amortization {
 		$amortizationCancel 						= $this->CI->core_web_parameter->getParameter("SHARE_CANCEL",$companyID)->value;
 		$objCustomerCreditDocument					= $this->CI->Customer_Credit_Document_Model->get_rowByPK($customerCreditDocumentID);
 		$objListCustomerCreditDocumentAmortization 	= $this->CI->Customer_Credit_Amortization_Model->get_rowByDocumentAndVinculable($customerCreditDocumentID);
-		$objConceptos 				= [];
+		$objConceptos 				= array();
 		$objConceptos["capital"] 	= 0;
 		$objConceptos["interes"] 	= 0;
 		
