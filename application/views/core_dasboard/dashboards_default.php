@@ -174,6 +174,11 @@
 									
 									<button type="submit" class="btn btn-success btn-block btn-lg m-t-40 hidden-lg-up" id="divPagosMesesBoton" >Pagar</button>
 								</form>
+
+								<br/>
+
+								<img class="img-featured" style="width:335px;height:200px" src="<?php echo base_url();?>/img/logos/tarjeta.jpg">
+
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
 
