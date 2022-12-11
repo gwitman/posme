@@ -129,6 +129,11 @@
 									<p>Soporte Tenico: 8712-5827</p>									
 									<small>posMe</small>
 								</blockquote>
+
+								<a aria-label="Chat on WhatsApp" target="_blank" href="https://wa.me/50587125827?text=Buenos dias le saluda <?php echo $user->email; ?> : "> 
+									<img alt="Chat on WhatsApp" src="<?php echo base_url();?>/img/logos/WhatsAppButtonGreenSmall.svg" /> 
+								</a>
+
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
 
