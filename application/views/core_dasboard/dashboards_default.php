@@ -78,23 +78,35 @@
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
 
-					</div>
-					<div class="col-lg-6">	
-						
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
-								<h4>Consejo</h4>
+								<h4>Consejo bíblico en posMe.</h4>
 								<a href="#" class="minimize"></a>
 							</div><!-- End .panel-heading -->
 						
 							<div class="panel-body">
-							   <blockquote>
-									<p><?php echo $objVersiculo->versiculo; ?></p>									
-									<small><?php echo $objVersiculo->libro; ?> <?php echo $objVersiculo->capitulo; ?></small>
-								</blockquote>
+										<blockquote>
+											<p style="text-align: justify;">
+													<?php 														
+														foreach($objVersiculo as $objVersiculoItem)
+														{
+															echo $objVersiculoItem->versiculo." <br/><br/>"; 
+														}
+													?>
+											</p>									
+											<small>
+												<?php echo $objVersiculo[0]->libro; ?> <?php echo $objVersiculo[0]->capitulo; ?>
+											</small>
+										</blockquote>
+								
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
+
+					</div>
+					<div class="col-lg-6">	
+						
+						
 
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">

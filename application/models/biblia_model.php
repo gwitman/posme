@@ -9,7 +9,8 @@ class Biblia_Model extends CI_Model  {
    function get_rowByDay($companyID,$dia){    
 		$this->db->select("i.versiculoID,i.orden,i.dia,i.capitulo,i.libro,i.versiculo");
 		$this->db->from("tb_biblia i");		
-		$this->db->where("dia",$dia);
+		$this->db->where("dia >= ",($dia - 3));
+		$this->db->where("dia <= ",($dia + 2));
 		
 		//Ejecutar Consulta
 		$recordSet = $this->db->get();
@@ -22,7 +23,7 @@ class Biblia_Model extends CI_Model  {
 		return null;
 		
 		//Resultado
-		return $recordSet->row();
+		return $recordSet->result();
    }
   
 }

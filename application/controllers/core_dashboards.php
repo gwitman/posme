@@ -73,6 +73,7 @@ class core_dashboards extends CI_Controller {
 
 			
 			$diaDelAnnio 								= date("z");
+			$diaDelAnnio 								= rand(1, 360);
 			$objVersiculo 								= $this->Biblia_Model->get_rowByDay($companyID, $diaDelAnnio);
 			if ($objVersiculo == null) {
 				$objVersiculo = $this->Biblia_Model->get_rowByDay($companyID, 1);
