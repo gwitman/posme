@@ -51,7 +51,6 @@
 												<div class="col-lg-6">
 													
 										
-
 														<div class="form-group">
 															<label class="col-lg-2 control-label" for="datepicker">Fecha</label>
 															<div class="col-lg-8">
@@ -101,7 +100,6 @@
 																	<input class="form-control"  type="text"  name="txtDetailAmount" id="txtDetailAmount" value="">												
 																</div>
 														</div>
-
 
 														<div class="vital-stats">
 															<ul>

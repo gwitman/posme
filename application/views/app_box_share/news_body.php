@@ -122,14 +122,12 @@
 																	<input class="form-control"   type="text"  readonly="tre" name="txtBalanceStart" id="txtBalanceStart" value="0">
 																</div>
 														</div>
-
 														<div class="form-group">
 																<label class="col-lg-4 control-label" for="normal">Saldo final</label>
 																<div class="col-lg-8">
 																	<input class="form-control"   type="text"  readonly="tre" name="txtBalanceFinish" id="txtBalanceFinish" value="0">
 																</div>
 														</div>
-
 
 														<div class="vital-stats">
 															<ul>

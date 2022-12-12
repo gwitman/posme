@@ -19,7 +19,6 @@
 	<!-- End #email  -->
 </div>
 <!-- End .row-fluid  -->
-
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -45,7 +44,6 @@
 					<li>
 						<a href="#credit" data-toggle="tab">Info de Credito.</a>
 					</li>
-
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mas <b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -158,7 +156,6 @@
 										</select>
 									</div>
 								</div>
-
 								<div class="form-group">
 										<label class="col-lg-4 control-label" for="normal">Cliente</label>
 										<div class="col-lg-8">
@@ -178,7 +175,6 @@
 							
 						</div>
 						</div>
-
 					
 						
 					</div>
@@ -238,7 +234,6 @@
 											<input class="form-control"  type="text"  name="txtReference2" id="txtReference2" value="<?php echo $objTransactionMaster->reference2; ?>">												
 										</div>
 								</div>											
-
 								
 							
 							
@@ -248,7 +243,6 @@
 											<input class="form-control"  type="text"  name="txtReference3" id="txtReference3" value="<?php echo $objTransactionMaster->reference3; ?>">												
 										</div>
 								</div>		
-
 								<div class="form-group">
 									<label class="col-lg-4 control-label" for="selectFilter">Moneda</label>
 									<div class="col-lg-8">
@@ -396,7 +390,6 @@
 						
 					</div>
 				</div>    
-
 		
 				<br/>
 				
@@ -424,9 +417,7 @@
 						
 					</div><!-- End .col-lg-12  --> 
 				</div><!-- End .row-fluid  -->
-
 				<input class="form-control"  type="hidden"  name="txtStatusID" id="txtStatusID" value="<?php echo $objTransactionMaster->statusID; ?>" >
-
 				
 				<a href="#" class="btn btn-flat btn-info" id="btnNewItem" ><i class="icon16 i-print"></i> AGREGAR PRO</a>
 				<a href="#" class="btn btn-flat btn-danger" id="btnDeleteItem" ><i class="icon16 i-print"></i> ELIMINAR PRO</a>		
@@ -435,13 +426,11 @@
 				<a href="<?php echo site_url(); ?>app_invoice_billing/add.aspx" class="btn btn-flat btn-info" id="btnNew"><i class="icon16 i-checkmark-4"></i> NUEVA FAC</a>
 				<a href="#" class="btn btn-flat btn-danger" id="btnDelete"><i class="icon16 i-remove"></i> ELIMINAR FAC</a>	
 				<a href="#" class="btn btn-flat btn-primary" id="btnPrinter"><i class="icon16 i-print"></i> IMPRIMIR</a>
-
 				<?php
 				$counter = 0;
 				if($objListWorkflowStage)
 				foreach($objListWorkflowStage as $ws){					
 					$counter++;
-
 					if($counter == 1){
 					echo "<a href='#' class='btn btn-flat btn-inverse btnAcept'  data-valueworkflow='".$ws->workflowStageID."'   > <i class='icon16 i-checkmark-4'></i>  ".$ws->name."</a> ";							
 					}
@@ -450,15 +439,12 @@
 					}
 				}
 				?>
-
 				
-
 				<input class="form-control"  type="text"  name="txtScanerCodigo" id="txtScanerCodigo" value="">
 																
 				
 									
 				
-
 
 				<div class="row">
 					<div class="col-lg-4">
@@ -469,7 +455,6 @@
 							<li><h3>CC: <span class="red-smooth">*</span></h3></li>
 							<li><i class="icon16 i-arrow-right-3"></i>Resumen de la factura</li>                                                
 						</ul>
-
 					</div>
 					 <div class="col-lg-4">
 						<div class="page-header">
@@ -551,7 +536,6 @@
 				<a href="#" class="btn btn-danger" id="btnDelete"><i class="icon16 i-remove"></i> Eliminar</a>									
 				<a href="#" class="btn btn-primary" id="btnPrinter"><i class="icon16 i-print"></i> Imprimir</a>
 				<a href="#" class="btn btn-success" id="btnAcept"><i class="icon16 i-checkmark-4"></i> Guardar</a>
-
 			</div>
 		</div> 
 		-->

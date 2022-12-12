@@ -252,7 +252,6 @@
 						
 						
 						<th nowrap class="cell_right"></th>		
-
 						<?php
 						if($count2 == 0){
 						?>
@@ -510,7 +509,6 @@
 						
 						
 						<th nowrap class="cell_right"></th>	
-
 						<?php
 						if($count4 == 0){
 						?>

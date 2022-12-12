@@ -1,6 +1,5 @@
 				    <div class="row">
                         <div id="email" class="col-lg-12">
-
                             <div class="email-bar" style="border-left:1px solid #c9c9c9">                                
                                 <div class="btn-group pull-right">                                    
                                     <a href="#" class="btn btn-primary" id="btnPrinter"><i class="icon16 i-print"></i> Imprimir</a>
@@ -19,7 +18,6 @@
 	                                  <a href="#" class="minimize"></a>
                                 </div>
                                 <!-- /panel widget -->
-
 								<!-- body widget -->
                                 <div class="panel-body noPadding">
 									<div class="email-wrapper" style="padding:15px 15px 15px 15px;padding-left:15px">
@@ -71,5 +69,4 @@
 								</div>
 							</div>
                         </div><!-- End #email  -->
-
                     </div><!-- End .row-fluid  -->

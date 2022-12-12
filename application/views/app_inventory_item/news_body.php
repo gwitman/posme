@@ -10,7 +10,6 @@
 											?>
 											<a href="<?php echo site_url(); ?>app_inventory_item/index" id="btnBack" class="btn btn-inverse" ><i class="icon16 i-rotate"></i> Atras</a>                                    
 											<?php
-
 										}
 										else{
 											?>

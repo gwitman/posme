@@ -1,9 +1,7 @@
 <script src="<?php echo site_url(); ?>js/jLinq-2.2.1.js"></script>
-
 <div id="heading" class="page-header">
 	<h1><i class="icon20   i-cube-3"></i> ACCIONES SOBRE PRODUCTOS</h1>
 </div>
-
 <div class="row">  
 	<div id="email" class="col-lg-12">
 	<div class="email-bar" style="width:100%">
@@ -24,7 +22,6 @@
 	</div>			
 	</div>
 </div>
-
 <div class="row">  
 	<div class="col-lg-12">					
 		<div class="panel panel-default">

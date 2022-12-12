@@ -16,7 +16,6 @@
 	<!-- End #email  -->
 </div>
 <!-- End .row-fluid  -->
-
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -112,7 +111,6 @@
 											<input class="form-control"  type="text"  name="txtDetailAmount" id="txtDetailAmount" value="<?php echo sprintf("%01.2f",$objTransactionMasterDetail[0]->amount); ?>">
 										</div>
 								</div>
-
 
 								<div class="vital-stats">
 									<ul>

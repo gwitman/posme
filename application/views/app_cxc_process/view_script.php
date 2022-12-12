@@ -18,17 +18,17 @@
 											}
 											else{
 												fnShowNotification(data.message,"success");
-											} 
-										},
+											} 
+										},
 										error:function(xhr,data){	
 											fnWaitClose();
 											console.info("complete delete error");									
 											fnShowNotification("Error 505","error");
-										}
-									});
-							});
-						});
-						
-					});
-					
+										}
+									});
+							});
+						});
+						
+					});
+					
 				</script>

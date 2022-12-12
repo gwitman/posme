@@ -18,9 +18,7 @@
 		true:
 		false;
 	var PriceStatus = varPermisosEsPermitidoModificarPrecio == true ? "":"readonly";
-
 	
-
 	
 	if(varDetail != null){
 		for(var i = 0 ; i < varDetail.length;i++){
@@ -74,15 +72,11 @@
 			}
 		});	
 	}
-
 	function fnCustomerNewCompleted(){
 		console.info("cliente completado");
 	}
-
 	
 	
-
-
 
 	fnObtenerListadoProductos();
 	
@@ -288,7 +282,6 @@
 		
 		//Imprimir Documento
 		$(document).on("click","#btnPrinter",function(){			
-
 			if(varParameterInvoiceBillingPrinterDirect == true){
 				
 				var url="<?php echo site_url(); ?>"+varParameterInvoiceBillingPrinterDirectUrl;
@@ -296,7 +289,6 @@
 				"/companyID/"+"<?php echo $objTransactionMaster->companyID; ?>" + 
 				"/transactionID/"+"<?php echo $objTransactionMaster->transactionID; ?>"+
 				"/transactionMasterID/"+"<?php echo $objTransactionMaster->transactionMasterID; ?>";
-
 				fnWaitOpen();	
 				$.ajax({									
 					cache       : false,
@@ -376,26 +368,22 @@
 				});
 			});
 		});
-
 		//Nuevo Producto
 		$(document).on("click","#btnNewItem",function(){
 			var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI("{\"warehouseID\"|\"<?php echo $warehouseID ?>\"{}\"listPriceID\"|\"<?php echo $objListPrice->listPriceID; ?>\"{}\"typePriceID\"|\""+ $("#txtTypePriceID").val() + "\"}");
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteNewItem 	= onCompleteNewItem; 
 		});
-
 		$(document).on("click","#btnNewItemCatalog",function(){
 			var url_request 				 = "<?php echo site_url(); ?>app_inventory_item/add.aspx";
 			window.open(url_request,"MsgWindow","width=700,height=600");			
 			window.fnObtenerListadoProductos = fnObtenerListadoProductos; 
 		});
-
 		$(document).on("click","#btnSearchCustomerNew",function(){
 			var url_request 				 = "<?php echo site_url(); ?>app_cxc_customer/add/callback/fnCustomerNewCompleted";
 			window.open(url_request,"MsgWindow","width=700,height=600");
 			window.fnCustomerNewCompleted = fnCustomerNewCompleted; 	
 		});
-
 
 		//Eliminar Item
 		$(document).on("click","#btnDeleteItem",function(){
@@ -465,7 +453,6 @@
 		//Obtener Informacion de Credito
 		fnWaitOpen();
 
-
 		$.ajax({									
 			cache       : false,
 			dataType    : 'json',
@@ -491,7 +478,6 @@
 	}
 	function fnCompleteGetCustomerCreditLine (data)
 	{
-
 		console.info("complete success data");
 		fnWaitClose();
 		tmpInfoClient = data;
@@ -608,7 +594,6 @@
 			fnShowNotification("Seleccionar el Proveedor de Credito","error",timerNotification);
 			result = false;
 		}
-
 		//Validar Zona
 		if($("#txtZoneID").val() == "" && switchDesembolso){
 			fnShowNotification("Seleccionar la Zona de la Factura","error",timerNotification);
@@ -689,7 +674,6 @@
 		
 		//Obtener Limite
 		if(invoiceTypeCredit){
-
 			//Validar Fecha del Primer Pago si es de Credito
 			if($("#txtDateFirst").val() == "" && switchDesembolso){
 				fnShowNotification("Seleccionar la Fecha del Primer Pago","error",timerNotification);
@@ -852,5 +836,4 @@
 				}				
 	}		
 </script>
-
 <script>  (function(g,u,i,d,e,s){g[e]=g[e]||[];var f=u.getElementsByTagName(i)[0];var k=u.createElement(i);k.async=true;k.src='https://static.userguiding.com/media/user-guiding-'+s+'-embedded.js';f.parentNode.insertBefore(k,f);if(g[d])return;var ug=g[d]={q:[]};ug.c=function(n){return function(){ug.q.push([n,arguments])};};var m=['previewGuide','finishPreview','track','identify','triggerNps','hideChecklist','launchChecklist'];for(var j=0;j<m.length;j+=1){ug[m[j]]=ug.c(m[j]);}})(window,document,'script','userGuiding','userGuidingLayer','744100086ID'); </script>

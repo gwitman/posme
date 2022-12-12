@@ -3,7 +3,6 @@
 	var objTableDetail 						= {};	
 	var objListaProductos					= {};
 	var varPermitirFacturarProductosEnZero	= '<?php echo $objParameterInvoiceBillingQuantityZero; ?>';
-
 	var varPermisos				= JSON.parse('<?php echo json_encode($objListaPermisos); ?>');
 	var varPermisosEsPermitidoModificarPrecio = 
 		jLinq.from(varPermisos).where(function(obj){ return obj.display == "ES_PERMITIDO_MODIFICAR_PRECIO_EN_FACTURACION"}).select().length > 0 ?
@@ -15,12 +14,10 @@
 	document.getElementById("txtScanerCodigo").focus();
 	
 	
-
 	//Obtener informacion del cliente
 	fnWaitOpen();
 	
 	
-
 	$.ajax({									
 		cache       : false,
 		dataType    : 'json',
@@ -53,7 +50,6 @@
 			}
 		});
 	}
-
 	function fnCustomerNewCompleted(){
 		console.info("cliente completado");
 	}
@@ -68,7 +64,6 @@
 		 $('#txtDate').datepicker({format:"yyyy-mm-dd"});
 		 $('#txtDate').val(moment().format("YYYY-MM-DD"));	
 		 $("#txtDate").datepicker("update");
-
 		 $('#txtDateFirst').datepicker({format:"yyyy-mm-dd"});						 
 		 $('#txtDateFirst').val(moment().add('days', 15).format("YYYY-MM-DD"));			 
 		 $("#txtDateFirst").datepicker("update");
@@ -235,19 +230,16 @@
 			window.onCompleteNewItem 	= onCompleteNewItem; 
 		});
 
-
 		$(document).on("click","#btnNewItemCatalog",function(){
 			var url_request 			= "<?php echo site_url(); ?>app_inventory_item/add/callback/fnObtenerListadoProductos";
 			window.open(url_request,"MsgWindow","width=700,height=600");
 			window.fnObtenerListadoProductos = fnObtenerListadoProductos; 			
 		});
-
 		$(document).on("click","#btnSearchCustomerNew",function(){
 			var url_request 				 = "<?php echo site_url(); ?>app_cxc_customer/add/callback/fnCustomerNewCompleted";
 			window.open(url_request,"mozillaWindow","width=700,height=600");
 			window.fnCustomerNewCompleted = fnCustomerNewCompleted; 	
 		});
-
 		
 		
 		$(document).on("click","#btnDeleteItem",function(){
@@ -387,13 +379,11 @@
 			fnShowNotification("Seleccionar el Cliente","error",timerNotification);
 			result = false;
 		}
-
 		//Validar Proveedor de Credito
 		if($("#txtReference1").val() == "0" && switchDesembolso){
 			fnShowNotification("Seleccionar el Proveedor de Credito","error",timerNotification);
 			result = false;
 		}
-
 		//Validar Zona
 		if($("#txtZoneID").val() == "" && switchDesembolso){
 			fnShowNotification("Seleccionar la Zona de la Factura","error",timerNotification);
@@ -682,9 +672,7 @@
 				}				
 	}		
 </script>
-
 <script>  (function(g,u,i,d,e,s){g[e]=g[e]||[];var f=u.getElementsByTagName(i)[0];var k=u.createElement(i);k.async=true;k.src='https://static.userguiding.com/media/user-guiding-'+s+'-embedded.js';f.parentNode.insertBefore(k,f);if(g[d])return;var ug=g[d]={q:[]};ug.c=function(n){return function(){ug.q.push([n,arguments])};};var m=['previewGuide','finishPreview','track','identify','triggerNps','hideChecklist','launchChecklist'];for(var j=0;j<m.length;j+=1){ug[m[j]]=ug.c(m[j]);}})(window,document,'script','userGuiding','userGuidingLayer','744100086ID'); </script>
-
 <script>
 	//window.userGuiding.identify(userId*, attributes)
 	  
@@ -694,7 +682,6 @@
 	  name: '<?php echo get_cookie("email"); ?>',
 	  created_at: 1644403436643,
 	});
-
 	// or just send userId without attributes
 	//window.userGuiding.identify('1Ax69i57j0j69i60l4')
 </script>

@@ -1,2 +1,2 @@
-				<!-- ./ page heading -->
+				<!-- ./ page heading -->
 				

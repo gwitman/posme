@@ -76,7 +76,6 @@
 				fnWaitClose();
 				$(this).dialog("close");
 		};	
-
 		$("#modalDialogOpenPrimter").dialog({
 				autoOpen: false,
 				modal: true,
@@ -84,13 +83,10 @@
 				dialogClass: "dialog",
 				buttons: objectParameterButtoms
 		});
-
 		$(document).on("click","#btnPrinter",function(){				
 			$("#modalDialogOpenPrimter").dialog("open");
 			return
-
 		});
-
 		//Evento Agregar el Usuario
 		$(document).on("click","#btnAcept",function(){
 				$( "#form-new-invoice" ).attr("method","POST");
@@ -223,11 +219,9 @@
 		});
 		total = fnFormatNumber(total,2);
 		$("#txtTotal").val(total);
-
 		var saldoFinal = fnFormatFloat($("#txtBalanceStart").val()) - total ;
 		saldoFinal = fnFormatNumber(saldoFinal,2);
 		$("#txtBalanceFinish").val(saldoFinal);
-
 	}
 	function onCompleteNewShare(objResponse){
 		console.info("CALL onCompleteNewShare");	
@@ -314,18 +308,15 @@
 			fnShowNotification("Seleccionar el Cliente","error",timerNotification);
 			result = false;
 		}
-
 		$(".row_razon").each(function(obj,i){  
 			var saldoInicial =  $($(i).find(".txtDetailShareReference2")[0]).text() ;
 			var amountShare = $($(i).find(".txtDetailShare")[0]).val();
-
 			saldoInicial = fnFormatFloat(saldoInicial);
 			amountShare = fnFormatFloat(amountShare);
 			if(amountShare > saldoInicial){
 				fnShowNotification("El monto del abono en la factura es mayor quel saldo","error",timerNotification);
 				result = false;
 			}
-
 		});
 		
 		return result;

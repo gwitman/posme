@@ -5,13 +5,11 @@ impresora de ticket  o termia, con papel de de calcomania de la ssiguientes dime
 				colcamania de 2.5 cm de alto (1plugada)
 				
 separador de calcomania de 0.4 cm
-
 intrucciones de ingreso.
 poner al orilla izquierda de la impresora.
 con la cara amarilla visible al usuairo.
 la ranura de la separacion de la colcamania , alinearala con
 el relieve de de la impresora. que esta por fuera.
-
 cantidad de colcamainia  de desperdicio: 4.
 cantidad minimas de codigo:		10.
 -->

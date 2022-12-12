@@ -65,7 +65,6 @@
 																</div>
 															</div>
 														</div>
-
 													
 														<div class="form-group">
 																<label class="col-lg-4 control-label" for="normal">Nombre</label>
@@ -146,7 +145,6 @@
 											
 										</div>										
 									</div>    
-
 							 
                                 </div>
 								</form>

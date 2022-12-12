@@ -11,7 +11,6 @@
 						<a href="<?php echo site_url(); ?>app_inventory_item/index" id="btnBack" class="btn btn-inverse" ><i class="icon16 i-rotate"></i> Atras</a>
 						<a href="#" class="btn btn-danger" id="btnDelete"><i class="icon16 i-remove"></i> Eliminar</a>
 						<?php
-
 					}
 					else{
 						?>

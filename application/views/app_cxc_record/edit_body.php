@@ -20,9 +20,7 @@
                             </div> 
                         </div>
                     </div>
-
 				
-
 
                     <!-- /botonera -->
 					
@@ -55,7 +53,6 @@
 													<dl class="dl-horizontal">
 														<dt>Cedula</dt>
 														<dd><span class="blue"><?php echo (isset($Persona) ? $Persona->NumeroDocumentoIdentidad:""); ?></span></dd>
-
 														<dt>Nombre</dt>
 														<dd><?php echo (isset($Persona) ? $Persona->NombreRazonSocial:""); ?></dd>
 													</dl>
@@ -91,7 +88,6 @@
 														}
 														?>
 													</dl>
-
 												</div>
 											</div>
 										</div>
@@ -257,10 +253,8 @@
 											<div class="row">													
 												<div class="col-lg-12">
 													
-
 													<p><code>Listado de consultas, donde el cliente ha solicitado credito:</code></p>
 													<dl class="dl-horizontal">
-
 														<?php
 														if(isset($Consultas))
 														if($Consultas)
@@ -271,7 +265,6 @@
 														}
 														?>
 													</dl>
-
 													
 												</div>
 											</div>

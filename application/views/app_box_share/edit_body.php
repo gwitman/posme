@@ -16,7 +16,6 @@
 	<!-- End #email  -->
 </div>
 <!-- End .row-fluid  -->
-
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -151,14 +150,12 @@
 										</div>
 									</div>
 								</div>
-
 								<div class="form-group">
 									<label class="col-lg-4 control-label" for="normal">Saldo inicial</label>
 									<div class="col-lg-8">
 										<input class="form-control"   type="text" readonly="tre" name="txtBalanceStart" id="txtBalanceStart" value="<?php echo number_format($objTransactionMasterInfo->reference1,2); ?>">
 									</div>
 								</div>
-
 								<div class="form-group">
 										<label class="col-lg-4 control-label" for="normal">Saldo final</label>
 										<div class="col-lg-8">
@@ -359,16 +356,13 @@
 			</div>
 			</form>
 			<!-- /body -->
-
 			<div id="modalDialogOpenPrimter" title="Formato de Impresion" class="dialog">
 				<p>Seleccione el formato que desea imprimir el documento</p>
 			</div>
 
-
 		</div>
 	</div>
 </div>
-
 <script type="text/template"  id="tmpl_row_document">
 		<tr class="row_razon">
 			<td>

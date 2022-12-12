@@ -119,11 +119,9 @@
 		});
 		total = fnFormatNumber(total,2);
 		$("#txtTotal").val(total);
-
 		var saldoFinal = fnFormatFloat($("#txtBalanceStart").val()) - total ;
 		saldoFinal = fnFormatNumber(saldoFinal,2);
 		$("#txtBalanceFinish").val(saldoFinal);
-
 	}
 	function onCompleteNewShare(objResponse){
 		console.info("CALL onCompleteNewShare");	
@@ -173,7 +171,6 @@
 		tmpl.find("#txtDetailBalanceStart").attr("value",objBalancesDocument.balance);
 		tmpl.find("#txtDetailShare").attr("value",objRow.abonoFaltante);
 		tmpl.find("#txtBalanceFinishShare").text("0.00");
-
 		$("#body_tb_transaction_master_detail").append(tmpl);
 		refreschChecked();
 		

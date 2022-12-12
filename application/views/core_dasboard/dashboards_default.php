@@ -86,7 +86,6 @@
 								</table>
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
-
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
@@ -111,12 +110,10 @@
 								
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
-
 					</div>
 					<div class="col-lg-6">	
 						
 						
-
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
@@ -129,14 +126,11 @@
 									<p>Soporte Tenico: 8712-5827</p>									
 									<small>posMe</small>
 								</blockquote>
-
 								<a aria-label="Chat on WhatsApp" target="_blank" href="https://wa.me/50587125827?text=Buenos dias le saluda <?php echo $user->email; ?> : "> 
 									<img alt="Chat on WhatsApp" src="<?php echo base_url();?>/img/logos/WhatsAppButtonGreenSmall.svg" /> 
 								</a>
-
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
-
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
@@ -151,7 +145,6 @@
 								</blockquote>
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
-
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
@@ -161,17 +154,14 @@
 						
 							<div class="panel-body">
 								<form method="POST" action="<?php echo base_url(); ?>core_acount/login"  autocomplete="off">
-
 									<div class="form-group form-material floating" data-plugin="formMaterial">
 										<input type="text" class="form-control" name="txtNickname" />
 										<label class="floating-label">Usuario</label>
 									</div>
-
 									<div class="form-group form-material floating" data-plugin="formMaterial">
 										<input type="password" class="form-control" name="txtPassword" />
 										<label class="floating-label">Contraseña</label>
 									</div>
-
 									
 									<div class="form-group form-material floating hidden-lg-up" id="divPagosMeses" data-plugin="formMaterial">
 										<input type="text" class="form-control" id="txtPagarCantidadDe" name="txtPagarCantidadDe" placeholder="$ 0.00"></input>
@@ -179,14 +169,10 @@
 									
 									<button type="submit" class="btn btn-success btn-block btn-lg m-t-40 hidden-lg-up" id="divPagosMesesBoton" >Pagar</button>
 								</form>
-
 								<br/>
-
 								<img class="img-featured" style="width:335px;height:200px" src="<?php echo base_url();?>/img/logos/tarjeta.jpg">
-
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
-
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-health"></i></div> 
@@ -198,7 +184,6 @@
 								<img class="img-featured" style="width:300px;height:200px" src="<?php echo base_url();?>/img/logos/dashboard_posme.jpeg">
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->		
-
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 

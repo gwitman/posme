@@ -36,7 +36,6 @@
 			});
 		});
 
-
 		
 		$(document).on("change","#txtClosedPeriod",function(){
 				fnWaitOpen();

@@ -12,7 +12,6 @@
 						$(document).on("click","#print-btn-report",function(){
 							var startOn					=	$("#txtStartOn").val();	
 							var endOn					=	$("#txtEndOn").val();	
-
 							if(!( startOn == "" || endOn == ""  ) ){
 								fnWaitOpen();
 								window.location	= "<?php echo site_url(); ?>app_cxc_report/consulta_sin_riesgo/";

@@ -99,7 +99,6 @@
 														echo "<option value='".$i->warehouseID."' selected>".$i->name."</option>";
 													else
 														echo "<option value='".$i->warehouseID."'>".$i->name."</option>";
-
 												}
 												?>
 										</select>

@@ -58,17 +58,14 @@
             <h2 class="brand-text font-size-18">...</h2>
           </div>
           <form method="POST" action="<?php echo base_url(); ?>core_acount/login"  autocomplete="off">
-
             <div class="form-group form-material floating" data-plugin="formMaterial">
               <input type="text" class="form-control" name="txtNickname" />
               <label class="floating-label">Usuario</label>
             </div>
-
             <div class="form-group form-material floating" data-plugin="formMaterial">
               <input type="password" class="form-control" name="txtPassword" />
               <label class="floating-label">Contraseña</label>
             </div>
-
             <div class="form-group clearfix">
               <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg pull-xs-left">
                 <input type="checkbox" id="inputCheckbox" name="remember">
@@ -76,7 +73,6 @@
               </div>
               <a class="pull-xs-right" href="forgot-password.html">Reenviar Contraseña?</a>
             </div>
-
             <div class="form-group clearfix">
               <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg pull-xs-left">
                 <input type="checkbox" id="inputCheckboxPayment" name="inputCheckBoxPayment">
@@ -84,9 +80,7 @@
               </div>
               
             </div>
-
             <button type="submit" class="btn btn-primary btn-block btn-lg m-t-40">Ingresar</button>
-
             
             <div class="form-group form-material floating hidden-lg-up" id="divPagosMeses" data-plugin="formMaterial">
               <select class="form-control" id="txtPagarCantidadDe" name="txtPagarCantidadDe">
@@ -105,9 +99,7 @@
                   <option value="12"><?php echo "$ ".round($parameterPrice * 12,2); ?></option>
               </select>              
             </div>
-
             <button type="submit" class="btn btn-success btn-block btn-lg m-t-40 hidden-lg-up" id="divPagosMesesBoton" >Pagar</button>
-
           </form>
           <!--
           <p>Still no account? Please go to <a href="register-v3.html">Sign up</a></p>
@@ -116,10 +108,7 @@
       </div>
       
 
-
-
     
-
 
       <footer class="page-copyright page-copyright-inverse">
 		<?php echo $message; ?>
@@ -185,10 +174,8 @@
     var Site = window.Site;
     $(document).ready(function() {
         Site.run();
-
        
     });
-
     $("#inputCheckboxPayment").on("click",function(){
         var checked = $("#inputCheckboxPayment").is(':checked');
         if(checked){
@@ -201,7 +188,6 @@
         }
           
     });
-
 
   })(document, window, jQuery);
   </script>

@@ -10,7 +10,6 @@
                                 
                                     <div class="panel-body">
                                         <form class="form-horizontal pad15 pad-bottom0" role="form">
-
 											<div class="form-group">
 												<label class="col-lg-2 control-label" for="selectFilter">Periodo</label>
 												<div class="col-lg-8">
@@ -99,7 +98,6 @@
                                 
                                     <div class="panel-body">
                                         <form class="form-horizontal pad15 pad-bottom0" role="form">
-
 											<div class="form-group">
 												<label class="col-lg-2 control-label" for="selectFilter">Transaccion</label>
 												<div class="col-lg-8">
@@ -134,7 +132,6 @@
                                 
                                     <div class="panel-body">
                                         <form class="form-horizontal pad15 pad-bottom0" role="form">
-
 											<div class="form-group">
 												<label class="col-lg-2 control-label" for="selectFilter">Seleccionar</label>
 												<div class="col-lg-8">

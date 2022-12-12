@@ -74,7 +74,6 @@
 															<label class="col-lg-2 control-label" for="normal">Area</label>
 															<div class="col-lg-8">
 															<input class="form-control"  type="text"  name="txtArea" id="txtArea" readonly value="<?php echo $objArea->name;?>">									
-
 															</div>
 													</div>	
 													
