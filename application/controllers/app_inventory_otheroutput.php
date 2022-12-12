@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class App_Inventory_OtherOutput extends CI_Controller {
 	
     public function __construct() {
@@ -24,7 +23,6 @@ class App_Inventory_OtherOutput extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
@@ -363,7 +361,6 @@ class App_Inventory_OtherOutput extends CI_Controller {
 			
 			//Crear la Carpeta para almacenar los Archivos del Documento
 			mkdir(PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponent->componentID."/component_item_".$transactionMasterID, 0700);
-
 			//Recorrer la lista del detalle del documento
 			$arrayListItemID 							= $this->input->post("txtDetailItemID");
 			$arrayListQuantity	 						= $this->input->post("txtDetailQuantity");			
@@ -428,7 +425,6 @@ class App_Inventory_OtherOutput extends CI_Controller {
 		catch(Exception $ex){
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}			
-
 	}
 	function updateElement($dataSession){
 		try{
@@ -493,7 +489,6 @@ class App_Inventory_OtherOutput extends CI_Controller {
 			
 			$objTMNew["amount"] 					= $this->input->post("txtTotal");
 			$this->db->trans_begin();
-
 			//El Estado solo permite editar el workflow
 			if($this->core_web_workflow->validateWorkflowStage("tb_transaction_master_otheroutput","statusID",$objTM->statusID,COMMAND_EDITABLE,$dataSession["user"]->companyID,$dataSession["user"]->branchID,$dataSession["role"]->roleID)){
 				$objTMNew								= array();

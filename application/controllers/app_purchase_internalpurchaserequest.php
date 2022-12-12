@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class App_Purchase_InternalPurchaseRequest extends CI_Controller {
 	
     public function __construct() {
@@ -96,7 +95,6 @@ class App_Purchase_InternalPurchaseRequest extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
@@ -471,7 +469,6 @@ class App_Purchase_InternalPurchaseRequest extends CI_Controller {
 			//Crear la Carpeta para almacenar los Archivos del Documento
 			$path_ = PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponent->componentID."/component_item_".$transactionMasterID;
 			mkdir($path_, 0700);
-
 			//Crear la plantilla de Exportacion
 			$objListItemWarehouse					= $this->ItemWarehouse_Model->getByWarehouse($companyID,$objTM["sourceWarehouseID"]);
 			$this->csvreader->write_file($path_."/default.csv",$objListItemWarehouse);
@@ -532,7 +529,6 @@ class App_Purchase_InternalPurchaseRequest extends CI_Controller {
 		catch(Exception $ex){
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}			
-
 	}
 	function updateElement($dataSession){
 		try{
@@ -602,7 +598,6 @@ class App_Purchase_InternalPurchaseRequest extends CI_Controller {
 			$objTMNew["reference2"]					=$this->input->post("txtReference2");
 			$objTMNew["reference3"]					=$this->input->post("txtReference3");
 			$this->db->trans_begin();
-
 			//El Estado solo permite editar el workflow
 			if($this->core_web_workflow->validateWorkflowStage("tb_transaction_master_internalpurchaserequest","statusID",$objTM->statusID,COMMAND_EDITABLE,$dataSession["user"]->companyID,$dataSession["user"]->branchID,$dataSession["role"]->roleID)){
 				$objTMNew								= array();

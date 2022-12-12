@@ -95,7 +95,6 @@ class App_Inventory_Itemmasive extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
@@ -109,7 +108,6 @@ class App_Inventory_Itemmasive extends CI_Controller {
 			$this->load->model("core/Company_Model"); 						
 			$this->load->model("Item_Model"); 		
 			log_message("ERROR",print_r($listItem,true));
-
 			$listItem	= explode("|",$listItem);
 			log_message("ERROR",print_r($listItem,true));
 			
@@ -129,24 +127,19 @@ class App_Inventory_Itemmasive extends CI_Controller {
 			$objListaItemPrinter = array();			
 			foreach($listItem as $itemWitCantidad)
 			{
-
 				$itemWitCantidadTmp	= explode("-",$itemWitCantidad);
 				$itemID 	= $itemWitCantidadTmp[0];
 				$cantidad 	= $itemWitCantidadTmp[1];			
-
 				//Obtener Lista de Productos		
 				log_message("ERROR",print_r("Lista de productos",true));	
 				log_message("ERROR",print_r($itemID,true));	
-
 				$objBarCode 		= new barcode();
 				$objItem 			= $this->Item_Model->get_rowByPK($companyID,$itemID);
 				log_message("ERROR",print_r($objItem,true));	
-
 				if($objItem == null)
 				{}		
 				else{	
 					$objItem->barCode	= $objItem->barCode == "" ? "B".$objItem->itemNumber  : $objItem->barCode;
-
 					$objNewItem["barCode"] = $objItem->barCode;
 					$row_affected 	= $this->Item_Model->update($companyID,$objItem->itemID,$objNewItem);
 					
@@ -157,12 +150,10 @@ class App_Inventory_Itemmasive extends CI_Controller {
 					mkdir($directory, 0700);
 					
 					$objBarCode->generate( $pathFileCodeBarra, $objItem->barCode, "40", "horizontal", "code128", false, 3 );
-
 					for($i = 0; $i < $cantidad ; $i++){
 						$objItemTempory = $this->Item_Model->get_rowByPK($companyID,$itemID);
 						array_push($objListaItemPrinter,$objItemTempory);
 					}
-
 				}
 			}
 					

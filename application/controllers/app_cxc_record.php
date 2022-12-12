@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class App_Cxc_Record extends CI_Controller {
 	
     public function __construct() {
@@ -24,10 +23,8 @@ class App_Cxc_Record extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);			
-
 			
 			}
-
 		
 			//Obtener el componente Para mostrar la lista de AccountType
 			$objComponent	= $this->core_web_tools->getComponentIDBy_ComponentName("tb_customer_consultas_sin_riesgo");
@@ -39,7 +36,6 @@ class App_Cxc_Record extends CI_Controller {
 			$companyID		= $dataSession["user"]->companyID;
 			$branchIDUser	= $dataSession["user"]->branchID;
 			$roleID 		= $dataSession["role"]->roleID;					
-
 			
 			//Leer Parametros
 			$this->load->model("Customer_Consultas_Sin_Riesgo_Model"); 
@@ -95,7 +91,6 @@ class App_Cxc_Record extends CI_Controller {
 					$this->GuardarArchivo($archivo1,$resultado);
 					$archivo2 = $archivo1;
 				}
-
 
 				//Guardar la informacion del cliente
 				if(
@@ -157,7 +152,6 @@ class App_Cxc_Record extends CI_Controller {
 			//Crear Archivo
 			$fp = fopen($file, 'w+');
 			fclose($fp);
-
 			//Guardar Datos.
 			$current 	= file_get_contents($file);
 			$current 	.= $json_reaultado;			
@@ -461,7 +455,6 @@ class App_Cxc_Record extends CI_Controller {
 				$objNatural["lastName"]		= $this->input->post("txtLastName",'');
 				$objNatural["address"]		= $this->input->post("txtAddress",'');
 				$this->Natural_Model->update($companyID_,$branchID_,$entityID_,$objNatural);
-
 				$objLegal["isActive"]		= true;
 				$objLegal["comercialName"]	= $this->input->post("txtCommercialName",'');
 				$objLegal["legalName"]		= $this->input->post("txtLegalName",'');

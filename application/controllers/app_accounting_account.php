@@ -252,7 +252,6 @@ class App_Accounting_Account extends CI_Controller {
 							$continue 				= false;
 							throw new Exception("EL CODIGO DE LA CUENTA TIENE UN FORMATO INCORRECTO");
 						}
-
 						//Validar si la cuenta puede ser operativa
 						$objAccountLevel 			= $this->Account_Level_Model->get_rowByPK($dataSession["user"]->companyID,$this->input->post("txtAccountLevelID"));
 						if($this->input->post("txtIsOperative") !=  $objAccountLevel->isOperative){

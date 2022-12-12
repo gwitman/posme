@@ -1164,14 +1164,12 @@ class App_Box_Sharecapital extends CI_Controller {
 			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));
 			//Set Titulo			
 			$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
-
 			//Set Encambezado del comprobante
 			//$pdf->ezText("VARIEDADES"."",FONT_SIZE,array('justification'=>'center'));
 			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
 			$pdf->ezText("::".strtoupper($objCompany->name)."::",FONT_SIZE,array('justification'=>'center' ));
 			$pdf->ezText("ABONO AL CAPITAL:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
 			$spacing 			= 0.5;
-
 			
 			$data = array( 
 				array(
@@ -1570,14 +1568,12 @@ class App_Box_Sharecapital extends CI_Controller {
 			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));
 			//Set Titulo			
 			$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
-
 			//Set Encambezado del comprobante
 			//$pdf->ezText("VARIEDADES"."",FONT_SIZE,array('justification'=>'center'));
 			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
 			$pdf->ezText("::".strtoupper($objCompany->name)."::",FONT_SIZE,array('justification'=>'center' ));
 			$pdf->ezText("ABONO AL CAPITAL:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
 			$spacing 			= 0.5;
-
 			
 			$data = array( 
 				array(
@@ -1788,14 +1784,12 @@ class App_Box_Sharecapital extends CI_Controller {
 			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));
 			//Set Titulo			
 			$pdf->EXTCreateHeaderPrinterTicketAndTermica80cm(""./*$objCompany->name.*/""."",$objComponent->componentID,$objParameter->value,$dataSession);
-
 			//Set Encambezado del comprobante
 			//$pdf->ezText("VARIEDADES"."",FONT_SIZE,array('justification'=>'center'));
 			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
 			$pdf->ezText("::".strtoupper($objCompany->name)."::",FONT_SIZE,array('justification'=>'center' ));
 			$pdf->ezText("ABONO AL CAPITAL:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
 			$spacing 			= 0.5;
-
 			
 			$data = array( 
 				array(

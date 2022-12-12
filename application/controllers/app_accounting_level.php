@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class App_Accounting_Level extends CI_Controller {
 	
     public function __construct() {
@@ -30,7 +29,6 @@ class App_Accounting_Level extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);			
-
 			}
 			
 			
@@ -97,7 +95,6 @@ class App_Accounting_Level extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"delete",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_DELETE);			
-
 			
 			}	
 			
@@ -186,7 +183,6 @@ class App_Accounting_Level extends CI_Controller {
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_INSERT);			
 
-
 					}					
 					
 					//Ingresar Cuenta
@@ -236,7 +232,6 @@ class App_Accounting_Level extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);			
-
 
 					}	
 					
@@ -307,7 +302,6 @@ class App_Accounting_Level extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"add",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_INSERT);			
-
 			}	  
 			
 			//Renderizar Resultado 
@@ -346,7 +340,6 @@ class App_Accounting_Level extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"index",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ACCESS_FUNCTION);			
-
 			
 			}	
 			

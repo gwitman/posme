@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class App_Cxc_Customer extends CI_Controller {
 	
     public function __construct() {
@@ -23,7 +22,6 @@ class App_Cxc_Customer extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);			
-
 			
 			}	
 			
@@ -51,7 +49,6 @@ class App_Cxc_Customer extends CI_Controller {
 			$branchIDUser	= $dataSession["user"]->branchID;
 			$roleID 		= $dataSession["role"]->roleID;		
 			$callback		= array_key_exists("callback",$uri) ? $uri["callback"]: "false";
-
 			if((!$companyID || !$branchID || !$entityID))
 			{ 
 				redirect('app_cxc_customer/add');	
@@ -69,7 +66,6 @@ class App_Cxc_Customer extends CI_Controller {
 			$datView["objCustomerCreditLine"]	= $this->Customer_Credit_Line_Model->get_rowByEntity($companyID,$branchID,$entityID);
 			$datView["objCustomerSinRiesgo"]	= $this->Customer_Consultas_Sin_Riesgo_Model->get_rowByCedula_FileName($companyID,str_replace("-","",$datView["objCustomer"]->identification));
 			$datView["callback"]				= $callback;
-
 			$objComponent						= $this->core_web_tools->getComponentIDBy_ComponentName("tb_customer");
 			if(!$objComponent)
 			throw new Exception("00409 EL COMPONENTE 'tb_customer' NO EXISTE...");
@@ -118,7 +114,6 @@ class App_Cxc_Customer extends CI_Controller {
 			$dataSession["body"]			= $this->load->view('app_cxc_customer/edit_body',$datView,true);
 			$dataSession["script"]			= $this->load->view('app_cxc_customer/edit_script',$datView,true);  
 			$dataSession["footer"]			= "";				
-
 			if($callback == "false")
 				$this->load->view("core_masterpage/default_masterpage",$dataSession);	
 			else
@@ -253,7 +248,6 @@ class App_Cxc_Customer extends CI_Controller {
 			$branchID_								= $this->input->post("txtBranchID");
 			$entityID_								= $this->input->post("txtEntityID");
 			$callback  								= $this->input->post("txtCallback"); 									
-
 			$objCustomer							= $this->Customer_Model->get_rowByPK($companyID_,$branchID_,$entityID_);
 			$oldStatusID 							= $objCustomer->statusID;
 			
@@ -283,7 +277,6 @@ class App_Cxc_Customer extends CI_Controller {
 				
 				$objNatural["profesionID"]	= $this->input->post("txtProfesionID",'');
 				$this->Natural_Model->update($companyID_,$branchID_,$entityID_,$objNatural);
-
 				$objLegal["isActive"]		= true;
 				$objLegal["comercialName"]	= $this->input->post("txtCommercialName",'');
 				$objLegal["legalName"]		= $this->input->post("txtLegalName",'');
@@ -450,7 +443,6 @@ class App_Cxc_Customer extends CI_Controller {
 				log_message("ERROR",print_r( $exchangeRateTotal ,true));
 				log_message("ERROR",print_r( $exchangeRateAmount ,true));
 				log_message("ERROR",print_r( $exchangeRate ,true));
-
 				//sumar los limites en dolares
 				if($exchangeRate == 1)
 					$exchangeRateTotal = $exchangeRateTotal + $exchangeRateAmount;
@@ -459,10 +451,8 @@ class App_Cxc_Customer extends CI_Controller {
 					$exchangeRateTotal = $exchangeRateTotal + ($exchangeRateAmount / $exchangeRate);
 					
 				log_message("ERROR",print_r( $exchangeRateTotal ,true));
-
 			}
 			log_message("ERROR",print_r( $objCustomerCreditNew["limitCreditDol"] ,true));
-
 			
 			//Validar Limite de Credito
 			if($exchangeRateTotal > $objCustomerCreditNew["limitCreditDol"])
@@ -701,23 +691,19 @@ class App_Cxc_Customer extends CI_Controller {
 				$exchangeRateAmount							= $objCustomerCreditLine["limitCredit"];
 				$this->Customer_Credit_Line_Model->insert($objCustomerCreditLine);
 				
-
 				log_message("ERROR",print_r( $exchangeRateTotal ,true));
 				log_message("ERROR",print_r( $exchangeRateAmount ,true));
 				log_message("ERROR",print_r( $exchangeRate ,true));
-
 				//sumar los limites en dolares
 				if($exchangeRate == 1)
 					$exchangeRateTotal = $exchangeRateTotal + $exchangeRateAmount;
 				//sumar los limite en cordoba
 				else
 					$exchangeRateTotal = $exchangeRateTotal + ($exchangeRateAmount / $exchangeRate);
-
 				log_message("ERROR",print_r( $exchangeRateTotal ,true));
 				
 				
 			}
-
 			log_message("ERROR",print_r( $exchangeRateTotal ,true));
 			log_message("ERROR",print_r( $objCustomerCredit["limitCreditDol"] ,true));
 			//Validar Limite de Credito
@@ -857,7 +843,6 @@ class App_Cxc_Customer extends CI_Controller {
 			$dataSession["body"]			= $this->load->view('app_cxc_customer/news_body',$dataView,true);
 			$dataSession["script"]			= $this->load->view('app_cxc_customer/news_script',$dataView,true);  
 			$dataSession["footer"]			= "";
-
 			if($callback == "false")
 				$this->load->view("core_masterpage/default_masterpage",$dataSession);	
 			else

@@ -344,7 +344,6 @@ class App_Box_Share extends CI_Controller {
 			
 			log_message("error",print_r("punto de interrupcion**************0",true));
 			log_message("error",print_r($arrayListTransactionDetailID,true));					
-
 			//phpinfo();			
 			if(!empty($arrayListTransactionDetailID)){				
 				foreach($arrayListTransactionDetailID as $key => $value){			
@@ -352,7 +351,6 @@ class App_Box_Share extends CI_Controller {
 					log_message("error",print_r($key,true));
 					log_message("error",print_r($value,true));
 					log_message("error",print_r($arrayListTransactionDetailID[$key],true));		
-
 					$customerCreditDocumentID				= $arrayListCustomerCreditDocumentID[$key];
 					log_message("error",print_r("punto de interrupcion**************2",true));
 					$share									= helper_StringToNumber($arrayListShare[$key]);
@@ -439,7 +437,6 @@ class App_Box_Share extends CI_Controller {
 					
 				}
 			}	
-
 			log_message("error",print_r("punto de interrupcion**************8",true));
 			//Actualizar Transaccion			
 			$objTMNew["amount"] = $amount;			
@@ -1145,7 +1142,6 @@ class App_Box_Share extends CI_Controller {
 				$objCustomerCreditDocument 	= $this->Customer_Credit_Document_Model->get_rowByPK($row->componentItemID);
 				$saldoAnterior 		= $saldos == "Individuales"? round($row->reference2,0) : round($datView["objTMI"]->reference1,0);
 				$saldoNuevo 		= $saldos == "Individuales"? round($row->reference4,0) : round($datView["objTMI"]->reference2,0);
-
 				$data[] 					= array(
 					'field1'=>$row->reference1, /*documento*/
 					'field2'=>$saldoAnterior, /*saldo anterior */
@@ -1282,7 +1278,6 @@ class App_Box_Share extends CI_Controller {
 			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
 			$pdf->ezText("::".strtoupper($objCompany->name)."::",FONT_SIZE,array('justification'=>'center' ));
 			$pdf->ezText("ABONO:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
-
 			$spacing 			= 0.5;
 			
 			$data = array( 
@@ -1361,7 +1356,6 @@ class App_Box_Share extends CI_Controller {
 			if($datView["objTMD"])
 			foreach($datView["objTMD"] as $row){
 				$register++;
-
 				if($register > 1)
 				break;
 				
@@ -1402,7 +1396,6 @@ class App_Box_Share extends CI_Controller {
 				);
 			
 			}
-
 
 			//Set Detalle del Comprobante
 			$pdf->ezText("\nDETALLE DE ABONO",FONT_SIZE_BODY_INVICE);			
@@ -1666,7 +1659,6 @@ class App_Box_Share extends CI_Controller {
 				$objCustomerCreditDocument 	= $this->Customer_Credit_Document_Model->get_rowByPK($row->componentItemID);
 				$saldoAnterior 		= $saldos == "Individuales"? round($row->reference2,0) : round($datView["objTMI"]->reference1,0);
 				$saldoNuevo 		= $saldos == "Individuales"? round($row->reference4,0) : round($datView["objTMI"]->reference2,0);
-
 				$data[] 					= array(
 					'field1'=>$row->reference1, /*documento*/
 					'field2'=>$saldoAnterior, /*saldo anterior */
@@ -1803,7 +1795,6 @@ class App_Box_Share extends CI_Controller {
 			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
 			$pdf->ezText("::".strtoupper($objCompany->name)."::",FONT_SIZE,array('justification'=>'center' ));
 			$pdf->ezText("ABONO:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
-
 			$spacing 			= 0.5;
 			
 			$data = array( 
@@ -1882,7 +1873,6 @@ class App_Box_Share extends CI_Controller {
 			if($datView["objTMD"])
 			foreach($datView["objTMD"] as $row){
 				$register++;
-
 				if($register > 1)
 				break;
 				
@@ -1923,7 +1913,6 @@ class App_Box_Share extends CI_Controller {
 				);
 			
 			}
-
 
 			//Set Detalle del Comprobante
 			$pdf->ezText("\nDETALLE DE ABONO",FONT_SIZE_BODY_INVICE);			
@@ -2106,7 +2095,6 @@ class App_Box_Share extends CI_Controller {
 			//$pdf->ezText("CARLOS LUIS"."\n",FONT_SIZE,array('justification'=>'center'));
 			$pdf->ezText("::".strtoupper($objCompany->name)."::",FONT_SIZE,array('justification'=>'center' ));
 			$pdf->ezText("ABONO:".$datView["objTM"]->transactionNumber."\n",FONT_SIZE,array('justification'=>'center'));
-
 			$spacing 			= 0.5;
 			
 			$data = array( 
@@ -2185,7 +2173,6 @@ class App_Box_Share extends CI_Controller {
 			if($datView["objTMD"])
 			foreach($datView["objTMD"] as $row){
 				$register++;
-
 				if($register > 1)
 				break;
 				
@@ -2226,7 +2213,6 @@ class App_Box_Share extends CI_Controller {
 				);
 			
 			}
-
 
 			//Set Detalle del Comprobante
 			$pdf->ezText("\nDETALLE DE ABONO",FONT_SIZE_BODY_INVICE);			

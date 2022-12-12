@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class App_Invoice_Billing extends CI_Controller {
 	
     public function __construct() {
@@ -23,7 +22,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);			
-
 			
 			}	
 			
@@ -94,23 +92,18 @@ class App_Invoice_Billing extends CI_Controller {
 			
 			//$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_PREPRINTER",$companyID);
 			//$dataView["objParameterInvoiceButtomPrinterPrePrinter"] = $parameterValue->value;
-
 			//$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT",$companyID);
 			//$dataView["objParameterInvoiceButtomPrinterFidLocalPayment"] = $parameterValue->value;
-
 			$parameterValue = $this->core_web_parameter->getParameter("INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT_AND_AMORTIZACION",$companyID);
 			$dataView["objParameterInvoiceButtomPrinterFidLocalPaymentAndAmortization"] = $parameterValue->value;
 			
 			
 			$objParameterInvoiceBillingQuantityZero					= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
 			$dataView["objParameterInvoiceBillingQuantityZero"]		= $objParameterInvoiceBillingQuantityZero->value;
-
 			$objParameterInvoiceBillingPrinterDirect				= $this->core_web_parameter->getParameter("INVOICE_BILLING_PRINTER_DIRECT",$companyID);
 			$dataView["objParameterInvoiceBillingPrinterDirect"]	= $objParameterInvoiceBillingPrinterDirect->value;
-
 			$objParameterInvoiceBillingPrinterDirectUrl					= $this->core_web_parameter->getParameter("INVOICE_BILLING_PRINTER_DIRECT_URL",$companyID);
 			$dataView["objParameterInvoiceBillingPrinterDirectUrl"]		= $objParameterInvoiceBillingPrinterDirectUrl->value;
-
 			//Tipo de Factura
 			$dataView["urlPrinterDocument"]						= $urlPrinterDocument->value;
 			$dataView["objTransactionMaster"]					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
@@ -167,7 +160,6 @@ class App_Invoice_Billing extends CI_Controller {
 			$dataSession["body"]			= $this->load->view('app_invoice_billing/edit_body',$dataView,true);
 			$dataSession["script"]			= $this->load->view('app_invoice_billing/edit_script',$dataView,true);  
 			$dataSession["footer"]			= "";
-
 
 			//$this->load->view("core_masterpage/default_masterpage",$dataSession);	
 			$this->load->view("core_masterpage/default_popup",$dataSession);	
@@ -336,7 +328,6 @@ class App_Invoice_Billing extends CI_Controller {
 			$this->load->model("List_Price_Model");
 			$this->load->model("Price_Model");
 			$this->load->model("Company_Component_Concept_Model");
-
 			$this->load->model("Entity_Account_Model");
 			$this->load->model("Customer_Credit_Document_Model");
 			$this->load->model("Customer_Credit_Amortization_Model");
@@ -391,7 +382,6 @@ class App_Invoice_Billing extends CI_Controller {
 			
 			$objParameterInvoiceBillingQuantityZero		= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
 			$objParameterInvoiceBillingQuantityZero		= $objParameterInvoiceBillingQuantityZero->value;
-
 			//Actualizar Maestro
 			$typePriceID 								= $this->input->post("txtTypePriceID");
 			$objListPrice 								= $this->List_Price_Model->getListPriceToApply($companyID);
@@ -442,7 +432,6 @@ class App_Invoice_Billing extends CI_Controller {
 			//Leer archivo
 			$path 	= PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentBilling->componentID."/component_item_".$transactionMasterID;			
 			$path 	= $path.'/procesar.csv';
-
 			$pathNew 	= PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentBilling->componentID."/component_item_".$transactionMasterID;			
 			$pathNew 	= $pathNew.'/procesado.csv';
 			
@@ -458,7 +447,6 @@ class App_Invoice_Billing extends CI_Controller {
 				$arrayListLote	 							= array();
 				$arrayListVencimiento						= array();
 				
-
 				$objParameterDeliminterCsv	= $this->core_web_parameter->getParameter("CORE_CSV_SPLIT",$companyID);
 				$characterSplie = $objParameterDeliminterCsv->value;
 				
@@ -478,21 +466,16 @@ class App_Invoice_Billing extends CI_Controller {
 					$cantidad 		= $row["Cantidad"];
 					$precio 		= $row["Precio"];											
 					$objItem		= $this->Item_Model->get_rowByCode($companyID,$codigo);
-
 					
-
 					array_push($listTransactionDetalID, 0);
 					array_push($arrayListItemID, $objItem->itemID);
 					array_push($arrayListQuantity, $cantidad);
 					array_push($arrayListPrice, $precio);
-
 					//$arrayListSubTotal		= SUB TOTAL ES UN SOLO NUMERO
 					//$arrayListIva		 		= IVA ES UN SOLO NUMERO POR QUE ES EL TOTAL
-
 					array_push($arrayListLote, '');
 					array_push($arrayListVencimiento, '');
 					
-
 				}
 			}
 			else{
@@ -508,32 +491,23 @@ class App_Invoice_Billing extends CI_Controller {
 				
 			}
 					
-
 				
 			log_message("ERROR","Revisar variable");		
 			log_message("ERROR",print_r($listTransactionDetalID,true));
-
 			log_message("ERROR","Revisar variable 1");	
 			log_message("ERROR",print_r($arrayListItemID,true));
-
 			log_message("ERROR","Revisar variable 2");	
 			log_message("ERROR",print_r($arrayListQuantity,true));
-
 			log_message("ERROR","Revisar variable 3");	
 			log_message("ERROR",print_r($arrayListPrice,true));
-
 			log_message("ERROR","Revisar variable 4");	
 			log_message("ERROR",print_r($arrayListSubTotal,true));
-
 			log_message("ERROR","Revisar variable 5");	
 			log_message("ERROR",print_r($arrayListIva,true));
-
 			log_message("ERROR","Revisar variable 6");				
 			log_message("ERROR",print_r($arrayListLote,true));
-
 			log_message("ERROR","Revisar variable 7");	
 			log_message("ERROR",print_r($arrayListVencimiento,true));
-
 			//Ingresar la configuracion de precios			
 			$objParameterPriceDefault	= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
 			$listPriceID 	= $objParameterPriceDefault->value;
@@ -549,7 +523,6 @@ class App_Invoice_Billing extends CI_Controller {
 			$tax1Total 										= 0;
 			$subAmountTotal									= 0;			$this->Transaction_Master_Detail_Model->deleteWhereIDNotIn($companyID,$transactionID,$transactionMasterID,$listTransactionDetalID);
 			$this->Transaction_Master_Detail_Credit_Model->deleteWhereIDNotIn($transactionMasterID,$listTransactionDetalID);
-
 			if(!empty($arrayListItemID)){
 				foreach($arrayListItemID as $key => $value){			
 					$itemID 								= $value;
@@ -620,7 +593,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$subAmountTotal							= $subAmountTotal + ($quantity * $price);
 						$amountTotal							= $amountTotal + $objTMD["amount"];
 						$transactionMasterDetailID_				= $this->Transaction_Master_Detail_Model->insert($objTMD);
-
 						$objTMDC								= NULL;
 						$objTMDC["transactionMasterID"]			= $transactionMasterID;
 						$objTMDC["transactionMasterDetailID"]	= $transactionMasterDetailID_;
@@ -675,7 +647,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$subAmountTotal							= $subAmountTotal + ($quantity * $price);
 						$amountTotal							= $amountTotal + $objTMDNew["amount"];						
 						$this->Transaction_Master_Detail_Model->update($companyID,$transactionID,$transactionMasterID,$transactionMasterDetailID,$objTMDNew);	
-
 						$objTMDC["reference1"]					= $this->input->post("txtFixedExpenses");
 						$objTMDC["reference2"]					= $this->input->post("txtCheckReportSinRiesgo");
 						$objTMDC["reference3"]					= $this->input->post("txtLayFirstLineProtocolo");
@@ -785,7 +756,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$objCustomerAmoritizacion["isActive"]					= 1;
 						$objCustomerAmortizationID 								= $this->Customer_Credit_Amortization_Model->insert($objCustomerAmoritizacion);
 					}
-
 					
 					//Crear las personas relacionadas a la factura
 					$objEntityRelated								= array();
@@ -805,14 +775,12 @@ class App_Invoice_Billing extends CI_Controller {
 					$ccEntityID 		= $this->Customer_Credit_Document_Endity_Related_Model->insert($objEntityRelated);
 					
 
-
 					//Calculo del Total en Dolares
 					$amountTotalDolares	= $objTMNew["exchangeRate"] > 1 ? 
 								/*factura en cordoba*/ ($amountTotal * round($objTMNew["exchangeRate"],4)) : 
 								/*factura en dolares*/ ($amountTotal * 1 );
 					
 					
-
 					//disminuir el balance de general					
 					$objCustomerCredit 					= $this->Customer_Credit_Model->get_rowByPK($objCustomerCreditLine->companyID,$objCustomerCreditLine->branchID,$objCustomerCreditLine->entityID);
 					$objCustomerCreditNew["balanceDol"]	= $objCustomerCredit->balanceDol - $amountTotalDolares;
@@ -827,7 +795,6 @@ class App_Invoice_Billing extends CI_Controller {
 					
 					$this->Customer_Credit_Line_Model->update($objCustomerCreditLine->customerCreditLineID,$objCustomerCreditLineNew);
 					
-
 
 				}
 				
@@ -852,7 +819,6 @@ class App_Invoice_Billing extends CI_Controller {
 	}
 	function insertElement($dataSession){
 		try{
-
 			//PERMISO SOBRE LA FUNCTION
 			if(APP_NEED_AUTHENTICATION == true){
 				$permited = false;
@@ -865,7 +831,6 @@ class App_Invoice_Billing extends CI_Controller {
 				if ($resultPermission 	== PERMISSION_NONE)
 				throw new Exception(NOT_ALL_INSERT);	
 			}
-
 			
 			$this->load->model("Transaction_Model");	
 			$this->load->model("Company_Currency_Model");
@@ -874,7 +839,6 @@ class App_Invoice_Billing extends CI_Controller {
 			$this->load->model("Transaction_Master_Info_Model");
 			$this->load->model("Transaction_Master_Detail_Model");	
 			$this->load->model("Transaction_Master_Concept_Model");	
-
 			$this->load->model("Transaction_Master_Detail_Credit_Model");	
 			$this->load->model("Item_Model");
 			$this->load->model("Transaction_Causal_Model");
@@ -927,20 +891,16 @@ class App_Invoice_Billing extends CI_Controller {
 			if($this->core_web_accounting->cycleIsCloseByDate($dataSession["user"]->companyID,$this->input->post("txtDate")))
 			throw new Exception("EL DOCUMENTO NO PUEDE INGRESAR, EL CICLO CONTABLE ESTA CERRADO");
 			
-
 			$this->core_web_permission->getValueLicense($dataSession["user"]->companyID,$this->router->class."/"."index");
 			$objParameterInvoiceBillingQuantityZero		= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
 			$objParameterInvoiceBillingQuantityZero		= $objParameterInvoiceBillingQuantityZero->value;
 			
-
 			//obtener el primer estado  de la factura o el estado inicial.
 			$objListWorkflowStage					= $this->core_web_workflow->getWorkflowInitStage("tb_transaction_master_billing","statusID",$companyID,$branchID,$roleID);
-
 
 			//Saber si se va autoaplicar
 			$objParameterInvoiceAutoApply			= $this->core_web_parameter->getParameter("INVOICE_AUTOAPPLY_CASH",$companyID);
 			$objParameterInvoiceAutoApply			= $objParameterInvoiceAutoApply->value;
-
 			//Saber si es al credito
 			$parameterCausalTypeCredit 				= $this->core_web_parameter->getParameter("INVOICE_BILLING_CREDIT",$companyID);			
 			$causalIDTypeCredit 					= explode(",", $parameterCausalTypeCredit->value);
@@ -949,7 +909,6 @@ class App_Invoice_Billing extends CI_Controller {
 			if($exisCausalInCredit || $exisCausalInCredit === 0){
 				$exisCausalInCredit = "true";
 			}
-
 			//Si esta configurado como auto aplicado
 			//y es al credito. cambiar el estado por el estado inicial, que es registrada
 			$statusID = "";
@@ -960,7 +919,6 @@ class App_Invoice_Billing extends CI_Controller {
 			else {
 				$statusID = $this->input->post("txtStatusID");
 			}
-
 			
 			
 			$objTM["companyID"] 					= $dataSession["user"]->companyID;
@@ -1000,7 +958,6 @@ class App_Invoice_Billing extends CI_Controller {
 			
 			//Crear la Carpeta para almacenar los Archivos del Documento
 			mkdir(PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentBilling->componentID."/component_item_".$transactionMasterID, 0700);
-
 			//Ingresar Informacion Adicional
 			$objTMInfo["companyID"]					= $objTM["companyID"];
 			$objTMInfo["transactionID"]				= $objTM["transactionID"];
@@ -1013,7 +970,6 @@ class App_Invoice_Billing extends CI_Controller {
 			$objTMInfo["receiptAmountDol"]			= helper_StringToNumber($this->input->post("txtReceiptAmountDol",0));
 			$this->Transaction_Master_Info_Model->insert($objTMInfo);
 			
-
 
 			//Recorrer la lista del detalle del documento
 			$arrayListItemID 							= $this->input->post("txtItemID");
@@ -1029,16 +985,13 @@ class App_Invoice_Billing extends CI_Controller {
 			$tax1Total 										= 0;
 			$subAmountTotal									= 0;
 			
-
 			//Tipo de precio seleccionado por el usuario,
 			//Actualmente no se esta usando
 			$typePriceID 							= $this->input->post("txtTypePriceID");
 			$objListPrice 							= $this->List_Price_Model->getListPriceToApply($companyID);
-
 			//obtener la lista de precio por defecto
 			$objParameterPriceDefault	= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
 			$listPriceID 	= $objParameterPriceDefault->value;
-
 			//obener los tipos de precio de la lista de precio por defecto
 			$objTipePrice 	= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
 			
@@ -1046,7 +999,6 @@ class App_Invoice_Billing extends CI_Controller {
 			$objParameterUpdatePrice	= $this->core_web_parameter->getParameter("INVOICE_UPDATEPRICE_ONLINE",$companyID);
 			$objUpdatePrice 			= $objParameterUpdatePrice->value;
 			
-
 			
 			if(!empty($arrayListItemID)){
 				foreach($arrayListItemID as $key => $value){
@@ -1123,7 +1075,6 @@ class App_Invoice_Billing extends CI_Controller {
 					$objTMDC["reference5"]					= "";
 					$objTMDC["reference9"]					= "reference1: Porcentaje de Gastos Fijo para las facturas de credito,reference2: Escritura Publica,reference3: Primer Linea del Protocolo";
 					$this->Transaction_Master_Detail_Credit_Model->insert($objTMDC);
-
 					if($objUpdatePrice)
 					{
 						foreach($objTipePrice as $priceT)
@@ -1163,7 +1114,6 @@ class App_Invoice_Billing extends CI_Controller {
 				
 			}
 			
-
 			if($this->db->trans_status() !== false){
 				$this->db->trans_commit();						
 				$this->core_web_notification->set_message(false,SUCCESS);
@@ -1282,15 +1232,11 @@ class App_Invoice_Billing extends CI_Controller {
 			if(!$objListPrice)
 			throw new Exception("NO EXISTE UNA LISTA DE PRECIO PARA SER APLICADA");
 		
-
 			$objParameterInvoiceAutoApply			= $this->core_web_parameter->getParameter("INVOICE_AUTOAPPLY_CASH",$companyID);
 			$objParameterInvoiceAutoApply			= $objParameterInvoiceAutoApply->value;
-
 			$objParameterTypePreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_TYPE_PRICE",$companyID);
 			$objParameterTypePreiceDefault			= $objParameterTypePreiceDefault->value;
-
 			$this->core_web_permission->getValueLicense($companyID,$this->router->class."/"."index");
-
 			//Obtener la lista de estados
 			if($objParameterInvoiceAutoApply == "true"){
 				$dataView["objListWorkflowStage"]	= $this->core_web_workflow->getWorkflowStageApplyFirst("tb_transaction_master_billing","statusID",$companyID,$branchID,$roleID);
@@ -1326,7 +1272,6 @@ class App_Invoice_Billing extends CI_Controller {
 			
 			$objParameterInvoiceBillingQuantityZero					= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
 			$dataView["objParameterInvoiceBillingQuantityZero"]		= $objParameterInvoiceBillingQuantityZero->value;
-
 			
 						
 			if(!$dataView["objCustomerDefault"])
@@ -1342,7 +1287,6 @@ class App_Invoice_Billing extends CI_Controller {
 			$dataSession["body"]			= $this->load->view('app_invoice_billing/news_body',$dataView,true);
 			$dataSession["script"]			= $this->load->view('app_invoice_billing/news_script',$dataView,true);  
 			$dataSession["footer"]			= "";
-
 			//$this->load->view("core_masterpage/default_masterpage",$dataSession);	
 			$this->load->view("core_masterpage/default_popup",$dataSession);	
 			
@@ -1466,7 +1410,6 @@ class App_Invoice_Billing extends CI_Controller {
 			)));
 		}
 	}
-
 	//facturacino imprimir directamente en impresora, formato de ticket
 	function viewPrinterDirect(){
 		try{
@@ -1496,23 +1439,19 @@ class App_Invoice_Billing extends CI_Controller {
 			$this->load->model("core/User_Model");
 			$this->load->model("core/Branch_Model");
 			$this->load->model("core/Workflow_Stage_Model");
-
 			log_message("ERROR","imprmir imporesora directo inicio");	
 			
 			
-
 			
 			//Obtener el componente de Item
 			$objComponentItem	= $this->core_web_tools->getComponentIDBy_ComponentName("tb_item");
 			if(!$objComponentItem)
 			throw new Exception("EL COMPONENTE 'tb_item' NO EXISTE...");
 			
-
 			$uri					= $this->uri->uri_to_assoc(3);						
 			$companyID				= $uri["companyID"];
 			$transactionID			= $uri["transactionID"];	
 			$transactionMasterID	= $uri["transactionMasterID"];	
-
 			
 			$dataView["objTransactionMaster"]					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
 			$dataView["objTransactionMasterInfo"]				= $this->Transaction_Master_Info_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);
@@ -1535,7 +1474,6 @@ class App_Invoice_Billing extends CI_Controller {
 			$dataView["cedulaCliente"] 					= $dataView["objTransactionMasterInfo"]->referenceClientIdentifier == "" ? $dataView["objCustumer"]->customerNumber :  $dataView["objTransactionMasterInfo"]->referenceClientIdentifier;
 			$dataView["nombreCliente"] 					= $dataView["objTransactionMasterInfo"]->referenceClientName  == "" ? $dataView["objCustumer"]->firstName : $dataView["objTransactionMasterInfo"]->referenceClientName ;
 			$dataView["objStage"]						= $this->Workflow_Stage_Model->get_rowByWorkflowStageIDOnly($dataView["objTransactionMaster"]->statusID);
-
 			//obtener nombre de impresora por defecto
 			$objParameterPrinterName = $this->core_web_parameter->getParameter("INVOICE_BILLING_PRINTER_DIRECT_NAME_DEFAULT",$companyID);
 			$objParameterPrinterName = $objParameterPrinterName->value;
@@ -1546,13 +1484,11 @@ class App_Invoice_Billing extends CI_Controller {
 			$objPrinter = new Library();
 			$objPrinter->configurationPrinter($objParameterPrinterName);
 			$objPrinter->executePrinter($dataView);
-
 		}
 		catch(Exception $ex){
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}	
 	}
-
 	//facturacion e imprimir en una factura memebretada
 	function viewRegisterPrePrinter(){
 		try{ 
@@ -1573,7 +1509,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
@@ -1645,7 +1580,6 @@ class App_Invoice_Billing extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}	
 	}
-
 	//facturacion estandar, horizontal tamaña a4
 	function viewRegisterFormatoPaginaNormal(){
 		try{ 
@@ -1666,7 +1600,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
@@ -1715,7 +1648,6 @@ class App_Invoice_Billing extends CI_Controller {
 			$datView["objCustumer"]					= $this->Customer_Model->get_rowByEntity($companyID,$datView["objTM"]->entityID);
 			$datView["objCurrency"]					= $this->Currency_Model->get_rowByPK($datView["objTM"]->currencyID);
 			$prefixCurrency 						= $datView["objCurrency"]->simbol." "; 
-
 			//Set Nombre del Reporte
 			$reportName		= "DOC_INVOICE";
 			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));			
@@ -1875,7 +1807,6 @@ class App_Invoice_Billing extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}
-
 	//factura en imppresora de ticket de 80mm
 	function viewRegisterFormatoPaginaTicket(){
 		//Factura en Impresora Termica 
@@ -1905,7 +1836,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
@@ -2207,7 +2137,6 @@ class App_Invoice_Billing extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}
-
 	//facturacion de fid local
 	function viewRegisterFidLocal(){
 		try{ 
@@ -2228,7 +2157,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
@@ -2277,7 +2205,6 @@ class App_Invoice_Billing extends CI_Controller {
 			$datView["objCustumer"]					= $this->Customer_Model->get_rowByEntity($companyID,$datView["objTM"]->entityID);
 			$datView["objCurrency"]					= $this->Currency_Model->get_rowByPK($datView["objTM"]->currencyID);
 			$prefixCurrency 						= $datView["objCurrency"]->simbol." "; 
-
 			//Set Nombre del Reporte
 			$reportName		= "DOC_INVOICE";
 			$pdf->addInfo(array('Title'=>$reportName,'Author'=>APP_NAME,'CreationDate'=>date('Y-m-d H:i:s')));			
@@ -2466,7 +2393,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
@@ -2796,7 +2722,6 @@ class App_Invoice_Billing extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
@@ -3098,6 +3023,5 @@ class App_Invoice_Billing extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}
-
 }
 ?>

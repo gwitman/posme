@@ -64,10 +64,8 @@ class App_Inventory_Item extends CI_Controller {
 			
 			$objParameterTypePreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_TYPE_PRICE",$companyID);
 			$objParameterTypePreiceDefault			= $objParameterTypePreiceDefault->value;
-
 			$objParameterListPreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
 			$objParameterListPreiceDefault			= $objParameterListPreiceDefault->value;
-
 			//Obtener Informacion
 			$dataView["objComponent"] 				= $objComponent;
 			$dataView["componentProviderID"]		= $objComponentProvider->componentID;
@@ -84,12 +82,10 @@ class App_Inventory_Item extends CI_Controller {
 			$dataView["objListDisplayUnitMeasure"]	= $this->core_web_catalog->getCatalogAllItem("tb_item","displayUnitMeasureID",$companyID);
 			$dataView["objListTypePreice"]			= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
 			
-
 			$dataView["objParameterTypePreiceDefault"]			= $objParameterTypePreiceDefault;
 			$dataView["objParameterListPreiceDefault"]			= $objParameterListPreiceDefault;
 			$dataView["callback"]					= $callback;
 			$dataView["objListPriceItem"]			= $this->Price_Model->get_rowByItemID($companyID,$dataView["objParameterListPreiceDefault"],$itemID);
-
 					
 			//Renderizar Resultado
 			$dataSession["notification"]	= $this->core_web_error->get_error($dataSession["user"]->userID);
@@ -98,12 +94,10 @@ class App_Inventory_Item extends CI_Controller {
 			$dataSession["body"]			= $this->load->view('app_inventory_item/edit_body',$dataView,true);
 			$dataSession["script"]			= $this->load->view('app_inventory_item/edit_script',$dataView,true);  
 			$dataSession["footer"]			= "";				
-
 			if($callback == "false")
 				$this->load->view("core_masterpage/default_masterpage",$dataSession);	
 			else
 				$this->load->view("core_masterpage/default_popup",$dataSession);	
-
 			
 			
 		}
@@ -523,11 +517,9 @@ class App_Inventory_Item extends CI_Controller {
 						$arrayListPrecioValue 	= $this->input->post("txtDetailTypePriceValue");
 						$arrayTypePrecioId 		= $this->input->post("txtDetailTypePriceID");
 						$arrayListPrecioID 		= $this->input->post("txtDetailListPriceID");
-
 						$objParameterPriceDefault	= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
 						$listPriceID 	= $objParameterPriceDefault->value;
 						$objTipePrice 	= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
-
 						
 						foreach($arrayTypePrecioId as $key => $price)
 						{				
@@ -631,10 +623,8 @@ class App_Inventory_Item extends CI_Controller {
 			
 			$objParameterTypePreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_TYPE_PRICE",$companyID);
 			$objParameterTypePreiceDefault			= $objParameterTypePreiceDefault->value;
-
 			$objParameterListPreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_PRICELIST",$companyID);
 			$objParameterListPreiceDefault			= $objParameterListPreiceDefault->value;
-
 			$dataView["objListWarehouse"]			= $this->Warehouse_Model->getByCompany($companyID);
 			$dataView["objListInventoryCategory"]	= $this->ItemCategory_Model->getByCompany($companyID);
 			$dataView["objListWorkflowStage"]		= $this->core_web_workflow->getWorkflowInitStage("tb_item","statusID",$companyID,$branchID,$roleID);
@@ -645,7 +635,6 @@ class App_Inventory_Item extends CI_Controller {
 			$dataView["objListTypePreice"]			= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
 			$dataView["warehouseDefault"]			= $warehouseDefault;
 			
-
 			$dataView["objParameterTypePreiceDefault"]			= $objParameterTypePreiceDefault;
 			$dataView["objParameterListPreiceDefault"]			= $objParameterListPreiceDefault;
 			$dataView["callback"]								= $callback;
@@ -657,7 +646,6 @@ class App_Inventory_Item extends CI_Controller {
 			$dataSession["body"]			= $this->load->view('app_inventory_item/news_body',$dataView,true);
 			$dataSession["script"]			= $this->load->view('app_inventory_item/news_script',$dataView,true);  
 			$dataSession["footer"]			= "";
-
 			if($callback == "false")
 				$this->load->view("core_masterpage/default_masterpage",$dataSession);	
 			else
@@ -766,7 +754,6 @@ class App_Inventory_Item extends CI_Controller {
 		header('Content-Type:'.$type);
 		header('Content-Length: ' . filesize($pathFileCodeBarra));
 		readfile($pathFileCodeBarra);
-
 		exit;
 	}
 	

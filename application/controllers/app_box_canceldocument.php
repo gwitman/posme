@@ -22,7 +22,6 @@ class App_Box_Canceldocument extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);			
-
 			
 			}	
 			
@@ -166,7 +165,6 @@ class App_Box_Canceldocument extends CI_Controller {
 			//Eliminar el Registro			
 			$this->Transaction_Master_Model->delete($companyID,$transactionID,$transactionMasterID);
 			$this->Transaction_Master_Detail_Model->deleteWhereTM($companyID,$transactionID,$transactionMasterID);			
-
 			
 			$this->output->set_content_type('application/json');
 			$this->output->set_output(json_encode(array(
@@ -564,7 +562,6 @@ class App_Box_Canceldocument extends CI_Controller {
 			
 			//Crear la Carpeta para almacenar los Archivos del Documento
 			mkdir(PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentCancelInvoice->componentID."/component_item_".$transactionMasterID, 0700);
-
 			//Ingresar Informacion Adicional
 			$objTMInfo["companyID"]					= $objTM["companyID"];
 			$objTMInfo["transactionID"]				= $objTM["transactionID"];
@@ -903,7 +900,6 @@ class App_Box_Canceldocument extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
@@ -1310,7 +1306,6 @@ class App_Box_Canceldocument extends CI_Controller {
 						$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"edit",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
 						if ($resultPermission 	== PERMISSION_NONE)
 						throw new Exception(NOT_ALL_EDIT);		
-
 			}	 
 			
 			$uri						= $this->uri->uri_to_assoc(3);						
