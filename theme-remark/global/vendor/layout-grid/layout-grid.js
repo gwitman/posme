@@ -1,26 +1,19 @@
 // LICENSE: BSD-3-Clause
 // http://git.io/vZkLP
-
  var LTGrid = (function ($) {
-
 'use strict'
-
 /* exported Grid */
-
 /**
  * A collection of rect objects
  */
 var Grid = (function () {
-
     
-
     /**
      * @param  {Array}  rects array of Rect objects
      */
     function Grid(rects) {
         this.rects = rects || []
     }
-
     /**
      * Return all the rects that intersect with a given rect
      *
@@ -32,7 +25,6 @@ var Grid = (function () {
             return rect !== item && rect.intersect(item)
         })
     }
-
     /**
      * Reduce all the vertical whitespace between rects
      *
@@ -41,7 +33,6 @@ var Grid = (function () {
     Grid.prototype.compact = function () {
         var rectsCopy = this.rects.slice(0)
         var self = this
-
         rectsCopy
             .sort(function (a, b) {
                 return a.y - b.y
@@ -50,13 +41,10 @@ var Grid = (function () {
                 do {
                     item.y -= 1
                 } while (item.y >= 0 && self.getIntersectingRects(item).length === 0)
-
                 item.y += 1
             })
-
         return this
     }
-
     /**
      * The maximum height of the rects in the grid
      *
@@ -66,10 +54,8 @@ var Grid = (function () {
         var hights = this.rects.map(function (item) {
             return item.bottom()
         })
-
         return hights.length ? Math.max.apply(null, hights) : 0
     }
-
     /**
      * Move a rect inside the grid, or update its size
      * If there is overlap move rects downards
@@ -79,19 +65,14 @@ var Grid = (function () {
      * @return {Grid}          self
      */
     Grid.prototype.updateNoOverlap = function (rect, params) {
-
         var self = this
-
         this.update(rect, params)
-
         this.getIntersectingRects(rect)
             .forEach(function (item) {
                 self.updateNoOverlap(item, { x: item.x, y: rect.bottom() })
             })
-
         return this
     }
-
     /**
      * Move a rect inside the grid, or update its size
      *
@@ -100,36 +81,26 @@ var Grid = (function () {
      * @return {Grid}          self
      */
     Grid.prototype.update = function (rect, params) {
-
         rect.x = ('x' in params) ? params.x : rect.x
         rect.y = ('y' in params) ? params.y : rect.y
         rect.w = ('w' in params) ? params.w : rect.w
         rect.h = ('h' in params) ? params.h : rect.h
-
         return this
     }
-
     return Grid
 })()
-
 /* exported LTData */
-
 var LTData = (function ($) {
-
     
-
     var NAME     = 'ltData'
-
     var LTData = {
         NAME: NAME
     }
-
     LTData.getRects = function (rects) {
         return $.map(rects, function (rect) {
             return new Rect(rect.x, rect.y, rect.w, rect.h)
         })
     }
-
     /**
      * Getter / setter for rects data
      *
@@ -137,40 +108,28 @@ var LTData = (function ($) {
      * @param  {Array} rects    Array of Rect objects
      */
     $.fn[NAME] = function (size, rects) {
-
         var ltGrid = this[LTGrid.NAME]().data(LTGrid.DATA_KEY)
-
         if (undefined !== rects) {
             ltGrid
                 .grid(size, new Grid(LTData.getRects(rects)))
                 .update()
-
             return this
         }
-
         return ltGrid.grid(size).rects
     }
-
     return LTData
-
 })(jQuery)
-
 /* exported LTGrid */
-
 var LTGrid = (function ($) {
-
     
-
     /**
      * ------------------------------------------------------------------------
      * Constants
      * ------------------------------------------------------------------------
      */
-
     var NAME                = 'ltGrid'
     var DATA_KEY            = 'lt.grid'
     var EVENT_KEY           = '.' + DATA_KEY
-
     var Event = {
         UPDATE  : 'update',
         START   : 'dragstart' + EVENT_KEY + ' touchstart' + EVENT_KEY,
@@ -179,12 +138,10 @@ var LTGrid = (function ($) {
         DROP    : 'drop' + EVENT_KEY + ' touchend' + EVENT_KEY,
         LEAVE   : 'dragleave.' + EVENT_KEY
     }
-
     var Selector = {
         GRID   : '[data-arrange="lt-grid"]',
         WIDGET : '[data-arrange="lt-grid"] .lt'
     }
-
     var Default = {
         resize: true,
         overlap: false,
@@ -216,13 +173,11 @@ var LTGrid = (function ($) {
             }
         }
     }
-
     /**
      * ------------------------------------------------------------------------
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
     /**
      * @param  {jQuery} element
      * @param  {Object} options
@@ -233,23 +188,15 @@ var LTGrid = (function ($) {
         this.$mask    = undefined
         this.$ghost   = undefined
     }
-
     // getters
-
     LTGrid.Default = Default
-
     LTGrid.NAME = NAME
-
     LTGrid.DATA_KEY = DATA_KEY
-
     LTGrid.EVENT_KEY = EVENT_KEY
-
     LTGrid.prototype.options = function () {
         return this._options
     }
-
     // public
-
     /**
      * Update an option directly
      *
@@ -259,7 +206,6 @@ var LTGrid = (function ($) {
     LTGrid.prototype.option = function (name, value) {
         this._options[name] = value
     }
-
     /**
      * Get the current screen size
      * @return {String} xs, sm, md or lg
@@ -267,26 +213,21 @@ var LTGrid = (function ($) {
     LTGrid.prototype.size = function () {
         var currentSize
         var windowWidth = this._windowWidth()
-
         for (var size in this._options.params) {
             if (windowWidth < this._options.params[size].maxWidth) {
                 currentSize = size
             }
         }
-
         return currentSize
     }
-
     /**
      * Compact the grid for current size
      */
     LTGrid.prototype.compact = function () {
         var size = this.size()
         var grid = this.grid(size)
-
         this.grid(size, grid.compact())
     }
-
     /**
      * Resize container to match items
      */
@@ -294,10 +235,8 @@ var LTGrid = (function ($) {
         var size = this.size()
         var rect = new Rect(0, 0, 0, this.grid(size).height())
         var modifiedClass = rect.setCss(this.$element.attr('class'), size)
-
         this.$element.attr('class', modifiedClass)
     }
-
     /**
      * Clear artefacts like mask and ghost and update
      */
@@ -306,7 +245,6 @@ var LTGrid = (function ($) {
         this._removeGhost()
         this.update()
     }
-
     /**
      * Call resize and compact if allowed
      */
@@ -314,14 +252,11 @@ var LTGrid = (function ($) {
         if (this._options.compact) {
             this.compact()
         }
-
         if (this._options.resize) {
             this.resize()
         }
-
         this.$element.trigger(Event.UPDATE)
     }
-
     /**
      * Setter / getter of a Grid object for this Layout Grid
      *
@@ -331,20 +266,16 @@ var LTGrid = (function ($) {
      */
     LTGrid.prototype.grid = function (size, grid) {
         var $items = this.$element.children('[draggable]')
-
         if (undefined !== grid) {
             grid.rects.forEach(function (rect, index) {
                 $items.eq(index)[LTRect.NAME](size, rect)
             })
-
             return this
         }
-
         return new Grid($.map($items.toArray(), function (item) {
             return $(item)[LTRect.NAME](size)
         }))
     }
-
     /**
      * Move a widget within the grid, repositioning other elements
      * so there is no overlapping
@@ -356,20 +287,16 @@ var LTGrid = (function ($) {
         var size = this.size()
         var rect = $widget[LTRect.NAME](size)
         var grid = this.grid(size)
-
         if (this._options.overlap) {
             grid.update(rect, params)
         } else {
             grid.updateNoOverlap(rect, params)
         }
-
         this.grid(size, grid)
         this.update()
     }
-
     // private
     // ------------------------------------------------------------------------
-
     /**
      * Move the ghost element of a widget inside the grid.
      * Pass a mouse x and y coords, relative to the grid
@@ -384,15 +311,11 @@ var LTGrid = (function ($) {
         var rect = $ghost[LTRect.NAME](size)
         var gap = this._options.params[size].gap
         var cols = this._options.params[size].cols
-
         rect.x = Math.floor(mouseX / (this._itemWidth(size) + gap))
         rect.y = Math.floor(mouseY / (this._itemHeight(size) + gap))
-
         rect.x = Math.min(Math.max(0, rect.x), cols - rect.w)
-
         $ghost[LTRect.NAME](size, rect)
     }
-
     /**
      * Return a ghost item for a widget, cache ghost
      *
@@ -404,10 +327,8 @@ var LTGrid = (function ($) {
             this.$ghost = $('<div class="' + $widget.attr('class') + ' lt-ghost"></div>')
             this.$element.append(this.$ghost)
         }
-
         return this.$ghost
     }
-
     /**
      * Remove the ghost element for this grid
      *
@@ -419,7 +340,6 @@ var LTGrid = (function ($) {
             this.$ghost = undefined
         }
     }
-
     /**
      * Move the widget to its corresponding ghost position
      *
@@ -430,14 +350,10 @@ var LTGrid = (function ($) {
         var $parent = $widget.parent()
         var $ghost = this._getGhost($widget)
         var pos = $ghost[LTRect.NAME](size)
-
         this.$element.append($widget)
-
         this.reposition($widget, { x: pos.x, y: pos.y })
-
         $parent.add(this.$element)[NAME]('update')
     }
-
     /**
      * Get the mask of the grid. Create one if there is none.
      *
@@ -448,10 +364,8 @@ var LTGrid = (function ($) {
             this.$mask = $('<div class="lt-mask" data-lt-grid="mask"></div>')
             this.$element.append(this.$mask)
         }
-
         return this.$mask
     }
-
     /**
      * Remove the mask
      */
@@ -461,7 +375,6 @@ var LTGrid = (function ($) {
             this.$mask = undefined
         }
     }
-
     /**
      * The width of a single grid count, in pixels
      *
@@ -471,10 +384,8 @@ var LTGrid = (function ($) {
     LTGrid.prototype._itemWidth = function (size) {
         var cols = this._options.params[size].cols
         var gap = this._options.params[size].gap
-
         return (this.$element.width() - (cols - 1) * gap) / cols
     }
-
     /**
      * The height of a single grid count, in pixels
      *
@@ -483,10 +394,8 @@ var LTGrid = (function ($) {
      */
     LTGrid.prototype._itemHeight = function (size) {
         var aspect = this._options.params[size].aspect
-
         return this._itemWidth(size) * aspect
     }
-
     /**
      * Return the current window width
      *
@@ -495,13 +404,10 @@ var LTGrid = (function ($) {
     LTGrid.prototype._windowWidth = function () {
         return $(window).width()
     }
-
     LTGrid.prototype._getOptions = function (options) {
         return $.extend(true, {}, Default, options)
     }
-
     // static
-
     LTGrid._jQueryInterface = function (config, a1, a2, a3) {
         return this.each(function () {
             var $this   = $(this)
@@ -513,123 +419,94 @@ var LTGrid = (function ($) {
                 $this.data(),
                 typeof config === 'object' && config
             )
-
             if (!data) {
                 data = new LTGrid(this, _config)
                 $this.data(DATA_KEY, data)
             }
-
             if (typeof config === 'string') {
                 data[config](a1, a2, a3)
             }
         })
     }
-
     /**
      * ------------------------------------------------------------------------
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-
     $(document)
         .on(Event.START, Selector.WIDGET, function (event) {
             Store.set(event.originalEvent, this)
         })
-
         .on(Event.OVER, Selector.GRID, function (event) {
             var original = event.originalEvent
             var $widget = $(Store.get(original))
-
             if ($widget.length) {
                 var pos = original.touches ? original.touches[0] : original
                 var $this = $(this)
                 var mouseX = pos.pageX - $this.offset().left
                 var mouseY = pos.pageY - $this.offset().top
                 var grid = $this[NAME]().data(DATA_KEY)
-
                 event.preventDefault()
-
                 grid._getMask()
                 grid._moveGhost($widget, mouseX, mouseY)
             }
         })
-
         .on(Event.END, Selector.GRID, function () {
             $(this)[NAME]('end')
         })
-
         .on(Event.LEAVE, Selector.GRID, function (event) {
             event.preventDefault()
-
             if ($(event.target).data('lt-grid') === 'mask') {
                 $(this)[NAME]('end')
             }
         })
-
         .on(Event.DROP, Selector.GRID, function (event) {
             var $widget = $(Store.get(event.originalEvent))
-
             if ($widget.length) {
                 var $this = $(this)
                 var grid = $this[NAME]().data(DATA_KEY)
-
                 event.preventDefault()
-
                 grid._moveToGhost($widget)
                 grid.end()
             }
         })
-
     /**
     * ------------------------------------------------------------------------
     * jQuery
     * ------------------------------------------------------------------------
     */
-
     $.fn[NAME]        = LTGrid._jQueryInterface
     $.fn[NAME].LTGrid = LTGrid
-
     return LTGrid
-
 })(jQuery)
-
 /* exported LTGridOnly */
-
 var LTGridOnly = (function ($) {
-
     
-
     /**
      * ------------------------------------------------------------------------
      * Constants
      * ------------------------------------------------------------------------
      */
-
     var NAME                = 'ltGridOnly'
     var DATA_KEY            = 'lt.grid-only'
     var EVENT_KEY           = '.' + DATA_KEY
-
     var Event = {
         CLICK   : 'click' + EVENT_KEY
     }
-
     var Css = {
         xs   : 'lt-only-xs',
         sm   : 'lt-only-sm',
         md   : 'lt-only-md',
         lg   : 'lt-only-lg'
     }
-
     var Selector = {
         TOGGLE   : '[data-toggle="lt-grid-only"]'
     }
-
     /**
      * ------------------------------------------------------------------------
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
     /**
      * @param  {jQuery} element
      * @param  {Object} options
@@ -639,17 +516,11 @@ var LTGridOnly = (function ($) {
         this.$target = $(options.target)[LTGrid.NAME]()
         this.ltGrid = this.$target.data(LTGrid.DATA_KEY)
     }
-
     // getters
-
     LTGridOnly.NAME = NAME
-
     LTGridOnly.DATA_KEY = DATA_KEY
-
     LTGridOnly.EVENT_KEY = EVENT_KEY
-
     // public
-
     /**
      * Save original params for later use
      */
@@ -657,10 +528,8 @@ var LTGridOnly = (function ($) {
         if (undefined === this.ltGrid.options().originalParams) {
             this.ltGrid.options().originalParams = this.ltGrid.options().params
         }
-
         return this.ltGrid.options().originalParams
     }
-
     /**
      * Compact the grid for current size
      * @param  {String} size
@@ -673,23 +542,18 @@ var LTGridOnly = (function ($) {
                 return name
             }
         )
-
         this.$target.removeClass(onlyClasses.join(' '))
-
         if (size) {
             var params = {}
             params[size] = original[size]
             params[size].maxWidth = Number.MAX_VALUE
-
             this.$target.addClass(Css[size])
             this.ltGrid.option('params', params)
         } else {
             this.ltGrid.option('params', original)
         }
     }
-
     // static
-
     LTGridOnly._jQueryInterface = function (config, a1) {
         return this.each(function () {
             var $this   = $(this)
@@ -700,58 +564,43 @@ var LTGridOnly = (function ($) {
                 $this.data(),
                 typeof config === 'object' && config
             )
-
             if (!data) {
                 data = new LTGridOnly(this, _config)
                 $this.data(DATA_KEY, data)
             }
-
             if (typeof config === 'string') {
                 data[config](a1)
             }
         })
     }
-
     /**
      * ------------------------------------------------------------------------
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-
     $(document)
         .on(Event.CLICK, Selector.TOGGLE, function (event) {
             var $item = $(event.target)
-
             $item[LTGridOnly.NAME]('set', $item.data('only'))
         })
-
     /**
     * ------------------------------------------------------------------------
     * jQuery
     * ------------------------------------------------------------------------
     */
-
     $.fn[NAME]            = LTGridOnly._jQueryInterface
     $.fn[NAME].LTGridOnly = LTGridOnly
-
     return LTGridOnly
-
 })(jQuery)
-
 /* exported LTRect */
-
 var LTRect = (function ($) {
-
     
-
     var NAME     = 'ltRect'
     var DATA_KEY = 'lt.rect'
-
     var LTRect = {
         NAME: NAME,
         DATA_KEY: DATA_KEY
     }
-
     /**
      * Getter / setter for div element's rect.
      * Uses its css classes to laod the initial rect for a given size,
@@ -769,51 +618,34 @@ var LTRect = (function ($) {
             }
             return this.data(DATA_KEY + size)
         }
-
         this.data(DATA_KEY + size, newRect)
         this.attr('class', newRect.setCss(this.attr('class'), size))
-
         return this
     }
-
     return LTRect
-
 })(jQuery)
-
 /* exported LTSize */
-
 var LTSize = (function ($) {
-
     
-
     var NAME = 'ltSize'
-
     var LTSize = {
         NAME: NAME
     }
-
     /**
      * Get the current size of the grid
      */
     $.fn[NAME] = function () {
         return this[LTGrid.NAME]().data(LTGrid.DATA_KEY).size()
     }
-
     return LTSize
-
 })(jQuery)
-
 /* exported Rect */
-
 /**
  * Object that represents a rectangle with many supporting methods
  */
 var Rect = (function () {
-
     
-
     var paramNames = ['x', 'y', 'w', 'h']
-
     /**
      * @param  {Number} x default 0
      * @param  {Number} y default 0
@@ -826,21 +658,18 @@ var Rect = (function () {
         this.w = w || 1
         this.h = h || 1
     }
-
     /**
      * @return {Number}
      */
     Rect.prototype.bottom = function () {
         return this.y + this.h
     }
-
     /**
      * @return {Number}
      */
     Rect.prototype.right = function () {
         return this.x + this.w
     }
-
     /**
      * Check if this rect is intersecting with another rect
      *
@@ -850,7 +679,6 @@ var Rect = (function () {
     Rect.prototype.intersect = function (rect) {
         return this.x < rect.right() && this.right() > rect.x && this.y < rect.bottom() && this.bottom() > rect.y
     }
-
     /**
      * Modify a "css classes" string
      * with the pos and size of this rect,
@@ -862,14 +690,11 @@ var Rect = (function () {
      */
     Rect.prototype.setCss = function (classes, size) {
         var self = this
-
         paramNames.forEach(function (name) {
             classes = classes.replace(new RegExp('lt-' + size + '-' + name + '-(\\d+)'), 'lt-' + size + '-' + name + '-' + self[name])
         })
-
         return classes
     }
-
     /**
      * Load data from "css classes", for a specific screen size
      *
@@ -878,33 +703,24 @@ var Rect = (function () {
      */
     Rect.prototype.loadCss = function (classes, size) {
         var self = this
-
         paramNames.forEach(function (name) {
             var match = classes.match(new RegExp('lt-' + size + '-' + name + '-(\\d+)'))
-
             if (match) {
                 self[name] = parseInt(match[1], 10)
             }
         })
-
         return this
     }
-
     return Rect
 })()
-
 /* exported Store */
-
 /**
  * A class to store / retrieve element inside of dataTransfer object of an event
  * Fall back to a static variable if dataTransfer is not available
  */
 var Store = (function () {
-
     
-
     var Store = {}
-
     /**
      * Genrate a time based random number
      *
@@ -913,7 +729,6 @@ var Store = (function () {
     Store.getRandomNumber = function () {
         return Math.round(new Date().getTime() + (Math.random() * 100))
     }
-
     /**
      * Make sure the item has an id to quickly find it
      * Do not override existing ids
@@ -925,17 +740,14 @@ var Store = (function () {
         if (!item.id) {
             item.id = 'lt-' + this.getRandomNumber()
         }
-
         return item.id
     }
-
     /**
      * Clear internal storage variable
      */
     Store.clear = function () {
         this.item = null
     }
-
     /**
      * Save the element
      *
@@ -943,16 +755,13 @@ var Store = (function () {
      * @param {Element}  item
      */
     Store.set = function (event, item) {
-
         this.item = JSON.stringify({
             LTWidget: this.getId(item)
         })
-
         if (event.dataTransfer) {
             event.dataTransfer.setData('text', this.item)
         }
     }
-
     /**
      * Retrieve stored element
      *
@@ -961,20 +770,15 @@ var Store = (function () {
      */
     Store.get = function (event) {
         var dataString = (event.dataTransfer && event.dataTransfer.getData('text')) || this.item
-
         if (dataString) {
             var data = JSON.parse(dataString)
             return document.getElementById(data.LTWidget)
         }
     }
-
     return Store
 })()
-
 LTGrid.Rect = Rect
 LTGrid.Grid = Grid
-
 return LTGrid
-
 })(jQuery)
 //# sourceMappingURL=layout-grid.js.map

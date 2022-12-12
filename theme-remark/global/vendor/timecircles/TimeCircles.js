@@ -14,7 +14,6 @@
  * of the private classes within the relevant element collection
  **/
 (function($) {
-
     var useWindow = window;
     
     // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
@@ -33,20 +32,16 @@
                         'constructor'
                     ],
                     dontEnumsLength = dontEnums.length;
-
             return function(obj) {
                 if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
                     throw new TypeError('Object.keys called on non-object');
                 }
-
                 var result = [], prop, i;
-
                 for (prop in obj) {
                     if (hasOwnProperty.call(obj, prop)) {
                         result.push(prop);
                     }
                 }
-
                 if (hasDontEnumBug) {
                     for (i = 0; i < dontEnumsLength; i++) {
                         if (hasOwnProperty.call(obj, dontEnums[i])) {
@@ -69,7 +64,6 @@
             console.log(msg);
         }
     }
-
     var allUnits = ["Days", "Hours", "Minutes", "Seconds"];
     var nextUnits = {
         Seconds: "Minutes",
@@ -85,7 +79,6 @@
         Months: 2678400,
         Years: 31536000
     };
-
     /**
      * Converts hex color code into object containing integer values for the r,g,b use
      * This function (hexToRgb) originates from:
@@ -93,7 +86,6 @@
      * @param {string} hex color code
      */
     function hexToRgb(hex) {
-
         // Verify already RGB (e.g. "rgb(0,0,0)") or RGBA (e.g. "rgba(0,0,0,0.5)")
         var rgba = /^rgba?\(([\d]+),([\d]+),([\d]+)(,([\d\.]+))?\)$/;
         if(rgba.test(hex)) {
@@ -105,13 +97,11 @@
                 a: parseInt(result[5] ? result[5] : 1)
             };
         }
-
         // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
         var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
         hex = hex.replace(shorthandRegex, function(m, r, g, b) {
             return r + r + g + g + b + b;
         });
-
         var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
         return result ? {
             r: parseInt(result[1], 16),
@@ -124,7 +114,6 @@
         var elem = document.createElement('canvas');
         return !!(elem.getContext && elem.getContext('2d'));
     }
-
     /**
      * Function s4() and guid() originate from:
      * http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
@@ -134,7 +123,6 @@
                 .toString(16)
                 .substring(1);
     }
-
     /**
      * Creates a unique id
      * @returns {String}
@@ -143,7 +131,6 @@
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
                 s4() + '-' + s4() + s4() + s4();
     }
-
     /**
      * Array.prototype.indexOf fallback for IE8
      * @param {Mixed} mixed
@@ -153,14 +140,12 @@
         Array.prototype.indexOf = function(elt /*, from*/)
         {
             var len = this.length >>> 0;
-
             var from = Number(arguments[1]) || 0;
             from = (from < 0)
                     ? Math.ceil(from)
                     : Math.floor(from);
             if (from < 0)
                 from += len;
-
             for (; from < len; from++)
             {
                 if (from in this &&
@@ -170,7 +155,6 @@
             return -1;
         };
     }
-
     function parse_date(str) {
         var match = str.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}\s[0-9]{1,2}:[0-9]{2}:[0-9]{2}$/);
         if (match !== null && match.length > 0) {
@@ -189,7 +173,6 @@
         // Cant find anything
         return new Date();
     }
-
     function parse_times(diff, old_diff, total_duration, units, floor) {
         var raw_time = {};
         var raw_old_time = {};
@@ -197,19 +180,16 @@
         var pct = {};
         var old_pct = {};
         var old_time = {};
-
         var greater_unit = null;
         for(var i = 0; i < units.length; i++) {
             var unit = units[i];
             var maxUnits;
-
             if (greater_unit === null) {
                 maxUnits = total_duration / secondsIn[unit];
             }
             else {
                 maxUnits = secondsIn[greater_unit] / secondsIn[unit];
             }
-
             var curUnits = (diff / secondsIn[unit]);
             var oldUnits = (old_diff / secondsIn[unit]);
             
@@ -224,17 +204,14 @@
                 curUnits = curUnits % maxUnits;
                 oldUnits = oldUnits % maxUnits;
             }
-
             raw_time[unit] = curUnits;
             time[unit] = Math.abs(curUnits);
             raw_old_time[unit] = oldUnits;
             old_time[unit] = Math.abs(oldUnits);
             pct[unit] = Math.abs(curUnits) / maxUnits;
             old_pct[unit] = Math.abs(oldUnits) / maxUnits;
-
             greater_unit = unit;
         }
-
         return {
             raw_time: raw_time,
             raw_old_time: raw_old_time,
@@ -244,7 +221,6 @@
             old_pct: old_pct
         };
     }
-
     var TC_Instance_List = {};
     function updateUsedWindow() {
         if(typeof useWindow.TC_Instance_List !== "undefined") {
@@ -262,7 +238,6 @@
             w.requestAnimationFrame = w[vendors[x] + 'RequestAnimationFrame'];
             w.cancelAnimationFrame = w[vendors[x] + 'CancelAnimationFrame'];
         }
-
         if (!w.requestAnimationFrame || !w.cancelAnimationFrame) {
             w.requestAnimationFrame = function(callback, element, instance) {
                 if (typeof instance === "undefined")
@@ -281,7 +256,6 @@
         }
     };
     
-
     var TC_Instance = function(element, options) {
         this.element = element;
         this.container;
@@ -318,12 +292,10 @@
                 }
             }
         };
-
         this.config = null;
         this.setOptions(options);
         this.initialize();
     };
-
     TC_Instance.prototype.clearListeners = function() {
         this.listeners = { all: [], visible: [] };
     };
@@ -347,10 +319,8 @@
                 this.data.drawn_units.push(unit);
             }
         }
-
         // Avoid stacking
         $(this.element).children('div.time_circles').remove();
-
         if (typeof clear_listeners === "undefined")
             clear_listeners = true;
         if (clear_listeners || this.listeners === null) {
@@ -367,7 +337,6 @@
             height = $(this.element).height();
         if (width === 0)
             width = $(this.element).width();
-
         if (height === 0 && width > 0)
             height = width / this.data.drawn_units.length;
         else if (width === 0 && height > 0)
@@ -394,39 +363,32 @@
         if(canvasSupported) {
             this.data.attributes.context = canvasElement.getContext('2d');
         }
-
         this.data.attributes.item_size = Math.min(width / this.data.drawn_units.length, height);
         this.data.attributes.line_width = this.data.attributes.item_size * this.config.fg_width;
         this.data.attributes.radius = ((this.data.attributes.item_size * 0.8) - this.data.attributes.line_width) / 2;
         this.data.attributes.outer_radius = this.data.attributes.radius + 0.5 * Math.max(this.data.attributes.line_width, this.data.attributes.line_width * this.config.bg_width);
-
         // Prepare Time Elements
         var i = 0;
         for (var key in this.data.text_elements) {
             if (!this.config.time[key].show)
                 continue;
-
             var textElement = $("<div>");
             textElement.addClass('textDiv_' + key);
             textElement.css("top", Math.round(0.35 * this.data.attributes.item_size));
             textElement.css("left", Math.round(i++ * this.data.attributes.item_size));
             textElement.css("width", this.data.attributes.item_size);
             textElement.appendTo(this.container);
-
             var headerElement = $("<h4>");
             headerElement.text(this.config.time[key].text); // Options
             headerElement.css("font-size", Math.round(this.config.text_size * this.data.attributes.item_size));
             headerElement.css("line-height", Math.round(this.config.text_size * this.data.attributes.item_size) + "px");
             headerElement.appendTo(textElement);
-
             var numberElement = $("<span>");
             numberElement.css("font-size", Math.round(3 * this.config.text_size * this.data.attributes.item_size));
             numberElement.css("line-height", Math.round(this.config.text_size * this.data.attributes.item_size) + "px");
             numberElement.appendTo(textElement);
-
             this.data.text_elements[key] = numberElement;
         }
-
         this.start();
         if (!this.config.start) {
             this.data.paused = true;
@@ -438,7 +400,6 @@
             _this.update.call(_this, true);
         }, 100);
     };
-
     TC_Instance.prototype.update = function(nodraw) {
         if(typeof nodraw === "undefined") {
             nodraw = false;
@@ -452,20 +413,16 @@
             this.data.attributes.context.clearRect(0, 0, this.data.attributes.canvas[0].width, this.data.attributes.canvas[0].hright);
         }
         var diff, old_diff;
-
         var prevDate = this.data.prev_time;
         var curDate = new Date();
         this.data.prev_time = curDate;
-
         if (prevDate === null)
             prevDate = curDate;
-
         // If not counting past zero, and time < 0, then simply draw the zero point once, and call stop
         if (!this.config.count_past_zero) {
             if (curDate > this.data.attributes.ref_date) {
                 for(var i = 0; i < this.data.drawn_units.length; i++) {
                     var key = this.data.drawn_units[i];
-
                     // Set the text value
                     this.data.text_elements[key].text("0");
                     var x = (i * this.data.attributes.item_size) + (this.data.attributes.item_size / 2);
@@ -477,32 +434,24 @@
                 return;
             }
         }
-
         // Compare current time with reference
         diff = (this.data.attributes.ref_date - curDate) / 1000;
         old_diff = (this.data.attributes.ref_date - prevDate) / 1000;
-
         var floor = this.config.animation !== "smooth";
-
         var visible_times = parse_times(diff, old_diff, this.data.total_duration, this.data.drawn_units, floor);
         var all_times = parse_times(diff, old_diff, secondsIn["Years"], allUnits, floor);
-
         var i = 0;
         var j = 0;
         var lastKey = null;
-
         var cur_shown = this.data.drawn_units.slice();
         for (var i in allUnits) {
             var key = allUnits[i];
-
             // Notify (all) listeners
             if (Math.floor(all_times.raw_time[key]) !== Math.floor(all_times.raw_old_time[key])) {
                 this.notifyListeners(key, Math.floor(all_times.time[key]), Math.floor(diff), "all");
             }
-
             if (cur_shown.indexOf(key) < 0)
                 continue;
-
             // Notify (visible) listeners
             if (Math.floor(visible_times.raw_time[key]) !== Math.floor(visible_times.raw_old_time[key])) {
                 this.notifyListeners(key, Math.floor(visible_times.time[key]), Math.floor(diff), "visible");
@@ -511,11 +460,9 @@
             if(!nodraw) {
                 // Set the text value
                 this.data.text_elements[key].text(Math.floor(Math.abs(visible_times.time[key])));
-
                 var x = (j * this.data.attributes.item_size) + (this.data.attributes.item_size / 2);
                 var y = this.data.attributes.item_size / 2;
                 var color = this.config.time[key].color;
-
                 if (this.config.animation === "smooth") {
                     if (lastKey !== null && !limited_mode) {
                         if (Math.floor(visible_times.time[lastKey]) > Math.floor(visible_times.old_time[lastKey])) {
@@ -538,7 +485,6 @@
             lastKey = key;
             j++;
         }
-
         // Dont request another update if we should be paused
         if(this.data.paused || nodraw) {
             return;
@@ -549,7 +495,6 @@
         var update = function() {
             _this.update.call(_this);
         };
-
         // Either call next update immediately, or in a second
         if (this.config.animation === "smooth") {
             // Smooth animation, Queue up the next frame
@@ -561,17 +506,14 @@
             if (delay < 0)
                 delay = 1000 + delay;
             delay += 50;
-
             _this.data.animation_frame = useWindow.setTimeout(function() {
                 _this.data.animation_frame = useWindow.requestAnimationFrame(update, _this.element, _this);
             }, delay);
         }
     };
-
     TC_Instance.prototype.animateArc = function(x, y, color, target_pct, cur_pct, animation_end) {
         if (this.data.attributes.context === null)
             return;
-
         var diff = cur_pct - target_pct;
         if (Math.abs(diff) > 0.5) {
             if (target_pct === 0) {
@@ -585,10 +527,8 @@
             var progress = (tick_duration - (animation_end - (new Date()).getTime())) / tick_duration;
             if (progress > 1)
                 progress = 1;
-
             var pct = (cur_pct * (1 - progress)) + (target_pct * progress);
             this.drawArc(x, y, color, pct);
-
             //var show_pct =
             if (progress >= 1)
                 return;
@@ -598,11 +538,9 @@
             }, this.element);
         }
     };
-
     TC_Instance.prototype.drawArc = function(x, y, color, pct) {
         if (this.data.attributes.context === null)
             return;
-
         var clear_radius = Math.max(this.data.attributes.outer_radius, this.data.attributes.item_size / 2);
         if(!limited_mode) {
             this.data.attributes.context.clearRect(
@@ -617,19 +555,16 @@
             this.data.attributes.context.beginPath();
             this.data.attributes.context.arc(x, y, this.data.attributes.radius, 0, 2 * Math.PI, false);
             this.data.attributes.context.lineWidth = this.data.attributes.line_width * this.config.bg_width;
-
             // line color
             this.data.attributes.context.strokeStyle = this.config.circle_bg_color;
             this.data.attributes.context.stroke();
         }
-
         // Direction
         var startAngle, endAngle, counterClockwise;
         var defaultOffset = (-0.5 * Math.PI);
         var fullCircle = 2 * Math.PI;
         startAngle = defaultOffset + (this.config.start_angle / 360 * fullCircle);
         var offset = (2 * pct * Math.PI);
-
         if (this.config.direction === "Both") {
             counterClockwise = false;
             startAngle -= (offset / 2);
@@ -645,21 +580,17 @@
                 endAngle = startAngle - offset;
             }
         }
-
         this.data.attributes.context.beginPath();
         this.data.attributes.context.arc(x, y, this.data.attributes.radius, startAngle, endAngle, counterClockwise);
         this.data.attributes.context.lineWidth = this.data.attributes.line_width;
-
         // line color
         this.data.attributes.context.strokeStyle = color;
         this.data.attributes.context.stroke();
     };
-
     TC_Instance.prototype.radialFade = function(x, y, color, from, key) {
         // TODO: Make fade_time option
         var rgb = hexToRgb(color);
         var _this = this; // We have a few inner scopes here that will need access to our instance
-
         var step = 0.2 * ((from === 1) ? -1 : 1);
         var i;
         for (i = 0; from <= 1 && from >= 0; i++) {
@@ -679,7 +610,6 @@
             }, 50 * i);
         }
     };
-
     TC_Instance.prototype.timeLeft = function() {
         if (this.data.paused && typeof this.data.timer === "number") {
             return this.data.timer;
@@ -687,11 +617,9 @@
         var now = new Date();
         return ((this.data.attributes.ref_date - now) / 1000);
     };
-
     TC_Instance.prototype.start = function() {
         useWindow.cancelAnimationFrame(this.data.animation_frame);
         useWindow.clearTimeout(this.data.animation_frame)
-
         // Check if a date was passed in html attribute or jquery data
         var attr_data_date = $(this.element).data('date');
         if (typeof attr_data_date === "undefined") {
@@ -725,17 +653,14 @@
                 this.data.attributes.ref_date = this.config.ref_date;
             }
         }
-
         // Start running
         this.data.paused = false;
         this.update.call(this);
     };
-
     TC_Instance.prototype.restart = function() {
         this.data.timer = false;
         this.start();
     };
-
     TC_Instance.prototype.stop = function() {
         if (typeof this.data.timer === "number") {
             this.data.timer = this.timeLeft(this);
@@ -744,7 +669,6 @@
         this.data.paused = true;
         useWindow.cancelAnimationFrame(this.data.animation_frame);
     };
-
     TC_Instance.prototype.destroy = function() {
         this.clearListeners();
         this.stop();
@@ -755,14 +679,12 @@
         $(this.element).removeAttr('data-tc-id');
         $(this.element).removeData('tc-id');
     };
-
     TC_Instance.prototype.setOptions = function(options) {
         if (this.config === null) {
             this.default_options.ref_date = new Date();
             this.config = $.extend(true, {}, this.default_options);
         }
         $.extend(true, this.config, options);
-
         // Use window.top if use_top_frame is true
         if(this.config.use_top_frame) {
             useWindow = window.top;
@@ -795,7 +717,6 @@
             }
         }
     };
-
     TC_Instance.prototype.addListener = function(f, context, type) {
         if (typeof f !== "function")
             return;
@@ -803,14 +724,12 @@
             type = "visible";
         this.listeners[type].push({func: f, scope: context});
     };
-
     TC_Instance.prototype.notifyListeners = function(unit, value, total, type) {
         for (var i = 0; i < this.listeners[type].length; i++) {
             var listener = this.listeners[type][i];
             listener.func.apply(listener.scope, [unit, value, total]);
         }
     };
-
     TC_Instance.prototype.default_options = {
         ref_date: new Date(),
         start: true,
@@ -848,17 +767,14 @@
             }
         }
     };
-
     // Time circle class
     var TC_Class = function(elements, options) {
         this.elements = elements;
         this.options = options;
         this.foreach();
     };
-
     TC_Class.prototype.getInstance = function(element) {
         var instance;
-
         var cur_id = $(element).data("tc-id");
         if (typeof cur_id === "undefined") {
             cur_id = guid();
@@ -884,7 +800,6 @@
         }
         return instance;
     };
-
     TC_Class.prototype.addTime = function(seconds_to_add) {
         this.foreach(function(instance) {
             instance.addTime(seconds_to_add);
@@ -901,39 +816,33 @@
         });
         return this;
     };
-
     TC_Class.prototype.start = function() {
         this.foreach(function(instance) {
             instance.start();
         });
         return this;
     };
-
     TC_Class.prototype.stop = function() {
         this.foreach(function(instance) {
             instance.stop();
         });
         return this;
     };
-
     TC_Class.prototype.restart = function() {
         this.foreach(function(instance) {
             instance.restart();
         });
         return this;
     };
-
     TC_Class.prototype.rebuild = function() {
         this.foreach(function(instance) {
             instance.initialize(false);
         });
         return this;
     };
-
     TC_Class.prototype.getTime = function() {
         return this.getInstance(this.elements[0]).timeLeft();
     };
-
     TC_Class.prototype.addListener = function(f, type) {
         if (typeof type === "undefined")
             type = "visible";
@@ -943,18 +852,15 @@
         });
         return this;
     };
-
     TC_Class.prototype.destroy = function() {
         this.foreach(function(instance) {
             instance.destroy();
         });
         return this;
     };
-
     TC_Class.prototype.end = function() {
         return this.elements;
     };
-
     $.fn.TimeCircles = function(options) {
         return new TC_Class(this, options);
     };

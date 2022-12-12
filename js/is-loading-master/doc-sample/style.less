@@ -1,47 +1,35 @@
 // Mixins
-
 .border-radius(@val:0) {
-
     -webkit-border-radius: @val; -webkit-background-clip: padding-box;
     -moz-border-radius: @val; -moz-background-clip: padding;
     border-radius: @val; background-clip: padding-box;
 }
 
-
 @link: #66aacc;
-
 // Website CSS
-
 body {
     background: #F2F2F2;
     font-family: Verdana;
 }
-
 .wrapper {
     padding-bottom: 50px;
 }
-
 .header {
     background: #000000;
-
     .container {
         padding-bottom: 20px;
-
         h1 {
             color: #FFF;
             line-height: 50px;
             margin-top: 30px;
             margin-bottom: 0;
         }
-
         h3 {
             color: #E0E0E0;
             font-size: 16px;
             margin-top: -5px;
-
             a {
                 color: @link;
-
                 &:hover {
                     color: lighten(@link, 20%);
                 }
@@ -49,11 +37,9 @@ body {
         }
     }
 }
-
 .top-menu {
     position: absolute;
     z-index: 9999;
-
     .nav-list {
         background: rgba(255, 255, 255, 0.8);
         border: 1px solid #CCC;
@@ -62,11 +48,9 @@ body {
         right: 0;
     }
 }
-
 pre, .well {
     background: #FFFFFF;
 }
-
 .syntax-container {
     background: #FCFCFC;
     .border-radius(7px);
@@ -80,7 +64,6 @@ pre, .well {
 .isloading-overlay {
     position: relative;
     text-align: center;
-
     .isloading-wrapper {
         background: #FFFFFF;
         .border-radius(7px);

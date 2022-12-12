@@ -3,11 +3,8 @@
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
-
 import { hooks as moment, setHookCallback } from './lib/utils/hooks';
-
 moment.version = '2.17.1';
-
 import {
     min,
     max,
@@ -20,11 +17,9 @@ import {
     createInvalid   as invalid,
     createInZone    as parseZone
 } from './lib/moment/moment';
-
 import {
     getCalendarFormat
 } from './lib/moment/calendar';
-
 import {
     defineLocale,
     updateLocale,
@@ -37,20 +32,15 @@ import {
     listWeekdaysMin    as weekdaysMin,
     listWeekdaysShort  as weekdaysShort
 } from './lib/locale/locale';
-
 import {
     isDuration,
     createDuration as duration,
     getSetRelativeTimeRounding as relativeTimeRounding,
     getSetRelativeTimeThreshold as relativeTimeThreshold
 } from './lib/duration/duration';
-
 import { normalizeUnits } from './lib/units/units';
-
 import isDate from './lib/utils/is-date';
-
 setHookCallback(local);
-
 moment.fn                    = fn;
 moment.min                   = min;
 moment.max                   = max;
@@ -78,5 +68,4 @@ moment.relativeTimeRounding = relativeTimeRounding;
 moment.relativeTimeThreshold = relativeTimeThreshold;
 moment.calendarFormat        = getCalendarFormat;
 moment.prototype             = fn;
-
 export default moment;

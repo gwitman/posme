@@ -406,6 +406,7 @@ class App_Box_Outcash extends CI_Controller {
 			$this->load->model("Company_Component_Concept_Model");
 			
 			
+			$this->core_web_permission->getValueLicense($dataSession["user"]->companyID,$this->router->class."/"."index");
 			//Obtener el Componente de Transacciones Facturacion
 			$objComponentShare			= $this->core_web_tools->getComponentIDBy_ComponentName("tb_transaction_master_outputcash");
 			if(!$objComponentShare)

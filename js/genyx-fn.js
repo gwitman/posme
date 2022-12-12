@@ -15,7 +15,6 @@ function selectMenu(current_url){
 	$("a[href='"+current_url+"']").closest("li").closest("ul").closest("li").find("a").first().addClass("expand");
 	
 }
-
 function fnTableSelectedRow(obj,event){ 	
 	$(event.target.parentElement.parentElement).find("tr").removeClass('row-selected');
 	$(event.target.parentNode).addClass('row-selected');		
@@ -173,7 +172,6 @@ function fnFormatNumber(number,decimal){
 	number = prefix + "."  + posfix;
 	return number;
 }
-
 function fnRecalcularTableSummary(table,targetInput,parameter1 , parameter2, operation){
 		var cantidad = table.fnGetData().length;
 		var total = 0;

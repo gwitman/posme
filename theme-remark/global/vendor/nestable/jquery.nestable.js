@@ -4,7 +4,6 @@
 ;
 (function($, window, document, undefined) {
     var hasTouch = 'ontouchstart' in window;
-
     /**
      * Detect CSS pointer-events property
      * events are normally disabled on the dragging element to avoid conflicts
@@ -23,12 +22,10 @@
         docEl.removeChild(el);
         return !!supports;
     })();
-
     var eStart = hasTouch ? 'touchstart' : 'mousedown',
         eMove = hasTouch ? 'touchmove' : 'mousemove',
         eEnd = hasTouch ? 'touchend' : 'mouseup',
         eCancel = hasTouch ? 'touchcancel' : 'mouseup';
-
     var defaults = {
         contentCallback: function(item) {return item.content || '' ? item.content : item.id;},
         listNodeName: 'ol',
@@ -60,14 +57,12 @@
             var html = '<' + options.listNodeName + ' class="' + options.listClass + '">';
             html += children;
             html += '</' + options.listNodeName + '>';
-
             return html;
         },
         itemRenderer: function(item_attrs, content, children, options, item) {
             var item_attrs_string = $.map(item_attrs, function(value, key) {
                 return ' ' + key + '="' + value + '"';
             }).join(' ');
-
             var html = '<' + options.itemNodeName + item_attrs_string + '>';
             html += '<' + options.handleNodeName + ' class="' + options.handleClass + '">';
             html += '<' + options.contentNodeName + ' class="' + options.contentClass + '">';
@@ -76,11 +71,9 @@
             html += '</' + options.handleNodeName + '>';
             html += children;
             html += '</' + options.itemNodeName + '>';
-
             return html;
         }
     };
-
     function Plugin(element, options) {
         this.w = $(document);
         this.el = $(element);
@@ -98,28 +91,19 @@
             options.noChildrenClass = options.noChildrenClass ? options.noChildrenClass : options.rootClass + '-nochildren';
             options.emptyClass = options.emptyClass ? options.emptyClass : options.rootClass + '-empty';
         }
-
         this.options = $.extend({}, defaults, options);
-
         // build HTML from serialized JSON if passed
         if(this.options.json !== undefined) {
             this._build();
         }
-
         this.init();
     }
-
     Plugin.prototype = {
-
         init: function() {
             var list = this;
-
             list.reset();
-
             list.el.data('nestable-group', this.options.group);
-
             list.placeEl = $('<div class="' + list.options.placeClass + '"/>');
-
             $.each(this.el.find(list.options.itemNodeName), function(k, el) {
                 var item = $(el),
                     parent = item.parent();
@@ -128,7 +112,6 @@
                     list.collapseItem(parent.parent());
                 }
             });
-
             list.el.on('click', 'button', function(e) {
                 if(list.dragEl || (!hasTouch && e.button !== 0)) {
                     return;
@@ -143,7 +126,6 @@
                     list.expandItem(item);
                 }
             });
-
             var onStartEvent = function(e) {
                 var handle = $(e.target);
                 if(!handle.hasClass(list.options.handleClass)) {
@@ -158,21 +140,18 @@
                 e.preventDefault();
                 list.dragStart(hasTouch ? e.touches[0] : e);
             };
-
             var onMoveEvent = function(e) {
                 if(list.dragEl) {
                     e.preventDefault();
                     list.dragMove(hasTouch ? e.touches[0] : e);
                 }
             };
-
             var onEndEvent = function(e) {
                 if(list.dragEl) {
                     e.preventDefault();
                     list.dragStop(hasTouch ? e.touches[0] : e);
                 }
             };
-
             if(hasTouch) {
                 list.el[0].addEventListener(eStart, onStartEvent, false);
                 window.addEventListener(eMove, onMoveEvent, false);
@@ -184,7 +163,6 @@
                 list.w.on(eMove, onMoveEvent);
                 list.w.on(eEnd, onEndEvent);
             }
-
             var destroyNestable = function()
             {
                 if(hasTouch) {
@@ -198,22 +176,16 @@
                     list.w.off(eMove, onMoveEvent);
                     list.w.off(eEnd, onEndEvent);
                 }
-
                 list.el.off('click');
                 list.el.unbind('destroy-nestable');
-
                 list.el.data("nestable", null);
             };
-
             list.el.bind('destroy-nestable', destroyNestable);
-
         },
-
         destroy: function ()
         {
             this.el.trigger('destroy-nestable');
         },
-
         _build: function() {
             function escapeHtml(text) {
                 var map = {
@@ -223,90 +195,65 @@
                     '"': '&quot;',
                     "'": '&#039;'
                 };
-
                 return text + "".replace(/[&<>"']/g, function(m) { return map[m]; });
             }
-
             function filterClasses(classes) {
                 var new_classes = {};
-
                 for(var k in classes) {
                     // Remove duplicates
                     new_classes[classes[k]] = classes[k];
                 }
-
                 return new_classes;
             }
-
             function createClassesString(item, options) {
                 var classes = item.classes || {};
-
                 if(typeof classes == 'string') {
                     classes = [classes];
                 }
-
                 var item_classes = filterClasses(classes);
                 item_classes[options.itemClass] = options.itemClass;
-
                 // create class string
                 return $.map(item_classes, function(val) {
                     return val;
                 }).join(' ');
             }
-
             function createDataAttrs(attr) {
                 attr = $.extend({}, attr);
-
                 delete attr.children;
                 delete attr.classes;
                 delete attr.content;
-
                 var data_attrs = {};
-
                 $.each(attr, function(key, value) {
                     if(typeof value == 'object') {
                         value = JSON.stringify(value);
                     }
-
                     data_attrs["data-" + key] = escapeHtml(value);
                 });
-
                 return data_attrs;
             }
-
             function buildList(items, options) {
                 if(!items) {
                     return '';
                 }
-
                 var children = '';
-
                 $.each(items, function(index, sub) {
                     children += buildItem(sub, options);
                 });
-
                 return options.listRenderer(children, options);
             }
-
             function buildItem(item, options) {
                 var item_attrs = createDataAttrs(item);
                 item_attrs["class"] = createClassesString(item, options);
-
                 var content = options.contentCallback(item);
                 var children = buildList(item.children, options);
-
                 return options.itemRenderer(item_attrs, content, children, options, item);
             }
-
             var json = this.options.json;
-
             if(typeof json == 'string') {
                 json = JSON.parse(json);
             }
-
             $(this.el).html(buildList(json, this.options));
         },
-
         serialize: function() {
             var data, list = this, step = function(level) {
                 var array = [],
@@ -315,15 +262,12 @@
                     var li = $(this),
                         item = $.extend({}, li.data()),
                         sub = li.children(list.options.listNodeName);
-
                     if(list.options.includeContent) {
                         var content = li.find('.' + list.options.contentClass).html();
-
                         if(content) {
                             item.content = content;
                         }
                     }
-
                     if(sub.length) {
                         item.children = step(sub);
                     }
@@ -334,21 +278,16 @@
             data = step(list.el.find(list.options.listNodeName).first());
             return data;
         },
-
         asNestedSet: function() {
             var list = this, o = list.options, depth = -1, ret = [], lft = 1;
             var items = list.el.find(o.listNodeName).first().children(o.itemNodeName);
-
             items.each(function () {
                 lft = traverse(this, depth + 1, lft);
             });
-
             ret = ret.sort(function(a,b){ return (a.lft - b.lft); });
             return ret;
-
             function traverse(item, depth, lft) {
                 var rgt = lft + 1, id, pid;
-
                 if ($(item).children(o.listNodeName).children(o.itemNodeName).length > 0 ) {
                     depth++;
                     $(item).children(o.listNodeName).children(o.itemNodeName).each(function () {
@@ -356,27 +295,21 @@
                     });
                     depth--;
                 }
-
                 id = parseInt($(item).attr('data-id'));
                 pid = parseInt($(item).parent(o.listNodeName).parent(o.itemNodeName).attr('data-id')) || '';
-
                 if (id) {
                     ret.push({"id": id, "parent_id": pid, "depth": depth, "lft": lft, "rgt": rgt});
                 }
-
                 lft = rgt + 1;
                 return lft;
             }
         },
-
         returnOptions: function() {
             return this.options;
         },
-
         serialise: function() {
             return this.serialize();
         },
-
         reset: function() {
             this.mouse = {
                 offsetX: 0,
@@ -404,32 +337,27 @@
             this.hasNewRoot = false;
             this.pointEl = null;
         },
-
         expandItem: function(li) {
             li.removeClass(this.options.collapsedClass);
         },
-
         collapseItem: function(li) {
             var lists = li.children(this.options.listNodeName);
             if(lists.length) {
                 li.addClass(this.options.collapsedClass);
             }
         },
-
         expandAll: function() {
             var list = this;
             list.el.find(list.options.itemNodeName).each(function() {
                 list.expandItem($(this));
             });
         },
-
         collapseAll: function() {
             var list = this;
             list.el.find(list.options.itemNodeName).each(function() {
                 list.collapseItem($(this));
             });
         },
-
         setParent: function(li) {
             if(li.children(this.options.listNodeName).length) {
                 // make sure NOT showing two or more sets data-action buttons
@@ -438,39 +366,30 @@
                 li.prepend($(this.options.collapseBtnHTML));
             }
         },
-
         unsetParent: function(li) {
             li.removeClass(this.options.collapsedClass);
             li.children('[data-action]').remove();
             li.children(this.options.listNodeName).remove();
         },
-
         dragStart: function(e) {
             var mouse = this.mouse,
                 target = $(e.target),
                 dragItem = target.closest(this.options.itemNodeName);
-
             this.options.onDragStart.call(this, this.el, dragItem);
-
             this.placeEl.css('height', dragItem.height());
-
             mouse.offsetX = e.pageX - dragItem.offset().left;
             mouse.offsetY = e.pageY - dragItem.offset().top;
             mouse.startX = mouse.lastX = e.pageX;
             mouse.startY = mouse.lastY = e.pageY;
-
             this.dragRootEl = this.el;
             this.dragEl = $(document.createElement(this.options.listNodeName)).addClass(this.options.listClass + ' ' + this.options.dragClass);
             this.dragEl.css('width', dragItem.outerWidth());
-
             this.setIndexOfItem(dragItem);
-
             // fix for zepto.js
             //dragItem.after(this.placeEl).detach().appendTo(this.dragEl);
             dragItem.after(this.placeEl);
             dragItem[0].parentNode.removeChild(dragItem[0]);
             dragItem.appendTo(this.dragEl);
-
             $(document.body).append(this.dragEl);
             this.dragEl.css({
                 'left': e.pageX - mouse.offsetX,
@@ -486,14 +405,11 @@
                 }
             }
         },
-
         setIndexOfItem: function(item, index) {
             if((typeof index) === 'undefined') {
                 index = [];
             }
-
             index.unshift(item.index());
-
             if($(item[0].parentNode)[0] !== this.dragRootEl[0]) {
                 this.setIndexOfItem($(item[0].parentNode), index);
             }
@@ -501,11 +417,9 @@
                 this.dragEl.data('indexOfItem', index);
             }
         },
-
         restoreItemAtIndex: function(dragElement) {
             var indexArray = this.dragEl.data('indexOfItem'),
                 currentEl = this.el;
-
             for(i = 0; i < indexArray.length; i++) {
                 if((indexArray.length - 1) === parseInt(i)) {
                     placeElement(currentEl, dragElement);
@@ -513,7 +427,6 @@
                 }
                 currentEl = currentEl[0].children[indexArray[i]];
             }
-
             function placeElement(currentEl, dragElement) {
                 if(indexArray[indexArray.length - 1] === 0) {
                     $(currentEl).prepend(dragElement.clone());
@@ -523,14 +436,12 @@
                 }
             }
         },
-
         dragStop: function(e) {
             // fix for zepto.js
             //this.placeEl.replaceWith(this.dragEl.children(this.options.itemNodeName + ':first').detach());
             var el = this.dragEl.children(this.options.itemNodeName).first();
             el[0].parentNode.removeChild(el[0]);
             this.placeEl.replaceWith(el);
-
             if(this.hasNewRoot) {
                 if(this.options.fixed === true) {
                     this.restoreItemAtIndex(el);
@@ -543,23 +454,18 @@
             else {
                 this.dragRootEl.trigger('change');
             }
-
             this.dragEl.remove();
             this.options.callback.call(this, this.dragRootEl, el);
-
             this.reset();
         },
-
         dragMove: function(e) {
             var list, parent, prev, next, depth,
                 opt = this.options,
                 mouse = this.mouse;
-
             this.dragEl.css({
                 'left': e.pageX - mouse.offsetX,
                 'top': e.pageY - mouse.offsetY
             });
-
             // mouse position last events
             mouse.lastX = mouse.nowX;
             mouse.lastY = mouse.nowY;
@@ -577,14 +483,12 @@
             mouse.dirY = mouse.distY === 0 ? 0 : mouse.distY > 0 ? 1 : -1;
             // axis mouse is now moving on
             var newAx = Math.abs(mouse.distX) > Math.abs(mouse.distY) ? 1 : 0;
-
             // do nothing on first move
             if(!mouse.moving) {
                 mouse.dirAx = newAx;
                 mouse.moving = true;
                 return;
             }
-
             // calc distance moved on this axis (and direction)
             if(mouse.dirAx !== newAx) {
                 mouse.distAxX = 0;
@@ -601,7 +505,6 @@
                 }
             }
             mouse.dirAx = newAx;
-
             /**
              * move horizontal
              */
@@ -643,9 +546,7 @@
                     }
                 }
             }
-
             var isEmpty = false;
-
             // find list item under cursor
             if(!hasPointerEvents) {
                 this.dragEl[0].style.visibility = 'hidden';
@@ -663,11 +564,9 @@
             else if(!this.pointEl.length || !this.pointEl.hasClass(opt.itemClass)) {
                 return;
             }
-
             // find parent list of item under cursor
             var pointElRoot = this.pointEl.closest('.' + opt.rootClass),
                 isNewRoot = this.dragRootEl.data('nestable-id') !== pointElRoot.data('nestable-id');
-
             /**
              * move vertical
              */
@@ -676,12 +575,10 @@
                 if(isNewRoot && opt.group !== pointElRoot.data('nestable-group')) {
                     return;
                 }
-
                 // fixed item's depth, use for some list has specific type, eg:'Volume, Section, Chapter ...'
                 if(this.options.fixedDepth && this.dragDepth + 1 !== this.pointEl.parents(opt.listNodeName).length) {
                     return;
                 }
-
                 // check depth limit
                 depth = this.dragDepth - 1 + this.pointEl.parents(opt.listNodeName).length;
                 if(depth > opt.maxDepth) {
@@ -714,26 +611,20 @@
                 }
             }
         }
-
     };
-
     $.fn.nestable = function(params) {
         var lists = this,
             retval = this;
-
         if(!('Nestable' in window)) {
             window.Nestable = {};
             Nestable.counter = 0;
         }
-
         lists.each(function() {
             var plugin = $(this).data("nestable");
-
             if(!plugin) {
                 Nestable.counter++;
                 $(this).data("nestable", new Plugin(this, params));
                 $(this).data("nestable-id", Nestable.counter);
-
             }
             else {
                 if(typeof params === 'string' && typeof plugin[params] === 'function') {
@@ -741,8 +632,6 @@
                 }
             }
         });
-
         return retval || lists;
     };
-
 })(window.jQuery || window.Zepto, window, document);

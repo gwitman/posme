@@ -4,7 +4,6 @@ instalador:
 ---------------------------------------
 ---------------------------------------
 		Configurar los Roles y los Usuarios, en la aplicacion de desarrollo, para el nuevo comercio.
-
 		
 		instalar any desk en la computadora.
 		
@@ -34,7 +33,6 @@ instalador:
 		
 		instalar el programa de Driver Para Printer 80-Hing
 		para serie 80
-
 		instalar el programa xampp-wind-32
 		
 		instalar chrome.exe descargarlo de la web.
@@ -53,11 +51,9 @@ instalador:
 		a la carpeta C\xampp 
 		agregar los permisos para todos los usuarios. 
 		todos los permisos.
-
 		trasalardar el siguiente archivo
 		C:\xampp\htdocs\core_test_payment.php a la misma direccion
 		
-
 		
 		
 acceder a phpMyAdmin 
@@ -66,7 +62,6 @@ acceder a phpMyAdmin
 modificar los siguientes archivos:
 		Modificar las credenciales de la siguiente ruta:
 		C:\xampp\phpMyAdmin\config.inc.php
-
 				
 acceder a phpmyadmin
 		crear usuarios:				
@@ -74,7 +69,6 @@ acceder a phpmyadmin
 		root@::1			root1.2Blandon
 		root@%				root1.2Blandon
 		
-
 acceder a pypmyadmin		
 		crear base de datos:posme
 		
@@ -104,7 +98,6 @@ modificar los siguientes archivos:
 		curl.cainfo = "C:\xampp\ca\cacert.pem"
 		
 
-
 		
 modificar los siguientes archivos:		
 		apache\config\httpd.confg:  ó   apache/conf/extra/httpd-xampp.conf
@@ -124,7 +117,6 @@ modificar los siguientes archivos:
 				Require all granted
 			</Directory>
 	
-
 modificar los siguientes archivos: acceder a xampp de manera remota.
 apache/conf/extra/httpd-xampp.conf
 	#
@@ -133,19 +125,15 @@ apache/conf/extra/httpd-xampp.conf
 	<LocationMatch "^/(?i:(?:xampp|security|licenses|phpmyadmin|webalizer|server-status|server-info))">
 		Order deny,allow
 		Deny from all
-
 		Allow from ::1 127.0.0.0/8 \
 		Allow from 192.168.1.0/8 \
-
 
 		#Allow from ::1 127.0.0.0/8 \
 		#	fc00::/7 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 \
 		#	fe80::/10 169.254.0.0/16
 
-
 		ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var
 	</LocationMatch>
-
 		
 	
 			
@@ -155,34 +143,26 @@ modificar los siguientes archivos:
 		
 acceder a phpmy admin		
 		importar la base de datos.
-
 		
 Crear acceso directo
-
 Crear xampp como servicio
-
 
 Agregar Logo Tipo
 		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\
 		img\logo-micro-finanza.jpg
 		
-
 		
 Ejecutar el Script de Limpieza e Inicializacion de Base de Datos
 		password:	root1.2Blandon
 		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\clear_importar_data_base.sql		
 
-
 Configurar parametros usando o creando el script
 		C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_sql\actualizar_parametros_[cliente].sql
 
-
 Probar la configuracion de pago
 	http://localhost/core_test_payment.php
-
 Probar la configuracion de pago
 	http://localhost/posme/
-
 
 ---------------------------------------
 actualizacion:
@@ -197,7 +177,6 @@ actualizacion:
 	E:\Witman_BDMySQL\posme_2022_09_18_0000_000.sql
 	
 	acceder a any desk. de la pc.
-
 	en la maquina del cliente, crear una copia de la siguiente carpeta
 	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app como 
 	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app_2022_09_18_001
@@ -232,8 +211,6 @@ actualizacion:
 	actualiar tablas:
 		tb_branch
 		
-
-
 
 	
 	ejecutar el script de actualizacion.

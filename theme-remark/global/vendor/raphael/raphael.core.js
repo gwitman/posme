@@ -1,5 +1,4 @@
 define(["eve"], function(eve) {
-
     /*\
      * Raphael
      [ method ]
@@ -307,7 +306,6 @@ define(["eve"], function(eve) {
             }
             return path;
         };
-
     R._g = g;
     /*\
      * Raphael.type
@@ -393,7 +391,6 @@ define(["eve"], function(eve) {
                 (type == "array" && Array.isArray && Array.isArray(o)) ||
                 objectToString.call(o).slice(8, -1).toLowerCase() == type;
     };
-
     function clone(obj) {
         if (typeof obj == "function" || Object(obj) !== obj) {
             return obj;
@@ -404,7 +401,6 @@ define(["eve"], function(eve) {
         }
         return res;
     }
-
     /*\
      * Raphael.angle
      [ method ]
@@ -485,7 +481,6 @@ define(["eve"], function(eve) {
         }
         return value;
     };
-
     /*\
      * Raphael.createUUID
      [ method ]
@@ -501,7 +496,6 @@ define(["eve"], function(eve) {
             v = c == "x" ? r : (r & 3 | 8);
         return v.toString(16);
     });
-
     /*\
      * Raphael.setWindow
      [ method ]
@@ -580,7 +574,6 @@ define(["eve"], function(eve) {
             g /= 255;
             b /= 255;
         }
-
         return [r, g, b];
     },
     packageRGB = function (r, g, b, o) {
@@ -597,7 +590,6 @@ define(["eve"], function(eve) {
         R.is(o, "finite") && (rgb.opacity = o);
         return rgb;
     };
-
     /*\
      * Raphael.color
      [ method ]
@@ -681,7 +673,6 @@ define(["eve"], function(eve) {
         C = v * s;
         X = C * (1 - abs(h % 2 - 1));
         R = G = B = v - C;
-
         h = ~~h;
         R += [C, X, 0, 0, X, C][h];
         G += [X, C, C, X, 0, 0][h];
@@ -722,7 +713,6 @@ define(["eve"], function(eve) {
         C = 2 * s * (l < .5 ? l : 1 - l);
         X = C * (1 - abs(h % 2 - 1));
         R = G = B = l - C / 2;
-
         h = ~~h;
         R += [C, X, 0, 0, X, C][h];
         G += [X, C, C, X, 0, 0][h];
@@ -750,7 +740,6 @@ define(["eve"], function(eve) {
         r = b[0];
         g = b[1];
         b = b[2];
-
         var H, S, V, C;
         V = mmax(r, g, b);
         C = V - mmin(r, g, b);
@@ -784,7 +773,6 @@ define(["eve"], function(eve) {
         r = b[0];
         g = b[1];
         b = b[2];
-
         var H, S, L, M, m, C;
         M = mmax(r, g, b);
         m = mmin(r, g, b);
@@ -825,7 +813,6 @@ define(["eve"], function(eve) {
         }
         return newf;
     }
-
     var preload = R._preload = function (src, f) {
         var img = g.doc.createElement("img");
         img.style.cssText = "position:absolute;left:-9999em;top:-9999em";
@@ -840,11 +827,9 @@ define(["eve"], function(eve) {
         g.doc.body.appendChild(img);
         img.src = src;
     };
-
     function clrToString() {
         return this.hex;
     }
-
     /*\
      * Raphael.getRGB
      [ method ]
@@ -1015,7 +1000,6 @@ define(["eve"], function(eve) {
     R.getColor.reset = function () {
         delete this.start;
     };
-
     // http://schepers.cc/getting-to-the-point
     function catmullRom2bezier(crp, z) {
         var d = [];
@@ -1051,7 +1035,6 @@ define(["eve"], function(eve) {
                   p[2].y
             ]);
         }
-
         return d;
     }
     /*\
@@ -1073,7 +1056,6 @@ define(["eve"], function(eve) {
         if (pth.arr) {
             return pathClone(pth.arr);
         }
-
         var paramCounts = {a: 7, c: 6, h: 1, l: 2, m: 2, r: 4, q: 4, s: 4, t: 2, v: 1, z: 0},
             data = [];
         if (R.is(pathString, array) && R.is(pathString[0], array)) { // rough assumption
@@ -1362,7 +1344,6 @@ define(["eve"], function(eve) {
         var nx = (x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4),
             ny = (x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4),
             denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-
         if (!denominator) {
             return;
         }
@@ -1853,7 +1834,6 @@ define(["eve"], function(eve) {
                     cy = k * -ry * x / rx + (y1 + y2) / 2,
                     f1 = math.asin(((y1 - cy) / ry).toFixed(9)),
                     f2 = math.asin(((y2 - cy) / ry).toFixed(9));
-
                 f1 = x1 < cx ? PI - f1 : f1;
                 f2 = x2 < cx ? PI - f2 : f2;
                 f1 < 0 && (f1 = PI * 2 + f1);
@@ -2049,20 +2029,16 @@ define(["eve"], function(eve) {
                 pcom = ""; // holder for previous path command of original path
             for (var i = 0, ii = mmax(p.length, p2 && p2.length || 0); i < ii; i++) {
                 p[i] && (pfirst = p[i][0]); // save current path command
-
                 if (pfirst != "C") // C is not saved yet, because it may be result of conversion
                 {
                     pcoms1[i] = pfirst; // Save current path command
                     i && ( pcom = pcoms1[i-1]); // Get previous path command pcom
                 }
                 p[i] = processPath(p[i], attrs, pcom); // Previous path command is inputted to processPath
-
                 if (pcoms1[i] != "A" && pfirst == "C") pcoms1[i] = "C"; // A is the only command
                 // which may produce multiple C:s
                 // so we have to make sure that C is also C in original path
-
                 fixArc(p, i); // fixArc adds also the right amount of A:s to pcoms1
-
                 if (p2) { // the same procedures is done to p2
                     p2[i] && (pfirst = p2[i][0]);
                     if (pfirst != "C")
@@ -2071,9 +2047,7 @@ define(["eve"], function(eve) {
                         i && (pcom = pcoms2[i-1]);
                     }
                     p2[i] = processPath(p2[i], attrs2, pcom);
-
                     if (pcoms2[i]!="A" && pfirst=="C") pcoms2[i]="C";
-
                     fixArc(p2, i);
                 }
                 fixM(p, p2, attrs, attrs2, i);
@@ -2291,7 +2265,6 @@ define(["eve"], function(eve) {
                     el.matrix = m;
                 }
             }
-
             /*\
              * Element.matrix
              [ property (object) ]
@@ -2299,13 +2272,11 @@ define(["eve"], function(eve) {
              * Keeps @Matrix object, which represents element transformation
             \*/
             el.matrix = m;
-
             _.sx = sx;
             _.sy = sy;
             _.deg = deg;
             _.dx = dx = m.e;
             _.dy = dy = m.f;
-
             if (sx == 1 && sy == 1 && !deg && _.bbox) {
                 _.bbox.x += +dx;
                 _.bbox.y += +dy;
@@ -2473,11 +2444,9 @@ define(["eve"], function(eve) {
                 m = [[this.a, this.c, this.e], [this.b, this.d, this.f], [0, 0, 1]],
                 matrix = [[a, c, e], [b, d, f], [0, 0, 1]],
                 x, y, z, res;
-
             if (a && a instanceof Matrix) {
                 matrix = [[a.a, a.c, a.e], [a.b, a.d, a.f], [0, 0, 1]];
             }
-
             for (x = 0; x < 3; x++) {
                 for (y = 0; y < 3; y++) {
                     res = 0;
@@ -2633,19 +2602,15 @@ define(["eve"], function(eve) {
             // translation
             out.dx = this.e;
             out.dy = this.f;
-
             // scale and shear
             var row = [[this.a, this.c], [this.b, this.d]];
             out.scalex = math.sqrt(norm(row[0]));
             normalize(row[0]);
-
             out.shear = row[0][0] * row[1][0] + row[0][1] * row[1][1];
             row[1] = [row[1][0] - row[0][0] * out.shear, row[1][1] - row[0][1] * out.shear];
-
             out.scaley = math.sqrt(norm(row[1]));
             normalize(row[1]);
             out.shear /= out.scaley;
-
             // rotation
             var sin = -row[0][1],
                 cos = row[1][1];
@@ -2657,7 +2622,6 @@ define(["eve"], function(eve) {
             } else {
                 out.rotate = R.deg(math.asin(sin));
             }
-
             out.isSimple = !+out.shear.toFixed(9) && (out.scalex.toFixed(9) == out.scaley.toFixed(9) || !out.rotate);
             out.isSuperSimple = !+out.shear.toFixed(9) && out.scalex.toFixed(9) == out.scaley.toFixed(9) && !out.rotate;
             out.noRotation = !+out.shear.toFixed(9) && !out.rotate;
@@ -2684,7 +2648,6 @@ define(["eve"], function(eve) {
             }
         };
     })(Matrix.prototype);
-
     var preventDefault = function () {
         this.returnValue = false;
     },
@@ -2700,7 +2663,6 @@ define(["eve"], function(eve) {
     getEventPosition = function (e) {
         var scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
             scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft;
-
         return {
             x: e.clientX + scrollX,
             y: e.clientY + scrollY
@@ -2714,12 +2676,10 @@ define(["eve"], function(eve) {
                     return fn.call(element, e, pos.x, pos.y);
                 };
                 obj.addEventListener(type, f, false);
-
                 if (supportsTouch && touchMap[type]) {
                     var _f = function (e) {
                         var pos = getEventPosition(e),
                             olde = e;
-
                         for (var i = 0, ii = e.targetTouches && e.targetTouches.length; i < ii; i++) {
                             if (e.targetTouches[i].target == obj) {
                                 e = e.targetTouches[i];
@@ -2729,18 +2689,14 @@ define(["eve"], function(eve) {
                                 break;
                             }
                         }
-
                         return fn.call(element, e, pos.x, pos.y);
                     };
                     obj.addEventListener(touchMap[type], _f, false);
                 }
-
                 return function () {
                     obj.removeEventListener(type, f, false);
-
                     if (supportsTouch && touchMap[type])
                         obj.removeEventListener(touchMap[type], _f, false);
-
                     return true;
                 };
             };
@@ -2850,7 +2806,6 @@ define(["eve"], function(eve) {
      - handler (function) #optional handler for the event
      = (object) @Element
     \*/
-
     /*\
      * Element.dblclick
      [ method ]
@@ -2869,7 +2824,6 @@ define(["eve"], function(eve) {
      - handler (function) #optional handler for the event
      = (object) @Element
     \*/
-
     /*\
      * Element.mousedown
      [ method ]
@@ -2888,7 +2842,6 @@ define(["eve"], function(eve) {
      - handler (function) #optional handler for the event
      = (object) @Element
     \*/
-
     /*\
      * Element.mousemove
      [ method ]
@@ -2907,7 +2860,6 @@ define(["eve"], function(eve) {
      - handler (function) #optional handler for the event
      = (object) @Element
     \*/
-
     /*\
      * Element.mouseout
      [ method ]
@@ -2926,7 +2878,6 @@ define(["eve"], function(eve) {
      - handler (function) #optional handler for the event
      = (object) @Element
     \*/
-
     /*\
      * Element.mouseover
      [ method ]
@@ -2945,7 +2896,6 @@ define(["eve"], function(eve) {
      - handler (function) #optional handler for the event
      = (object) @Element
     \*/
-
     /*\
      * Element.mouseup
      [ method ]
@@ -2964,7 +2914,6 @@ define(["eve"], function(eve) {
      - handler (function) #optional handler for the event
      = (object) @Element
     \*/
-
     /*\
      * Element.touchstart
      [ method ]
@@ -2983,7 +2932,6 @@ define(["eve"], function(eve) {
      - handler (function) #optional handler for the event
      = (object) @Element
     \*/
-
     /*\
      * Element.touchmove
      [ method ]
@@ -3002,7 +2950,6 @@ define(["eve"], function(eve) {
      - handler (function) #optional handler for the event
      = (object) @Element
     \*/
-
     /*\
      * Element.touchend
      [ method ]
@@ -3021,7 +2968,6 @@ define(["eve"], function(eve) {
      - handler (function) #optional handler for the event
      = (object) @Element
     \*/
-
     /*\
      * Element.touchcancel
      [ method ]
@@ -3063,7 +3009,6 @@ define(["eve"], function(eve) {
             };
         })(events[i]);
     }
-
     /*\
      * Element.data
      [ method ]
@@ -3581,7 +3526,6 @@ define(["eve"], function(eve) {
         target = target && target.raphael ? paper.getById(target.raphaelid) : null;
         return target;
     };
-
     /*\
      * Paper.getElementsByBBox
      [ method ]
@@ -3602,7 +3546,6 @@ define(["eve"], function(eve) {
         });
         return set;
     };
-
     /*\
      * Paper.getById
      [ method ]
@@ -3925,11 +3868,9 @@ define(["eve"], function(eve) {
         if (!path) {
             return;
         }
-
         if (this.node.getTotalLength) {
             return this.node.getTotalLength();
         }
-
         return getTotalLength(path);
     };
     /*\
@@ -3954,7 +3895,6 @@ define(["eve"], function(eve) {
         if (!path) {
             return;
         }
-
         return getPointAtLength(path, length);
     };
     /*\
@@ -3968,15 +3908,12 @@ define(["eve"], function(eve) {
     elproto.getPath = function () {
         var path,
             getPath = R._getPath[this.type];
-
         if (this.type == "text" || this.type == "set") {
             return;
         }
-
         if (getPath) {
             path = getPath(this);
         }
-
         return path;
     };
     /*\
@@ -3997,7 +3934,6 @@ define(["eve"], function(eve) {
         if (!path) {
             return;
         }
-
         return R.getSubpath(path, from, to);
     };
     /*\
@@ -4080,7 +4016,6 @@ define(["eve"], function(eve) {
     ef.easeInOut = ef["ease-in-out"] = ef["<>"];
     ef["back-in"] = ef.backIn;
     ef["back-out"] = ef.backOut;
-
     var animationElements = [],
         requestAnimFrame = window.requestAnimationFrame       ||
                            window.webkitRequestAnimationFrame ||
@@ -4801,7 +4736,6 @@ define(["eve"], function(eve) {
     elproto.toString = function () {
         return "Rapha\xebl\u2019s object";
     };
-
     // Set
     var Set = function (items) {
         this.items = [];
@@ -5023,7 +4957,6 @@ define(["eve"], function(eve) {
     setproto.toString = function () {
         return "Rapha\xebl\u2018s set";
     };
-
     setproto.glow = function(glowConfig) {
         var ret = this.paper.set();
         this.forEach(function(shape, index){
@@ -5036,7 +4969,6 @@ define(["eve"], function(eve) {
         });
         return ret;
     };
-
 
     /*\
      * Set.isPointInside
@@ -5060,7 +4992,6 @@ define(["eve"], function(eve) {
         });
         return isPointInside;
     };
-
     /*\
      * Raphael.registerFont
      [ method ]
@@ -5219,7 +5150,6 @@ define(["eve"], function(eve) {
             stroke: "none"
         });
     };
-
     /*\
      * Paper.add
      [ method ]
@@ -5261,7 +5191,6 @@ define(["eve"], function(eve) {
         }
         return res;
     };
-
     /*\
      * Raphael.format
      [ method ]
@@ -5381,11 +5310,9 @@ define(["eve"], function(eve) {
      | paper.set(paper.circle(100, 100, 20), paper.circle(110, 100, 20)).red();
     \*/
     R.st = setproto;
-
     eve.on("raphael.DOMload", function () {
         loaded = true;
     });
-
     // Firefox <3.6 fix: http://webreflection.blogspot.com/2009/11/195-chars-to-help-lazy-loading.html
     (function (doc, loaded, f) {
         if (doc.readyState == null && doc.addEventListener){
@@ -5400,6 +5327,5 @@ define(["eve"], function(eve) {
         }
         isLoaded();
     })(document, "DOMContentLoaded");
-
     return R;
 });

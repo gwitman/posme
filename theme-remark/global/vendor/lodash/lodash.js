@@ -8,13 +8,10 @@
  * Available under MIT license <https://lodash.com/license>
  */
 ;(function() {
-
   /** Used as a safe reference for `undefined` in pre-ES5 environments. */
   var undefined;
-
   /** Used as the semantic version number. */
   var VERSION = '3.10.1';
-
   /** Used to compose bitmasks for wrapper metadata. */
   var BIND_FLAG = 1,
       BIND_KEY_FLAG = 2,
@@ -25,28 +22,21 @@
       PARTIAL_RIGHT_FLAG = 64,
       ARY_FLAG = 128,
       REARG_FLAG = 256;
-
   /** Used as default options for `_.trunc`. */
   var DEFAULT_TRUNC_LENGTH = 30,
       DEFAULT_TRUNC_OMISSION = '...';
-
   /** Used to detect when a function becomes hot. */
   var HOT_COUNT = 150,
       HOT_SPAN = 16;
-
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
-
   /** Used to indicate the type of lazy iteratees. */
   var LAZY_FILTER_FLAG = 1,
       LAZY_MAP_FLAG = 2;
-
   /** Used as the `TypeError` message for "Functions" methods. */
   var FUNC_ERROR_TEXT = 'Expected a function';
-
   /** Used as the internal argument placeholder. */
   var PLACEHOLDER = '__lodash_placeholder__';
-
   /** `Object#toString` result references. */
   var argsTag = '[object Arguments]',
       arrayTag = '[object Array]',
@@ -61,7 +51,6 @@
       setTag = '[object Set]',
       stringTag = '[object String]',
       weakMapTag = '[object WeakMap]';
-
   var arrayBufferTag = '[object ArrayBuffer]',
       float32Tag = '[object Float32Array]',
       float64Tag = '[object Float64Array]',
@@ -72,73 +61,55 @@
       uint8ClampedTag = '[object Uint8ClampedArray]',
       uint16Tag = '[object Uint16Array]',
       uint32Tag = '[object Uint32Array]';
-
   /** Used to match empty string literals in compiled template source. */
   var reEmptyStringLeading = /\b__p \+= '';/g,
       reEmptyStringMiddle = /\b(__p \+=) '' \+/g,
       reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
-
   /** Used to match HTML entities and HTML characters. */
   var reEscapedHtml = /&(?:amp|lt|gt|quot|#39|#96);/g,
       reUnescapedHtml = /[&<>"'`]/g,
       reHasEscapedHtml = RegExp(reEscapedHtml.source),
       reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
-
   /** Used to match template delimiters. */
   var reEscape = /<%-([\s\S]+?)%>/g,
       reEvaluate = /<%([\s\S]+?)%>/g,
       reInterpolate = /<%=([\s\S]+?)%>/g;
-
   /** Used to match property names within property paths. */
   var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\n\\]|\\.)*?\1)\]/,
       reIsPlainProp = /^\w*$/,
       rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\n\\]|\\.)*?)\2)\]/g;
-
   /**
    * Used to match `RegExp` [syntax characters](http://ecma-international.org/ecma-262/6.0/#sec-patterns)
    * and those outlined by [`EscapeRegExpPattern`](http://ecma-international.org/ecma-262/6.0/#sec-escaperegexppattern).
    */
   var reRegExpChars = /^[:!,]|[\\^$.*+?()[\]{}|\/]|(^[0-9a-fA-Fnrtuvx])|([\n\r\u2028\u2029])/g,
       reHasRegExpChars = RegExp(reRegExpChars.source);
-
   /** Used to match [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks). */
   var reComboMark = /[\u0300-\u036f\ufe20-\ufe23]/g;
-
   /** Used to match backslashes in property paths. */
   var reEscapeChar = /\\(\\)?/g;
-
   /** Used to match [ES template delimiters](http://ecma-international.org/ecma-262/6.0/#sec-template-literal-lexical-components). */
   var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
-
   /** Used to match `RegExp` flags from their coerced string values. */
   var reFlags = /\w*$/;
-
   /** Used to detect hexadecimal string values. */
   var reHasHexPrefix = /^0[xX]/;
-
   /** Used to detect host constructors (Safari > 5). */
   var reIsHostCtor = /^\[object .+?Constructor\]$/;
-
   /** Used to detect unsigned integer values. */
   var reIsUint = /^\d+$/;
-
   /** Used to match latin-1 supplementary letters (excluding mathematical operators). */
   var reLatin1 = /[\xc0-\xd6\xd8-\xde\xdf-\xf6\xf8-\xff]/g;
-
   /** Used to ensure capturing order of template delimiters. */
   var reNoMatch = /($^)/;
-
   /** Used to match unescaped characters in compiled string literals. */
   var reUnescapedString = /['\n\r\u2028\u2029\\]/g;
-
   /** Used to match words to create compound words. */
   var reWords = (function() {
     var upper = '[A-Z\\xc0-\\xd6\\xd8-\\xde]',
         lower = '[a-z\\xdf-\\xf6\\xf8-\\xff]+';
-
     return RegExp(upper + '+(?=' + upper + lower + ')|' + upper + '?' + lower + '|' + upper + '+|[0-9]+', 'g');
   }());
-
   /** Used to assign default `context` object properties. */
   var contextProps = [
     'Array', 'ArrayBuffer', 'Date', 'Error', 'Float32Array', 'Float64Array',
@@ -147,10 +118,8 @@
     'parseFloat', 'parseInt', 'setTimeout', 'TypeError', 'Uint8Array',
     'Uint8ClampedArray', 'Uint16Array', 'Uint32Array', 'WeakMap'
   ];
-
   /** Used to make template sourceURLs easier to identify. */
   var templateCounter = -1;
-
   /** Used to identify `toStringTag` values of typed arrays. */
   var typedArrayTags = {};
   typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
@@ -165,7 +134,6 @@
   typedArrayTags[numberTag] = typedArrayTags[objectTag] =
   typedArrayTags[regexpTag] = typedArrayTags[setTag] =
   typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
-
   /** Used to identify `toStringTag` values supported by `_.clone`. */
   var cloneableTags = {};
   cloneableTags[argsTag] = cloneableTags[arrayTag] =
@@ -180,7 +148,6 @@
   cloneableTags[errorTag] = cloneableTags[funcTag] =
   cloneableTags[mapTag] = cloneableTags[setTag] =
   cloneableTags[weakMapTag] = false;
-
   /** Used to map latin-1 supplementary letters to basic latin letters. */
   var deburredLetters = {
     '\xc0': 'A',  '\xc1': 'A', '\xc2': 'A', '\xc3': 'A', '\xc4': 'A', '\xc5': 'A',
@@ -201,7 +168,6 @@
     '\xde': 'Th', '\xfe': 'th',
     '\xdf': 'ss'
   };
-
   /** Used to map characters to HTML entities. */
   var htmlEscapes = {
     '&': '&amp;',
@@ -211,7 +177,6 @@
     "'": '&#39;',
     '`': '&#96;'
   };
-
   /** Used to map HTML entities to characters. */
   var htmlUnescapes = {
     '&amp;': '&',
@@ -221,13 +186,11 @@
     '&#39;': "'",
     '&#96;': '`'
   };
-
   /** Used to determine if values are of the language type `Object`. */
   var objectTypes = {
     'function': true,
     'object': true
   };
-
   /** Used to escape characters for inclusion in compiled regexes. */
   var regexpEscapes = {
     '0': 'x30', '1': 'x31', '2': 'x32', '3': 'x33', '4': 'x34',
@@ -236,7 +199,6 @@
     'a': 'x61', 'b': 'x62', 'c': 'x63', 'd': 'x64', 'e': 'x65', 'f': 'x66',
     'n': 'x6e', 'r': 'x72', 't': 'x74', 'u': 'x75', 'v': 'x76', 'x': 'x78'
   };
-
   /** Used to escape characters for inclusion in compiled string literals. */
   var stringEscapes = {
     '\\': '\\',
@@ -246,25 +208,18 @@
     '\u2028': 'u2028',
     '\u2029': 'u2029'
   };
-
   /** Detect free variable `exports`. */
   var freeExports = objectTypes[typeof exports] && exports && !exports.nodeType && exports;
-
   /** Detect free variable `module`. */
   var freeModule = objectTypes[typeof module] && module && !module.nodeType && module;
-
   /** Detect free variable `global` from Node.js. */
   var freeGlobal = freeExports && freeModule && typeof global == 'object' && global && global.Object && global;
-
   /** Detect free variable `self`. */
   var freeSelf = objectTypes[typeof self] && self && self.Object && self;
-
   /** Detect free variable `window`. */
   var freeWindow = objectTypes[typeof window] && window && window.Object && window;
-
   /** Detect the popular CommonJS extension `module.exports`. */
   var moduleExports = freeModule && freeModule.exports === freeExports && freeExports;
-
   /**
    * Used as a reference to the global object.
    *
@@ -272,9 +227,7 @@
    * restricted `window` object, otherwise the `window` object is used.
    */
   var root = freeGlobal || ((freeWindow !== (this && this.window)) && freeWindow) || freeSelf || this;
-
   /*--------------------------------------------------------------------------*/
-
   /**
    * The base implementation of `compareAscending` which compares values and
    * sorts them in ascending order without guaranteeing a stable sort.
@@ -289,11 +242,9 @@
       var valIsNull = value === null,
           valIsUndef = value === undefined,
           valIsReflexive = value === value;
-
       var othIsNull = other === null,
           othIsUndef = other === undefined,
           othIsReflexive = other === other;
-
       if ((value > other && !othIsNull) || !valIsReflexive ||
           (valIsNull && !othIsUndef && othIsReflexive) ||
           (valIsUndef && othIsReflexive)) {
@@ -307,7 +258,6 @@
     }
     return 0;
   }
-
   /**
    * The base implementation of `_.findIndex` and `_.findLastIndex` without
    * support for callback shorthands and `this` binding.
@@ -321,7 +271,6 @@
   function baseFindIndex(array, predicate, fromRight) {
     var length = array.length,
         index = fromRight ? length : -1;
-
     while ((fromRight ? index-- : ++index < length)) {
       if (predicate(array[index], index, array)) {
         return index;
@@ -329,7 +278,6 @@
     }
     return -1;
   }
-
   /**
    * The base implementation of `_.indexOf` without support for binary searches.
    *
@@ -345,7 +293,6 @@
     }
     var index = fromIndex - 1,
         length = array.length;
-
     while (++index < length) {
       if (array[index] === value) {
         return index;
@@ -353,7 +300,6 @@
     }
     return -1;
   }
-
   /**
    * The base implementation of `_.isFunction` without support for environments
    * with incorrect `typeof` results.
@@ -367,7 +313,6 @@
     // See https://github.com/jashkenas/underscore/issues/1621 for more details.
     return typeof value == 'function' || false;
   }
-
   /**
    * Converts `value` to a string if it's not one. An empty string is returned
    * for `null` or `undefined` values.
@@ -379,7 +324,6 @@
   function baseToString(value) {
     return value == null ? '' : (value + '');
   }
-
   /**
    * Used by `_.trim` and `_.trimLeft` to get the index of the first character
    * of `string` that is not found in `chars`.
@@ -392,11 +336,9 @@
   function charsLeftIndex(string, chars) {
     var index = -1,
         length = string.length;
-
     while (++index < length && chars.indexOf(string.charAt(index)) > -1) {}
     return index;
   }
-
   /**
    * Used by `_.trim` and `_.trimRight` to get the index of the last character
    * of `string` that is not found in `chars`.
@@ -408,11 +350,9 @@
    */
   function charsRightIndex(string, chars) {
     var index = string.length;
-
     while (index-- && chars.indexOf(string.charAt(index)) > -1) {}
     return index;
   }
-
   /**
    * Used by `_.sortBy` to compare transformed elements of a collection and stable
    * sort them in ascending order.
@@ -425,7 +365,6 @@
   function compareAscending(object, other) {
     return baseCompareAscending(object.criteria, other.criteria) || (object.index - other.index);
   }
-
   /**
    * Used by `_.sortByOrder` to compare multiple properties of a value to another
    * and stable sort them.
@@ -446,7 +385,6 @@
         othCriteria = other.criteria,
         length = objCriteria.length,
         ordersLength = orders.length;
-
     while (++index < length) {
       var result = baseCompareAscending(objCriteria[index], othCriteria[index]);
       if (result) {
@@ -466,7 +404,6 @@
     // See https://code.google.com/p/v8/issues/detail?id=90 for more details.
     return object.index - other.index;
   }
-
   /**
    * Used by `_.deburr` to convert latin-1 supplementary letters to basic latin letters.
    *
@@ -477,7 +414,6 @@
   function deburrLetter(letter) {
     return deburredLetters[letter];
   }
-
   /**
    * Used by `_.escape` to convert characters to HTML entities.
    *
@@ -488,7 +424,6 @@
   function escapeHtmlChar(chr) {
     return htmlEscapes[chr];
   }
-
   /**
    * Used by `_.escapeRegExp` to escape characters for inclusion in compiled regexes.
    *
@@ -506,7 +441,6 @@
     }
     return '\\' + chr;
   }
-
   /**
    * Used by `_.template` to escape characters for inclusion in compiled string literals.
    *
@@ -517,7 +451,6 @@
   function escapeStringChar(chr) {
     return '\\' + stringEscapes[chr];
   }
-
   /**
    * Gets the index at which the first occurrence of `NaN` is found in `array`.
    *
@@ -530,7 +463,6 @@
   function indexOfNaN(array, fromIndex, fromRight) {
     var length = array.length,
         index = fromIndex + (fromRight ? 0 : -1);
-
     while ((fromRight ? index-- : ++index < length)) {
       var other = array[index];
       if (other !== other) {
@@ -539,7 +471,6 @@
     }
     return -1;
   }
-
   /**
    * Checks if `value` is object-like.
    *
@@ -550,7 +481,6 @@
   function isObjectLike(value) {
     return !!value && typeof value == 'object';
   }
-
   /**
    * Used by `trimmedLeftIndex` and `trimmedRightIndex` to determine if a
    * character code is whitespace.
@@ -563,7 +493,6 @@
     return ((charCode <= 160 && (charCode >= 9 && charCode <= 13) || charCode == 32 || charCode == 160) || charCode == 5760 || charCode == 6158 ||
       (charCode >= 8192 && (charCode <= 8202 || charCode == 8232 || charCode == 8233 || charCode == 8239 || charCode == 8287 || charCode == 12288 || charCode == 65279)));
   }
-
   /**
    * Replaces all `placeholder` elements in `array` with an internal placeholder
    * and returns an array of their indexes.
@@ -578,7 +507,6 @@
         length = array.length,
         resIndex = -1,
         result = [];
-
     while (++index < length) {
       if (array[index] === placeholder) {
         array[index] = PLACEHOLDER;
@@ -587,7 +515,6 @@
     }
     return result;
   }
-
   /**
    * An implementation of `_.uniq` optimized for sorted arrays without support
    * for callback shorthands and `this` binding.
@@ -603,11 +530,9 @@
         length = array.length,
         resIndex = -1,
         result = [];
-
     while (++index < length) {
       var value = array[index],
           computed = iteratee ? iteratee(value, index, array) : value;
-
       if (!index || seen !== computed) {
         seen = computed;
         result[++resIndex] = value;
@@ -615,7 +540,6 @@
     }
     return result;
   }
-
   /**
    * Used by `_.trim` and `_.trimLeft` to get the index of the first non-whitespace
    * character of `string`.
@@ -627,11 +551,9 @@
   function trimmedLeftIndex(string) {
     var index = -1,
         length = string.length;
-
     while (++index < length && isSpace(string.charCodeAt(index))) {}
     return index;
   }
-
   /**
    * Used by `_.trim` and `_.trimRight` to get the index of the last non-whitespace
    * character of `string`.
@@ -642,11 +564,9 @@
    */
   function trimmedRightIndex(string) {
     var index = string.length;
-
     while (index-- && isSpace(string.charCodeAt(index))) {}
     return index;
   }
-
   /**
    * Used by `_.unescape` to convert HTML entities to characters.
    *
@@ -657,9 +577,7 @@
   function unescapeHtmlChar(chr) {
     return htmlUnescapes[chr];
   }
-
   /*--------------------------------------------------------------------------*/
-
   /**
    * Create a new pristine `lodash` function using the given `context` object.
    *
@@ -701,7 +619,6 @@
     // ES5 clears this up by stating that literals must use built-in constructors.
     // See https://es5.github.io/#x11.1.5 for more details.
     context = context ? _.defaults(root.Object(), context, _.pick(root, contextProps)) : root;
-
     /** Native constructor references. */
     var Array = context.Array,
         Date = context.Date,
@@ -713,36 +630,28 @@
         RegExp = context.RegExp,
         String = context.String,
         TypeError = context.TypeError;
-
     /** Used for native method references. */
     var arrayProto = Array.prototype,
         objectProto = Object.prototype,
         stringProto = String.prototype;
-
     /** Used to resolve the decompiled source of functions. */
     var fnToString = Function.prototype.toString;
-
     /** Used to check objects for own properties. */
     var hasOwnProperty = objectProto.hasOwnProperty;
-
     /** Used to generate unique IDs. */
     var idCounter = 0;
-
     /**
      * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
      * of values.
      */
     var objToString = objectProto.toString;
-
     /** Used to restore the original `_` reference in `_.noConflict`. */
     var oldDash = root._;
-
     /** Used to detect if a method is native. */
     var reIsNative = RegExp('^' +
       fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
       .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
     );
-
     /** Native method references. */
     var ArrayBuffer = context.ArrayBuffer,
         clearTimeout = context.clearTimeout,
@@ -754,7 +663,6 @@
         splice = arrayProto.splice,
         Uint8Array = context.Uint8Array,
         WeakMap = getNative(context, 'WeakMap');
-
     /* Native method references for those with the same name as other `lodash` methods. */
     var nativeCeil = Math.ceil,
         nativeCreate = getNative(Object, 'create'),
@@ -767,30 +675,23 @@
         nativeNow = getNative(Date, 'now'),
         nativeParseInt = context.parseInt,
         nativeRandom = Math.random;
-
     /** Used as references for `-Infinity` and `Infinity`. */
     var NEGATIVE_INFINITY = Number.NEGATIVE_INFINITY,
         POSITIVE_INFINITY = Number.POSITIVE_INFINITY;
-
     /** Used as references for the maximum length and index of an array. */
     var MAX_ARRAY_LENGTH = 4294967295,
         MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1,
         HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;
-
     /**
      * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
      * of an array-like value.
      */
     var MAX_SAFE_INTEGER = 9007199254740991;
-
     /** Used to store function metadata. */
     var metaMap = WeakMap && new WeakMap;
-
     /** Used to lookup unminified function names. */
     var realNames = {};
-
     /*------------------------------------------------------------------------*/
-
     /**
      * Creates a `lodash` object which wraps `value` to enable implicit chaining.
      * Methods that operate on and return arrays, collections, and functions can
@@ -898,7 +799,6 @@
       }
       return new LodashWrapper(value);
     }
-
     /**
      * The function whose prototype all chaining wrappers inherit from.
      *
@@ -907,7 +807,6 @@
     function baseLodash() {
       // No operation performed.
     }
-
     /**
      * The base constructor for creating `lodash` wrapper objects.
      *
@@ -921,7 +820,6 @@
       this.__actions__ = actions || [];
       this.__chain__ = !!chainAll;
     }
-
     /**
      * An object environment feature flags.
      *
@@ -930,7 +828,6 @@
      * @type Object
      */
     var support = lodash.support = {};
-
     /**
      * By default, the template delimiters used by lodash are like those in
      * embedded Ruby (ERB). Change the following template settings to use
@@ -941,7 +838,6 @@
      * @type Object
      */
     lodash.templateSettings = {
-
       /**
        * Used to detect `data` property values to be HTML-escaped.
        *
@@ -949,7 +845,6 @@
        * @type RegExp
        */
       'escape': reEscape,
-
       /**
        * Used to detect code to be evaluated.
        *
@@ -957,7 +852,6 @@
        * @type RegExp
        */
       'evaluate': reEvaluate,
-
       /**
        * Used to detect `data` property values to inject.
        *
@@ -965,7 +859,6 @@
        * @type RegExp
        */
       'interpolate': reInterpolate,
-
       /**
        * Used to reference the data object in the template text.
        *
@@ -973,7 +866,6 @@
        * @type string
        */
       'variable': '',
-
       /**
        * Used to import variables into the compiled template.
        *
@@ -981,7 +873,6 @@
        * @type Object
        */
       'imports': {
-
         /**
          * A reference to the `lodash` function.
          *
@@ -991,9 +882,7 @@
         '_': lodash
       }
     };
-
     /*------------------------------------------------------------------------*/
-
     /**
      * Creates a lazy wrapper object which wraps `value` to enable lazy evaluation.
      *
@@ -1009,7 +898,6 @@
       this.__takeCount__ = POSITIVE_INFINITY;
       this.__views__ = [];
     }
-
     /**
      * Creates a clone of the lazy wrapper object.
      *
@@ -1028,7 +916,6 @@
       result.__views__ = arrayCopy(this.__views__);
       return result;
     }
-
     /**
      * Reverses the direction of lazy iteration.
      *
@@ -1048,7 +935,6 @@
       }
       return result;
     }
-
     /**
      * Extracts the unwrapped value from its lazy wrapper.
      *
@@ -1072,25 +958,20 @@
           iterLength = iteratees.length,
           resIndex = 0,
           takeCount = nativeMin(length, this.__takeCount__);
-
       if (!isArr || arrLength < LARGE_ARRAY_SIZE || (arrLength == length && takeCount == length)) {
         return baseWrapperValue(array, this.__actions__);
       }
       var result = [];
-
       outer:
       while (length-- && resIndex < takeCount) {
         index += dir;
-
         var iterIndex = -1,
             value = array[index];
-
         while (++iterIndex < iterLength) {
           var data = iteratees[iterIndex],
               iteratee = data.iteratee,
               type = data.type,
               computed = iteratee(value);
-
           if (type == LAZY_MAP_FLAG) {
             value = computed;
           } else if (!computed) {
@@ -1105,9 +986,7 @@
       }
       return result;
     }
-
     /*------------------------------------------------------------------------*/
-
     /**
      * Creates a cache object to store key/value pairs.
      *
@@ -1119,7 +998,6 @@
     function MapCache() {
       this.__data__ = {};
     }
-
     /**
      * Removes `key` and its value from the cache.
      *
@@ -1132,7 +1010,6 @@
     function mapDelete(key) {
       return this.has(key) && delete this.__data__[key];
     }
-
     /**
      * Gets the cached value for `key`.
      *
@@ -1145,7 +1022,6 @@
     function mapGet(key) {
       return key == '__proto__' ? undefined : this.__data__[key];
     }
-
     /**
      * Checks if a cached value for `key` exists.
      *
@@ -1158,7 +1034,6 @@
     function mapHas(key) {
       return key != '__proto__' && hasOwnProperty.call(this.__data__, key);
     }
-
     /**
      * Sets `value` to `key` of the cache.
      *
@@ -1175,9 +1050,7 @@
       }
       return this;
     }
-
     /*------------------------------------------------------------------------*/
-
     /**
      *
      * Creates a cache object to store unique values.
@@ -1187,13 +1060,11 @@
      */
     function SetCache(values) {
       var length = values ? values.length : 0;
-
       this.data = { 'hash': nativeCreate(null), 'set': new Set };
       while (length--) {
         this.push(values[length]);
       }
     }
-
     /**
      * Checks if `value` is in `cache` mimicking the return signature of
      * `_.indexOf` by returning `0` if the value is found, else `-1`.
@@ -1206,10 +1077,8 @@
     function cacheIndexOf(cache, value) {
       var data = cache.data,
           result = (typeof value == 'string' || isObject(value)) ? data.set.has(value) : data.hash[value];
-
       return result ? 0 : -1;
     }
-
     /**
      * Adds `value` to the cache.
      *
@@ -1226,9 +1095,7 @@
         data.hash[value] = true;
       }
     }
-
     /*------------------------------------------------------------------------*/
-
     /**
      * Creates a new array joining `array` with `other`.
      *
@@ -1243,7 +1110,6 @@
           othIndex = -1,
           othLength = other.length,
           result = Array(length + othLength);
-
       while (++index < length) {
         result[index] = array[index];
       }
@@ -1252,7 +1118,6 @@
       }
       return result;
     }
-
     /**
      * Copies the values of `source` to `array`.
      *
@@ -1264,14 +1129,12 @@
     function arrayCopy(source, array) {
       var index = -1,
           length = source.length;
-
       array || (array = Array(length));
       while (++index < length) {
         array[index] = source[index];
       }
       return array;
     }
-
     /**
      * A specialized version of `_.forEach` for arrays without support for callback
      * shorthands and `this` binding.
@@ -1284,7 +1147,6 @@
     function arrayEach(array, iteratee) {
       var index = -1,
           length = array.length;
-
       while (++index < length) {
         if (iteratee(array[index], index, array) === false) {
           break;
@@ -1292,7 +1154,6 @@
       }
       return array;
     }
-
     /**
      * A specialized version of `_.forEachRight` for arrays without support for
      * callback shorthands and `this` binding.
@@ -1304,7 +1165,6 @@
      */
     function arrayEachRight(array, iteratee) {
       var length = array.length;
-
       while (length--) {
         if (iteratee(array[length], length, array) === false) {
           break;
@@ -1312,7 +1172,6 @@
       }
       return array;
     }
-
     /**
      * A specialized version of `_.every` for arrays without support for callback
      * shorthands and `this` binding.
@@ -1326,7 +1185,6 @@
     function arrayEvery(array, predicate) {
       var index = -1,
           length = array.length;
-
       while (++index < length) {
         if (!predicate(array[index], index, array)) {
           return false;
@@ -1334,7 +1192,6 @@
       }
       return true;
     }
-
     /**
      * A specialized version of `baseExtremum` for arrays which invokes `iteratee`
      * with one argument: (value).
@@ -1351,11 +1208,9 @@
           length = array.length,
           computed = exValue,
           result = computed;
-
       while (++index < length) {
         var value = array[index],
             current = +iteratee(value);
-
         if (comparator(current, computed)) {
           computed = current;
           result = value;
@@ -1363,7 +1218,6 @@
       }
       return result;
     }
-
     /**
      * A specialized version of `_.filter` for arrays without support for callback
      * shorthands and `this` binding.
@@ -1378,7 +1232,6 @@
           length = array.length,
           resIndex = -1,
           result = [];
-
       while (++index < length) {
         var value = array[index];
         if (predicate(value, index, array)) {
@@ -1387,7 +1240,6 @@
       }
       return result;
     }
-
     /**
      * A specialized version of `_.map` for arrays without support for callback
      * shorthands and `this` binding.
@@ -1401,13 +1253,11 @@
       var index = -1,
           length = array.length,
           result = Array(length);
-
       while (++index < length) {
         result[index] = iteratee(array[index], index, array);
       }
       return result;
     }
-
     /**
      * Appends the elements of `values` to `array`.
      *
@@ -1420,13 +1270,11 @@
       var index = -1,
           length = values.length,
           offset = array.length;
-
       while (++index < length) {
         array[offset + index] = values[index];
       }
       return array;
     }
-
     /**
      * A specialized version of `_.reduce` for arrays without support for callback
      * shorthands and `this` binding.
@@ -1442,7 +1290,6 @@
     function arrayReduce(array, iteratee, accumulator, initFromArray) {
       var index = -1,
           length = array.length;
-
       if (initFromArray && length) {
         accumulator = array[++index];
       }
@@ -1451,7 +1298,6 @@
       }
       return accumulator;
     }
-
     /**
      * A specialized version of `_.reduceRight` for arrays without support for
      * callback shorthands and `this` binding.
@@ -1474,7 +1320,6 @@
       }
       return accumulator;
     }
-
     /**
      * A specialized version of `_.some` for arrays without support for callback
      * shorthands and `this` binding.
@@ -1488,7 +1333,6 @@
     function arraySome(array, predicate) {
       var index = -1,
           length = array.length;
-
       while (++index < length) {
         if (predicate(array[index], index, array)) {
           return true;
@@ -1496,7 +1340,6 @@
       }
       return false;
     }
-
     /**
      * A specialized version of `_.sum` for arrays without support for callback
      * shorthands and `this` binding..
@@ -1509,13 +1352,11 @@
     function arraySum(array, iteratee) {
       var length = array.length,
           result = 0;
-
       while (length--) {
         result += +iteratee(array[length]) || 0;
       }
       return result;
     }
-
     /**
      * Used by `_.defaults` to customize its `_.assign` use.
      *
@@ -1527,7 +1368,6 @@
     function assignDefaults(objectValue, sourceValue) {
       return objectValue === undefined ? sourceValue : objectValue;
     }
-
     /**
      * Used by `_.template` to customize its `_.assign` use.
      *
@@ -1546,7 +1386,6 @@
         ? sourceValue
         : objectValue;
     }
-
     /**
      * A specialized version of `_.assign` for customizing assigned values without
      * support for argument juggling, multiple sources, and `this` binding `customizer`
@@ -1562,12 +1401,10 @@
       var index = -1,
           props = keys(source),
           length = props.length;
-
       while (++index < length) {
         var key = props[index],
             value = object[key],
             result = customizer(value, source[key], key, object, source);
-
         if ((result === result ? (result !== value) : (value === value)) ||
             (value === undefined && !(key in object))) {
           object[key] = result;
@@ -1575,7 +1412,6 @@
       }
       return object;
     }
-
     /**
      * The base implementation of `_.assign` without support for argument juggling,
      * multiple sources, and `customizer` functions.
@@ -1590,7 +1426,6 @@
         ? object
         : baseCopy(source, keys(source), object);
     }
-
     /**
      * The base implementation of `_.at` without support for string collections
      * and individual key arguments.
@@ -1607,7 +1442,6 @@
           length = isArr ? collection.length : 0,
           propsLength = props.length,
           result = Array(propsLength);
-
       while(++index < propsLength) {
         var key = props[index];
         if (isArr) {
@@ -1618,7 +1452,6 @@
       }
       return result;
     }
-
     /**
      * Copies properties of `source` to `object`.
      *
@@ -1630,17 +1463,14 @@
      */
     function baseCopy(source, props, object) {
       object || (object = {});
-
       var index = -1,
           length = props.length;
-
       while (++index < length) {
         var key = props[index];
         object[key] = source[key];
       }
       return object;
     }
-
     /**
      * The base implementation of `_.callback` which supports specifying the
      * number of arguments to provide to `func`.
@@ -1668,7 +1498,6 @@
         ? property(func)
         : baseMatchesProperty(func, thisArg);
     }
-
     /**
      * The base implementation of `_.clone` without support for argument juggling
      * and `this` binding `customizer` functions.
@@ -1703,7 +1532,6 @@
       } else {
         var tag = objToString.call(value),
             isFunc = tag == funcTag;
-
         if (tag == objectTag || tag == argsTag || (isFunc && !object)) {
           result = initCloneObject(isFunc ? {} : value);
           if (!isDeep) {
@@ -1718,7 +1546,6 @@
       // Check for circular references and return its corresponding clone.
       stackA || (stackA = []);
       stackB || (stackB = []);
-
       var length = stackA.length;
       while (length--) {
         if (stackA[length] == value) {
@@ -1728,14 +1555,12 @@
       // Add the source value to the stack of traversed objects and associate it with its clone.
       stackA.push(value);
       stackB.push(result);
-
       // Recursively populate clone (susceptible to call stack limits).
       (isArr ? arrayEach : baseForOwn)(value, function(subValue, key) {
         result[key] = baseClone(subValue, isDeep, customizer, key, value, stackA, stackB);
       });
       return result;
     }
-
     /**
      * The base implementation of `_.create` without support for assigning
      * properties to the created object.
@@ -1755,7 +1580,6 @@
         return result || {};
       };
     }());
-
     /**
      * The base implementation of `_.delay` and `_.defer` which accepts an index
      * of where to slice the arguments to provide to `func`.
@@ -1772,7 +1596,6 @@
       }
       return setTimeout(function() { func.apply(undefined, args); }, wait);
     }
-
     /**
      * The base implementation of `_.difference` which accepts a single array
      * of values to exclude.
@@ -1785,7 +1608,6 @@
     function baseDifference(array, values) {
       var length = array ? array.length : 0,
           result = [];
-
       if (!length) {
         return result;
       }
@@ -1794,7 +1616,6 @@
           isCommon = indexOf === baseIndexOf,
           cache = (isCommon && values.length >= LARGE_ARRAY_SIZE) ? createCache(values) : null,
           valuesLength = values.length;
-
       if (cache) {
         indexOf = cacheIndexOf;
         isCommon = false;
@@ -1803,7 +1624,6 @@
       outer:
       while (++index < length) {
         var value = array[index];
-
         if (isCommon && value === value) {
           var valuesIndex = valuesLength;
           while (valuesIndex--) {
@@ -1819,7 +1639,6 @@
       }
       return result;
     }
-
     /**
      * The base implementation of `_.forEach` without support for callback
      * shorthands and `this` binding.
@@ -1830,7 +1649,6 @@
      * @returns {Array|Object|string} Returns `collection`.
      */
     var baseEach = createBaseEach(baseForOwn);
-
     /**
      * The base implementation of `_.forEachRight` without support for callback
      * shorthands and `this` binding.
@@ -1841,7 +1659,6 @@
      * @returns {Array|Object|string} Returns `collection`.
      */
     var baseEachRight = createBaseEach(baseForOwnRight, true);
-
     /**
      * The base implementation of `_.every` without support for callback
      * shorthands and `this` binding.
@@ -1860,7 +1677,6 @@
       });
       return result;
     }
-
     /**
      * Gets the extremum value of `collection` invoking `iteratee` for each value
      * in `collection` to generate the criterion by which the value is ranked.

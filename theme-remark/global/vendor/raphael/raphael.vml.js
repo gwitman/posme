@@ -2,7 +2,6 @@ define(["./raphael.core"], function(R) {
     if (R && !R.vml) {
         return;
     }
-
     var has = "hasOwnProperty",
         Str = String,
         toFloat = parseFloat,
@@ -150,7 +149,6 @@ define(["./raphael.core"], function(R) {
             isOval = ovalTypes[o.type] && (a.cx != params.cx || a.cy != params.cy || a.r != params.r || a.rx != params.rx || a.ry != params.ry),
             res = o;
 
-
         for (var par in params) if (params[has](par)) {
             a[par] = params[par];
         }
@@ -250,7 +248,6 @@ define(["./raphael.core"], function(R) {
                     var bbox = o.getBBox(1);
                     fill.position = bbox.x + S + bbox.y;
                     o._.fillpos = [bbox.x, bbox.y];
-
                     R._preload(isURL[1], function () {
                         o._.fillsize = [this.offsetWidth, this.offsetHeight];
                     });
@@ -296,7 +293,6 @@ define(["./raphael.core"], function(R) {
             params["stroke-width"] && (stroke.weight = width);
             width && width < 1 && (opacity *= width) && (stroke.weight = 1);
             stroke.opacity = opacity;
-
             params["stroke-linejoin"] && (stroke.joinstyle = params["stroke-linejoin"] || "miter");
             stroke.miterlimit = params["stroke-miterlimit"] || 8;
             params["stroke-linecap"] && (stroke.endcap = params["stroke-linecap"] == "butt" ? "flat" : params["stroke-linecap"] == "square" ? "square" : "round");
@@ -336,14 +332,12 @@ define(["./raphael.core"], function(R) {
             // res.paper.canvas.style.display = "none";
             res.X = a.x;
             res.Y = a.y + res.H / 2;
-
             ("x" in params || "y" in params) && (res.path.v = R.format("m{0},{1}l{2},{1}", round(a.x * zoom), round(a.y * zoom), round(a.x * zoom) + 1));
             var dirtyattrs = ["x", "y", "text", "font", "font-family", "font-weight", "font-style", "font-size"];
             for (var d = 0, dd = dirtyattrs.length; d < dd; d++) if (dirtyattrs[d] in params) {
                 res._.dirty = 1;
                 break;
             }
-
             // text-anchor emulation
             switch (a["text-anchor"]) {
                 case "start":
@@ -448,7 +442,6 @@ define(["./raphael.core"], function(R) {
         this.next = null;
     };
     var elproto = R.el;
-
     Element.prototype = elproto;
     elproto.constructor = Element;
     elproto.transform = function (tstr) {
@@ -556,7 +549,6 @@ define(["./raphael.core"], function(R) {
         }
         cx = cx == null ? bbox.x + bbox.width / 2 : cx;
         cy = cy == null ? bbox.y + bbox.height / 2 : cy;
-
         this.transform(this._.transform.concat([["s", sx, sy, cx, cy]]));
         this._.dirtyT = 1;
         return this;
@@ -734,7 +726,6 @@ define(["./raphael.core"], function(R) {
         }
         return this;
     };
-
     R._engine.path = function (pathString, vml) {
         var el = createNode("shape");
         el.style.cssText = cssDot;
@@ -984,7 +975,6 @@ define(["./raphael.core"], function(R) {
         }
         return true;
     };
-
     var setproto = R.st;
     for (var method in elproto) if (elproto[has](method) && !setproto[has](method)) {
         setproto[method] = (function (methodname) {

@@ -1,7 +1,6 @@
 /**
 Address editable input.
 Internally value stored as {city: "Moscow", street: "Lenina", building: "15"}
-
 @class address
 @extends abstractinput
 @final
@@ -27,14 +26,11 @@ $(function(){
     var Address = function (options) {
         this.init('address', options, Address.defaults);
     };
-
     //inherit from Abstract input
     $.fn.editableutils.inherit(Address, $.fn.editabletypes.abstractinput);
-
     $.extend(Address.prototype, {
         /**
         Renders input from tpl
-
         @method render() 
         **/        
         render: function() {
@@ -156,7 +152,6 @@ $(function(){
            });
        }       
     });
-
     Address.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
         tpl: '<div class="editable-address"><label><span>City: </span><input type="text" name="city" class="input-small"></label></div>'+
              '<div class="editable-address"><label><span>Street: </span><input type="text" name="street" class="input-small"></label></div>'+
@@ -164,7 +159,5 @@ $(function(){
              
         inputclass: ''
     });
-
     $.fn.editabletypes.address = Address;
-
 }(window.jQuery));

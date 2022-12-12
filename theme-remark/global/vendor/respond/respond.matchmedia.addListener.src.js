@@ -2,7 +2,6 @@
  * Copyright 2014 Scott Jehl
  * Licensed under MIT
  * http://j.mp/respondjs */
-
 /*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
 /*! NOTE: If you're already including a window.matchMedia polyfill via Modernizr or otherwise, you don't need this part */
 (function(w) {
@@ -25,7 +24,6 @@
     };
   }(w.document);
 })(this);
-
 /*! matchMedia() polyfill addListener/removeListener extension. Author & copyright (c) 2012: Scott Jehl. Dual MIT/BSD license */
 (function(w) {
   "use strict";
@@ -74,7 +72,6 @@
     return mql;
   };
 })(this);
-
 (function(w) {
   "use strict";
   var respond = {};

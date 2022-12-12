@@ -504,6 +504,7 @@ class App_Box_Canceldocument extends CI_Controller {
 			$this->load->model("Customer_Credit_Document_Model");
 			
 			
+			$this->core_web_permission->getValueLicense($dataSession["user"]->companyID,$this->router->class."/"."index");			
 			//Obtener el Componente de Transacciones Facturacion
 			$objComponentCancelInvoice			= $this->core_web_tools->getComponentIDBy_ComponentName("tb_transaction_master_cancel_invoice");
 			if(!$objComponentCancelInvoice)

@@ -3,13 +3,10 @@
  * Copyright (c) 2011-2014, Christopher Jeffrey. (MIT Licensed)
  * https://github.com/chjj/marked
  */
-
 ;(function() {
-
 /**
  * Block-Level Grammar
  */
-
 var block = {
   newline: /^\n+/,
   code: /^( {4}[^\n]+\n*)+/,
@@ -26,35 +23,29 @@ var block = {
   paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
   text: /^[^\n]+/
 };
-
 block.bullet = /(?:[*+-]|\d+\.)/;
 block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
 block.item = replace(block.item, 'gm')
   (/bull/g, block.bullet)
   ();
-
 block.list = replace(block.list)
   (/bull/g, block.bullet)
   ('hr', '\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))')
   ('def', '\\n+(?=' + block.def.source + ')')
   ();
-
 block.blockquote = replace(block.blockquote)
   ('def', block.def)
   ();
-
 block._tag = '(?!(?:'
   + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
   + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
   + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b';
-
 block.html = replace(block.html)
   ('comment', /<!--[\s\S]*?-->/)
   ('closed', /<(tag)[\s\S]+?<\/\1>/)
   ('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)
   (/tag/g, block._tag)
   ();
-
 block.paragraph = replace(block.paragraph)
   ('hr', block.hr)
   ('heading', block.heading)
@@ -63,48 +54,38 @@ block.paragraph = replace(block.paragraph)
   ('tag', '<' + block._tag)
   ('def', block.def)
   ();
-
 /**
  * Normal Block Grammar
  */
-
 block.normal = merge({}, block);
-
 /**
  * GFM Block Grammar
  */
-
 block.gfm = merge({}, block.normal, {
   fences: /^ *(`{3,}|~{3,})[ \.]*(\S+)? *\n([\s\S]*?)\s*\1 *(?:\n+|$)/,
   paragraph: /^/,
   heading: /^ *(#{1,6}) +([^\n]+?) *#* *(?:\n+|$)/
 });
-
 block.gfm.paragraph = replace(block.paragraph)
   ('(?!', '(?!'
     + block.gfm.fences.source.replace('\\1', '\\2') + '|'
     + block.list.source.replace('\\1', '\\3') + '|')
   ();
-
 /**
  * GFM + Tables Block Grammar
  */
-
 block.tables = merge({}, block.gfm, {
   nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
   table: /^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/
 });
-
 /**
  * Block Lexer
  */
-
 function Lexer(options) {
   this.tokens = [];
   this.tokens.links = {};
   this.options = options || marked.defaults;
   this.rules = block.normal;
-
   if (this.options.gfm) {
     if (this.options.tables) {
       this.rules = block.tables;
@@ -113,40 +94,31 @@ function Lexer(options) {
     }
   }
 }
-
 /**
  * Expose Block Rules
  */
-
 Lexer.rules = block;
-
 /**
  * Static Lex Method
  */
-
 Lexer.lex = function(src, options) {
   var lexer = new Lexer(options);
   return lexer.lex(src);
 };
-
 /**
  * Preprocessing
  */
-
 Lexer.prototype.lex = function(src) {
   src = src
     .replace(/\r\n|\r/g, '\n')
     .replace(/\t/g, '    ')
     .replace(/\u00a0/g, ' ')
     .replace(/\u2424/g, '\n');
-
   return this.token(src, true);
 };
-
 /**
  * Lexing
  */
-
 Lexer.prototype.token = function(src, top, bq) {
   var src = src.replace(/^ +$/gm, '')
     , next
@@ -158,7 +130,6 @@ Lexer.prototype.token = function(src, top, bq) {
     , space
     , i
     , l;
-
   while (src) {
     // newline
     if (cap = this.rules.newline.exec(src)) {
@@ -169,7 +140,6 @@ Lexer.prototype.token = function(src, top, bq) {
         });
       }
     }
-
     // code
     if (cap = this.rules.code.exec(src)) {
       src = src.substring(cap[0].length);
@@ -182,7 +152,6 @@ Lexer.prototype.token = function(src, top, bq) {
       });
       continue;
     }
-
     // fences (gfm)
     if (cap = this.rules.fences.exec(src)) {
       src = src.substring(cap[0].length);
@@ -193,7 +162,6 @@ Lexer.prototype.token = function(src, top, bq) {
       });
       continue;
     }
-
     // heading
     if (cap = this.rules.heading.exec(src)) {
       src = src.substring(cap[0].length);
@@ -204,18 +172,15 @@ Lexer.prototype.token = function(src, top, bq) {
       });
       continue;
     }
-
     // table no leading pipe (gfm)
     if (top && (cap = this.rules.nptable.exec(src))) {
       src = src.substring(cap[0].length);
-
       item = {
         type: 'table',
         header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
         align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
         cells: cap[3].replace(/\n$/, '').split('\n')
       };
-
       for (i = 0; i < item.align.length; i++) {
         if (/^ *-+: *$/.test(item.align[i])) {
           item.align[i] = 'right';
@@ -227,16 +192,12 @@ Lexer.prototype.token = function(src, top, bq) {
           item.align[i] = null;
         }
       }
-
       for (i = 0; i < item.cells.length; i++) {
         item.cells[i] = item.cells[i].split(/ *\| */);
       }
-
       this.tokens.push(item);
-
       continue;
     }
-
     // lheading
     if (cap = this.rules.lheading.exec(src)) {
       src = src.substring(cap[0].length);
@@ -247,7 +208,6 @@ Lexer.prototype.token = function(src, top, bq) {
       });
       continue;
     }
-
     // hr
     if (cap = this.rules.hr.exec(src)) {
       src = src.substring(cap[0].length);
@@ -256,54 +216,41 @@ Lexer.prototype.token = function(src, top, bq) {
       });
       continue;
     }
-
     // blockquote
     if (cap = this.rules.blockquote.exec(src)) {
       src = src.substring(cap[0].length);
-
       this.tokens.push({
         type: 'blockquote_start'
       });
-
       cap = cap[0].replace(/^ *> ?/gm, '');
-
       // Pass `top` to keep the current
       // "toplevel" state. This is exactly
       // how markdown.pl works.
       this.token(cap, top, true);
-
       this.tokens.push({
         type: 'blockquote_end'
       });
-
       continue;
     }
-
     // list
     if (cap = this.rules.list.exec(src)) {
       src = src.substring(cap[0].length);
       bull = cap[2];
-
       this.tokens.push({
         type: 'list_start',
         ordered: bull.length > 1
       });
-
       // Get each top-level item.
       cap = cap[0].match(this.rules.item);
-
       next = false;
       l = cap.length;
       i = 0;
-
       for (; i < l; i++) {
         item = cap[i];
-
         // Remove the list item's bullet
         // so it is seen as the next token.
         space = item.length;
         item = item.replace(/^ *([*+-]|\d+\.) +/, '');
-
         // Outdent whatever the
         // list item contains. Hacky.
         if (~item.indexOf('\n ')) {
@@ -312,7 +259,6 @@ Lexer.prototype.token = function(src, top, bq) {
             ? item.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
             : item.replace(/^ {1,4}/gm, '');
         }
-
         // Determine whether the next list item belongs here.
         // Backpedal if it does not belong in this list.
         if (this.options.smartLists && i !== l - 1) {
@@ -322,7 +268,6 @@ Lexer.prototype.token = function(src, top, bq) {
             i = l - 1;
           }
         }
-
         // Determine whether item is loose or not.
         // Use: /(^|\n)(?! )[^\n]+\n\n(?!\s*$)/
         // for discount behavior.
@@ -331,28 +276,22 @@ Lexer.prototype.token = function(src, top, bq) {
           next = item.charAt(item.length - 1) === '\n';
           if (!loose) loose = next;
         }
-
         this.tokens.push({
           type: loose
             ? 'loose_item_start'
             : 'list_item_start'
         });
-
         // Recurse.
         this.token(item, false, bq);
-
         this.tokens.push({
           type: 'list_item_end'
         });
       }
-
       this.tokens.push({
         type: 'list_end'
       });
-
       continue;
     }
-
     // html
     if (cap = this.rules.html.exec(src)) {
       src = src.substring(cap[0].length);
@@ -366,7 +305,6 @@ Lexer.prototype.token = function(src, top, bq) {
       });
       continue;
     }
-
     // def
     if ((!bq && top) && (cap = this.rules.def.exec(src))) {
       src = src.substring(cap[0].length);
@@ -376,18 +314,15 @@ Lexer.prototype.token = function(src, top, bq) {
       };
       continue;
     }
-
     // table (gfm)
     if (top && (cap = this.rules.table.exec(src))) {
       src = src.substring(cap[0].length);
-
       item = {
         type: 'table',
         header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
         align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
         cells: cap[3].replace(/(?: *\| *)?\n$/, '').split('\n')
       };
-
       for (i = 0; i < item.align.length; i++) {
         if (/^ *-+: *$/.test(item.align[i])) {
           item.align[i] = 'right';
@@ -399,18 +334,14 @@ Lexer.prototype.token = function(src, top, bq) {
           item.align[i] = null;
         }
       }
-
       for (i = 0; i < item.cells.length; i++) {
         item.cells[i] = item.cells[i]
           .replace(/^ *\| *| *\| *$/g, '')
           .split(/ *\| */);
       }
-
       this.tokens.push(item);
-
       continue;
     }
-
     // top-level paragraph
     if (top && (cap = this.rules.paragraph.exec(src))) {
       src = src.substring(cap[0].length);
@@ -422,7 +353,6 @@ Lexer.prototype.token = function(src, top, bq) {
       });
       continue;
     }
-
     // text
     if (cap = this.rules.text.exec(src)) {
       // Top-level should never reach here.
@@ -433,20 +363,16 @@ Lexer.prototype.token = function(src, top, bq) {
       });
       continue;
     }
-
     if (src) {
       throw new
         Error('Infinite loop on byte: ' + src.charCodeAt(0));
     }
   }
-
   return this.tokens;
 };
-
 /**
  * Inline-Level Grammar
  */
-
 var inline = {
   escape: /^\\([\\`*{}\[\]()#+\-.!_>])/,
   autolink: /^<([^ >]+(@|:\/)[^ >]+)>/,
@@ -462,38 +388,29 @@ var inline = {
   del: noop,
   text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/
 };
-
 inline._inside = /(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;
 inline._href = /\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
-
 inline.link = replace(inline.link)
   ('inside', inline._inside)
   ('href', inline._href)
   ();
-
 inline.reflink = replace(inline.reflink)
   ('inside', inline._inside)
   ();
-
 /**
  * Normal Inline Grammar
  */
-
 inline.normal = merge({}, inline);
-
 /**
  * Pedantic Inline Grammar
  */
-
 inline.pedantic = merge({}, inline.normal, {
   strong: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
   em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
 });
-
 /**
  * GFM Inline Grammar
  */
-
 inline.gfm = merge({}, inline.normal, {
   escape: replace(inline.escape)('])', '~|])')(),
   url: /^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
@@ -503,32 +420,26 @@ inline.gfm = merge({}, inline.normal, {
     ('|', '|https?://|')
     ()
 });
-
 /**
  * GFM + Line Breaks Inline Grammar
  */
-
 inline.breaks = merge({}, inline.gfm, {
   br: replace(inline.br)('{2,}', '*')(),
   text: replace(inline.gfm.text)('{2,}', '*')()
 });
-
 /**
  * Inline Lexer & Compiler
  */
-
 function InlineLexer(links, options) {
   this.options = options || marked.defaults;
   this.links = links;
   this.rules = inline.normal;
   this.renderer = this.options.renderer || new Renderer;
   this.renderer.options = this.options;
-
   if (!this.links) {
     throw new
       Error('Tokens array requires a `links` property.');
   }
-
   if (this.options.gfm) {
     if (this.options.breaks) {
       this.rules = inline.breaks;
@@ -539,33 +450,26 @@ function InlineLexer(links, options) {
     this.rules = inline.pedantic;
   }
 }
-
 /**
  * Expose Inline Rules
  */
-
 InlineLexer.rules = inline;
-
 /**
  * Static Lexing/Compiling Method
  */
-
 InlineLexer.output = function(src, links, options) {
   var inline = new InlineLexer(links, options);
   return inline.output(src);
 };
-
 /**
  * Lexing/Compiling
  */
-
 InlineLexer.prototype.output = function(src) {
   var out = ''
     , link
     , text
     , href
     , cap;
-
   while (src) {
     // escape
     if (cap = this.rules.escape.exec(src)) {
@@ -573,7 +477,6 @@ InlineLexer.prototype.output = function(src) {
       out += cap[1];
       continue;
     }
-
     // autolink
     if (cap = this.rules.autolink.exec(src)) {
       src = src.substring(cap[0].length);
@@ -589,7 +492,6 @@ InlineLexer.prototype.output = function(src) {
       out += this.renderer.link(href, null, text);
       continue;
     }
-
     // url (gfm)
     if (!this.inLink && (cap = this.rules.url.exec(src))) {
       src = src.substring(cap[0].length);
@@ -598,7 +500,6 @@ InlineLexer.prototype.output = function(src) {
       out += this.renderer.link(href, null, text);
       continue;
     }
-
     // tag
     if (cap = this.rules.tag.exec(src)) {
       if (!this.inLink && /^<a /i.test(cap[0])) {
@@ -614,7 +515,6 @@ InlineLexer.prototype.output = function(src) {
         : cap[0]
       continue;
     }
-
     // link
     if (cap = this.rules.link.exec(src)) {
       src = src.substring(cap[0].length);
@@ -626,7 +526,6 @@ InlineLexer.prototype.output = function(src) {
       this.inLink = false;
       continue;
     }
-
     // reflink, nolink
     if ((cap = this.rules.reflink.exec(src))
         || (cap = this.rules.nolink.exec(src))) {
@@ -643,75 +542,62 @@ InlineLexer.prototype.output = function(src) {
       this.inLink = false;
       continue;
     }
-
     // strong
     if (cap = this.rules.strong.exec(src)) {
       src = src.substring(cap[0].length);
       out += this.renderer.strong(this.output(cap[2] || cap[1]));
       continue;
     }
-
     // em
     if (cap = this.rules.em.exec(src)) {
       src = src.substring(cap[0].length);
       out += this.renderer.em(this.output(cap[2] || cap[1]));
       continue;
     }
-
     // code
     if (cap = this.rules.code.exec(src)) {
       src = src.substring(cap[0].length);
       out += this.renderer.codespan(escape(cap[2], true));
       continue;
     }
-
     // br
     if (cap = this.rules.br.exec(src)) {
       src = src.substring(cap[0].length);
       out += this.renderer.br();
       continue;
     }
-
     // del (gfm)
     if (cap = this.rules.del.exec(src)) {
       src = src.substring(cap[0].length);
       out += this.renderer.del(this.output(cap[1]));
       continue;
     }
-
     // text
     if (cap = this.rules.text.exec(src)) {
       src = src.substring(cap[0].length);
       out += this.renderer.text(escape(this.smartypants(cap[0])));
       continue;
     }
-
     if (src) {
       throw new
         Error('Infinite loop on byte: ' + src.charCodeAt(0));
     }
   }
-
   return out;
 };
-
 /**
  * Compile Link
  */
-
 InlineLexer.prototype.outputLink = function(cap, link) {
   var href = escape(link.href)
     , title = link.title ? escape(link.title) : null;
-
   return cap[0].charAt(0) !== '!'
     ? this.renderer.link(href, title, this.output(cap[1]))
     : this.renderer.image(href, title, escape(cap[1]));
 };
-
 /**
  * Smartypants Transformations
  */
-
 InlineLexer.prototype.smartypants = function(text) {
   if (!this.options.smartypants) return text;
   return text
@@ -730,18 +616,15 @@ InlineLexer.prototype.smartypants = function(text) {
     // ellipses
     .replace(/\.{3}/g, '\u2026');
 };
-
 /**
  * Mangle Links
  */
-
 InlineLexer.prototype.mangle = function(text) {
   if (!this.options.mangle) return text;
   var out = ''
     , l = text.length
     , i = 0
     , ch;
-
   for (; i < l; i++) {
     ch = text.charCodeAt(i);
     if (Math.random() > 0.5) {
@@ -749,18 +632,14 @@ InlineLexer.prototype.mangle = function(text) {
     }
     out += '&#' + ch + ';';
   }
-
   return out;
 };
-
 /**
  * Renderer
  */
-
 function Renderer(options) {
   this.options = options || {};
 }
-
 Renderer.prototype.code = function(code, lang, escaped) {
   if (this.options.highlight) {
     var out = this.options.highlight(code, lang);
@@ -769,13 +648,11 @@ Renderer.prototype.code = function(code, lang, escaped) {
       code = out;
     }
   }
-
   if (!lang) {
     return '<pre><code>'
       + (escaped ? code : escape(code, true))
       + '\n</code></pre>';
   }
-
   return '<pre><code class="'
     + this.options.langPrefix
     + escape(lang, true)
@@ -783,15 +660,12 @@ Renderer.prototype.code = function(code, lang, escaped) {
     + (escaped ? code : escape(code, true))
     + '\n</code></pre>\n';
 };
-
 Renderer.prototype.blockquote = function(quote) {
   return '<blockquote>\n' + quote + '</blockquote>\n';
 };
-
 Renderer.prototype.html = function(html) {
   return html;
 };
-
 Renderer.prototype.heading = function(text, level, raw) {
   return '<h'
     + level
@@ -804,24 +678,19 @@ Renderer.prototype.heading = function(text, level, raw) {
     + level
     + '>\n';
 };
-
 Renderer.prototype.hr = function() {
   return this.options.xhtml ? '<hr/>\n' : '<hr>\n';
 };
-
 Renderer.prototype.list = function(body, ordered) {
   var type = ordered ? 'ol' : 'ul';
   return '<' + type + '>\n' + body + '</' + type + '>\n';
 };
-
 Renderer.prototype.listitem = function(text) {
   return '<li>' + text + '</li>\n';
 };
-
 Renderer.prototype.paragraph = function(text) {
   return '<p>' + text + '</p>\n';
 };
-
 Renderer.prototype.table = function(header, body) {
   return '<table>\n'
     + '<thead>\n'
@@ -832,11 +701,9 @@ Renderer.prototype.table = function(header, body) {
     + '</tbody>\n'
     + '</table>\n';
 };
-
 Renderer.prototype.tablerow = function(content) {
   return '<tr>\n' + content + '</tr>\n';
 };
-
 Renderer.prototype.tablecell = function(content, flags) {
   var type = flags.header ? 'th' : 'td';
   var tag = flags.align
@@ -844,28 +711,22 @@ Renderer.prototype.tablecell = function(content, flags) {
     : '<' + type + '>';
   return tag + content + '</' + type + '>\n';
 };
-
 // span level renderer
 Renderer.prototype.strong = function(text) {
   return '<strong>' + text + '</strong>';
 };
-
 Renderer.prototype.em = function(text) {
   return '<em>' + text + '</em>';
 };
-
 Renderer.prototype.codespan = function(text) {
   return '<code>' + text + '</code>';
 };
-
 Renderer.prototype.br = function() {
   return this.options.xhtml ? '<br/>' : '<br>';
 };
-
 Renderer.prototype.del = function(text) {
   return '<del>' + text + '</del>';
 };
-
 Renderer.prototype.link = function(href, title, text) {
   if (this.options.sanitize) {
     try {
@@ -886,7 +747,6 @@ Renderer.prototype.link = function(href, title, text) {
   out += '>' + text + '</a>';
   return out;
 };
-
 Renderer.prototype.image = function(href, title, text) {
   var out = '<img src="' + href + '" alt="' + text + '"';
   if (title) {
@@ -895,15 +755,12 @@ Renderer.prototype.image = function(href, title, text) {
   out += this.options.xhtml ? '/>' : '>';
   return out;
 };
-
 Renderer.prototype.text = function(text) {
   return text;
 };
-
 /**
  * Parsing & Compiling
  */
-
 function Parser(options) {
   this.tokens = [];
   this.token = null;
@@ -912,66 +769,50 @@ function Parser(options) {
   this.renderer = this.options.renderer;
   this.renderer.options = this.options;
 }
-
 /**
  * Static Parse Method
  */
-
 Parser.parse = function(src, options, renderer) {
   var parser = new Parser(options, renderer);
   return parser.parse(src);
 };
-
 /**
  * Parse Loop
  */
-
 Parser.prototype.parse = function(src) {
   this.inline = new InlineLexer(src.links, this.options, this.renderer);
   this.tokens = src.reverse();
-
   var out = '';
   while (this.next()) {
     out += this.tok();
   }
-
   return out;
 };
-
 /**
  * Next Token
  */
-
 Parser.prototype.next = function() {
   return this.token = this.tokens.pop();
 };
-
 /**
  * Preview Next Token
  */
-
 Parser.prototype.peek = function() {
   return this.tokens[this.tokens.length - 1] || 0;
 };
-
 /**
  * Parse Text Tokens
  */
-
 Parser.prototype.parseText = function() {
   var body = this.token.text;
-
   while (this.peek().type === 'text') {
     body += '\n' + this.next().text;
   }
-
   return this.inline.output(body);
 };
-
 /**
  * Parse Current Token
  */
-
 Parser.prototype.tok = function() {
   switch (this.token.type) {
     case 'space': {
@@ -999,7 +840,6 @@ Parser.prototype.tok = function() {
         , cell
         , flags
         , j;
-
       // header
       cell = '';
       for (i = 0; i < this.token.header.length; i++) {
@@ -1010,10 +850,8 @@ Parser.prototype.tok = function() {
         );
       }
       header += this.renderer.tablerow(cell);
-
       for (i = 0; i < this.token.cells.length; i++) {
         row = this.token.cells[i];
-
         cell = '';
         for (j = 0; j < row.length; j++) {
           cell += this.renderer.tablecell(
@@ -1021,48 +859,39 @@ Parser.prototype.tok = function() {
             { header: false, align: this.token.align[j] }
           );
         }
-
         body += this.renderer.tablerow(cell);
       }
       return this.renderer.table(header, body);
     }
     case 'blockquote_start': {
       var body = '';
-
       while (this.next().type !== 'blockquote_end') {
         body += this.tok();
       }
-
       return this.renderer.blockquote(body);
     }
     case 'list_start': {
       var body = ''
         , ordered = this.token.ordered;
-
       while (this.next().type !== 'list_end') {
         body += this.tok();
       }
-
       return this.renderer.list(body, ordered);
     }
     case 'list_item_start': {
       var body = '';
-
       while (this.next().type !== 'list_item_end') {
         body += this.token.type === 'text'
           ? this.parseText()
           : this.tok();
       }
-
       return this.renderer.listitem(body);
     }
     case 'loose_item_start': {
       var body = '';
-
       while (this.next().type !== 'list_item_end') {
         body += this.tok();
       }
-
       return this.renderer.listitem(body);
     }
     case 'html': {
@@ -1079,11 +908,9 @@ Parser.prototype.tok = function() {
     }
   }
 };
-
 /**
  * Helpers
  */
-
 function escape(html, encode) {
   return html
     .replace(!encode ? /&(?!#?\w+;)/g : /&/g, '&amp;')
@@ -1092,7 +919,6 @@ function escape(html, encode) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
-
 function unescape(html) {
 	// explicitly match decimal, hex, and named HTML entities 
   return html.replace(/&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/g, function(_, n) {
@@ -1106,7 +932,6 @@ function unescape(html) {
     return '';
   });
 }
-
 function replace(regex, opt) {
   regex = regex.source;
   opt = opt || '';
@@ -1118,15 +943,12 @@ function replace(regex, opt) {
     return self;
   };
 }
-
 function noop() {}
 noop.exec = noop;
-
 function merge(obj) {
   var i = 1
     , target
     , key;
-
   for (; i < arguments.length; i++) {
     target = arguments[i];
     for (key in target) {
@@ -1135,66 +957,50 @@ function merge(obj) {
       }
     }
   }
-
   return obj;
 }
-
 
 /**
  * Marked
  */
-
 function marked(src, opt, callback) {
   if (callback || typeof opt === 'function') {
     if (!callback) {
       callback = opt;
       opt = null;
     }
-
     opt = merge({}, marked.defaults, opt || {});
-
     var highlight = opt.highlight
       , tokens
       , pending
       , i = 0;
-
     try {
       tokens = Lexer.lex(src, opt)
     } catch (e) {
       return callback(e);
     }
-
     pending = tokens.length;
-
     var done = function(err) {
       if (err) {
         opt.highlight = highlight;
         return callback(err);
       }
-
       var out;
-
       try {
         out = Parser.parse(tokens, opt);
       } catch (e) {
         err = e;
       }
-
       opt.highlight = highlight;
-
       return err
         ? callback(err)
         : callback(null, out);
     };
-
     if (!highlight || highlight.length < 3) {
       return done();
     }
-
     delete opt.highlight;
-
     if (!pending) return done();
-
     for (; i < tokens.length; i++) {
       (function(token) {
         if (token.type !== 'code') {
@@ -1211,7 +1017,6 @@ function marked(src, opt, callback) {
         });
       })(tokens[i]);
     }
-
     return;
   }
   try {
@@ -1227,17 +1032,14 @@ function marked(src, opt, callback) {
     throw e;
   }
 }
-
 /**
  * Options
  */
-
 marked.options =
 marked.setOptions = function(opt) {
   merge(marked.defaults, opt);
   return marked;
 };
-
 marked.defaults = {
   gfm: true,
   tables: true,
@@ -1255,24 +1057,17 @@ marked.defaults = {
   renderer: new Renderer,
   xhtml: false
 };
-
 /**
  * Expose
  */
-
 marked.Parser = Parser;
 marked.parser = Parser.parse;
-
 marked.Renderer = Renderer;
-
 marked.Lexer = Lexer;
 marked.lexer = Lexer.lex;
-
 marked.InlineLexer = InlineLexer;
 marked.inlineLexer = InlineLexer.output;
-
 marked.parse = marked;
-
 if (typeof module !== 'undefined' && typeof exports === 'object') {
   module.exports = marked;
 } else if (typeof define === 'function' && define.amd) {
@@ -1280,7 +1075,6 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 } else {
   this.marked = marked;
 }
-
 }).call(function() {
   return this || (typeof window !== 'undefined' ? window : global);
 }());

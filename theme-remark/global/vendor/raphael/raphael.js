@@ -6,7 +6,6 @@
 // ├───────────────────────────────────────────────────────────────────────────────────────────────────────┤ \\
 // │ Licensed under the MIT (https://github.com/DmitryBaranovskiy/raphael/blob/master/license.txt) license.│ \\
 // └───────────────────────────────────────────────────────────────────────────────────────────────────────┘ \\
-
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -20,41 +19,31 @@
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			exports: {},
 /******/ 			id: moduleId,
 /******/ 			loaded: false
 /******/ 		};
-
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 
-
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
 /******/ })
@@ -62,19 +51,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ([
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
-
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(R) {
-
 	    return R;
-
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
-
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2)], __WEBPACK_AMD_DEFINE_RESULT__ = function(eve) {
-
 	    /*\
 	     * Raphael
 	     [ method ]
@@ -382,7 +365,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            return path;
 	        };
-
 	    R._g = g;
 	    /*\
 	     * Raphael.type
@@ -468,7 +450,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                (type == "array" && Array.isArray && Array.isArray(o)) ||
 	                objectToString.call(o).slice(8, -1).toLowerCase() == type;
 	    };
-
 	    function clone(obj) {
 	        if (typeof obj == "function" || Object(obj) !== obj) {
 	            return obj;
@@ -479,7 +460,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return res;
 	    }
-
 	    /*\
 	     * Raphael.angle
 	     [ method ]
@@ -560,7 +540,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return value;
 	    };
-
 	    /*\
 	     * Raphael.createUUID
 	     [ method ]
@@ -576,7 +555,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            v = c == "x" ? r : (r & 3 | 8);
 	        return v.toString(16);
 	    });
-
 	    /*\
 	     * Raphael.setWindow
 	     [ method ]
@@ -655,7 +633,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            g /= 255;
 	            b /= 255;
 	        }
-
 	        return [r, g, b];
 	    },
 	    packageRGB = function (r, g, b, o) {
@@ -672,7 +649,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        R.is(o, "finite") && (rgb.opacity = o);
 	        return rgb;
 	    };
-
 	    /*\
 	     * Raphael.color
 	     [ method ]
@@ -756,7 +732,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        C = v * s;
 	        X = C * (1 - abs(h % 2 - 1));
 	        R = G = B = v - C;
-
 	        h = ~~h;
 	        R += [C, X, 0, 0, X, C][h];
 	        G += [X, C, C, X, 0, 0][h];
@@ -797,7 +772,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        C = 2 * s * (l < .5 ? l : 1 - l);
 	        X = C * (1 - abs(h % 2 - 1));
 	        R = G = B = l - C / 2;
-
 	        h = ~~h;
 	        R += [C, X, 0, 0, X, C][h];
 	        G += [X, C, C, X, 0, 0][h];
@@ -825,7 +799,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        r = b[0];
 	        g = b[1];
 	        b = b[2];
-
 	        var H, S, V, C;
 	        V = mmax(r, g, b);
 	        C = V - mmin(r, g, b);
@@ -859,7 +832,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        r = b[0];
 	        g = b[1];
 	        b = b[2];
-
 	        var H, S, L, M, m, C;
 	        M = mmax(r, g, b);
 	        m = mmin(r, g, b);
@@ -900,7 +872,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return newf;
 	    }
-
 	    var preload = R._preload = function (src, f) {
 	        var img = g.doc.createElement("img");
 	        img.style.cssText = "position:absolute;left:-9999em;top:-9999em";
@@ -915,11 +886,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        g.doc.body.appendChild(img);
 	        img.src = src;
 	    };
-
 	    function clrToString() {
 	        return this.hex;
 	    }
-
 	    /*\
 	     * Raphael.getRGB
 	     [ method ]
@@ -1090,7 +1059,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    R.getColor.reset = function () {
 	        delete this.start;
 	    };
-
 	    // http://schepers.cc/getting-to-the-point
 	    function catmullRom2bezier(crp, z) {
 	        var d = [];
@@ -1126,7 +1094,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  p[2].y
 	            ]);
 	        }
-
 	        return d;
 	    }
 	    /*\
@@ -1148,7 +1115,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (pth.arr) {
 	            return pathClone(pth.arr);
 	        }
-
 	        var paramCounts = {a: 7, c: 6, h: 1, l: 2, m: 2, r: 4, q: 4, s: 4, t: 2, v: 1, z: 0},
 	            data = [];
 	        if (R.is(pathString, array) && R.is(pathString[0], array)) { // rough assumption
@@ -1437,7 +1403,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var nx = (x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4),
 	            ny = (x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4),
 	            denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-
 	        if (!denominator) {
 	            return;
 	        }
@@ -1928,7 +1893,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    cy = k * -ry * x / rx + (y1 + y2) / 2,
 	                    f1 = math.asin(((y1 - cy) / ry).toFixed(9)),
 	                    f2 = math.asin(((y2 - cy) / ry).toFixed(9));
-
 	                f1 = x1 < cx ? PI - f1 : f1;
 	                f2 = x2 < cx ? PI - f2 : f2;
 	                f1 < 0 && (f1 = PI * 2 + f1);
@@ -2124,20 +2088,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	                pcom = ""; // holder for previous path command of original path
 	            for (var i = 0, ii = mmax(p.length, p2 && p2.length || 0); i < ii; i++) {
 	                p[i] && (pfirst = p[i][0]); // save current path command
-
 	                if (pfirst != "C") // C is not saved yet, because it may be result of conversion
 	                {
 	                    pcoms1[i] = pfirst; // Save current path command
 	                    i && ( pcom = pcoms1[i-1]); // Get previous path command pcom
 	                }
 	                p[i] = processPath(p[i], attrs, pcom); // Previous path command is inputted to processPath
-
 	                if (pcoms1[i] != "A" && pfirst == "C") pcoms1[i] = "C"; // A is the only command
 	                // which may produce multiple C:s
 	                // so we have to make sure that C is also C in original path
-
 	                fixArc(p, i); // fixArc adds also the right amount of A:s to pcoms1
-
 	                if (p2) { // the same procedures is done to p2
 	                    p2[i] && (pfirst = p2[i][0]);
 	                    if (pfirst != "C")
@@ -2146,9 +2106,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        i && (pcom = pcoms2[i-1]);
 	                    }
 	                    p2[i] = processPath(p2[i], attrs2, pcom);
-
 	                    if (pcoms2[i]!="A" && pfirst=="C") pcoms2[i]="C";
-
 	                    fixArc(p2, i);
 	                }
 	                fixM(p, p2, attrs, attrs2, i);
@@ -2366,7 +2324,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    el.matrix = m;
 	                }
 	            }
-
 	            /*\
 	             * Element.matrix
 	             [ property (object) ]
@@ -2374,13 +2331,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	             * Keeps @Matrix object, which represents element transformation
 	            \*/
 	            el.matrix = m;
-
 	            _.sx = sx;
 	            _.sy = sy;
 	            _.deg = deg;
 	            _.dx = dx = m.e;
 	            _.dy = dy = m.f;
-
 	            if (sx == 1 && sy == 1 && !deg && _.bbox) {
 	                _.bbox.x += +dx;
 	                _.bbox.y += +dy;
@@ -2548,11 +2503,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                m = [[this.a, this.c, this.e], [this.b, this.d, this.f], [0, 0, 1]],
 	                matrix = [[a, c, e], [b, d, f], [0, 0, 1]],
 	                x, y, z, res;
-
 	            if (a && a instanceof Matrix) {
 	                matrix = [[a.a, a.c, a.e], [a.b, a.d, a.f], [0, 0, 1]];
 	            }
-
 	            for (x = 0; x < 3; x++) {
 	                for (y = 0; y < 3; y++) {
 	                    res = 0;
@@ -2708,19 +2661,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // translation
 	            out.dx = this.e;
 	            out.dy = this.f;
-
 	            // scale and shear
 	            var row = [[this.a, this.c], [this.b, this.d]];
 	            out.scalex = math.sqrt(norm(row[0]));
 	            normalize(row[0]);
-
 	            out.shear = row[0][0] * row[1][0] + row[0][1] * row[1][1];
 	            row[1] = [row[1][0] - row[0][0] * out.shear, row[1][1] - row[0][1] * out.shear];
-
 	            out.scaley = math.sqrt(norm(row[1]));
 	            normalize(row[1]);
 	            out.shear /= out.scaley;
-
 	            // rotation
 	            var sin = -row[0][1],
 	                cos = row[1][1];
@@ -2732,7 +2681,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            } else {
 	                out.rotate = R.deg(math.asin(sin));
 	            }
-
 	            out.isSimple = !+out.shear.toFixed(9) && (out.scalex.toFixed(9) == out.scaley.toFixed(9) || !out.rotate);
 	            out.isSuperSimple = !+out.shear.toFixed(9) && out.scalex.toFixed(9) == out.scaley.toFixed(9) && !out.rotate;
 	            out.noRotation = !+out.shear.toFixed(9) && !out.rotate;
@@ -2759,7 +2707,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        };
 	    })(Matrix.prototype);
-
 	    var preventDefault = function () {
 	        this.returnValue = false;
 	    },
@@ -2775,7 +2722,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    getEventPosition = function (e) {
 	        var scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
 	            scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft;
-
 	        return {
 	            x: e.clientX + scrollX,
 	            y: e.clientY + scrollY
@@ -2789,12 +2735,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    return fn.call(element, e, pos.x, pos.y);
 	                };
 	                obj.addEventListener(type, f, false);
-
 	                if (supportsTouch && touchMap[type]) {
 	                    var _f = function (e) {
 	                        var pos = getEventPosition(e),
 	                            olde = e;
-
 	                        for (var i = 0, ii = e.targetTouches && e.targetTouches.length; i < ii; i++) {
 	                            if (e.targetTouches[i].target == obj) {
 	                                e = e.targetTouches[i];
@@ -2804,18 +2748,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                break;
 	                            }
 	                        }
-
 	                        return fn.call(element, e, pos.x, pos.y);
 	                    };
 	                    obj.addEventListener(touchMap[type], _f, false);
 	                }
-
 	                return function () {
 	                    obj.removeEventListener(type, f, false);
-
 	                    if (supportsTouch && touchMap[type])
 	                        obj.removeEventListener(touchMap[type], _f, false);
-
 	                    return true;
 	                };
 	            };
@@ -2925,7 +2865,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - handler (function) #optional handler for the event
 	     = (object) @Element
 	    \*/
-
 	    /*\
 	     * Element.dblclick
 	     [ method ]
@@ -2944,7 +2883,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - handler (function) #optional handler for the event
 	     = (object) @Element
 	    \*/
-
 	    /*\
 	     * Element.mousedown
 	     [ method ]
@@ -2963,7 +2901,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - handler (function) #optional handler for the event
 	     = (object) @Element
 	    \*/
-
 	    /*\
 	     * Element.mousemove
 	     [ method ]
@@ -2982,7 +2919,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - handler (function) #optional handler for the event
 	     = (object) @Element
 	    \*/
-
 	    /*\
 	     * Element.mouseout
 	     [ method ]
@@ -3001,7 +2937,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - handler (function) #optional handler for the event
 	     = (object) @Element
 	    \*/
-
 	    /*\
 	     * Element.mouseover
 	     [ method ]
@@ -3020,7 +2955,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - handler (function) #optional handler for the event
 	     = (object) @Element
 	    \*/
-
 	    /*\
 	     * Element.mouseup
 	     [ method ]
@@ -3039,7 +2973,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - handler (function) #optional handler for the event
 	     = (object) @Element
 	    \*/
-
 	    /*\
 	     * Element.touchstart
 	     [ method ]
@@ -3058,7 +2991,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - handler (function) #optional handler for the event
 	     = (object) @Element
 	    \*/
-
 	    /*\
 	     * Element.touchmove
 	     [ method ]
@@ -3077,7 +3009,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - handler (function) #optional handler for the event
 	     = (object) @Element
 	    \*/
-
 	    /*\
 	     * Element.touchend
 	     [ method ]
@@ -3096,7 +3027,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - handler (function) #optional handler for the event
 	     = (object) @Element
 	    \*/
-
 	    /*\
 	     * Element.touchcancel
 	     [ method ]
@@ -3138,7 +3068,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	        })(events[i]);
 	    }
-
 	    /*\
 	     * Element.data
 	     [ method ]
@@ -3656,7 +3585,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        target = target && target.raphael ? paper.getById(target.raphaelid) : null;
 	        return target;
 	    };
-
 	    /*\
 	     * Paper.getElementsByBBox
 	     [ method ]
@@ -3677,7 +3605,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	        return set;
 	    };
-
 	    /*\
 	     * Paper.getById
 	     [ method ]
@@ -4000,11 +3927,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (!path) {
 	            return;
 	        }
-
 	        if (this.node.getTotalLength) {
 	            return this.node.getTotalLength();
 	        }
-
 	        return getTotalLength(path);
 	    };
 	    /*\
@@ -4029,7 +3954,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (!path) {
 	            return;
 	        }
-
 	        return getPointAtLength(path, length);
 	    };
 	    /*\
@@ -4043,15 +3967,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    elproto.getPath = function () {
 	        var path,
 	            getPath = R._getPath[this.type];
-
 	        if (this.type == "text" || this.type == "set") {
 	            return;
 	        }
-
 	        if (getPath) {
 	            path = getPath(this);
 	        }
-
 	        return path;
 	    };
 	    /*\
@@ -4072,7 +3993,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (!path) {
 	            return;
 	        }
-
 	        return R.getSubpath(path, from, to);
 	    };
 	    /*\
@@ -4155,7 +4075,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ef.easeInOut = ef["ease-in-out"] = ef["<>"];
 	    ef["back-in"] = ef.backIn;
 	    ef["back-out"] = ef.backOut;
-
 	    var animationElements = [],
 	        requestAnimFrame = window.requestAnimationFrame       ||
 	                           window.webkitRequestAnimationFrame ||
@@ -4876,7 +4795,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    elproto.toString = function () {
 	        return "Rapha\xebl\u2019s object";
 	    };
-
 	    // Set
 	    var Set = function (items) {
 	        this.items = [];
@@ -5098,7 +5016,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    setproto.toString = function () {
 	        return "Rapha\xebl\u2018s set";
 	    };
-
 	    setproto.glow = function(glowConfig) {
 	        var ret = this.paper.set();
 	        this.forEach(function(shape, index){
@@ -5111,7 +5028,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	        return ret;
 	    };
-
 
 	    /*\
 	     * Set.isPointInside
@@ -5135,7 +5051,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	        return isPointInside;
 	    };
-
 	    /*\
 	     * Raphael.registerFont
 	     [ method ]
@@ -5294,7 +5209,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            stroke: "none"
 	        });
 	    };
-
 	    /*\
 	     * Paper.add
 	     [ method ]
@@ -5336,7 +5250,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return res;
 	    };
-
 	    /*\
 	     * Raphael.format
 	     [ method ]
@@ -5456,11 +5369,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	     | paper.set(paper.circle(100, 100, 20), paper.circle(110, 100, 20)).red();
 	    \*/
 	    R.st = setproto;
-
 	    eve.on("raphael.DOMload", function () {
 	        loaded = true;
 	    });
-
 	    // Firefox <3.6 fix: http://webreflection.blogspot.com/2009/11/195-chars-to-help-lazy-loading.html
 	    (function (doc, loaded, f) {
 	        if (doc.readyState == null && doc.addEventListener){
@@ -5475,15 +5386,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        isLoaded();
 	    })(document, "DOMContentLoaded");
-
 	    return R;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
-
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
 	// 
 	// Licensed under the Apache License, Version 2.0 (the "License");
@@ -5502,7 +5410,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	// ├────────────────────────────────────────────────────────────┤ \\
 	// │ Author Dmitry Baranovskiy (http://dmitry.baranovskiy.com/) │ \\
 	// └────────────────────────────────────────────────────────────┘ \\
-
 	(function (glob) {
 	    var version = "0.5.0",
 	        has = "hasOwnProperty",
@@ -5539,15 +5446,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /*\
 	     * eve
 	     [ method ]
-
 	     * Fires event with given `name`, given scope and other parameters.
-
 	     > Arguments
-
 	     - name (string) name of the *event*, dot (`.`) or slash (`/`) separated
 	     - scope (object) context for the event handlers
 	     - varargs (...) the rest of arguments will be sent to event handlers
-
 	     = (object) array of returned values from the listeners. Array has two methods `.firstDefined()` and `.lastDefined()` to get first or last not `undefined` value.
 	    \*/
 	        eve = function (name, scope) {
@@ -5617,13 +5520,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /*\
 	     * eve.listeners
 	     [ method ]
-
 	     * Internal method which gives you array of all event handlers that will be triggered by the given `name`.
-
 	     > Arguments
-
 	     - name (string) name of the event, dot (`.`) or slash (`/`) separated
-
 	     = (array) array of event handlers
 	    \*/
 	    eve.listeners = function (name) {
@@ -5660,11 +5559,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /*\
 	     * eve.separator
 	     [ method ]
-
 	     * If for some reasons you don’t like default separators (`.` or `/`) you can specify yours
 	     * here. Be aware that if you pass a string longer than one character it will be treated as
 	     * a list of characters.
-
 	     - separator (string) new separator. Empty string resets to default: `.` or `/`.
 	    \*/
 	    eve.separator = function (sep) {
@@ -5911,16 +5808,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    (typeof module != "undefined" && module.exports) ? (module.exports = eve) : ( true ? (!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return eve; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))) : (glob.eve = eve));
 	})(this);
 
-
 /***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
-
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(R) {
 	    if (R && !R.svg) {
 	        return;
 	    }
-
 	    var has = "hasOwnProperty",
 	        Str = String,
 	        toFloat = parseFloat,
@@ -6010,12 +5904,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return null;
 	            }
 	            id = id.replace(/[\(\)\s,\xb0#]/g, "_");
-
 	            if (element.gradient && id != element.gradient.id) {
 	                SVG.defs.removeChild(element.gradient);
 	                delete element.gradient;
 	            }
-
 	            if (!element.gradient) {
 	                el = $(type + "Gradient", {id: id});
 	                element.gradient = el;
@@ -6255,7 +6147,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        break;
 	                    case "title":
 	                        var title = node.getElementsByTagName("title");
-
 	                        // Use the existing <title>.
 	                        if (title.length && (title = title[0])) {
 	                          title.firstChild.nodeValue = value;
@@ -6413,7 +6304,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            $(el, {x: 0, y: 0, patternUnits: "userSpaceOnUse", height: 1, width: 1});
 	                            $(ig, {x: 0, y: 0, "xlink:href": isURL[1]});
 	                            el.appendChild(ig);
-
 	                            (function (el) {
 	                                R._preload(isURL[1], function () {
 	                                    var w = this.offsetWidth,
@@ -6489,7 +6379,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        }
-
 	        tuneText(o, params);
 	        node.style.visibility = vis;
 	    },
@@ -6501,7 +6390,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var a = el.attrs,
 	            node = el.node,
 	            fontSize = node.firstChild ? toInt(R._g.doc.defaultView.getComputedStyle(node.firstChild, E).getPropertyValue("font-size"), 10) : 10;
-
 	        if (params[has]("text")) {
 	            a.text = params.text;
 	            while (node.firstChild) {
@@ -6578,7 +6466,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        \*/
 	        this.id = guid();
 	        node.raphaelid = this.id;
-
 	        /**
 	        * Method that returns a 5 letter/digit id, enough for 36^5 = 60466176 elements
 	        * @returns {string} id
@@ -6586,7 +6473,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        function guid() {
 	            return ("0000" + (Math.random()*Math.pow(36,5) << 0).toString(36)).slice(-5);
 	        }
-
 	        this.matrix = R.matrix();
 	        this.realPath = null;
 	        /*\
@@ -6631,10 +6517,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.next = null;
 	    },
 	    elproto = R.el;
-
 	    Element.prototype = elproto;
 	    elproto.constructor = Element;
-
 	    R._engine.path = function (pathString, SVG) {
 	        var el = $("path");
 	        SVG.canvas && SVG.canvas.appendChild(el);
@@ -6783,16 +6667,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return _.transform;
 	        }
 	        R._extractTransform(this, tstr);
-
 	        this.clip && $(this.clip, {transform: this.matrix.invert()});
 	        this.pattern && updatePosition(this);
 	        this.node && $(this.node, {transform: this.matrix});
-
 	        if (_.sx != 1 || _.sy != 1) {
 	            var sw = this.attrs[has]("stroke-width") ? this.attrs["stroke-width"] : 1;
 	            this.attr({"stroke-width": sw});
 	        }
-
 	        return this;
 	    };
 	    /*\
@@ -6835,12 +6716,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            paper.defs.removeChild(this.gradient);
 	        }
 	        R._tear(this, paper);
-
 	        node.parentNode.removeChild(node);
-
 	        // Remove custom data for element
 	        this.removeData();
-
 	        for (var i in this) {
 	            this[i] = typeof this[i] == "function" ? R._removedFactory(i) : null;
 	        }
@@ -6859,7 +6737,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        else if (this.paper.canvas.parentNode) {
 	          containerStyle = this.paper.canvas.parentNode.style;
 	        }
-
 	        if(containerStyle && containerStyle.display == "none") {
 	          canvasHidden = true;
 	          containerStyle.display = "";
@@ -7071,7 +6948,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.removed || !element) {
 	            return this;
 	        }
-
 	        var node = getRealNode(this.node);
 	        var afterNode = getRealNode(element.node || element[element.length - 1].node);
 	        if (afterNode.nextSibling) {
@@ -7093,7 +6969,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.removed || !element) {
 	            return this;
 	        }
-
 	        var node = getRealNode(this.node);
 	        var beforeNode = getRealNode(element.node || element[0].node);
 	        beforeNode.parentNode.insertBefore(node, beforeNode);
@@ -7341,16 +7216,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
-
 /***/ },
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
-
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(R) {
 	    if (R && !R.vml) {
 	        return;
 	    }
-
 	    var has = "hasOwnProperty",
 	        Str = String,
 	        toFloat = parseFloat,
@@ -7498,7 +7370,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            isOval = ovalTypes[o.type] && (a.cx != params.cx || a.cy != params.cy || a.r != params.r || a.rx != params.rx || a.ry != params.ry),
 	            res = o;
 
-
 	        for (var par in params) if (params[has](par)) {
 	            a[par] = params[par];
 	        }
@@ -7598,7 +7469,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var bbox = o.getBBox(1);
 	                    fill.position = bbox.x + S + bbox.y;
 	                    o._.fillpos = [bbox.x, bbox.y];
-
 	                    R._preload(isURL[1], function () {
 	                        o._.fillsize = [this.offsetWidth, this.offsetHeight];
 	                    });
@@ -7644,7 +7514,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            params["stroke-width"] && (stroke.weight = width);
 	            width && width < 1 && (opacity *= width) && (stroke.weight = 1);
 	            stroke.opacity = opacity;
-
 	            params["stroke-linejoin"] && (stroke.joinstyle = params["stroke-linejoin"] || "miter");
 	            stroke.miterlimit = params["stroke-miterlimit"] || 8;
 	            params["stroke-linecap"] && (stroke.endcap = params["stroke-linecap"] == "butt" ? "flat" : params["stroke-linecap"] == "square" ? "square" : "round");
@@ -7684,14 +7553,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // res.paper.canvas.style.display = "none";
 	            res.X = a.x;
 	            res.Y = a.y + res.H / 2;
-
 	            ("x" in params || "y" in params) && (res.path.v = R.format("m{0},{1}l{2},{1}", round(a.x * zoom), round(a.y * zoom), round(a.x * zoom) + 1));
 	            var dirtyattrs = ["x", "y", "text", "font", "font-family", "font-weight", "font-style", "font-size"];
 	            for (var d = 0, dd = dirtyattrs.length; d < dd; d++) if (dirtyattrs[d] in params) {
 	                res._.dirty = 1;
 	                break;
 	            }
-
 	            // text-anchor emulation
 	            switch (a["text-anchor"]) {
 	                case "start":
@@ -7796,7 +7663,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.next = null;
 	    };
 	    var elproto = R.el;
-
 	    Element.prototype = elproto;
 	    elproto.constructor = Element;
 	    elproto.transform = function (tstr) {
@@ -7904,7 +7770,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        cx = cx == null ? bbox.x + bbox.width / 2 : cx;
 	        cy = cy == null ? bbox.y + bbox.height / 2 : cy;
-
 	        this.transform(this._.transform.concat([["s", sx, sy, cx, cy]]));
 	        this._.dirtyT = 1;
 	        return this;
@@ -8082,7 +7947,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return this;
 	    };
-
 	    R._engine.path = function (pathString, vml) {
 	        var el = createNode("shape");
 	        el.style.cssText = cssDot;
@@ -8332,7 +8196,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return true;
 	    };
-
 	    var setproto = R.st;
 	    for (var method in elproto) if (elproto[has](method) && !setproto[has](method)) {
 	        setproto[method] = (function (methodname) {
@@ -8345,7 +8208,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        })(method);
 	    }
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
 
 /***/ }
 /******/ ])

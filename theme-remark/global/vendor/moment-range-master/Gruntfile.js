@@ -4,10 +4,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-umd');
-
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
     es6transpiler: {
       options: {
         environments: ['node', 'browser'],
@@ -21,7 +19,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
     mochaTest: {
       test: {
         options: {
@@ -30,7 +27,6 @@ module.exports = function(grunt) {
         src: ['test/**/*.js']
       }
     },
-
     replace: {
       example: {
         src: ['dist/moment-range.js'],
@@ -45,7 +41,6 @@ module.exports = function(grunt) {
         }]
       }
     },
-
     uglify: {
       'moment-range': {
         files: {
@@ -53,7 +48,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
     umd: {
       all: {
         src: 'dist/moment-range.js',
@@ -66,6 +60,5 @@ module.exports = function(grunt) {
       }
     }
   });
-
   grunt.registerTask('default', ['es6transpiler', 'replace', 'umd', 'uglify', 'mochaTest']);
 };

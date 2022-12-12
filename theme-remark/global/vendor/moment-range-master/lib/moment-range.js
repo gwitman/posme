@@ -1,9 +1,7 @@
 //-----------------------------------------------------------------------------
 // Contstants
 //-----------------------------------------------------------------------------
-
 const moment = require('moment');
-
 const INTERVALS = {
   year:   true,
   month:  true,
@@ -14,11 +12,9 @@ const INTERVALS = {
   second: true
 };
 
-
 //-----------------------------------------------------------------------------
 // Date Ranges
 //-----------------------------------------------------------------------------
-
 /**
  * DateRange class to store ranges and query dates.
  *
@@ -40,7 +36,6 @@ function DateRange(start, end) {
   var parts;
   var s = start;
   var e = end;
-
   if (arguments.length === 1 || end === undefined) {
     if (typeof start === 'object' && start.length === 2) {
       s = start[0];
@@ -52,18 +47,15 @@ function DateRange(start, end) {
       e = parts[1];
     }
   }
-
   this.start = (s === null) ? moment(-8640000000000000) : moment(s);
   this.end   = (e === null) ? moment(8640000000000000) : moment(e);
 }
-
 /**
  * Constructor for prototype.
  *
  * @type {DateRange}
  */
 DateRange.prototype.constructor = DateRange;
-
 /**
  * Deep clone range.
  *
@@ -72,7 +64,6 @@ DateRange.prototype.constructor = DateRange;
 DateRange.prototype.clone = function() {
   return moment().range(this.start, this.end);
 };
-
 /**
  * Determine if the current interval contains a given moment/date/range.
  *
@@ -84,7 +75,6 @@ DateRange.prototype.clone = function() {
 DateRange.prototype.contains = function(other, exclusive) {
   var start = this.start;
   var end   = this.end;
-
   if (other instanceof DateRange) {
     return start <= other.start && (end > other.end || (end.isSame(other.end) && !exclusive));
   }
@@ -92,7 +82,6 @@ DateRange.prototype.contains = function(other, exclusive) {
     return start <= other && (end > other || (end.isSame(other) && !exclusive));
   }
 };
-
 /**
  * Determine if the current date range overlaps a given date range.
  *
@@ -103,7 +92,6 @@ DateRange.prototype.contains = function(other, exclusive) {
 DateRange.prototype.overlaps = function(range) {
   return this.intersect(range) !== null;
 };
-
 /**
  * Determine the intersecting periods from one or more date ranges.
  *
@@ -115,7 +103,6 @@ DateRange.prototype.overlaps = function(range) {
 DateRange.prototype.intersect = function(other) {
   var start = this.start;
   var end   = this.end;
-
   if ((start <= other.start) && (other.start < end) && (end < other.end)) {
     return new DateRange(other.start, end);
   }
@@ -128,10 +115,8 @@ DateRange.prototype.intersect = function(other) {
   else if ((start <= other.start) && (other.start <= other.end) && (other.end <= end)) {
     return other;
   }
-
   return null;
 };
-
 /**
  * Merge date ranges if they intersect.
  *
@@ -144,10 +129,8 @@ DateRange.prototype.add = function(other) {
   if (this.overlaps(other)) {
     return new DateRange(moment.min(this.start, other.start), moment.max(this.end, other.end));
   }
-
   return null;
 };
-
 /**
  * Subtract one range from another.
  *
@@ -158,7 +141,6 @@ DateRange.prototype.add = function(other) {
 DateRange.prototype.subtract = function(other) {
   var start = this.start;
   var end   = this.end;
-
   if (this.intersect(other) === null) {
     return [this];
   }
@@ -178,7 +160,6 @@ DateRange.prototype.subtract = function(other) {
     return [new DateRange(start, other.start), new DateRange(other.start, end)];
   }
 };
-
 /**
  * Build a n array of dates.
  *
@@ -197,7 +178,6 @@ DateRange.prototype.toArray = function(by, exclusive) {
   }, exclusive);
   return acc;
 };
-
 /**
  * Iterate over the date range by a given date range, executing a function
  * for each sub-range.
@@ -221,7 +201,6 @@ DateRange.prototype.by = function(range, hollaback, exclusive) {
   return this;
 };
 
-
 /**
  * Callback executed for each sub-range.
  *
@@ -229,36 +208,30 @@ DateRange.prototype.by = function(range, hollaback, exclusive) {
  *
  * @param {!Moment} current Current moment object for iteration
  */
-
 /**
  * @private
  */
 function _byString(interval, hollaback, exclusive) {
   var current = moment(this.start);
-
   while (this.contains(current, exclusive)) {
     hollaback.call(this, current.clone());
     current.add(1, interval);
   }
 }
-
 /**
  * @private
  */
 function _byRange(interval, hollaback, exclusive) {
   var div = this / interval;
   var l = Math.floor(div);
-
   if (l === Infinity) { return; }
   if (l === div && exclusive) {
     l--;
   }
-
   for (var i = 0; i <= l; i++) {
     hollaback.call(this, moment(this.start.valueOf() + interval.valueOf() * i));
   }
 }
-
 /**
  * Date range formatted as an [ISO8601 Time
  * Interval](http://en.wikipedia.org/wiki/ISO_8601#Time_intervals).
@@ -268,7 +241,6 @@ function _byRange(interval, hollaback, exclusive) {
 DateRange.prototype.toString = function() {
   return this.start.format() + '/' + this.end.format();
 };
-
 /**
  * Date range in milliseconds. Allows basic coercion math of date ranges.
  *
@@ -277,7 +249,6 @@ DateRange.prototype.toString = function() {
 DateRange.prototype.valueOf = function() {
   return this.end - this.start;
 };
-
 /**
  * Center date of the range.
  *
@@ -287,7 +258,6 @@ DateRange.prototype.center = function() {
   var center = this.start + this.diff() / 2;
   return moment(center);
 };
-
 /**
  * Date range toDate
  *
@@ -296,7 +266,6 @@ DateRange.prototype.center = function() {
 DateRange.prototype.toDate = function() {
   return [this.start.toDate(), this.end.toDate()];
 };
-
 /**
  * Determine if this date range is the same as another.
  *
@@ -307,7 +276,6 @@ DateRange.prototype.toDate = function() {
 DateRange.prototype.isSame = function(other) {
   return this.start.isSame(other.start) && this.end.isSame(other.end);
 };
-
 /**
  * The difference of the end vs start.
  *
@@ -321,11 +289,9 @@ DateRange.prototype.diff = function(unit) {
   return this.end.diff(this.start, unit);
 };
 
-
 //-----------------------------------------------------------------------------
 // Moment Extensions
 //-----------------------------------------------------------------------------
-
 /**
  * Build a date range.
  *
@@ -344,19 +310,16 @@ moment.range = function(start, end) {
     return new DateRange(start, end);
   }
 };
-
 /**
  * Expose constructor
  *
  * @const
  */
 moment.range.constructor = DateRange;
-
 /**
  * @deprecated
  */
 moment.fn.range = moment.range;
-
 /**
  * Check if the current moment is within a given date range.
  *
@@ -370,9 +333,7 @@ moment.fn.within = function(range) {
   return range.contains(this._d);
 };
 
-
 //-----------------------------------------------------------------------------
 // Export
 //-----------------------------------------------------------------------------
-
 module.exports = DateRange;

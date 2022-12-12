@@ -7,7 +7,6 @@
  */
 (function (angular, window) {
     'use strict';
-
     var regModules = ['ng', 'oc.lazyLoad'],
         regInvokes = {},
         regConfigs = [],
@@ -19,9 +18,7 @@
         broadcast = angular.noop,
         runBlocks = {},
         justLoaded = [];
-
     var ocLazyLoad = angular.module('oc.lazyLoad', ['ng']);
-
     ocLazyLoad.provider('$ocLazyLoad', ["$controllerProvider", "$provide", "$compileProvider", "$filterProvider", "$injector", "$animateProvider", function ($controllerProvider, $provide, $compileProvider, $filterProvider, $injector, $animateProvider) {
         var modules = {},
             providers = {
@@ -36,13 +33,11 @@
             events = false,
             moduleCache = [],
             modulePromises = {};
-
         moduleCache.push = function (value) {
             if (this.indexOf(value) === -1) {
                 Array.prototype.push.apply(this, arguments);
             }
         };
-
         this.config = function (config) {
             // If we want to define modules configs
             if (angular.isDefined(config.modules)) {
@@ -54,16 +49,13 @@
                     modules[config.modules.name] = config.modules;
                 }
             }
-
             if (angular.isDefined(config.debug)) {
                 debug = config.debug;
             }
-
             if (angular.isDefined(config.events)) {
                 events = config.events;
             }
         };
-
         /**
          * Get the list of existing registered modules
          * @param element
@@ -77,7 +69,6 @@
                     append = function append(elm) {
                     return elm && elements.push(elm);
                 };
-
                 angular.forEach(names, function (name) {
                     names[name] = true;
                     append(document.getElementById(name));
@@ -88,7 +79,6 @@
                         angular.forEach(element[0].querySelectorAll('[' + name + ']'), append);
                     }
                 });
-
                 angular.forEach(elements, function (elm) {
                     if (modulesToLoad.length === 0) {
                         var className = ' ' + element.className + ' ';
@@ -105,33 +95,26 @@
                     }
                 });
             }
-
             if (modulesToLoad.length === 0 && !((window.jasmine || window.mocha) && angular.isDefined(angular.mock))) {
                 console.error('No module found during bootstrap, unable to init ocLazyLoad. You should always use the ng-app directive or angular.boostrap when you use ocLazyLoad.');
             }
-
             var addReg = function addReg(moduleName) {
                 if (regModules.indexOf(moduleName) === -1) {
                     // register existing modules
                     regModules.push(moduleName);
                     var mainModule = angular.module(moduleName);
-
                     // register existing components (directives, services, ...)
                     _invokeQueue(null, mainModule._invokeQueue, moduleName);
                     _invokeQueue(null, mainModule._configBlocks, moduleName); // angular 1.3+
-
                     angular.forEach(mainModule.requires, addReg);
                 }
             };
-
             angular.forEach(modulesToLoad, function (moduleName) {
                 addReg(moduleName);
             });
-
             modulesToLoad = []; // reset for next bootstrap
             recordDeclarations.pop(); // wait for the next lazy load
         };
-
         /**
          * Like JSON.stringify but that doesn't throw on circular references
          * @param obj
@@ -154,7 +137,6 @@
                 });
             }
         };
-
         var hashCode = function hashCode(str) {
             var hash = 0,
                 i,
@@ -170,7 +152,6 @@
             }
             return hash;
         };
-
         function _register(providers, registerModules, params) {
             if (registerModules) {
                 var k,
@@ -215,7 +196,6 @@
                 });
             }
         }
-
         function _registerInvokeList(args, moduleName) {
             var invokeList = args[2][0],
                 type = args[1],
@@ -236,7 +216,6 @@
                     broadcast('ocLazyLoad.componentLoaded', [moduleName, type, invokeName]);
                 }
             };
-
             function checkHashes(potentialNew, invokes) {
                 var isNew = true,
                     newHash;
@@ -248,7 +227,6 @@
                 }
                 return isNew;
             }
-
             function signature(data) {
                 if (angular.isArray(data)) {
                     // arrays are objects, we need to test for it first
@@ -265,7 +243,6 @@
                     }
                 }
             }
-
             if (angular.isString(invokeList)) {
                 onInvoke(invokeList, args[2][1]);
             } else if (angular.isObject(invokeList)) {
@@ -283,12 +260,10 @@
             }
             return newInvoke;
         }
-
         function _invokeQueue(providers, queue, moduleName, reconfig) {
             if (!queue) {
                 return;
             }
-
             var i, len, args, provider;
             for (i = 0, len = queue.length; i < len; i++) {
                 args = queue[i];
@@ -331,7 +306,6 @@
                 }
             }
         }
-
         function getModuleName(module) {
             var moduleName = null;
             if (angular.isString(module)) {
@@ -341,7 +315,6 @@
             }
             return moduleName;
         }
-
         function moduleExists(moduleName) {
             if (!angular.isString(moduleName)) {
                 return false;
@@ -354,23 +327,19 @@
                 }
             }
         }
-
         this.$get = ["$log", "$rootElement", "$rootScope", "$cacheFactory", "$q", function ($log, $rootElement, $rootScope, $cacheFactory, $q) {
             var instanceInjector,
                 filesCache = $cacheFactory('ocLazyLoad');
-
             if (!debug) {
                 $log = {};
                 $log['error'] = angular.noop;
                 $log['warn'] = angular.noop;
                 $log['info'] = angular.noop;
             }
-
             // Make this lazy because when $get() is called the instance injector hasn't been assigned to the rootElement yet
             providers.getInstanceInjector = function () {
                 return instanceInjector ? instanceInjector : instanceInjector = $rootElement.data('$injector') || angular.injector();
             };
-
             broadcast = function broadcast(eventName, params) {
                 if (events) {
                     $rootScope.$broadcast(eventName, params);
@@ -379,19 +348,15 @@
                     $log.info(eventName, params);
                 }
             };
-
             function reject(e) {
                 var deferred = $q.defer();
                 $log.error(e.message);
                 deferred.reject(e);
                 return deferred.promise;
             }
-
             return {
                 _broadcast: broadcast,
-
                 _$log: $log,
-
                 /**
                  * Returns the files cache used by the loaders to store the files currently loading
                  * @returns {*}
@@ -399,7 +364,6 @@
                 _getFilesCache: function getFilesCache() {
                     return filesCache;
                 },
-
                 /**
                  * Let the service know that it should monitor angular.module because files are loading
                  * @param watch boolean
@@ -411,7 +375,6 @@
                         recordDeclarations.pop();
                     }
                 },
-
                 /**
                  * Let you get a module config object
                  * @param moduleName String the name of the module
@@ -426,7 +389,6 @@
                     }
                     return angular.copy(modules[moduleName]);
                 },
-
                 /**
                  * Let you define a module config object
                  * @param moduleConfig Object the module config object
@@ -439,7 +401,6 @@
                     modules[moduleConfig.name] = moduleConfig;
                     return moduleConfig;
                 },
-
                 /**
                  * Returns the list of loaded modules
                  * @returns {string[]}
@@ -447,7 +408,6 @@
                 getModules: function getModules() {
                     return regModules;
                 },
-
                 /**
                  * Let you check if a module has been loaded into Angular or not
                  * @param modulesNames String/Object a module name, or a list of module names
@@ -476,14 +436,12 @@
                         throw new Error('You need to define the module(s) name(s)');
                     }
                 },
-
                 /**
                  * Given a module, return its name
                  * @param module
                  * @returns {String}
                  */
                 _getModuleName: getModuleName,
-
                 /**
                  * Returns a module if it exists
                  * @param moduleName
@@ -500,14 +458,12 @@
                         throw e;
                     }
                 },
-
                 /**
                  * Check if a module exists and returns it if it does
                  * @param moduleName
                  * @returns {boolean}
                  */
                 moduleExists: moduleExists,
-
                 /**
                  * Load the dependencies, and might try to load new files depending on the config
                  * @param moduleName (String or Array of Strings)
@@ -521,9 +477,7 @@
                         diff,
                         promisesList = [],
                         self = this;
-
                     moduleName = self._getModuleName(moduleName);
-
                     if (moduleName === null) {
                         return $q.when();
                     } else {
@@ -535,7 +489,6 @@
                         // get unloaded requires
                         requires = self.getRequires(loadedModule);
                     }
-
                     angular.forEach(requires, function (requireEntry) {
                         // If no configuration is provided, try and find one from a previous load.
                         // If there isn't one, bail and let the normal flow run
@@ -549,19 +502,16 @@
                             // ignore the name because it's probably not a real module name
                             config.name = undefined;
                         }
-
                         // Check if this dependency has been loaded previously
                         if (self.moduleExists(requireEntry.name)) {
                             // compare against the already loaded module to see if the new definition adds any new files
                             diff = requireEntry.files.filter(function (n) {
                                 return self.getModuleConfig(requireEntry.name).files.indexOf(n) < 0;
                             });
-
                             // If the module was redefined, advise via the console
                             if (diff.length !== 0) {
                                 self._$log.warn('Module "', moduleName, '" attempted to redefine configuration for dependency. "', requireEntry.name, '"\n Additional Files Loaded:', diff);
                             }
-
                             // Push everything to the file loader, it will weed out the duplicates.
                             if (angular.isDefined(self.filesLoader)) {
                                 // if a files loader is defined
@@ -595,7 +545,6 @@
                                 moduleCache.push(requireEntry['name']);
                             }
                         }
-
                         // Check if the dependency has any files that need to be loaded. If there are, push a new promise to the promise list.
                         if (angular.isDefined(requireEntry.files) && requireEntry.files.length !== 0) {
                             if (angular.isDefined(self.filesLoader)) {
@@ -608,11 +557,9 @@
                             }
                         }
                     });
-
                     // Create a wrapper promise to watch the promise list and resolve it once everything is done.
                     return $q.all(promisesList);
                 },
-
                 /**
                  * Inject new modules into Angular
                  * @param moduleName
@@ -620,7 +567,6 @@
                  */
                 inject: function inject(moduleName) {
                     var localParams = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
                     var self = this,
                         deferred = $q.defer();
                     if (angular.isDefined(moduleName) && moduleName !== null) {
@@ -648,7 +594,6 @@
                                     deferred.reject(e);
                                     return;
                                 }
-
                                 if (modulesToLoad.length > 0) {
                                     loadNext(modulesToLoad.shift()); // load the next in list
                                 } else {
@@ -658,7 +603,6 @@
                                 deferred.reject(err);
                             });
                         };
-
                         // load the first in list
                         loadNext(modulesToLoad.shift());
                     } else if (localParams && localParams.name && modulePromises[localParams.name]) {
@@ -668,7 +612,6 @@
                     }
                     return deferred.promise;
                 },
-
                 /**
                  * Get the list of required modules/services/... for this module
                  * @param module
@@ -683,7 +626,6 @@
                     });
                     return requires;
                 },
-
                 /**
                  * Invoke the new modules & component by their providers
                  * @param providers
@@ -693,7 +635,6 @@
                  * @private
                  */
                 _invokeQueue: _invokeQueue,
-
                 /**
                  * Check if a module has been invoked and registers it if not
                  * @param args
@@ -701,7 +642,6 @@
                  * @returns {boolean} is new
                  */
                 _registerInvokeList: _registerInvokeList,
-
                 /**
                  * Register a new module and loads it, executing the run/config blocks if needed
                  * @param providers
@@ -710,7 +650,6 @@
                  * @private
                  */
                 _register: _register,
-
                 /**
                  * Add a module name to the list of modules that will be loaded in the next inject
                  * @param name
@@ -720,11 +659,9 @@
                 _addToLoadList: _addToLoadList
             };
         }];
-
         // Let's get the list of loaded modules & components
         this._init(angular.element(window.document));
     }]);
-
     var bootstrapFct = angular.bootstrap;
     angular.bootstrap = function (element, modules, config) {
         // we use slice to make a clean copy
@@ -733,7 +670,6 @@
         });
         return bootstrapFct(element, modules, config);
     };
-
     var _addToLoadList = function _addToLoadList(name, force, real) {
         if ((recordDeclarations.length > 0 || force) && angular.isString(name) && modulesToLoad.indexOf(name) === -1) {
             modulesToLoad.push(name);
@@ -742,13 +678,11 @@
             }
         }
     };
-
     var ngModuleFct = angular.module;
     angular.module = function (name, requires, configFn) {
         _addToLoadList(name, false, true);
         return ngModuleFct(name, requires, configFn);
     };
-
     // CommonJS package manager support:
     if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.exports === exports) {
         module.exports = 'oc.lazyLoad';
@@ -756,7 +690,6 @@
 })(angular, window);
 (function (angular) {
     'use strict';
-
     angular.module('oc.lazyLoad').directive('ocLazyLoad', ["$ocLazyLoad", "$compile", "$animate", "$parse", function ($ocLazyLoad, $compile, $animate, $parse) {
         return {
             restrict: 'A',
@@ -766,7 +699,6 @@
                 // we store the content and remove it before compilation
                 var content = element[0].innerHTML;
                 element.html('');
-
                 return function ($scope, $element, $attr) {
                     var model = $parse($attr.ocLazyLoad);
                     $scope.$watch(function () {
@@ -792,13 +724,11 @@
 })(angular);
 (function (angular) {
     'use strict';
-
     angular.module('oc.lazyLoad').config(["$provide", function ($provide) {
         $provide.decorator('$ocLazyLoad', ["$delegate", "$q", "$window", "$interval", function ($delegate, $q, $window, $interval) {
             var uaCssChecked = false,
                 useCssLoadPatch = false,
                 anchor = $window.document.getElementsByTagName('head')[0] || $window.document.getElementsByTagName('body')[0];
-
             /**
              * Load a js/css file
              * @param type
@@ -822,14 +752,12 @@
                         return url + '?_dc=' + dc;
                     }
                 };
-
                 // Store the promise early so the file load can be detected by other parallel lazy loads
                 // (ie: multiple routes on one page) a 'true' value isn't sufficient
                 // as it causes false positive load results.
                 if (angular.isUndefined(filesCache.get(path))) {
                     filesCache.put(path, deferred.promise);
                 }
-
                 // Switch in case more content types are added later
                 switch (type) {
                     case 'css':
@@ -859,7 +787,6 @@
                     deferred.reject(new Error('Unable to load ' + path));
                 };
                 el.async = params.serie ? 0 : 1;
-
                 var insertBeforeElem = anchor.lastChild;
                 if (params.insertBefore) {
                     var element = angular.element(angular.isDefined(window.jQuery) ? params.insertBefore : document.querySelector(params.insertBefore));
@@ -868,7 +795,6 @@
                     }
                 }
                 insertBeforeElem.parentNode.insertBefore(el, insertBeforeElem);
-
                 /*
                  The event load or readystatechange doesn't fire in:
                  - iOS < 6       (default mobile browser)
@@ -878,7 +804,6 @@
                 if (type == 'css') {
                     if (!uaCssChecked) {
                         var ua = $window.navigator.userAgent.toLowerCase();
-
                         // iOS < 6
                         if (/iP(hone|od|ad)/.test($window.navigator.platform)) {
                             var v = $window.navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/);
@@ -893,7 +818,6 @@
                             useCssLoadPatch = versionMatch && versionMatch[1] && parseFloat(versionMatch[1]) < 6;
                         }
                     }
-
                     if (useCssLoadPatch) {
                         var tries = 1000; // * 20 = 20000 miliseconds
                         var interval = $interval(function () {
@@ -909,17 +833,14 @@
                         }, 20);
                     }
                 }
-
                 return deferred.promise;
             };
-
             return $delegate;
         }]);
     }]);
 })(angular);
 (function (angular) {
     'use strict';
-
     angular.module('oc.lazyLoad').config(["$provide", function ($provide) {
         $provide.decorator('$ocLazyLoad', ["$delegate", "$q", function ($delegate, $q) {
             /**
@@ -930,18 +851,14 @@
              */
             $delegate.filesLoader = function filesLoader(config) {
                 var params = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
                 var cssFiles = [],
                     templatesFiles = [],
                     jsFiles = [],
                     promises = [],
                     cachePromise = null,
                     filesCache = $delegate._getFilesCache();
-
                 $delegate.toggleWatch(true); // start watching angular.module calls
-
                 angular.extend(params, config);
-
                 var pushFile = function pushFile(path) {
                     var file_type = null,
                         m;
@@ -951,14 +868,12 @@
                     }
                     cachePromise = filesCache.get(path);
                     if (angular.isUndefined(cachePromise) || params.cache === false) {
-
                         // always check for requirejs syntax just in case
                         if ((m = /^(css|less|html|htm|js)?(?=!)/.exec(path)) !== null) {
                             // Detect file type using preceding type declaration (ala requireJS)
                             file_type = m[1];
                             path = path.substr(m[1].length + 1, path.length); // Strip the type from the path
                         }
-
                         if (!file_type) {
                             if ((m = /[.](css|less|html|htm|js)?((\?|#).*)?$/.exec(path)) !== null) {
                                 // Detect file type via file extension
@@ -971,7 +886,6 @@
                                 return;
                             }
                         }
-
                         if ((file_type === 'css' || file_type === 'less') && cssFiles.indexOf(path) === -1) {
                             cssFiles.push(path);
                         } else if ((file_type === 'html' || file_type === 'htm') && templatesFiles.indexOf(path) === -1) {
@@ -985,7 +899,6 @@
                         promises.push(cachePromise);
                     }
                 };
-
                 if (params.serie) {
                     pushFile(params.files.shift());
                 } else {
@@ -993,7 +906,6 @@
                         pushFile(path);
                     });
                 }
-
                 if (cssFiles.length > 0) {
                     var cssDeferred = $q.defer();
                     $delegate.cssLoader(cssFiles, function (err) {
@@ -1006,7 +918,6 @@
                     }, params);
                     promises.push(cssDeferred.promise);
                 }
-
                 if (templatesFiles.length > 0) {
                     var templatesDeferred = $q.defer();
                     $delegate.templatesLoader(templatesFiles, function (err) {
@@ -1019,7 +930,6 @@
                     }, params);
                     promises.push(templatesDeferred.promise);
                 }
-
                 if (jsFiles.length > 0) {
                     var jsDeferred = $q.defer();
                     $delegate.jsLoader(jsFiles, function (err) {
@@ -1032,7 +942,6 @@
                     }, params);
                     promises.push(jsDeferred.promise);
                 }
-
                 if (promises.length === 0) {
                     var deferred = $q.defer(),
                         err = "Error: no file to load has been found, if you're trying to load an existing module you should use the 'inject' method instead of 'load'.";
@@ -1050,7 +959,6 @@
                     });
                 }
             };
-
             /**
              * Load a module or a list of modules into Angular
              * @param module Mixed the name of a predefined module config object, or a module config object, or an array of either
@@ -1059,34 +967,28 @@
              */
             $delegate.load = function (originalModule) {
                 var originalParams = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
                 var self = this,
                     config = null,
                     deferredList = [],
                     deferred = $q.defer(),
                     errText;
-
                 // clean copy
                 var module = angular.copy(originalModule);
                 var params = angular.copy(originalParams);
-
                 // If module is an array, break it down
                 if (angular.isArray(module)) {
                     // Resubmit each entry as a single module
                     angular.forEach(module, function (m) {
                         deferredList.push(self.load(m, params));
                     });
-
                     // Resolve the promise once everything has loaded
                     $q.all(deferredList).then(function (res) {
                         deferred.resolve(res);
                     }, function (err) {
                         deferred.reject(err);
                     });
-
                     return deferred.promise;
                 }
-
                 // Get or Set a configuration depending on what was passed in
                 if (angular.isString(module)) {
                     config = self.getModuleConfig(module);
@@ -1105,7 +1007,6 @@
                         config = self.setModuleConfig(module);
                     }
                 }
-
                 if (config === null) {
                     var moduleName = self._getModuleName(module);
                     errText = 'Module "' + (moduleName || 'unknown') + '" is not configured, cannot load.';
@@ -1125,14 +1026,11 @@
                         }
                     }
                 }
-
                 var localParams = angular.extend({}, params, config);
-
                 // if someone used an external loader and called the load function with just the module name
                 if (angular.isUndefined(config.files) && angular.isDefined(config.name) && $delegate.moduleExists(config.name)) {
                     return $delegate.inject(config.name, localParams);
                 }
-
                 $delegate.filesLoader(config, localParams).then(function () {
                     $delegate.inject(null, localParams).then(function (res) {
                         deferred.resolve(res);
@@ -1142,10 +1040,8 @@
                 }, function (err) {
                     deferred.reject(err);
                 });
-
                 return deferred.promise;
             };
-
             // return the patched service
             return $delegate;
         }]);
@@ -1153,7 +1049,6 @@
 })(angular);
 (function (angular) {
     'use strict';
-
     angular.module('oc.lazyLoad').config(["$provide", function ($provide) {
         $provide.decorator('$ocLazyLoad', ["$delegate", "$q", function ($delegate, $q) {
             /**
@@ -1176,14 +1071,12 @@
                 });
             };
             $delegate.cssLoader.ocLazyLoadLoader = true;
-
             return $delegate;
         }]);
     }]);
 })(angular);
 (function (angular) {
     'use strict';
-
     angular.module('oc.lazyLoad').config(["$provide", function ($provide) {
         $provide.decorator('$ocLazyLoad', ["$delegate", "$q", function ($delegate, $q) {
             /**
@@ -1206,14 +1099,12 @@
                 });
             };
             $delegate.jsLoader.ocLazyLoadLoader = true;
-
             return $delegate;
         }]);
     }]);
 })(angular);
 (function (angular) {
     'use strict';
-
     angular.module('oc.lazyLoad').config(["$provide", function ($provide) {
         $provide.decorator('$ocLazyLoad', ["$delegate", "$templateCache", "$q", "$http", function ($delegate, $templateCache, $q, $http) {
             /**
@@ -1227,7 +1118,6 @@
             $delegate.templatesLoader = function (paths, callback, params) {
                 var promises = [],
                     filesCache = $delegate._getFilesCache();
-
                 angular.forEach(paths, function (url) {
                     var deferred = $q.defer();
                     promises.push(deferred.promise);
@@ -1254,7 +1144,6 @@
                 });
             };
             $delegate.templatesLoader.ocLazyLoadLoader = true;
-
             return $delegate;
         }]);
     }]);
@@ -1263,43 +1152,34 @@
 if (!Array.prototype.indexOf) {
         Array.prototype.indexOf = function (searchElement, fromIndex) {
                 var k;
-
                 // 1. Let O be the result of calling ToObject passing
                 //    the this value as the argument.
                 if (this == null) {
                         throw new TypeError('"this" is null or not defined');
                 }
-
                 var O = Object(this);
-
                 // 2. Let lenValue be the result of calling the Get
                 //    internal method of O with the argument "length".
                 // 3. Let len be ToUint32(lenValue).
                 var len = O.length >>> 0;
-
                 // 4. If len is 0, return -1.
                 if (len === 0) {
                         return -1;
                 }
-
                 // 5. If argument fromIndex was passed let n be
                 //    ToInteger(fromIndex); else let n be 0.
                 var n = +fromIndex || 0;
-
                 if (Math.abs(n) === Infinity) {
                         n = 0;
                 }
-
                 // 6. If n >= len, return -1.
                 if (n >= len) {
                         return -1;
                 }
-
                 // 7. If n >= 0, then Let k be n.
                 // 8. Else, n<0, Let k be len - abs(n).
                 //    If k is less than 0, then let k be 0.
                 k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
-
                 // 9. Repeat, while k < len
                 while (k < len) {
                         // a. Let Pk be ToString(k).

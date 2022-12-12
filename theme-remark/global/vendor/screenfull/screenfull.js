@@ -5,14 +5,11 @@
 */
 (function () {
 	'use strict';
-
 	var isCommonjs = typeof module !== 'undefined' && module.exports;
 	var keyboardAllowed = typeof Element !== 'undefined' && 'ALLOW_KEYBOARD_INPUT' in Element;
-
 	var fn = (function () {
 		var val;
 		var valLength;
-
 		var fnMap = [
 			[
 				'requestFullscreen',
@@ -30,7 +27,6 @@
 				'webkitFullscreenEnabled',
 				'webkitfullscreenchange',
 				'webkitfullscreenerror'
-
 			],
 			// old WebKit (Safari 5.1)
 			[
@@ -40,7 +36,6 @@
 				'webkitCancelFullScreen',
 				'webkitfullscreenchange',
 				'webkitfullscreenerror'
-
 			],
 			[
 				'mozRequestFullScreen',
@@ -59,11 +54,9 @@
 				'MSFullscreenError'
 			]
 		];
-
 		var i = 0;
 		var l = fnMap.length;
 		var ret = {};
-
 		for (; i < l; i++) {
 			val = fnMap[i];
 			if (val && val[1] in document) {
@@ -73,16 +66,12 @@
 				return ret;
 			}
 		}
-
 		return false;
 	})();
-
 	var screenfull = {
 		request: function (elem) {
 			var request = fn.requestFullscreen;
-
 			elem = elem || document.documentElement;
-
 			// Work around Safari 5.1 bug: reports support for
 			// keyboard in fullscreen even though it doesn't.
 			// Browser sniffing, since the alternative with
@@ -105,17 +94,14 @@
 		},
 		raw: fn
 	};
-
 	if (!fn) {
 		if (isCommonjs) {
 			module.exports = false;
 		} else {
 			window.screenfull = false;
 		}
-
 		return;
 	}
-
 	Object.defineProperties(screenfull, {
 		isFullscreen: {
 			get: function () {
@@ -136,7 +122,6 @@
 			}
 		}
 	});
-
 	if (isCommonjs) {
 		module.exports = screenfull;
 	} else {

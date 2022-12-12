@@ -709,6 +709,7 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			throw new Exception("EL COMPONENTE 'tb_item' NO EXISTE...");
 
 			
+			$this->core_web_permission->getValueLicense($dataSession["user"]->companyID,$this->router->class."/"."index");
 
 			//Obtener transaccion
 

@@ -410,6 +410,7 @@ class App_Purchase_InternalPurchaseRequest extends CI_Controller {
 			$this->load->model("Employee_Model");			
 			
 			
+			$this->core_web_permission->getValueLicense($dataSession["user"]->companyID,$this->router->class."/"."index");
 			//Obtener el Componente de Transacciones Other Input to Inventory
 			$objComponent							= $this->core_web_tools->getComponentIDBy_ComponentName("tb_transaction_master_internalpurchaserequest");
 			if(!$objComponent)

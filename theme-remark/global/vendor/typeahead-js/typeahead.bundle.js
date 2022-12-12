@@ -3,7 +3,6 @@
  * https://github.com/twitter/typeahead.js
  * Copyright 2013-2015 Twitter, Inc. and other contributors; Licensed MIT
  */
-
 (function(root, factory) {
     if (typeof define === "function" && define.amd) {
         define("bloodhound", [ "jquery" ], function(a0) {
@@ -916,7 +915,6 @@
     }();
     return Bloodhound;
 });
-
 (function(root, factory) {
     if (typeof define === "function" && define.amd) {
         define("typeahead.js", [ "jquery" ], function(a0) {
@@ -1400,7 +1398,6 @@
                   case "down":
                     preventDefault = !withModifier($e);
                     break;
-
                   default:
                     preventDefault = false;
                 }
@@ -1412,7 +1409,6 @@
                   case "tab":
                     trigger = !withModifier($e);
                     break;
-
                   default:
                     trigger = true;
                 }

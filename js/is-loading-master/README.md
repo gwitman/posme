@@ -1,27 +1,20 @@
 is-loading
 ==========
-
 Simple jQuery plugin to show visual feedback when loading data or any action that would take time
-
 Full documentation and examples [here](http://hekigan.github.io/is-loading/ "Documentation and examples")
-
 __Quick start__
-
 Basic use:
 ```javascript
 $( "selector" ).isLoading();
 ```
-
 Stop:
 ```javascript
 $( "selector" ).isLoading( "hide" );
 ```
-
 Add a text in the loader and change the location
 ```javascript
 $( "selector" ).isLoading({ text: "Loading", position: "inside" });
 ```
-
 Add a text in the loader and disable some extra elements
 ```javascript
 $( "selector" ).isLoading({
@@ -31,12 +24,10 @@ $( "selector" ).isLoading({
     ]
 });
 ```
-
 Use overlay:
 ```javascript
 $.isLoading({ text: "Loading" });
 ```
-
 Use overlay on element:
 ```javascript
 $( "selector" ).isLoading({
@@ -45,9 +36,7 @@ $( "selector" ).isLoading({
 });
 ```
 
-
 Default options:
-
 ```javascript
 defaults = {
     'position': "right",        // right | inside | overlay

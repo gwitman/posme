@@ -7,9 +7,7 @@
  *  Under MIT License
  */
 (function($, window, document, undefined) {
-
     'use strict';
-
     // Create the defaults once
     var pluginName = 'webuiPopover';
     var pluginClass = 'webui-popover';
@@ -66,37 +64,30 @@
             width: ''
         }
     };
-
-
     var _srcElements = [];
     var backdrop = $('<div class="webui-popover-backdrop"></div>');
     var _globalIdSeed = 0;
     var _isBodyEventHandled = false;
     var _offsetOut = -2000; // the value offset  out of the screen
     var $document = $(document);
-
     var toNumber = function(numeric, fallback) {
         return isNaN(numeric) ? (fallback || 0) : Number(numeric);
     };
-
     var getPopFromElement = function($element) {
         return $element.data('plugin_' + pluginName);
     };
-
     var hideAllPop = function() {
         for (var i = 0; i < _srcElements.length; i++) {
             _srcElements[i].webuiPopover('hide');
         }
         $document.trigger('hiddenAll.' + pluginType);
     };
-
     var removeAllTargets = function() {
         // for (var i = 0; i < _srcElements.length; i++) {
         //     var pop = getPopFromElement(_srcElements[i]);
         //     console.log(pop.$target);
         // }
     };
-
     var pointerEventToXY = function(e) {
         var out = {
             x: 0,
@@ -112,9 +103,6 @@
         }
         return out;
     };
-
-
-
     // The actual plugin constructor
     function WebuiPopover(element, options) {
         this.$element = $(element);
@@ -133,7 +121,6 @@
         this.init();
         _srcElements.push(this.$element);
     }
-
     WebuiPopover.prototype = {
         //init webui popover
         init: function() {
@@ -157,22 +144,17 @@
             if (this.getTrigger() === 'sticky') {
                 this.show();
             }
-
         },
         /* api methods and actions */
         destroy: function() {
             var index = -1;
-
             for (var i = 0; i < _srcElements.length; i++) {
                 if (_srcElements[i] === this.$element) {
                     index = i;
                     break;
                 }
             }
-
             _srcElements.splice(index, 1);
-
-
             this.hide();
             this.$element.data('plugin_' + pluginName, null);
             if (this.getTrigger() === 'click') {
@@ -192,7 +174,6 @@
             if (!force && this.getTrigger() === 'sticky') {
                 return;
             }
-
             if (!this._opened) {
                 return;
             }
@@ -200,13 +181,10 @@
                 event.preventDefault();
                 event.stopPropagation();
             }
-
             if (this.xhr && this.options.abortXHR === true) {
                 this.xhr.abort();
                 this.xhr = null;
             }
-
-
             var e = $.Event('hide.' + pluginType);
             this.$element.trigger(e, [this.$target]);
             if (this.$target) {
@@ -221,11 +199,9 @@
             }
             this._opened = false;
             this.$element.trigger('hidden.' + pluginType, [this.$target]);
-
             if (this.options.onHide) {
                 this.options.onHide(this.$target);
             }
-
         },
         resetAutoHide: function() {
             var that = this;
@@ -256,8 +232,6 @@
                 $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
             if (!this.options.multi) {
                 this.hideAll();
-
-
             }
             if (this._opened) {
                 return;
@@ -277,11 +251,9 @@
                 $target.show();
             }
             this.displayContent();
-
             if (this.options.onShow) {
                 this.options.onShow($target);
             }
-
             this.bindBodyEvents();
             if (this.options.backdrop) {
                 backdrop.show();
@@ -312,25 +284,20 @@
             if (optWidth === '') {
                 optWidth = this._defaults.width;
             }
-
             if (optWidth !== 'auto') {
                 $target.width(optWidth);
             }
-
             // support height as data attribute
             var optHeight = this.$element.data('height') || this.options.height;
             if (optHeight === '') {
                 optHeight = this._defaults.height;
             }
-
             if (optHeight !== 'auto') {
                 $targetContent.height(optHeight);
             }
-
             if (this.options.style) {
                 this.$target.addClass(pluginClass + '-' + this.options.style);
             }
-
             //init the popover and insert into the document body
             if (!this.options.arrow) {
                 $target.find('.arrow').remove();
@@ -340,20 +307,14 @@
                 left: _offsetOut,
                 display: 'block'
             });
-
             if (this.getAnimation()) {
                 $target.addClass(this.getAnimation());
             }
             $target.appendTo(document.body);
-
-
             placement = this.getPlacement(elementPos);
-
             //This line is just for compatible with knockout custom binding
             this.$element.trigger('added.' + pluginType);
-
             this.initTargetEvents();
-
             if (!this.options.padding) {
                 if (this.options.height !== 'auto') {
                     $targetContent.css('height', $targetContent.outerHeight());
@@ -362,29 +323,20 @@
             }
             targetWidth = $target[0].offsetWidth;
             targetHeight = $target[0].offsetHeight;
-
             var postionInfo = this.getTargetPositin(elementPos, placement, targetWidth, targetHeight);
-
             this.$target.css(postionInfo.position).addClass(placement).addClass('in');
-
             if (this.options.type === 'iframe') {
                 var $iframe = $target.find('iframe');
                 var iframeWidth = $target.width();
                 var iframeHeight = $iframe.parent().height();
-
                 if (this.options.iframeOptions.width !== '' && this.options.iframeOptions.width !== 'auto') {
                     iframeWidth = this.options.iframeOptions.width;
                 }
-
                 if (this.options.iframeOptions.height !== '' && this.options.iframeOptions.height !== 'auto') {
                     iframeHeight = this.options.iframeOptions.height;
                 }
-
                 $iframe.width(iframeWidth).height(iframeHeight);
             }
-
-
-
 
             if (!this.options.arrow) {
                 this.$target.css({
@@ -394,7 +346,6 @@
             if (this.options.arrow) {
                 var $arrow = this.$target.find('.arrow');
                 $arrow.removeAttr('style');
-
                 //prevent arrow change by content size
                 if (placement === 'left' || placement === 'right') {
                     $arrow.css({
@@ -405,7 +356,6 @@
                         left: this.$target.width() / 2
                     });
                 }
-
                 if (postionInfo.arrowOffset) {
                     //hide the arrow if offset is negative 
                     if (postionInfo.arrowOffset.left === -1 || postionInfo.arrowOffset.top === -1) {
@@ -414,16 +364,13 @@
                         $arrow.css(postionInfo.arrowOffset);
                     }
                 }
-
             }
             this._poped = true;
             this.$element.trigger('shown.' + pluginType, [this.$target]);
         },
-
         isTargetLoaded: function() {
             return this.getTarget().find('i.glyphicon-refresh').length === 0;
         },
-
         /*getter setters */
         getTriggerElement: function() {
             return this.$element;
@@ -523,7 +470,6 @@
                     $iframe.attr(opt, self.options.iframeOptions[opt]);
                 }
             });
-
             return $iframe;
         },
         getContent: function() {
@@ -553,7 +499,6 @@
                 this.content = this.$element.attr('data-content') || content;
                 if (!this.content) {
                     var $next = this.$element.next();
-
                     if ($next && $next.hasClass(pluginClass + '-content')) {
                         this.content = $next;
                     }
@@ -610,14 +555,12 @@
                 }
             });
         },
-
         bindBodyEvents: function() {
             if (this.options.dismissible && this.getTrigger() === 'click' && !_isBodyEventHandled) {
                 $document.off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
                 $document.off('click.webui-popover touchend.webui-popover').on('click.webui-popover touchend.webui-popover', $.proxy(this.bodyClickHandler, this));
             }
         },
-
         /* event handlers */
         mouseenterHandler: function() {
             var self = this;
@@ -643,7 +586,6 @@
                 this.hideAll();
             }
         },
-
         bodyClickHandler: function(e) {
             _isBodyEventHandled = true;
             //alert(pointerEventToXY(e).x);
@@ -667,13 +609,11 @@
                 hideAllPop();
             }
         },
-
         /*
         targetClickHandler: function() {
             this._targetclick = true;
         },
         */
-
         //reset and init the target events;
         initTargetEvents: function() {
             if (this.getTrigger() === 'hover') {
@@ -699,18 +639,15 @@
                 pageX = Math.max(0, pos.left - scrollLeft),
                 pageY = Math.max(0, pos.top - scrollTop);
             //arrowSize = 20;
-
             //if placement equals auto，caculate the placement by element information;
             if (typeof(this.options.placement) === 'function') {
                 placement = this.options.placement.call(this, this.getTarget()[0], this.$element[0]);
             } else {
                 placement = this.$element.data('placement') || this.options.placement;
             }
-
             var isH = placement === 'horizontal';
             var isV = placement === 'vertical';
             var detect = placement === 'auto' || isH || isV;
-
             if (detect) {
                 if (pageX < clientWidth / 3) {
                     if (pageY < clientHeight / 3) {
@@ -800,7 +737,6 @@
                 height: this.$element[0].offsetHeight
             });
         },
-
         getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {
             var pos = elementPos,
                 de = document.documentElement,
@@ -820,14 +756,10 @@
                 refix = 0,
                 pageH = clientHeight + scrollTop,
                 pageW = clientWidth + scrollLeft;
-
-
-
             var validLeft = pos.left + pos.width / 2 - fixedW > 0;
             var validRight = pos.left + pos.width / 2 + fixedW < pageW;
             var validTop = pos.top + pos.height / 2 - fixedH > 0;
             var validBottom = pos.top + pos.height / 2 + fixedH < pageH;
-
             switch (placement) {
                 case 'bottom':
                     position = {
@@ -929,11 +861,9 @@
                         top: validTop ? Math.min(elementH, targetHeight) / 2 + fixedH : _offsetOut
                     };
                     break;
-
             }
             position.top += this.getOffsetTop();
             position.left += this.getOffsetLeft();
-
             return {
                 position: position,
                 arrowOffset: arrowOffset
@@ -943,7 +873,6 @@
     $.fn[pluginName] = function(options, noInit) {
         var results = [];
         var $result = this.each(function() {
-
             var webuiPopover = $.data(this, 'plugin_' + pluginName);
             if (!webuiPopover) {
                 if (!options) {
@@ -967,8 +896,6 @@
                 }
             }
         });
-
         return (results.length) ? results : $result;
     };
-
 })(jQuery, window, document);

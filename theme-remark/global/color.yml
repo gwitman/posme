@@ -13,7 +13,6 @@ red:
   a200: "ff5252"
   a300: "ff1744"
   a400: "d50000"
-
 pink:
   50: "fce4ec"
   100: "f8bbd0"
@@ -29,7 +28,6 @@ pink:
   a200: "ff4081"
   a300: "f50057"
   a400: "c51162"
-
 purple:
   50: "f3e5f5"
   100: "e1bee7"
@@ -45,7 +43,6 @@ purple:
   a200: "e040fb"
   a300: "d500f9"
   a400: "aa00ff"
-
 deep-purple:
   50: "ede7f6"
   100: "d1c4e9"
@@ -61,7 +58,6 @@ deep-purple:
   a200: "7c4dff"
   a300: "651fff"
   a400: "6200ea"
-
 indigo:
   50: "e8eaf6"
   100: "c5cae9"
@@ -77,7 +73,6 @@ indigo:
   a200: "536dfe"
   a300: "3d5afe"
   a400: "304ffe"
-
 blue:
   50: "e3f2fd"
   100: "bbdefb"
@@ -93,7 +88,6 @@ blue:
   a200: "448aff"
   a300: "2979ff"
   a400: "2962ff"
-
 light-blue:
   50: "e1f5fe"
   100: "b3e5fc"
@@ -109,7 +103,6 @@ light-blue:
   a200: "40c4ff"
   a300: "00b0ff"
   a400: "0091ea"
-
 cyan:
   50: "e0f7fa"
   100: "b2ebf2"
@@ -125,7 +118,6 @@ cyan:
   a200: "18ffff"
   a300: "00e5ff"
   a400: "00b8d4"
-
 teal:
   50: "e0f2f1"
   100: "b2dfdb"
@@ -141,7 +133,6 @@ teal:
   a200: "64ffda"
   a300: "1de9b6"
   a400: "00bfa5"
-
 green:
   50: "e8f5e9"
   100: "c8e6c9"
@@ -157,7 +148,6 @@ green:
   a200: "69f0ae"
   a300: "00e676"
   a400: "00c853"
-
 light-green:
   50: "f1f8e9"
   100: "dcedc8"
@@ -173,7 +163,6 @@ light-green:
   a200: "b2ff59"
   a300: "76ff03"
   a400: "64dd17"
-
 lime:
   50: "f9fbe7"
   100: "f0f4c3"
@@ -189,7 +178,6 @@ lime:
   a200: "eeff41"
   a300: "c6ff00"
   a400: "aeea00"
-
 yellow:
   50: "fffde7"
   100: "fff9c4"
@@ -205,7 +193,6 @@ yellow:
   a200: "ffff00"
   a300: "ffea00"
   a400: "ffd600"
-
 amber:
   50: "fff8e1"
   100: "ffecb3"
@@ -221,7 +208,6 @@ amber:
   a200: "ffd740"
   a300: "ffc400"
   a400: "ffab00"
-
 orange:
   50: "fff3e0"
   100: "ffe0b2"
@@ -237,7 +223,6 @@ orange:
   a200: "ffab40"
   a300: "ff9100"
   a400: "ff6d00"
-
 deep-orange:
   50: "fbe9e7"
   100: "ffccbc"
@@ -253,7 +238,6 @@ deep-orange:
   a200: "ff6e40"
   a300: "ff3d00"
   a400: "dd2c00"
-
 brown:
   50: "efebe9"
   100: "d7ccc8"
@@ -265,7 +249,6 @@ brown:
   700: "5d4037"
   800: "4e342e"
   900: "3e2723"
-
 grey:
   50: "fafafa"
   100: "f5f5f5"
@@ -277,7 +260,6 @@ grey:
   700: "616161"
   800: "424242"
   900: "212121"
-
 blue-grey:
   50: "eceff1"
   100: "cfd8dc"

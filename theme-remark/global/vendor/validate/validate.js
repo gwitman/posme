@@ -6,10 +6,8 @@
  * For all details and documentation:
  * http://validatejs.org/
  */
-
 (function(exports, module, define) {
   "use strict";
-
   // The main function that calls the validators specified by the constraints.
   // The options are the following:
   //   - format (string) - An option that controls how the returned value is formatted
@@ -21,11 +19,9 @@
   // Please note that the options are also passed to each validator.
   var validate = function(attributes, constraints, options) {
     options = v.extend({}, v.options, options);
-
     var results = v.runValidations(attributes, constraints, options)
       , attr
       , validator;
-
     for (attr in results) {
       for (validator in results[attr]) {
         if (v.isPromise(results[attr][validator])) {
@@ -35,9 +31,7 @@
     }
     return validate.processValidationResults(results, options);
   };
-
   var v = validate;
-
   // Copies over attributes from one or more sources to a single destination.
   // Very much similar to underscore's extend.
   // The first argument is the target object and the remaining arguments will be
@@ -50,7 +44,6 @@
     });
     return obj;
   };
-
   v.extend(validate, {
     // This is the version of the library as a semver.
     // The toString function will allow it to be coerced into a string
@@ -67,17 +60,13 @@
         return version;
       }
     },
-
     // Below is the dependencies that are used in validate.js
-
     // The constructor of the Promise implementation.
     // If you are using Q.js, RSVP or any other A+ compatible implementation
     // override this attribute to be the constructor of that promise.
     // Since jQuery promises aren't A+ compatible they won't work.
     Promise: typeof Promise !== "undefined" ? Promise : /* istanbul ignore next */ null,
-
     EMPTY_STRING_REGEXP: /^\s*$/,
-
     // Runs the validators specified by the constraints object.
     // Will return an array of the format:
     //     [{attribute: "<attribute name>", error: "<validation result>"}, ...]
@@ -90,11 +79,9 @@
         , validator
         , validatorOptions
         , error;
-
       if (v.isDomElement(attributes) || v.isJqueryElement(attributes)) {
         attributes = v.collectFormValues(attributes);
       }
-
       // Loops through each constraints, finds the correct validator and run it.
       for (attr in constraints) {
         value = v.getDeepObjectValue(attributes, attr);
@@ -104,15 +91,12 @@
         // This is useful when you want to have different
         // validations depending on the attribute value.
         validators = v.result(constraints[attr], value, attributes, attr, options, constraints);
-
         for (validatorName in validators) {
           validator = v.validators[validatorName];
-
           if (!validator) {
             error = v.format("Unknown validator %{name}", {name: validatorName});
             throw new Error(error);
           }
-
           validatorOptions = validators[validatorName];
           // This allows the options to be a function. The function will be
           // called with the value, attribute name, the complete dict of
@@ -139,60 +123,47 @@
           });
         }
       }
-
       return results;
     },
-
     // Takes the output from runValidations and converts it to the correct
     // output format.
     processValidationResults: function(errors, options) {
       var attr;
-
       errors = v.pruneEmptyErrors(errors, options);
       errors = v.expandMultipleErrors(errors, options);
       errors = v.convertErrorMessages(errors, options);
-
       switch (options.format || "grouped") {
         case "detailed":
           // Do nothing more to the errors
           break;
-
         case "flat":
           errors = v.flattenErrorsToArray(errors);
           break;
-
         case "grouped":
           errors = v.groupErrorsByAttribute(errors);
           for (attr in errors) {
             errors[attr] = v.flattenErrorsToArray(errors[attr]);
           }
           break;
-
         default:
           throw new Error(v.format("Unknown format %{format}", options));
       }
-
       return v.isEmpty(errors) ? undefined : errors;
     },
-
     // Runs the validations with support for promises.
     // This function will return a promise that is settled when all the
     // validation promises have been completed.
     // It can be called even if no validations returned a promise.
     async: function(attributes, constraints, options) {
       options = v.extend({}, v.async.options, options);
-
       var WrapErrors = options.wrapErrors || function(errors) {
         return errors;
       };
-
       // Removes unknown attributes
       if (options.cleanAttributes !== false) {
         attributes = v.cleanAttributes(attributes, constraints);
       }
-
       var results = v.runValidations(attributes, constraints, options);
-
       return new v.Promise(function(resolve, reject) {
         v.waitForResults(results).then(function() {
           var errors = v.processValidationResults(results, options);
@@ -206,7 +177,6 @@
         });
       });
     },
-
     single: function(value, constraints, options) {
       options = v.extend({}, v.single.options, options, {
         format: "flat",
@@ -214,7 +184,6 @@
       });
       return v({single: value}, {single: constraints}, options);
     },
-
     // Returns a promise that is resolved when all promises in the results array
     // are settled. The promise returned from this function is always resolved,
     // never rejected.
@@ -227,7 +196,6 @@
         if (!v.isPromise(result.error)) {
           return memo;
         }
-
         return memo.then(function() {
           return result.error.then(
             function(error) {
@@ -244,7 +212,6 @@
         });
       }, new v.Promise(function(r) { r(); })); // A resolved promise
     },
-
     // If the given argument is a call: function the and: function return the value
     // otherwise just return the value. Additional arguments will be passed as
     // arguments to the function.
@@ -260,62 +227,50 @@
       }
       return value;
     },
-
     // Checks if the value is a number. This function does not consider NaN a
     // number like many other `isNumber` functions do.
     isNumber: function(value) {
       return typeof value === 'number' && !isNaN(value);
     },
-
     // Returns false if the object is not a function
     isFunction: function(value) {
       return typeof value === 'function';
     },
-
     // A simple check to verify that the value is an integer. Uses `isNumber`
     // and a simple modulo check.
     isInteger: function(value) {
       return v.isNumber(value) && value % 1 === 0;
     },
-
     // Uses the `Object` function to check if the given argument is an object.
     isObject: function(obj) {
       return obj === Object(obj);
     },
-
     // Simply checks if the object is an instance of a date
     isDate: function(obj) {
       return obj instanceof Date;
     },
-
     // Returns false if the object is `null` of `undefined`
     isDefined: function(obj) {
       return obj !== null && obj !== undefined;
     },
-
     // Checks if the given argument is a promise. Anything with a `then`
     // function is considered a promise.
     isPromise: function(p) {
       return !!p && v.isFunction(p.then);
     },
-
     isJqueryElement: function(o) {
       return o && v.isString(o.jquery);
     },
-
     isDomElement: function(o) {
       if (!o) {
         return false;
       }
-
       if (!v.isFunction(o.querySelectorAll) || !v.isFunction(o.querySelector)) {
         return false;
       }
-
       if (v.isObject(document) && o === document) {
         return true;
       }
-
       // http://stackoverflow.com/a/384380/699304
       /* istanbul ignore else */
       if (typeof HTMLElement === "object") {
@@ -328,35 +283,28 @@
           typeof o.nodeName === "string";
       }
     },
-
     isEmpty: function(value) {
       var attr;
-
       // Null and undefined are empty
       if (!v.isDefined(value)) {
         return true;
       }
-
       // functions are non empty
       if (v.isFunction(value)) {
         return false;
       }
-
       // Whitespace only strings are empty
       if (v.isString(value)) {
         return v.EMPTY_STRING_REGEXP.test(value);
       }
-
       // For arrays we use the length property
       if (v.isArray(value)) {
         return value.length === 0;
       }
-
       // Dates have no attributes but aren't empty
       if (v.isDate(value)) {
         return false;
       }
-
       // If we find at least one property we consider it non empty
       if (v.isObject(value)) {
         for (attr in value) {
@@ -364,10 +312,8 @@
         }
         return true;
       }
-
       return false;
     },
-
     // Formats the specified strings with the given values like so:
     // ```
     // format("Foo: %{foo}", {foo: "bar"}) // "Foo bar"
@@ -390,7 +336,6 @@
       // Finds %{key} style patterns in the given string
       FORMAT_REGEXP: /(%?)%\{([^\}]+)\}/g
     }),
-
     // "Prettifies" the given string.
     // Prettifying means replacing [.\_-] with spaces as well as splitting
     // camel case words.
@@ -403,18 +348,14 @@
           return parseFloat(Math.round(str * 100) / 100).toFixed(2);
         }
       }
-
       if (v.isArray(str)) {
         return str.map(function(s) { return v.prettify(s); }).join(", ");
       }
-
       if (v.isObject(str)) {
         return str.toString();
       }
-
       // Ensure the string is actually a string
       str = "" + str;
-
       return str
         // Splits keys separated by periods
         .replace(/([^\s])\.([^\s])/g, '$1 $2')
@@ -428,19 +369,15 @@
         })
         .toLowerCase();
     },
-
     stringifyValue: function(value) {
       return v.prettify(value);
     },
-
     isString: function(value) {
       return typeof value === 'string';
     },
-
     isArray: function(value) {
       return {}.toString.call(value) === '[object Array]';
     },
-
     contains: function(obj, value) {
       if (!v.isDefined(obj)) {
         return false;
@@ -450,16 +387,13 @@
       }
       return value in obj;
     },
-
     forEachKeyInKeypath: function(object, keypath, callback) {
       if (!v.isString(keypath)) {
         return undefined;
       }
-
       var key = ""
         , i
         , escape = false;
-
       for (i = 0; i < keypath.length; ++i) {
         switch (keypath[i]) {
           case '.':
@@ -471,7 +405,6 @@
               key = "";
             }
             break;
-
           case '\\':
             if (escape) {
               escape = false;
@@ -480,29 +413,24 @@
               escape = true;
             }
             break;
-
           default:
             escape = false;
             key += keypath[i];
             break;
         }
       }
-
       return callback(object, key, true);
     },
-
     getDeepObjectValue: function(obj, keypath) {
       if (!v.isObject(obj)) {
         return undefined;
       }
-
       return v.forEachKeyInKeypath(obj, keypath, function(obj, key) {
         if (v.isObject(obj)) {
           return obj[key];
         }
       });
     },
-
     // This returns an object with all the values of the form.
     // It uses the input name as key and the value as value
     // So for example this:
@@ -515,25 +443,19 @@
         , input
         , inputs
         , value;
-
       if (v.isJqueryElement(form)) {
         form = form[0];
       }
-
       if (!form) {
         return values;
       }
-
       options = options || {};
-
       inputs = form.querySelectorAll("input[name], textarea[name]");
       for (i = 0; i < inputs.length; ++i) {
         input = inputs.item(i);
-
         if (v.isDefined(input.getAttribute("data-ignored"))) {
           continue;
         }
-
         value = v.sanitizeFormValue(input.value, options);
         if (input.type === "number") {
           value = value ? +value : null;
@@ -552,42 +474,35 @@
         }
         values[input.name] = value;
       }
-
       inputs = form.querySelectorAll("select[name]");
       for (i = 0; i < inputs.length; ++i) {
         input = inputs.item(i);
         value = v.sanitizeFormValue(input.options[input.selectedIndex].value, options);
         values[input.name] = value;
       }
-
       return values;
     },
-
     sanitizeFormValue: function(value, options) {
       if (options.trim && v.isString(value)) {
         value = value.trim();
       }
-
       if (options.nullify !== false && value === "") {
         return null;
       }
       return value;
     },
-
     capitalize: function(str) {
       if (!v.isString(str)) {
         return str;
       }
       return str[0].toUpperCase() + str.slice(1);
     },
-
     // Remove all errors who's error attribute is empty (null or undefined)
     pruneEmptyErrors: function(errors) {
       return errors.filter(function(error) {
         return !v.isEmpty(error.error);
       });
     },
-
     // In
     // [{error: ["err1", "err2"], ...}]
     // Out
@@ -609,12 +524,10 @@
       });
       return ret;
     },
-
     // Converts the error mesages by prepending the attribute name unless the
     // message is prefixed by ^
     convertErrorMessages: function(errors, options) {
       options = options || {};
-
       var ret = [];
       errors.forEach(function(errorInfo) {
         var error = v.result(errorInfo.error,
@@ -623,12 +536,10 @@
             errorInfo.options,
             errorInfo.attributes,
             errorInfo.globalOptions);
-
         if (!v.isString(error)) {
           ret.push(errorInfo);
           return;
         }
-
         if (error[0] === '^') {
           error = error.slice(1);
         } else if (options.fullMessages !== false) {
@@ -640,7 +551,6 @@
       });
       return ret;
     },
-
     // In:
     // [{attribute: "<attributeName>", ...}]
     // Out:
@@ -657,7 +567,6 @@
       });
       return ret;
     },
-
     // In:
     // [{error: "<message 1>", ...}, {error: "<message 2>", ...}]
     // Out:
@@ -665,7 +574,6 @@
     flattenErrorsToArray: function(errors) {
       return errors.map(function(error) { return error.error; });
     },
-
     cleanAttributes: function(attributes, whitelist) {
       function whitelistCreator(obj, key, last) {
         if (v.isObject(obj[key])) {
@@ -673,7 +581,6 @@
         }
         return (obj[key] = last ? true : {});
       }
-
       function buildObjectWhitelist(whitelist) {
         var ow = {}
           , lastObject
@@ -686,19 +593,15 @@
         }
         return ow;
       }
-
       function cleanRecursive(attributes, whitelist) {
         if (!v.isObject(attributes)) {
           return attributes;
         }
-
         var ret = v.extend({}, attributes)
           , w
           , attribute;
-
         for (attribute in attributes) {
           w = whitelist[attribute];
-
           if (v.isObject(w)) {
             ret[attribute] = cleanRecursive(ret[attribute], w);
           } else if (!w) {
@@ -707,15 +610,12 @@
         }
         return ret;
       }
-
       if (!v.isObject(whitelist) || !v.isObject(attributes)) {
         return {};
       }
-
       whitelist = buildObjectWhitelist(whitelist);
       return cleanRecursive(attributes, whitelist);
     },
-
     exposeModule: function(validate, root, exports, module, define) {
       if (exports) {
         if (module && module.exports) {
@@ -729,20 +629,17 @@
         }
       }
     },
-
     warn: function(msg) {
       if (typeof console !== "undefined" && console.warn) {
         console.warn("[validate.js] " + msg);
       }
     },
-
     error: function(msg) {
       if (typeof console !== "undefined" && console.error) {
         console.error("[validate.js] " + msg);
       }
     }
   });
-
   validate.validators = {
     // Presence validates that the value isn't empty
     presence: function(value, options) {
@@ -756,23 +653,19 @@
       if (v.isEmpty(value)) {
         return;
       }
-
       options = v.extend({}, this.options, options);
-
       var is = options.is
         , maximum = options.maximum
         , minimum = options.minimum
         , tokenizer = options.tokenizer || function(val) { return val; }
         , err
         , errors = [];
-
       value = tokenizer(value);
       var length = value.length;
       if(!v.isNumber(length)) {
         v.error(v.format("Attribute %{attr} has a non numeric value for `length`", {attr: attribute}));
         return options.message || this.notValid || "has an incorrect length";
       }
-
       // Is checks
       if (v.isNumber(is) && length !== is) {
         err = options.wrongLength ||
@@ -780,21 +673,18 @@
           "is the wrong length (should be %{count} characters)";
         errors.push(v.format(err, {count: is}));
       }
-
       if (v.isNumber(minimum) && length < minimum) {
         err = options.tooShort ||
           this.tooShort ||
           "is too short (minimum is %{count} characters)";
         errors.push(v.format(err, {count: minimum}));
       }
-
       if (v.isNumber(maximum) && length > maximum) {
         err = options.tooLong ||
           this.tooLong ||
           "is too long (maximum is %{count} characters)";
         errors.push(v.format(err, {count: maximum}));
       }
-
       if (errors.length > 0) {
         return options.message || errors;
       }
@@ -804,9 +694,7 @@
       if (v.isEmpty(value)) {
         return;
       }
-
       options = v.extend({}, this.options, options);
-
       var errors = []
         , name
         , count
@@ -817,23 +705,19 @@
             lessThan:             function(v, c) { return v < c; },
             lessThanOrEqualTo:    function(v, c) { return v <= c; }
           };
-
       // Coerce the value to a number unless we're being strict.
       if (options.noStrings !== true && v.isString(value)) {
         value = +value;
       }
-
       // If it's not a number we shouldn't continue since it will compare it.
       if (!v.isNumber(value)) {
         return options.message || options.notValid || this.notValid || "is not a number";
       }
-
       // Same logic as above, sort of. Don't bother with comparisons if this
       // doesn't pass.
       if (options.onlyInteger && !v.isInteger(value)) {
         return options.message || options.notInteger || this.notInteger  || "must be an integer";
       }
-
       for (name in checks) {
         count = options[name];
         if (v.isNumber(count) && !checks[name](value, count)) {
@@ -842,21 +726,18 @@
           // this.notGreaterThan so we capitalize the name and prepend "not"
           var key = "not" + v.capitalize(name);
           var msg = options[key] || this[key] || "must be %{type} %{count}";
-
           errors.push(v.format(msg, {
             count: count,
             type: v.prettify(name)
           }));
         }
       }
-
       if (options.odd && value % 2 !== 1) {
         errors.push(options.notOdd || this.notOdd || "must be odd");
       }
       if (options.even && value % 2 !== 0) {
         errors.push(options.notEven || this.notEven || "must be even");
       }
-
       if (errors.length) {
         return options.message || errors;
       }
@@ -865,39 +746,31 @@
       if (!v.isFunction(this.parse) || !v.isFunction(this.format)) {
         throw new Error("Both the parse and format functions needs to be set to use the datetime/date validator");
       }
-
       // Empty values are fine
       if (v.isEmpty(value)) {
         return;
       }
-
       options = v.extend({}, this.options, options);
-
       var err
         , errors = []
         , earliest = options.earliest ? this.parse(options.earliest, options) : NaN
         , latest = options.latest ? this.parse(options.latest, options) : NaN;
-
       value = this.parse(value, options);
-
       // 86400000 is the number of seconds in a day, this is used to remove
       // the time from the date
       if (isNaN(value) || options.dateOnly && value % 86400000 !== 0) {
         return options.message || this.notValid || "must be a valid date";
       }
-
       if (!isNaN(earliest) && value < earliest) {
         err = this.tooEarly || "must be no earlier than %{date}";
         err = v.format(err, {date: this.format(earliest, options)});
         errors.push(err);
       }
-
       if (!isNaN(latest) && value > latest) {
         err = this.tooLate || "must be no later than %{date}";
         err = v.format(err, {date: this.format(latest, options)});
         errors.push(err);
       }
-
       if (errors.length) {
         return options.message || errors;
       }
@@ -913,13 +786,10 @@
       if (v.isString(options) || (options instanceof RegExp)) {
         options = {pattern: options};
       }
-
       options = v.extend({}, this.options, options);
-
       var message = options.message || this.message || "is invalid"
         , pattern = options.pattern
         , match;
-
       // Empty values are allowed
       if (v.isEmpty(value)) {
         return;
@@ -927,7 +797,6 @@
       if (!v.isString(value)) {
         return message;
       }
-
       if (v.isString(pattern)) {
         pattern = new RegExp(options.pattern, options.flags);
       }
@@ -988,7 +857,6 @@
       if (v.isEmpty(value)) {
         return;
       }
-
       if (v.isString(options)) {
         options = {attribute: options};
       }
@@ -996,38 +864,30 @@
       var message = options.message ||
         this.message ||
         "is not equal to %{attribute}";
-
       if (v.isEmpty(options.attribute) || !v.isString(options.attribute)) {
         throw new Error("The attribute must be a non empty string");
       }
-
       var otherValue = v.getDeepObjectValue(attributes, options.attribute)
         , comparator = options.comparator || function(v1, v2) {
           return v1 === v2;
         };
-
       if (!comparator(value, otherValue, options, attribute, attributes)) {
         return v.format(message, {attribute: v.prettify(options.attribute)});
       }
     },
-
     // A URL validator that is used to validate URLs with the ability to
     // restrict schemes and some domains.
     url: function(value, options) {
       if (v.isEmpty(value)) {
         return;
       }
-
       options = v.extend({}, this.options, options);
-
       var message = options.message || this.message || "is not a valid url"
         , schemes = options.schemes || this.schemes || ['http', 'https']
         , allowLocal = options.allowLocal || this.allowLocal || false;
-
       if (!v.isString(value)) {
         return message;
       }
-
       // https://gist.github.com/dperini/729294
       var regex =
         "^" +
@@ -1035,14 +895,11 @@
           "(?:(?:" + schemes.join("|") + "):\\/\\/)" +
           // credentials
           "(?:\\S+(?::\\S*)?@)?";
-
       regex += "(?:";
-
       var hostname =
           "(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)" +
           "(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*" +
           "(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))";
-
       // This ia a special case for the localhost hostname
       if (allowLocal) {
         hostname = "(?:localhost|" + hostname + ")";
@@ -1058,7 +915,6 @@
                 "(?:\\.\\d{1,3})" +
               "{2})";
       }
-
       // reserved addresses
       regex +=
           "(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])" +
@@ -1071,14 +927,12 @@
           // path
           "(?:\\/[^\\s]*)?" +
         "$";
-
       var PATTERN = new RegExp(regex, 'i');
       if (!PATTERN.exec(value)) {
         return message;
       }
     }
   };
-
   validate.exposeModule(validate, this, exports, module, define);
 }).call(this,
         typeof exports !== 'undefined' ? /* istanbul ignore next */ exports : null,

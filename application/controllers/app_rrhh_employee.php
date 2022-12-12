@@ -505,6 +505,7 @@ class App_Rrhh_Employee extends CI_Controller {
 
 			
 
+			$this->core_web_permission->getValueLicense($dataSession["user"]->companyID,$this->router->class."/"."index");
 			//Obtener el Componente de Transacciones Other Input to Inventory
 
 			$objComponent							= $this->core_web_tools->getComponentIDBy_ComponentName("tb_employee");

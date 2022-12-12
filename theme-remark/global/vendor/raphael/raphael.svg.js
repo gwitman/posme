@@ -2,7 +2,6 @@ define(["./raphael.core"], function(R) {
     if (R && !R.svg) {
         return;
     }
-
     var has = "hasOwnProperty",
         Str = String,
         toFloat = parseFloat,
@@ -92,12 +91,10 @@ define(["./raphael.core"], function(R) {
                 return null;
             }
             id = id.replace(/[\(\)\s,\xb0#]/g, "_");
-
             if (element.gradient && id != element.gradient.id) {
                 SVG.defs.removeChild(element.gradient);
                 delete element.gradient;
             }
-
             if (!element.gradient) {
                 el = $(type + "Gradient", {id: id});
                 element.gradient = el;
@@ -337,7 +334,6 @@ define(["./raphael.core"], function(R) {
                         break;
                     case "title":
                         var title = node.getElementsByTagName("title");
-
                         // Use the existing <title>.
                         if (title.length && (title = title[0])) {
                           title.firstChild.nodeValue = value;
@@ -495,7 +491,6 @@ define(["./raphael.core"], function(R) {
                             $(el, {x: 0, y: 0, patternUnits: "userSpaceOnUse", height: 1, width: 1});
                             $(ig, {x: 0, y: 0, "xlink:href": isURL[1]});
                             el.appendChild(ig);
-
                             (function (el) {
                                 R._preload(isURL[1], function () {
                                     var w = this.offsetWidth,
@@ -571,7 +566,6 @@ define(["./raphael.core"], function(R) {
                 }
             }
         }
-
         tuneText(o, params);
         node.style.visibility = vis;
     },
@@ -583,7 +577,6 @@ define(["./raphael.core"], function(R) {
         var a = el.attrs,
             node = el.node,
             fontSize = node.firstChild ? toInt(R._g.doc.defaultView.getComputedStyle(node.firstChild, E).getPropertyValue("font-size"), 10) : 10;
-
         if (params[has]("text")) {
             a.text = params.text;
             while (node.firstChild) {
@@ -660,7 +653,6 @@ define(["./raphael.core"], function(R) {
         \*/
         this.id = guid();
         node.raphaelid = this.id;
-
         /**
         * Method that returns a 5 letter/digit id, enough for 36^5 = 60466176 elements
         * @returns {string} id
@@ -668,7 +660,6 @@ define(["./raphael.core"], function(R) {
         function guid() {
             return ("0000" + (Math.random()*Math.pow(36,5) << 0).toString(36)).slice(-5);
         }
-
         this.matrix = R.matrix();
         this.realPath = null;
         /*\
@@ -713,10 +704,8 @@ define(["./raphael.core"], function(R) {
         this.next = null;
     },
     elproto = R.el;
-
     Element.prototype = elproto;
     elproto.constructor = Element;
-
     R._engine.path = function (pathString, SVG) {
         var el = $("path");
         SVG.canvas && SVG.canvas.appendChild(el);
@@ -865,16 +854,13 @@ define(["./raphael.core"], function(R) {
             return _.transform;
         }
         R._extractTransform(this, tstr);
-
         this.clip && $(this.clip, {transform: this.matrix.invert()});
         this.pattern && updatePosition(this);
         this.node && $(this.node, {transform: this.matrix});
-
         if (_.sx != 1 || _.sy != 1) {
             var sw = this.attrs[has]("stroke-width") ? this.attrs["stroke-width"] : 1;
             this.attr({"stroke-width": sw});
         }
-
         return this;
     };
     /*\
@@ -917,12 +903,9 @@ define(["./raphael.core"], function(R) {
             paper.defs.removeChild(this.gradient);
         }
         R._tear(this, paper);
-
         node.parentNode.removeChild(node);
-
         // Remove custom data for element
         this.removeData();
-
         for (var i in this) {
             this[i] = typeof this[i] == "function" ? R._removedFactory(i) : null;
         }
@@ -941,7 +924,6 @@ define(["./raphael.core"], function(R) {
         else if (this.paper.canvas.parentNode) {
           containerStyle = this.paper.canvas.parentNode.style;
         }
-
         if(containerStyle && containerStyle.display == "none") {
           canvasHidden = true;
           containerStyle.display = "";
@@ -1153,7 +1135,6 @@ define(["./raphael.core"], function(R) {
         if (this.removed || !element) {
             return this;
         }
-
         var node = getRealNode(this.node);
         var afterNode = getRealNode(element.node || element[element.length - 1].node);
         if (afterNode.nextSibling) {
@@ -1175,7 +1156,6 @@ define(["./raphael.core"], function(R) {
         if (this.removed || !element) {
             return this;
         }
-
         var node = getRealNode(this.node);
         var beforeNode = getRealNode(element.node || element[0].node);
         beforeNode.parentNode.insertBefore(node, beforeNode);
