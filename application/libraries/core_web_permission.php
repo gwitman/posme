@@ -270,28 +270,27 @@ class core_web_permission {
 		}
 		
 		//Validar Saldo		
-		if (
-			$url == "" ||  
-			$url == ""
-		){
-			if($objParameterTipoPlan  == "CONSUMIBLE")
-			{
-				if(($objParameterCreditos - $objParameterPriceByInvoice ) < 0){
-					log_message("ERROR","validar licencia: "."No tiene suficientes creditos.");
-					throw new Exception('
-					<p>No tiene suficiente creditos.</p>
-					<p>telefono de contacto: 8712-5827 para activar licencia</p>
-					<p>realizar el pago de la licencia  aqui &ograve; </p>
-					<p>realizar la transferencia a la siguiente cuenta BAC Dolares: 366-577-484 </p>
-					
-					');
-				}
-				$objParameterCreditos 		= $objParameterCreditos - $objParameterPriceByInvoice ;
-				$dataNewParameter 			= array();
-				$dataNewParameter["value"] 	= $objParameterCreditos;
-				$this->CI->Company_Parameter_Model->update($companyID,$objParameterCreditosID,$dataNewParameter);
+		
+		if($objParameterTipoPlan  == "CONSUMIBLE")
+		{
+			if(($objParameterCreditos - $objParameterPriceByInvoice ) < 0){
+				log_message("ERROR","validar licencia: "."No tiene suficientes creditos.");
+				throw new Exception('
+				<p>No tiene suficiente creditos.</p>
+				<p>telefono de contacto: 8712-5827 para activar licencia</p>
+				<p>realizar el pago de la licencia  aqui &ograve; </p>
+				<p>realizar la transferencia a la siguiente cuenta BAC Dolares: 366-577-484 </p>
+				
+				');
 			}
+			
 		}
+		
+		$objParameterCreditos 		= $objParameterCreditos - $objParameterPriceByInvoice ;
+		$dataNewParameter 			= array();
+		$dataNewParameter["value"] 	= $objParameterCreditos;
+		$this->CI->Company_Parameter_Model->update($companyID,$objParameterCreditosID,$dataNewParameter);
+		
 
 		//Dormir el sistema cuando el tipo de Licencia es PERMANENTE y la fecha actual es mayor a la fecha limite de licencia
 		//En tal caso, dormir el sistema	
