@@ -706,6 +706,6 @@ WHERE
 
 
 UPDATE tb_company SET 
-	NAME = 'Farmacia Familiar Dev' , address = 'Wester Union 3c al Este 1/2 al Norte' 
+	NAME = 'Fid Local Dev' , address = 'Wester Union 3c al Este 1/2 al Norte' 
 WHERE 
 	companyID = 2; ##Actualizar el nombre de la compania
