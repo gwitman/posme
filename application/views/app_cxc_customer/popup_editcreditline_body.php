@@ -148,9 +148,8 @@
 															</div>
 														</div>
 													</div>
-													
-
-										</form>
+													[
+]										</form>
                                     </div>
                                 </div><!-- End .row-fluid  -->                            
                             </div>

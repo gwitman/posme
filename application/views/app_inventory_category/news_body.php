@@ -21,9 +21,8 @@
 	                                  <h4>Formulario de Datos</h4>
 	                                  <a href="#" class="minimize"></a>
                                 </div>
-                                <!-- /panel widget -->
-
-								<!-- body widget -->
+                                <!-- /panel widget -->[
+]								<!-- body widget -->
                                 <div class="panel-body noPadding">
 									<!-- body -->
 									<div class="email-wrapper" style="padding:15px 15px 15px 15px;padding-left:15px">

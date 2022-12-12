@@ -25,9 +25,8 @@
 	                                  <h4>Formulario de Datos</h4>
 	                                  <a href="#" class="minimize"></a>
                                 </div>
-                                <!-- /panel widget -->
-
-								<!-- body widget -->
+                                <!-- /panel widget -->[
+]								<!-- body widget -->
                                 <div class="panel-body noPadding">
 									<!-- body -->
 									<div class="email-wrapper" style="padding:15px 15px 15px 15px;padding-left:15px">
@@ -124,9 +123,8 @@
 							<ul id="myTab" class="nav nav-tabs">
 								<li class="active"><a href="#causal" data-toggle="tab">Causales</a></li>
 								<li><a href="#profile" data-toggle="tab">Configuracion</a></li>
-							</ul>
-
-							<div class="tab-content">
+							</ul>[
+]							<div class="tab-content">
 								<div class="tab-pane fade in active" id="causal">
 									<a href="#" class="btn btn-flat btn-info" id="btnNewDetailCausal" >Agregar</a>									
 									<a href="#" class="btn btn-flat btn-danger" id="btnDeleteDetailCausal" >Eliminar</a>									

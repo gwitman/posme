@@ -28,9 +28,8 @@
 						$(document).on("click","#btnPrinter",function(){
 							fnWaitOpen();							
 							window.location = "<?php echo site_url(); ?>"+varUrlPrinter+"/companyID/<?php echo $objTransactionMaster->companyID;?>/transactionID/<?php echo $objTransactionMaster->transactionID;?>/transactionMasterID/<?php echo $objTransactionMaster->transactionMasterID;?>";
-						});
-
-						//Evento Agregar el Usuario
+						});[
+]						//Evento Agregar el Usuario
 						$(document).on("click","#btnAcept",function(){
 								$( "#form-new-invoice" ).attr("method","POST");
 								$( "#form-new-invoice" ).attr("action","<?php echo site_url(); ?>app_box_canceldocument/save/edit");
@@ -130,9 +129,8 @@
 						$("#txtTotal").val(total);
 					}
 					function onCompleteNewShare(objResponse){
-						console.info("CALL onCompleteNewShare");	
-
-						var objRow 						= {};
+						console.info("CALL onCompleteNewShare");	[
+]						var objRow 						= {};
 						objRow.checked 					= false;
 						objRow.transactionMasterDetail 	= 0;
 						objRow.customerCreditDocumentID = objResponse[0];	/*customerCreditDocumentID*/

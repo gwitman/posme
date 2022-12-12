@@ -45,9 +45,8 @@
 						$(document).on("click","#tbody_detail_autorization tr",function(event){		
 							objRowListElement = this;
 							fnTableSelectedRow(this,event);
-						});
-
-						//Evento Eliminar Detalle
+						});[
+]						//Evento Eliminar Detalle
 						$(document).on("click","#btnDeleteDetail",function(){
 							fnShowConfirm("Confirmar..","Desea eliminar el Elemento de Acceso ...",function(){								
 								objTableListElement.fnDeleteRow(objRowListElement);

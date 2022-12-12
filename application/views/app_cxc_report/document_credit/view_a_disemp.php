@@ -193,9 +193,7 @@
 					</tbody>
 				</table>
 			</div>
-		</div>
-
-		<!--<div style="background:url('<?php echo site_url();?>/img/sello_azul.png');background-repeat:no-repeat;background-size:150px;background-position:top +60px right +110px;height:250px;height:718px;"> </div>-->
-
-	</body>	
+		</div>[
+]		<!--<div style="background:url('<?php echo site_url();?>/img/sello_azul.png');background-repeat:no-repeat;background-size:150px;background-position:top +60px right +110px;height:250px;height:718px;"> </div>-->[
+]	</body>	
 </html>

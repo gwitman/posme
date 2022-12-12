@@ -55,32 +55,27 @@
 					$style			= "";
 					$style2			= "";
 					$cliente2 		= "";
-					$clienteNuevo	= true;
-
-					if($objDetail)
+					$clienteNuevo	= true;[
+]					if($objDetail)
 					foreach($objDetail as $i){
 						//Calcular Sebra
 						$count++;
 						if ($count % 2 == 0 )
 						$style = "background:#ddd";
 						else 
-						$style = "";
-
-						//Separar Cliente al Final 
+						$style = "";[
+]						//Separar Cliente al Final 
 						if($i["NoCliente"] != $cliente && $cliente != "")
 							echo  "<tr style='border-bottom-color:BLUE;border-bottom-style:solid;border-bottom-width:1px;'><td colspan='11'>&nbsp;</td></tr>";						
-						$cliente = $i["NoCliente"]; 
-
-						/*Estilo de cuota*/
-						$style2 = ";border-bottom-color:".$i["Atraso"].";border-bottom-style:dashed;border-bottom-width:1px;";
-
-						//Repitar Cliente unicamente al Inicio
+						$cliente = $i["NoCliente"]; [
+]						/*Estilo de cuota*/
+						$style2 = ";border-bottom-color:".$i["Atraso"].";border-bottom-style:dashed;border-bottom-width:1px;";[
+]						//Repitar Cliente unicamente al Inicio
 						if( $cliente2 != "" && $cliente2 != $i["NoCliente"] ){
 								$clienteNuevo = true;
 								$countCliente++;
-						}
-
-					
+						}[
+]					
 						//Grid
 						echo "<tr style='".$style."'>";					
 							echo "<td nowrap class='cell_left'>";
@@ -110,15 +105,12 @@
 							echo "<td nowrap class='cell_left'>";						
 								echo ($i["Moneda"]);
 							echo "</td>";														echo "<td nowrap class='cell_left'>";								echo ($i["Gestor"]);							echo "</td>";														echo "<td nowrap class='cell_left'>";								echo '*';							echo "</td>";
-						echo "</tr>";					
-
-
-						//Repitar Cliente unicamente al Inicio
+						echo "</tr>";					[
+]						//Repitar Cliente unicamente al Inicio
 						if($clienteNuevo)
 						$clienteNuevo = false;
-						$cliente2 = $i["NoCliente"];
-
-						
+						$cliente2 = $i["NoCliente"];[
+]						
 					}
 					?>
 				</tbody>

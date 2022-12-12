@@ -60,9 +60,8 @@
 						$(document).on("click","#btnClearProvider",function(){
 									$("#txtProviderID").val("");
 									$("#txtProviderDescription").val("");
-						});
-
-						
+						});[
+]						
 						//Ir a Lista
 						$(document).on("click","#btnBack",function(){
 								fnWaitOpen();

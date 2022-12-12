@@ -21,9 +21,8 @@
 																<input type="checkbox"  name="txtIsPrimary" id="txtIsPrimary" value="1" >
 															</div>
 													</div>
-													
-
-										</form>
+													[
+]										</form>
                                     </div>
                                 </div><!-- End .row-fluid  -->                            
                             </div>

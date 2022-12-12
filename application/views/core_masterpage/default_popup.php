@@ -150,9 +150,6 @@
 		<script src="<?php echo site_url(); ?>theme-genyx/js/plugins/forms/select2/select2.js"></script> 
 
 
-
-
-
 		<!-- Init plugins -->
 
 		<script src="<?php echo site_url(); ?>theme-genyx/js/app.js"></script><!-- Core js functions -->

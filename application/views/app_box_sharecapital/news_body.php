@@ -189,9 +189,8 @@
 										<div class="tab-pane fade" id="dropdown-file">
 											
 										</div>
-									</div>    
-
-							
+									</div>    [
+]							
 									<br/>
 									<a href="#" class="btn btn-flat btn-info" id="btnNewShare" >Agregar</a>
 									<a href="#" class="btn btn-flat btn-danger" id="btnDeleteShare" >Eliminar</a>									
@@ -220,9 +219,8 @@
                                             <ul class="list-unstyled">
                                                 <li><h3>CC: <span class="red-smooth">*</span></h3></li>
                                                 <li><i class="icon16 i-arrow-right-3"></i>Resumen del Documento</li>                                                
-                                            </ul>
-
-                                        </div>
+                                            </ul>[
+]                                        </div>
                                         <div class="col-lg-4">
 											<div class="page-header">
                                                 <h3>Pago</h3>

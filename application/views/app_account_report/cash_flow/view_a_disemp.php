@@ -7,9 +7,8 @@
 		<meta name="application-name" 	content="dsemp" /> 
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css" media="print">
-
-	</head>
+		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css" media="print">[
+]	</head>
 	<body> 
 		<div class="data_grid_encabezado">
 			<table>

@@ -74,9 +74,8 @@
 						$("#txtTotal").val(total);
 					}
 					function onCompleteNewShare(objResponse){
-						console.info("CALL onCompleteNewShare");	
-
-						
+						console.info("CALL onCompleteNewShare");	[
+]						
 						var objRow 						= {};
 						objRow.checked 					= false;
 						objRow.transactionMasterDetail 	= 0;						

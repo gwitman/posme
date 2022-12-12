@@ -305,7 +305,6 @@
 				</tbody>
 			</table>
 		</div>
-		
-
-	</body>	
+		[
+]	</body>	
 </html>

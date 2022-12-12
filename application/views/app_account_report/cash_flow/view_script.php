@@ -3,9 +3,8 @@
 					$(document).ready(function(){
 						$(document).on("click","#print-btn-report",function(){
 							var periodID 	=	$("#txtMayorizatePeriod").val();
-							var cycleID		=	$("#txtMayorizateCicle").val();	
-
-							if(!(periodID == "" || cycleID == "") ){
+							var cycleID		=	$("#txtMayorizateCicle").val();	[
+]							if(!(periodID == "" || cycleID == "") ){
 								fnWaitOpen();
 								window.location	= "<?php echo site_url(); ?>app_accounting_report/cash_flow/viewReport/true/periodID/"+periodID+"/cycleID/"+cycleID;
 							}

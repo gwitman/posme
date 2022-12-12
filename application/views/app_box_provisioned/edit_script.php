@@ -11,9 +11,8 @@
 								fnWaitOpen();
 						});
 						
-						
-
-						//Evento Agregar el Usuario
+						[
+]						//Evento Agregar el Usuario
 						$(document).on("click","#btnAcept",function(){
 								
 								if($(".txtCheckedIsActive").length  == 0 ){
@@ -109,9 +108,8 @@
 						$("#txtTotal").val(total);
 					}
 					function onCompleteNewShare(objResponse){
-						console.info("CALL onCompleteNewShare");	
-
-						
+						console.info("CALL onCompleteNewShare");	[
+]						
 						var objRow 						= {};
 						objRow.checked 					= false;
 						objRow.transactionMasterDetail 	= 0;						

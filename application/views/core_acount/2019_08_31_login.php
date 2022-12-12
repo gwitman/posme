@@ -3,29 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>Dsemp</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href='<?php echo site_url(); ?>theme-genyx/css/family_open_sans_400_800_700.css' rel='stylesheet' type='text/css'>		
-	<link href='<?php echo site_url(); ?>theme-genyx/css/family_droid_sans_400_700.css' rel='stylesheet' type='text/css' />
-
-	 <!--[if lt IE 9]>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">[
+]    <link href='<?php echo site_url(); ?>theme-genyx/css/family_open_sans_400_800_700.css' rel='stylesheet' type='text/css'>		
+	<link href='<?php echo site_url(); ?>theme-genyx/css/family_droid_sans_400_700.css' rel='stylesheet' type='text/css' />[
+]	 <!--[if lt IE 9]>
 	<link href="<?php echo site_url(); ?>theme-genyx/css/family_open_sans_400.css"  rel="stylesheet" type="text/css" />
 	<link href="<?php echo site_url(); ?>theme-genyx/css/family_open_sans_700.css"  rel="stylesheet" type="text/css" />
 	<link href="<?php echo site_url(); ?>theme-genyx/css/family_open_sans_800.css"  rel="stylesheet" type="text/css" />
 	<link href="<?php echo site_url(); ?>theme-genyx/css/family_droid_sans_400.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo site_url(); ?>theme-genyx/css/family_droid_sans_700.css" rel="stylesheet" type="text/css" />
-	<![endif]-->
-
-		
-
-    <link href="<?php echo site_url(); ?>theme-genyx/css/bootstrap/bootstrap.css" rel="stylesheet" />
+	<![endif]-->[
+]		[
+]    <link href="<?php echo site_url(); ?>theme-genyx/css/bootstrap/bootstrap.css" rel="stylesheet" />
 	<link href="<?php echo site_url(); ?>theme-genyx/css/bootstrap/bootstrap-theme.css" rel="stylesheet" />
 	<link href="<?php echo site_url(); ?>theme-genyx/css/icons.css" rel="stylesheet" />
     <link href="<?php echo site_url(); ?>theme-genyx/js/plugins/forms/uniform/uniform.default.css" rel="stylesheet" /> 
 	<link href="<?php echo site_url(); ?>theme-genyx/css/app.css" rel="stylesheet" /> 
-	<link href="<?php echo site_url(); ?>theme-genyx/css/custom.css" rel="stylesheet" /> 
-
-    
+	<link href="<?php echo site_url(); ?>theme-genyx/css/custom.css" rel="stylesheet" /> [
+]    
 	<!--[if IE 8]>
 	<link href="<?php echo site_url(); ?>theme-genyx/css/ie8.css" rel="stylesheet" type="text/css" />
 	<![endif]-->
@@ -34,15 +29,13 @@
 	<!--[if lt IE 9]>
 	  <script src="<?php echo site_url(); ?>theme-genyx/js/html5shiv.js"></script>
 	  <script src="<?php echo site_url(); ?>theme-genyx/js/respond.min.js"></script>
-	<![endif]-->
-
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" 	href="<?php echo site_url(); ?>theme-genyx/images/ico/apple-touch-icon-144-precomposed.png">
+	<![endif]-->[
+]    <link rel="apple-touch-icon-precomposed" sizes="144x144" 	href="<?php echo site_url(); ?>theme-genyx/images/ico/apple-touch-icon-144-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" 	href="<?php echo site_url(); ?>theme-genyx/images/ico/apple-touch-icon-114-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" 		href="<?php echo site_url(); ?>theme-genyx/images/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" 					href="<?php echo site_url(); ?>theme-genyx/images/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" 									href="<?php echo site_url(); ?>theme-genyx/images/ico/favicon.ico">
-
-    
+	<link rel="shortcut icon" 									href="<?php echo site_url(); ?>theme-genyx/images/ico/favicon.ico">[
+]    
     <!-- Le javascript
     ================================================== -->
     <!-- Important plugins put in all pages -->
@@ -51,31 +44,25 @@
     <script src="<?php echo site_url(); ?>theme-genyx/js/conditionizr.min.js"></script>  
     <script src="<?php echo site_url(); ?>theme-genyx/js/plugins/core/nicescroll/jquery.nicescroll.min.js"></script>
     <script src="<?php echo site_url(); ?>theme-genyx/js/plugins/core/jrespond/jRespond.min.js"></script>
-    <script src="<?php echo site_url(); ?>theme-genyx/js/jquery.genyxAdmin.js"></script>
-
-    <!-- Form plugins -->
+    <script src="<?php echo site_url(); ?>theme-genyx/js/jquery.genyxAdmin.js"></script>[
+]    <!-- Form plugins -->
     <script src="<?php echo site_url(); ?>theme-genyx/js/plugins/forms/uniform/jquery.uniform.min.js"></script>
-	<script src="<?php echo site_url(); ?>theme-genyx/js/plugins/forms/validation/jquery.validate.js"></script>    
-
-    <!-- Init plugins -->
+	<script src="<?php echo site_url(); ?>theme-genyx/js/plugins/forms/validation/jquery.validate.js"></script>    [
+]    <!-- Init plugins -->
     <script src="<?php echo site_url(); ?>theme-genyx/js/app.js"></script>
     <script>
 		$(document).ready(function() {			
-			$("html").addClass("loginPage");
-
-			wrapper 	= $(".login-wrapper");
-			barBtn 		= $("#bar .btn");
-
-			//change the tabs
+			$("html").addClass("loginPage");[
+]			wrapper 	= $(".login-wrapper");
+			barBtn 		= $("#bar .btn");[
+]			//change the tabs
 			barBtn.click(function() {
 			  btnId 	= $(this).attr('id');
 			  wrapper.attr("data-active", btnId);
 			  $("#bar").attr("data-active", btnId);
-			});
-
-		
-
-			//------------- Validation -------------//
+			});[
+]		[
+]			//------------- Validation -------------//
 			$("#login-form").validate({ 
 				rules: {
 					txtNickname: {
@@ -109,12 +96,10 @@
 					}, 1000);
 				}
 			});
-			
-
-		});
-	</script>
-
-  </head>
+			[
+]		});
+	</script>[
+]  </head>
   <body>
     <div class="container-fluid">
         <div id="login">

@@ -11,9 +11,8 @@
 						
 						$(document).on("click","#print-btn-report",function(){
 							var startOn					=	$("#txtStartOn").val();	
-							var endOn					=	$("#txtEndOn").val();	
-
-							if(!( startOn == "" || endOn == ""  ) ){
+							var endOn					=	$("#txtEndOn").val();	[
+]							if(!( startOn == "" || endOn == ""  ) ){
 								fnWaitOpen();
 								window.location	= "<?php echo site_url(); ?>app_box_report/share/viewReport/true/startOn/"+startOn+"/endOn/"+endOn;
 							}

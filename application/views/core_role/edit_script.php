@@ -76,9 +76,8 @@
 						$(document).on("click","#tbody_detail_autorization tr",function(event){		
 							objRowListElement = this;
 							fnTableSelectedRow(this,event);
-						});
-
-						
+						});[
+]						
 						//Comando Detalle Eliminar
 						$(document).on("click","#btnDeleteDetail",function(){	
 							fnShowConfirm("Confirmar..","Desea eliminar el Elemento de Acceso ...",function(){								
@@ -89,9 +88,8 @@
 							fnShowConfirm("Confirmar..","Desea eliminar el Elemento de Autorizacion ...",function(){								
 								objTableListElementAutorization.fnDeleteRow(objRowListElement);
 							});	
-						});	
-
-						
+						});	[
+]						
 						//Comando Detalle Agregar
 						$(document).on("click","#btnNewDetail",function(){								
 								window.open(site_url+"core_role/add_subelement","MsgWindow","width=650,height=500");

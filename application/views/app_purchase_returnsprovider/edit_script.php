@@ -19,9 +19,8 @@
 						$(document).on("click","#btnClearProvider",function(){
 									$("#txtProviderID").val("");
 									$("#txtProviderDescription").val("");
-						});
-
-						
+						});[
+]						
 						//Ir a Lista
 						$(document).on("click","#btnBack",function(){
 								fnWaitOpen();
@@ -132,9 +131,8 @@
 								fnShowNotification("Seleccionar la razon de la devolucion","error",timerNotification);
 								result = false;
 							}
-						});
-
-						
+						});[
+]						
 						return result;
 					}
 					function onCompleteItem(objResponse){

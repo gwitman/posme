@@ -308,9 +308,8 @@
 						$(document).on("click","#btnClearEmployeeParent",function(){
 									$("#txtParentEmployeeID").val("");
 									$("#txtParentDescription").val("");
-						});
-
-					});
+						});[
+]					});
 					function onCompleteEmployee(objResponse){
 						console.info("CALL onCompleteEmployee");
 						

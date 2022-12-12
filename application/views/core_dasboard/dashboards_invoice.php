@@ -31,10 +31,8 @@
 							<div class="panel-body">
 								<img class="img-featured" style="width:300px;height:200px" src="<?php echo base_url();?>/img/facturacion2.jpg">
 							</div><!-- End .panel-body -->
-						</div><!-- End .widget -->	
-
-
-						<div class="panel panel-default">
+						</div><!-- End .widget -->	[
+]						<div class="panel panel-default">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-pie-5"></i></div> 
 								<h4>Contador</h4>
@@ -63,9 +61,8 @@
 											</a>
 										</li>                                                 
 									</ul>
-								</div><!-- End .vital-stats -->
-
-							</div><!-- End .panel-body -->
+								</div><!-- End .vital-stats -->[
+]							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->						
 					</div>
 					<div class="col-lg-6">	
