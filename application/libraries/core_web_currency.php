@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
-
 class core_web_currency {
    
    /**********************Variables Estaticas********************/
@@ -19,21 +18,18 @@ class core_web_currency {
    function getCurrencyDefault($companyID){
    		$this->CI->load->model('core/Currency_Model');
 	    $moneyFuncionalName = $this->CI->core_web_parameter->getParameter("ACCOUNTING_CURRENCY_NAME_FUNCTION",$companyID);
-
 	    //Obtener Moneda
 	    return $this->CI->Currency_Model->get_rowName($moneyFuncionalName->value);
    }
    function getCurrencyReport($companyID){
    		$this->CI->load->model('core/Currency_Model');
 	    $moneyFuncionalName = $this->CI->core_web_parameter->getParameter("ACCOUNTING_CURRENCY_NAME_REPORT",$companyID);
-
 	    //Obtener Moneda
 	    return $this->CI->Currency_Model->get_rowName($moneyFuncionalName->value);
    }
    function getCurrencyExternal($companyID){
 		$this->CI->load->model('core/Currency_Model');
 		$moneyFuncionalName = $this->CI->core_web_parameter->getParameter("ACCOUNTING_CURRENCY_NAME_EXTERNAL",$companyID);
-
 		//Obtener Moneda
 		return $this->CI->Currency_Model->get_rowName($moneyFuncionalName->value);
 	}

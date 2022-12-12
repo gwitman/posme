@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
-
 class core_web_permission {
    
    /**********************Variables Estaticas********************/
@@ -27,7 +26,6 @@ class core_web_permission {
 		//dataMenuBodyTop
 		//dataMenuHiddenPopup
 		
-
 		if(is_array($dataMenuHiddenPopup))
 		foreach($dataMenuHiddenPopup AS $url_){	
 			if(strtoupper ($url_->address) == strtoupper ($url)){
@@ -75,7 +73,6 @@ class core_web_permission {
 		//dataMenuHiddenPopup	
 		
 		
-
 		if(is_array($dataMenuHiddenPopup))
 		foreach($dataMenuHiddenPopup AS $url_){	
 			if(strtoupper ($url_->address) == strtoupper ($url)){
@@ -217,41 +214,31 @@ class core_web_permission {
 		}
 		
    }
-
    function getValueLicense($companyID,$url)
    {
-
 		
 		log_message("ERROR","validar licencia ".$url);
 		$this->CI->load->model("core/User_Permission_Model");
 		$this->CI->load->model("core/User_Model");
 		$this->CI->load->model("core/Company_Parameter_Model");
-
 		//Validar Parametro de maximo de usuario.
 		$objParameterMAX_USER 		= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_MAX_USER",$companyID);
-
 		$parameterFechaExpiration 	= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$companyID);
 		$parameterFechaExpiration 	= $parameterFechaExpiration->value;
 		$parameterFechaExpiration 	= DateTime::createFromFormat('Y-m-d',$parameterFechaExpiration);			
-
 		$objParameterISleep			= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_SLEEP",$companyID);
 		$objParameterISleep			= $objParameterISleep->value;
-
 		$objParameterTipoPlan		= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_TIPO_PLAN",$companyID);
 		$objParameterTipoPlan		= $objParameterTipoPlan->value;
-
 		$objParameterExpiredLicense	= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_LICENCES_EXPIRED",$companyID);
 		$objParameterExpiredLicense	= $objParameterExpiredLicense->value;
 		$objParameterExpiredLicense = DateTime::createFromFormat('Y-m-d',$objParameterExpiredLicense);		
-
 		$objParameterCreditos		= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_BALANCE",$companyID);
 		$objParameterCreditosID		= $objParameterCreditos->parameterID;
 		$objParameterCreditos		= $objParameterCreditos->value;
 		
-
 		$objParameterPriceByInvoice		= $this->CI->core_web_parameter->getParameter("CORE_CUST_PRICE_BY_INVOICE",$companyID);
 		$objParameterPriceByInvoice		= $objParameterPriceByInvoice->value;
-
 
 		
 		
@@ -260,10 +247,8 @@ class core_web_permission {
 			$count = $this->CI->User_Model->getCount($companyID);		
 			if(($count + 1) > $objParameterMAX_USER->value ){
 				log_message("ERROR","validar licencia: "."A superado el numero maximo de usuario.");
-
 				throw new Exception('
 				<p>A superado el numero maximo de usuario.</p>
-
 				<p>telefono de contacto: 8712-5827 para activar licencia</p>
 				<p>realizar el pago de la licencia  aqui &ograve; </p>
 				<p>realizar la transferencia a la siguiente cuenta BAC Dolares: 366-577-484 </p>
@@ -272,23 +257,18 @@ class core_web_permission {
 			}
 		}
 
-
-
 		//Validar Fecha de expiracion de la licencia
 		$fechaNow  = DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  						
 		if( $fechaNow >  $parameterFechaExpiration ){
 			log_message("ERROR","validar licencia: "."La licencia a expirado.");
-
 			throw new Exception('
 			<p>La licencia a expirado.</p>
-
 			<p>telefono de contacto: 8712-5827 para activar licencia</p>
 			<p>realizar el pago de la licencia  aqui &ograve; </p>
 			<p>realizar la transferencia a la siguiente cuenta BAC Dolares: 366-577-484 </p>
 			');
 		}
 		
-
 		//Validar Saldo		
 		if (
 			$url == "" ||  
@@ -298,26 +278,20 @@ class core_web_permission {
 			{
 				if(($objParameterCreditos - $objParameterPriceByInvoice ) < 0){
 					log_message("ERROR","validar licencia: "."No tiene suficientes creditos.");
-
 					throw new Exception('
 					<p>No tiene suficiente creditos.</p>
-
 					<p>telefono de contacto: 8712-5827 para activar licencia</p>
 					<p>realizar el pago de la licencia  aqui &ograve; </p>
 					<p>realizar la transferencia a la siguiente cuenta BAC Dolares: 366-577-484 </p>
 					
 					');
-
 				}
-
 				$objParameterCreditos 		= $objParameterCreditos - $objParameterPriceByInvoice ;
 				$dataNewParameter 			= array();
 				$dataNewParameter["value"] 	= $objParameterCreditos;
 				$this->CI->Company_Parameter_Model->update($companyID,$objParameterCreditosID,$dataNewParameter);
-
 			}
 		}
-
 
 		//Dormir el sistema cuando el tipo de Licencia es PERMANENTE y la fecha actual es mayor a la fecha limite de licencia
 		//En tal caso, dormir el sistema	
@@ -329,16 +303,13 @@ class core_web_permission {
 			
 			if($days > 60)
 			$days = 60;
-
 			if($days > 0){
 				log_message("ERROR","validar licencia: "."Sleep procesos por ".$days.", segundos ");
 				sleep($days);
 			}
 		}		
-
 	
 	}
   
 }
-
 ?>

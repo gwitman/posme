@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
-
 class core_web_view {
    
    /**********************Variables Estaticas********************/
@@ -187,29 +186,23 @@ class core_web_view {
 		//Cambiar el Look
 		$tmpl = array (
                     'table_open'          => '<table  id="'.$idTable.'" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover" style="display:none" >',
-
                     'heading_row_start'   => '<tr>',
                     'heading_row_end'     => '</tr>',
                     'heading_cell_start'  => '<th>',
                     'heading_cell_end'    => '</th>',
-
                     'row_start'           => '<tr class="gradeX">',
                     'row_end'             => '</tr>',
                     'cell_start'          => '<td>',
                     'cell_end'            => '</td>',
-
                     'row_alt_start'       => '<tr>',
                     'row_alt_end'         => '</tr>',
                     'cell_alt_start'      => '<td>',
                     'cell_alt_end'        => '</td>',
-
                     'table_close'         => '</table>'
         );
-
 		//Configurar
 		$this->CI->table->set_template($tmpl);
 		$this->CI->table->function = 'htmlspecialchars';
-
 		
 		//Agregar Cabecera		
 		if(!$data){
@@ -288,29 +281,23 @@ class core_web_view {
 	//Cambiar el Look
 	$tmpl = array (
 				'table_open'          => '<table  id="'.$idTable.'" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover" style="display:none" >',
-
 				'heading_row_start'   => '<tr>',
 				'heading_row_end'     => '</tr>',
 				'heading_cell_start'  => '<th>',
 				'heading_cell_end'    => '</th>',
-
 				'row_start'           => '<tr class="gradeX">',
 				'row_end'             => '</tr>',
 				'cell_start'          => '<td>',
 				'cell_end'            => '</td>',
-
 				'row_alt_start'       => '<tr>',
 				'row_alt_end'         => '</tr>',
 				'cell_alt_start'      => '<td>',
 				'cell_alt_end'        => '</td>',
-
 				'table_close'         => '</table>'
 	);
-
 	//Configurar
 	$this->CI->table->set_template($tmpl);
 	$this->CI->table->function = 'htmlspecialchars_include';
-
 	
 	//Agregar Cabecera		
 	if(!$data){

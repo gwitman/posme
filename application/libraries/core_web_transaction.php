@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
-
 class core_web_transaction {
    
    /**********************Variables Estaticas********************/
@@ -53,7 +52,6 @@ class core_web_transaction {
 		$objCausal = $this->CI->Transaction_Causal_Model->getCausalDefaultID($companyID,$transactionID);
 		if(!$objCausal)
 		throw new Exception("NO HAY UN CAUSAL PORDEFECTO PARA LA TRANSACCION");		
-
 		return $objCausal->transactionCausalID;
    }
    function createInverseDocumentByTransaccion($companyIDOriginal,$transactionIDOriginal,$transactionMasterIDOriginal,$transactionIDRevert,$transactionMasterIDRevert){

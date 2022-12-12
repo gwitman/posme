@@ -21,7 +21,7 @@ class core_web_javascript {
 			$script_	= "<script> var  ".$key." = '".$value."'; </script>";
 			return  $script_;
     }
-    function setVar($key,$var){
+    function setVar($key,$value){
 			$script_	= "";
 			$script_	= "<script>  ".$key." = '".$value."'; </script>";
 			return  $script_;
@@ -33,5 +33,4 @@ class core_web_javascript {
 			return  $script_;		
     }
 }
-
 ?>

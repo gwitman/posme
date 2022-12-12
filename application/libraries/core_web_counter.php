@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
-
 class core_web_counter {
    
    /**********************Variables Estaticas********************/
@@ -76,7 +75,6 @@ class core_web_counter {
 		$objCounter 	= $this->CI->Counter_Model->get_rowByPK($companyID,$branchID,$objComponente->componentID,$componentItemID); 
 		if(!$objCounter)
 		throw new Exception("NO EXISTE EL CONTADOR ");
-
 		//actualizar
 		$data["currentValue"] = $objCounter->currentValue + $objCounter->seed;
 		$this->CI->Counter_Model->update($companyID,$branchID,$objComponente->componentID,$componentItemID,$data);

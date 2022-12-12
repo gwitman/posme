@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
-
 class core_web_accounting {
    
    /**********************Variables Estaticas********************/
@@ -198,7 +197,6 @@ class core_web_accounting {
 		
 		//Mayorizar Cuentas
 		$this->CI->Accounting_Balance_Model->clearCycle($companyID,$componentPeriodID,$componentCycleID);
-
 		$minAccountID = $this->CI->Accounting_Balance_Model->getMinAccount($companyID,$branchID,$loginID);
 		$maxAccountID = $this->CI->Accounting_Balance_Model->getMaxAccount($companyID,$branchID,$loginID);
 		

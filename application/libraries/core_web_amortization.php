@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
-
 class core_web_amortization {
    
    /**********************Variables Estaticas********************/
@@ -56,7 +55,6 @@ class core_web_amortization {
 		$objListCustomerCreditDocumentAmortization 	= $this->CI->Customer_Credit_Amortization_Model->get_rowByDocumentAndVinculable($customerCreditDocumentID);
 		$objCustomerCreditLine						= $this->CI->Customer_Credit_Line_Model->get_rowByPK($objCustomerCreditDocument->customerCreditLineID);
 		$periodPay 									= $this->CI->Catalog_Item_Model->get_rowByCatalogItemID($objCustomerCreditLine->periodPay);
-
 		$numCuotas									= count($objListCustomerCreditDocumentAmortization);
 		$totalCapital								= $objCustomerCreditDocument->balance - $amount;
 		//obtener el primer registro

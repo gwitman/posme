@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
-
 class core_web_auditoria {
    
    /**********************Variables Estaticas********************/
@@ -16,7 +15,6 @@ class core_web_auditoria {
    public function __construct(){		
         $this->CI = & get_instance(); 
    }
-
    
    function setAuditCreated(&$obj,$dataUser){
    			$obj["createdOn"]			= date("Y-m-d H:i:s");					

@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
-
 class core_web_convertion {
    
    /**********************Variables Estaticas********************/
@@ -33,7 +32,6 @@ class core_web_convertion {
 		
 		if($objConvertionSource->catalogItemID == $objConvertionTarget->catalogItemID)
 		return $quantity;
-
 		$result = 0;
 		//De Menor al Default
 		if($objConvertionTarget->catalogItemID == $objConvertionDefault->catalogItemID && $objConvertionSource->ratio > 0 ){
@@ -54,7 +52,6 @@ class core_web_convertion {
 		}
 		
 		return $result;		
-
    }
 }
 ?>

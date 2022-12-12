@@ -11,7 +11,6 @@
  * @since      Version 1.0
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class core_web_logs 
 {
     /**
@@ -20,14 +19,12 @@ class core_web_logs
      * @param instance object
      */
     private $_ci;
-
     /**
      * log table name
      *
      * @param string
      */
     private $_log_table_name;
-
     public $levels = array(
         E_ERROR             => 'Error',
         E_WARNING           => 'Warning',
@@ -45,7 +42,6 @@ class core_web_logs
         E_DEPRECATED        => 'Runtime Notice',
         E_USER_DEPRECATED   => 'User Warning'
     );
-
     /**
      * constructor
      *
@@ -61,7 +57,6 @@ class core_web_logs
         $this->_ci->load->config('log');
         $this->_log_table_name = ($this->_ci->config->item('log_table_name')) ? $this->_ci->config->item('log_table_name') : 'logs';
     }
-
     /**
      * PHP Error Handler
      *
@@ -83,10 +78,8 @@ class core_web_logs
             'ip_address' => $this->_ci->input->ip_address(),
             'time' => date('Y-m-d H:i:s')
         );
-
         $this->_ci->db->insert($this->_log_table_name, $data);
     }
-
     /**
      * PHP Error Handler
      *
@@ -105,9 +98,7 @@ class core_web_logs
             'ip_address' => $this->_ci->input->ip_address(),
             'time' => date('Y-m-d H:i:s')
         );
-
         $this->_ci->db->insert($this->_log_table_name, $data);
     }
 }
-
 /* End of file Lib_log.php */

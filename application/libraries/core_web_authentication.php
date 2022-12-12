@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
-
 class core_web_authentication {
    
    /**********************Variables Estaticas********************/
@@ -16,9 +15,7 @@ class core_web_authentication {
    public function __construct(){		
         $this->CI = & get_instance();
    }
-
    
-
    function get_UserBy_PasswordAndNickname($nickname,$password){
 		$this->CI->load->model("core/User_Model");
 		$this->CI->load->model("core/Role_Model");
@@ -146,5 +143,4 @@ class core_web_authentication {
 		return false;			
    }
 }
-
 ?>
