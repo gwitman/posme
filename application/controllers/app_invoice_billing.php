@@ -1236,7 +1236,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$objParameterInvoiceAutoApply			= $objParameterInvoiceAutoApply->value;
 			$objParameterTypePreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_TYPE_PRICE",$companyID);
 			$objParameterTypePreiceDefault			= $objParameterTypePreiceDefault->value;
-			$this->core_web_permission->getValueLicense($companyID,$this->router->class."/"."index");
+			
 			//Obtener la lista de estados
 			if($objParameterInvoiceAutoApply == "true"){
 				$dataView["objListWorkflowStage"]	= $this->core_web_workflow->getWorkflowStageApplyFirst("tb_transaction_master_billing","statusID",$companyID,$branchID,$roleID);
