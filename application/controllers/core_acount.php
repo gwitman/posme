@@ -89,8 +89,6 @@ class Core_acount extends CI_Controller {
 			$pagoCantidadMonto		  = $pagoCantidadDeMeses * $parameterPrice;
 
 			
-			$this->core_web_permission->getValueLicense($objUser["user"]->companyID,$this->router->class."/"."index");
-
 			//Procesar Pago
 			if($pagoCantidadMonto > 0 )
 			{
