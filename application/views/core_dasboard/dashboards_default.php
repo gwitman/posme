@@ -79,7 +79,7 @@
 									</tr>
 									<tr>
 										<th scope="row">CORE_CUST_PRICE</th>
-										<td><?php echo $objParameterPrice; ?></td>			
+										<td>$ <?php echo number_format($objParameterPrice,2,'.',','); ?></td>			
 									</tr>
 									
 								</tbody>
@@ -131,20 +131,7 @@
 								</a>
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
-						<div class="panel" style="margin-bottom:20px;">
-							<div class="panel-heading">
-								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
-								<h4>Informacion de pago</h4>
-								<a href="#" class="minimize"></a>
-							</div><!-- End .panel-heading -->
 						
-							<div class="panel-body">
-							   <blockquote>									
-									<p>BAC $ 366-577-484</p>
-									<small>posMe</small>
-								</blockquote>
-							</div><!-- End .panel-body -->
-						</div><!-- End .widget -->	
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
@@ -170,20 +157,36 @@
 									<button type="submit" class="btn btn-success btn-block btn-lg m-t-40 hidden-lg-up" id="divPagosMesesBoton" >Pagar</button>
 								</form>
 								<br/>
-								<img class="img-featured" style="width:335px;height:200px" src="<?php echo base_url();?>/img/logos/tarjeta.jpg">
+								<img class="img-featured" style="width:200px;height:50px" src="<?php echo base_url();?>/img/logos/tarjeta.png">
+								<img class="img-featured" style="width:200px;height:80px" src="<?php echo base_url();?>/img/logos/posme.svg">
 							</div><!-- End .panel-body -->
 						</div><!-- End .widget -->	
+						<div class="panel" style="margin-bottom:20px;">
+							<div class="panel-heading">
+								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
+								<h4>Informacion de pago</h4>
+								<a href="#" class="minimize"></a>
+							</div><!-- End .panel-heading -->
+						
+							<div class="panel-body">
+							   <blockquote>									
+									<p>BAC $ 366-577-484</p>
+									<small>posMe</small>
+								</blockquote>
+							</div><!-- End .panel-body -->
+						</div><!-- End .widget -->	
+						<!--
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-health"></i></div> 
 								<h4>posMe</h4>
 								<a href="#" class="minimize"></a>
-							</div><!-- End .panel-heading -->
-						
+							</div>
 							<div class="panel-body">
-								<img class="img-featured" style="width:300px;height:200px" src="<?php echo base_url();?>/img/logos/dashboard_posme.jpeg">
-							</div><!-- End .panel-body -->
-						</div><!-- End .widget -->		
+								<img class="img-featured" style="width:200px;height:80px" src="<?php echo base_url();?>/img/logos/posme.svg">
+							</div>
+						</div>
+						-->
 						<div class="panel" style="margin-bottom:20px;">
 							<div class="panel-heading">
 								<div class="icon"><i class="icon20 i-quotes-left"></i></div> 
