@@ -230,7 +230,7 @@
 		
 		//Seleccionar Checke 
 		$(document).on("click",".classCheckedDetail",function(){
-			var objrow_ = $(this).parent().parent().parent().parent()[0];
+			var objrow_ = $(this).parent().parent()[0];
 			var objind_ = objTableDetailTransaction.fnGetPosition(objrow_);
 			var objdat_ = objTableDetailTransaction.fnGetData(objind_);								
 			objTableDetailTransaction.fnUpdate( !objdat_[0], objind_, 0 );
