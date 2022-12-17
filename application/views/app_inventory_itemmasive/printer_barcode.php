@@ -9,48 +9,34 @@
 				@page{
 					margin:0px 0px 0px 0px;
 					padding:0px;
-				}	
-				@page:first{
-					margin:0px 0px 0px 0px;
-					padding:0px;
-				}				
+					size:5cm 2.5cm
+				}							
 				
 				html{
 					margin:0px 0px 0px 0px;
 					padding:0px;
+					width: 5cm;
+					height: 2.5cm;		
 				}
 
 				body{
 					margin:0px 0px 0px 0px;
 					padding:0px;
+					width: 5cm;
+					height: 2.5cm;		
 				}
-
-
 				
 				div{
-					margin-top: 0px;
-					margin-left: 0px;
-					margin-right: 0px;
-					margin-bottom: 0px;    	
-					width: 5cm;
-					height: 3cm;					
+					margin: auto;    						
 					text-align:center;
+					page-break-before:always;
 				}
 				img {
-					margin:0px 0px 0px 0px;
-					padding:0px;
-					width: 4cm;
+					margin:0.0cm 0cm 0cm 0cm;
+					padding:0cm;
+					width: 3.5cm;
 					height: 1.5cm;					
-				}
-
-				h4 {
-					margin:0px 0px 0px 0px;
-					padding:0px;					
-				}
-				h6 {
-					margin:0px 0px 0px 0px;
-					padding:0px;					
-				}				
+				}						
 				
 				p {
 					margin:0px 0px 0px 0px;
