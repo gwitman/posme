@@ -1,41 +1,62 @@
-<!--
-el formato de esta impresion de codigo de barra es el siguiente,
-impresora de ticket  o termia, con papel de de calcomania de la ssiguientes dimeiciones.
-5.5cm de ancho, colcamania de 5 cm de ancho  (2pulgada)
-				colcamania de 2.5 cm de alto (1plugada)
-				
-separador de calcomania de 0.4 cm
-intrucciones de ingreso.
-poner al orilla izquierda de la impresora.
-con la cara amarilla visible al usuairo.
-la ranura de la separacion de la colcamania , alinearala con
-el relieve de de la impresora. que esta por fuera.
-cantidad de colcamainia  de desperdicio: 4.
-cantidad minimas de codigo:		10.
--->
 <html>
 	<head>
 		<style type="text/css">
 			
+			
+
 			@media all{
+				
 				@page{
-					margin:0px;
+					margin:0px 0px 0px 0px;
+					padding:0px;
+				}	
+				@page:first{
+					margin:0px 0px 0px 0px;
+					padding:0px;
+				}				
+				
+				html{
+					margin:0px 0px 0px 0px;
 					padding:0px;
 				}
-				
-				h4 {
-					margin:0px;
+
+				body{
+					margin:0px 0px 0px 0px;
 					padding:0px;
+				}
+
+
+				
+				div{
+					margin-top: 0px;
+					margin-left: 0px;
+					margin-right: 0px;
+					margin-bottom: 0px;    	
+					width: 5cm;
+					height: 3cm;					
+					text-align:center;
+				}
+				img {
+					margin:0px 0px 0px 0px;
+					padding:0px;
+					width: 4cm;
+					height: 1.5cm;					
+				}
+
+				h4 {
+					margin:0px 0px 0px 0px;
+					padding:0px;					
 				}
 				h6 {
-					margin:0px 0px 15px 0px;
-					padding:0px;
+					margin:0px 0px 0px 0px;
+					padding:0px;					
+				}				
+				
+				p {
+					margin:0px 0px 0px 0px;
+					padding:0px;					
 				}
 				
-				img {
-					margin:0px;
-					padding:0px;
-				}
 				
 			}
 			
@@ -46,9 +67,10 @@ cantidad minimas de codigo:		10.
 		if($objListaItem)
 		foreach($objListaItem as $i){
 		?>
-			<h6>...........</h6>
-			<img width="150px" height="60px" src="<?php echo site_url(); ?>app_inventory_item/popup_add_renderimg/<?php echo $i->companyID; ?>/<?php echo $objComponentItem->componentID; ?>/<?php echo $i->itemID; ?>" />
-			<h4><?php echo strtolower(substr($i->name,0,27)); ?></h4>
+			<div >				
+				<img  src="<?php echo site_url(); ?>app_inventory_item/popup_add_renderimg/<?php echo $i->companyID; ?>/<?php echo $objComponentItem->componentID; ?>/<?php echo $i->itemID; ?>" />
+				<p><?php echo strtolower(substr($i->name,0,27)); ?></p>
+			</div>
 		<?php 
 		}
 		?>

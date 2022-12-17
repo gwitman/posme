@@ -11,7 +11,7 @@ WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CXP_PROVIDER_DEFAULT";## Proveedor por defecto
 
-	
+
 UPDATE  tb_company_parameter,tb_parameter SET 
 	tb_company_parameter.value = "false" 
 WHERE 
@@ -90,7 +90,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "MENSUALIDAD" 
+	tb_company_parameter.value = "MEMBRESIA" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_CUST_PRICE_TIPO_PLAN";## TIPO DE PAGO:  CONSUMIBLE O MENSUALIDAD 
@@ -111,28 +111,28 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_box_canceldocument/viewRegisterFidLocal" 
+	tb_company_parameter.value = "app_box_canceldocument/viewRegisterFormatoPaginaTicket" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "BOX_CANCELDOCUMENT_URL_PRINTER";## URL PARA LA IMPRESION DE CANCELACION 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_box_sharecapital/viewRegisterFidLocal" 
+	tb_company_parameter.value = "app_box_sharecapital/viewRegisterFormatoPaginaTicket" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "BOX_SHARECAPITAL_URL_PRINTER";## URL PARA LA IMPRESION DE ABONOS AL CAPITAL 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_box_share/viewRegisterFidLocal" 
+	tb_company_parameter.value = "app_box_share/viewRegisterFormatoPaginaTicket" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "BOX_SHARE_URL_PRINTER";## URL PARA LA IMPRESION DE ABONOS 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "app_invoice_billing/viewRegisterFidLocal" 
+	tb_company_parameter.value = "app_invoice_billing/viewRegisterFormatoPaginaTicket" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "INVOICE_URL_PRINTER";## URLs PARA LA IMPRESION DE FACTURA 
@@ -160,7 +160,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "0" 
+	tb_company_parameter.value = "1000" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_CUST_PRICE_BALANCE";## Saldo recargado para usar el sistema, estes saldo se consume a medida que se crean facturas. cuando el plan es PREPAGO 
@@ -181,13 +181,6 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "8476-6457" 
-WHERE 
-	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_PROPIETARY_PHONE";## TELEFONO DEL PROPIETARIO 
-				
-				
-UPDATE  tb_company_parameter,tb_parameter SET 
 	tb_company_parameter.value = ";" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
@@ -195,7 +188,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "2022-12-31" 
+	tb_company_parameter.value = "2023-12-15" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_CUST_PRICE_LICENCES_EXPIRED";## Fecha de expiracion de la licencia 
@@ -216,7 +209,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "true" 
+	tb_company_parameter.value = "false" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "INVOICE_BUTTOM_PRINTER_FIDLOCAL_PAYMENT_AND_AMORTIZACION";## Mostrar Calendario de Pago , al momento de imprimir una factura
@@ -279,7 +272,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "00001" 
+	tb_company_parameter.value = "00002" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "INVENTORY_ITEM_WAREHOUSE_DEFAULT";## Bodega por defecto 
@@ -307,7 +300,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "flc-wgonzalez" 
+	tb_company_parameter.value = "flc_victoria_store" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_CXC_WSDL_SIN_RIESGO_USUARIO";## Usuario para conectarse a la sin riesgo 
@@ -398,7 +391,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "1" 
+	tb_company_parameter.value = "43" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_CUST_PRICE";## Precio mensual de la licencia 
@@ -458,28 +451,9 @@ UPDATE  tb_company_parameter,tb_parameter SET
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_PROPIETARY_TITLE";## Titulo del propietario de la empresa 
-				
-				
-UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "Frente a union fenosa" 
-WHERE 
-	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_PROPIETARY_ADDRESS";## la ciudad de Malpaisillo, de la policia nacional 3C.E y 1/2C.S  
-				
-				
-UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "Witman Jose Gonzalez Rostran" 
-WHERE 
-	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_PROPIETARY_NAME";## Witman José González Rostran 
-				
-				
-UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "281-180389-0004R" 
-WHERE 
-	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_PROPIETARY_ID";## CEDULA DEL PROPIETARIO 
-				
+
+
+
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
 	tb_company_parameter.value = "0.4" 
@@ -501,12 +475,7 @@ WHERE
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "SHARE_DOCUMENT_ANULADO";## ESTADO DEL DOCUMENTO DE CREDITO ANULADO 
 				
-				
-UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "8476-6457" 
-WHERE 
-	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_PHONE";## TELEFONO DE LA FACTURACION 
+
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
@@ -556,13 +525,6 @@ UPDATE  tb_company_parameter,tb_parameter SET
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "INVOICE_BILLING_ANULADAS";## FACTURAS EN ESTADOS ANULADAS 
-				
-				
-UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "281-180389-0004R" 
-WHERE 
-	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_COMPANY_IDENTIFIER";## RUC 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
@@ -703,9 +665,55 @@ UPDATE  tb_company_parameter,tb_parameter SET
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_CUST_PRICE_MAX_USER";## MAXIMO NUMERO DE USUARIOS 
+				
+				
+/***************************************************************/
+		
+UPDATE  tb_company_parameter,tb_parameter SET 
+	tb_company_parameter.value = "Reyna Isabel Mondragon Pineda" 
+WHERE 
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = "CORE_PROPIETARY_NAME";## Witman José González Rostran 
+				
+				
+UPDATE  tb_company_parameter,tb_parameter SET 
+	tb_company_parameter.value = "291-060177-0000M" 
+WHERE 
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = "CORE_PROPIETARY_ID";## CEDULA DEL PROPIETARIO 
 
+
+UPDATE  tb_company_parameter,tb_parameter SET 
+	tb_company_parameter.value = "291-060177-0000M" 
+WHERE 
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = "CORE_COMPANY_IDENTIFIER";## RUC 
+				
+				
+UPDATE  tb_company_parameter,tb_parameter SET 
+	tb_company_parameter.value = "TIG. 7849-7840 ||  CL. 8909-2430" 
+WHERE 
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = "CORE_PHONE";## TELEFONO DE LA FACTURACION 
+
+
+UPDATE  tb_company_parameter,tb_parameter SET 
+	tb_company_parameter.value = "TIG. 7849-7840 ||  CL. 8909-2430" 
+WHERE 
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = "CORE_PROPIETARY_PHONE";## TELEFONO DEL PROPIETARIO 
+				
+	
+
+UPDATE  tb_company_parameter,tb_parameter SET 
+	tb_company_parameter.value = "Terminal de Buses Malpaisillo" 
+WHERE 
+	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
+	tb_parameter.name = "CORE_PROPIETARY_ADDRESS";## la ciudad de Malpaisillo, de la policia nacional 3C.E y 1/2C.S  
+							
 
 UPDATE tb_company SET 
-	NAME = 'Fid Local' , address = 'Frente a union fenosa' 
+	NAME = 'Variedades Mondragon' , address = 'Terminal de Buses Malpaisillo' 
 WHERE 
 	companyID = 2; ##Actualizar el nombre de la compania
+
