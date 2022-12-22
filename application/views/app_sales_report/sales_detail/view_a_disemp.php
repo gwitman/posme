@@ -29,7 +29,7 @@
 		<br/>
 		
 		<div class="data_grid_body">
-			<table>
+			<table style="width: 1500px !important;">
 				<thead>
 					<tr>
 						<th class="cell_left">Codigo V.</th>
@@ -40,12 +40,14 @@
 						<th class="cell_left">Cod Cliente</th>
 						<th class="cell_left">Cliente</th>
 						<th class="cell_left">Zona</th>
-						<th class="cell_right">Monto</th>
-						<th class="cell_right">Iva</th>
-						<th class="cell_right">Total</th>
-						<th class="cell_left">Cod. Producto</th>
-						<th class="cell_left">Producto</th>
-						<th class="cell_right">Cantidad</th>						
+						<th class="cell_right">Precio</th>
+						<th class="cell_right">Cantidad</th>
+						<th class="cell_right">Costo</th>
+						<th class="cell_right">Costo Total</th>
+						<th class="cell_right">Monto Total</th>
+						<th class="cell_right">Utilidad</th>						
+						<th class="cell_right" style="width: 120px;">Cod. Producto</th>
+						<th class="cell_left">Producto</th>					
 					</tr>
 				</thead>				
 				<tbody>
@@ -80,23 +82,30 @@
 								echo ($i["zone"]);
 							echo "</td>";
 							echo "<td class='cell_right'>";
-								echo sprintf("%01.2f",$i["amountDocument"]);
+								echo sprintf("%01.2f",$i["unitaryPrice"]);
 							echo "</td>";
 							echo "<td class='cell_right'>";
-								echo sprintf("%01.2f",$i["amountDocument"]);
+								echo sprintf("%01.2f",$i["quantity"]);
 							echo "</td>";
 							echo "<td class='cell_right'>";
-								echo sprintf("%01.2f",$i["amountDocument"]);
+								echo sprintf("%01.2f",$i["unitaryCost"]);
 							echo "</td>";
-							echo "<td class='cell_left'>";
+							echo "<td class='cell_right'>";
+								echo ($i["cost"]);
+							echo "</td>";
+							echo "<td class='cell_right'>";
+								echo ($i["amount"]);
+							echo "</td>";
+							echo "<td class='cell_right'>";
+							echo ( sprintf("%01.2f",$i["amount"] -  $i["cost"] ) );
+							echo "</td>";
+							echo "<td class='cell_right'>";
 								echo ($i["itemNumber"]);
 							echo "</td>";
 							echo "<td class='cell_left'>";
 								echo ($i["itemName"]);
 							echo "</td>";
-							echo "<td class='cell_right'>";
-								echo ($i["quantity"]);
-							echo "</td>";
+						
 						echo "</tr>";
 					}
 					?>

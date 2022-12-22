@@ -430,10 +430,13 @@ class App_Invoice_Billing extends CI_Controller {
 			
 			
 			//Leer archivo
+
 			$path 	= PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentBilling->componentID."/component_item_".$transactionMasterID;			
 			$path 	= $path.'/procesar.csv';
 			$pathNew 	= PATH_FILE_OF_APP."/company_".$companyID."/component_".$objComponentBilling->componentID."/component_item_".$transactionMasterID;			
 			$pathNew 	= $pathNew.'/procesado.csv';
+			log_message("ERROR","archivo de proceso");		
+			log_message("ERROR",print_r($pathNew,true));
 			
 			if (file_exists($path))
 			{
