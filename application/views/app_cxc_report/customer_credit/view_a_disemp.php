@@ -29,16 +29,16 @@
 		
 		<br/>
 		<div class="data_grid_body">
-			<table>
+			<table style="width:2210px !important;">
 				<thead>
 					<tr>
-						<th nowrap class="cell_left" style='width:80px;' >Codigo</th>
-						<th nowrap class="cell_left" style='width:220px;'>Cliente</th>						
-						<th nowrap class="cell_right" style='width:80px;'>Mora</th>
-						<th nowrap class="cell_right" style='width:80px;' >Fac.</th>
-						<th nowrap class="cell_right" style='width:80px;' >Atrasado</th>
-						<th nowrap class="cell_right" style='width:80px;' >F. Prox Pago</th>
-						<th nowrap class="cell_right" style='width:80px;' >Prox Pago</th>						
+						<th nowrap class="cell_left" style='width: 80px;' >Codigo.</th>
+						<th nowrap class="cell_left" style='width: 220px;'>Cliente</th>						
+						<th nowrap class="cell_right" style='width:100px;'>Mora</th>
+						<th nowrap class="cell_right" style='width:160px;' >Fac.</th>
+						<th nowrap class="cell_right" style='width:120px;' >Atrasado</th>
+						<th nowrap class="cell_right" style='width:120px;' >F. Prox Pago</th>
+						<th nowrap class="cell_right" style='width:120px;' >Prox Pago</th>						
 						<th nowrap class="cell_right" style='width:150px;'>F. Cance</th>
 											
 						
@@ -47,7 +47,7 @@
 						<th nowrap class="cell_right" style='width:120px;'>Telefono</th>
 						
 						
-						<th nowrap class="cell_right" style='width:80px;'>Ultima cuota</th>
+						<th nowrap class="cell_right" style='width:120px;'>Ultima cuota</th>
 						
 						<th nowrap class="cell_right" style='width:150px;'>F. Ultima cuota</th>
 						
