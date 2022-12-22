@@ -169,8 +169,8 @@
 										<div class="tab-pane fade" id="dropdown-file">
 											
 										</div>
-									</div>    [
-]							
+									</div>    
+							
 									<br/>
 									<a href="#" class="btn btn-flat btn-info" id="btnNewDetailJournal" >Agregar</a>
 									<a href="#" class="btn btn-flat btn-danger" id="btnDeleteDetailJournal" >Eliminar</a>									
@@ -204,8 +204,8 @@
                                             <ul class="list-unstyled">
                                                 <li><h3>CC: <span class="red-smooth">*</span></h3></li>
                                                 <li><i class="icon16 i-arrow-right-3"></i>Centro de Costo</li>                                                
-                                            </ul>[
-]                                        </div>
+                                            </ul>
+                                        </div>
                                         
                                         <div class="col-lg-6">
                                             <div class="page-header">

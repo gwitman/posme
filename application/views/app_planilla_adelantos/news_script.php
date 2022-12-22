@@ -55,8 +55,8 @@
 						$("#txtTotal").val(fnFormatNumber(total,2));
 					}
 					function onCompleteNewShare(objResponse){
-						console.info("CALL onCompleteNewShare");	[
-]						var objRow 									= {};
+						console.info("CALL onCompleteNewShare");	
+						var objRow 									= {};
 						objRow.checked 								= false;
 						objRow.txtTransactionMasterDetailID 		= 0;
 						objRow.txtEmployeeID						= objResponse[2];	/*companyID*/

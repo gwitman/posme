@@ -105,8 +105,8 @@
                                                 </a>
                                             </li>                                                                                        
                                         </ul>
-                                    </div><!-- End .vital-stats -->[
-]                                </div><!-- End .panel-body -->
+                                    </div><!-- End .vital-stats -->
+                                </div><!-- End .panel-body -->
                             </div><!-- End .widget -->
                         </div><!-- End .col-lg-6  --> 
 						

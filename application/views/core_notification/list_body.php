@@ -18,8 +18,8 @@
 						<div class="btn-group pull-right">
 							<a href="#" class="btn btn-xs btn-info btnRead"><i class="icon12 i-location"></i>Marcar como Leido</a>
 						</div>
-					</div>[
-]					<table class="table table-bordered checkAll">
+					</div>
+					<table class="table table-bordered checkAll">
 						<thead>
 							<tr>
 								<th style="width:10%">#</th>
@@ -45,8 +45,8 @@
 				</div><!-- End .panel-body -->
 			</div><!-- End .panel-body -->
 		</div><!-- End .widget -->
-	</div><!-- End .col-lg-6  -->  [
-]	<div class="col-lg-6">
+	</div><!-- End .col-lg-6  -->  
+	<div class="col-lg-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="icon"><i class="icon20 i-cube"></i></div> 
@@ -64,8 +64,8 @@
 						<div class="btn-group pull-right">
 							<a href="#" class="btn btn-xs btn-info btnRead"><i class="icon12 i-location"></i>Marcar como Leido</a>
 						</div>
-					</div>[
-]					<table class="table table-bordered checkAll">
+					</div>
+					<table class="table table-bordered checkAll">
 						<thead>
 							<tr>
 								<th style="width:10%">#</th>
@@ -114,8 +114,8 @@
 						<div class="btn-group pull-right">
 							<a href="#" class="btn btn-xs btn-info btnRead"><i class="icon12 i-location"></i>Marcar como Leido</a>
 						</div>
-					</div>[
-]					<table class="table table-bordered checkAll">
+					</div>
+					<table class="table table-bordered checkAll">
 						<thead>
 							<tr>
 								<th style="width:10%">#</th>
@@ -162,8 +162,8 @@
 						<div class="btn-group pull-right">
 							<a href="#" class="btn btn-xs btn-info btnRead"><i class="icon12 i-location"></i>Marcar como Leido</a>
 						</div>
-					</div>[
-]					<table class="table table-bordered checkAll">
+					</div>
+					<table class="table table-bordered checkAll">
 						<thead>
 							<tr>
 								<th style="width:10%">#</th>
@@ -211,8 +211,8 @@
 						<div class="btn-group pull-right">
 							<a href="#" class="btn btn-xs btn-info btnRead"><i class="icon12 i-location"></i>Marcar como Leido</a>
 						</div>
-					</div>[
-]					<table class="table table-bordered checkAll">
+					</div>
+					<table class="table table-bordered checkAll">
 						<thead>
 							<tr>
 								<th style="width:10%">#</th>
@@ -238,6 +238,6 @@
 				</div><!-- End .panel-body -->
 			</div><!-- End .panel-body -->
 		</div><!-- End .widget -->
-	</div><!-- End .col-lg-6  -->  [
-]</div><!-- End .row-fluid  -->
+	</div><!-- End .col-lg-6  -->  
+</div><!-- End .row-fluid  -->
 			

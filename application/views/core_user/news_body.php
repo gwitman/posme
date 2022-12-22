@@ -18,8 +18,8 @@
 	                                  <h4>Formulario de Datos</h4>
 	                                  <a href="#" class="minimize"></a>
                                 </div>
-                                <!-- /panel widget -->[
-]								<!-- body widget -->
+                                <!-- /panel widget -->
+								<!-- body widget -->
                                 <div class="panel-body noPadding">
 									<!--tab-->
 									<ul id="myTab" class="nav nav-tabs">
@@ -55,8 +55,8 @@
 																				<div class="col-lg-10">
 																					<input class="form-control"  type="text" name="txtEmail" id="txtEmail" value="">												
 																				</div>
-																		</div>[
-]																		<div class="form-group">
+																		</div>
+																		<div class="form-group">
 																			<label class="col-lg-2 control-label" for="selectFilter">Rol</label>
 																			<div class="col-lg-10">
 																				<select name="txtRoleID" id="txtRoleID" class="select2">
@@ -92,8 +92,8 @@
 																					
 																				</div>
 																			</div>
-																		</div>[
-]																		
+																		</div>
+																		
 																	</fieldset> 
 															</div>
 														</div>

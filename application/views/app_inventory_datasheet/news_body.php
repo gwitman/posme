@@ -62,8 +62,8 @@
 																	
 																</div>
 															</div>
-														</div>[
-]													
+														</div>
+													
 														<div class="form-group">
 																<label class="col-lg-4 control-label" for="normal">Nombre</label>
 																<div class="col-lg-8">
@@ -139,8 +139,8 @@
 											
 											
 										</div>										
-									</div>    [
-]							 
+									</div>    
+							 
                                 </div>
 								</form>
 								<!-- /body -->

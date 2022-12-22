@@ -59,8 +59,8 @@
 									},
 									defaultTheme: false
 								}
-							};   [
-]							$.ajax({									
+							};   
+							$.ajax({									
 								cache       : false,
 								dataType    : 'json',
 								type        : 'POST',
@@ -79,8 +79,8 @@
 											label	: "Saldo", 
 											data	: d1,
 											lines	: {fillColor: "#f3faff"}
-										}[
-]									], options);
+										}
+									], options);
 									
 								},
 								error:function(xhr,data){	

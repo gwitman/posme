@@ -77,8 +77,8 @@
 									fechaFinal = moment(fechaInicial,"YYYY-MM-DD").add("days",-1,0).format("YYYY-MM-DD");
 									$($("#tbody_detail .txtCycleEndOn")[index]).val(fechaFinal);
 									
-								});[
-]								
+								});
+								
 								$("#"+id).select2({placeholder: "seleccionar..."}); 
 								$("[type='checkbox'], [type='radio'], [type='file'], select").not('.toggle, .select2, .multiselect').uniform();
 								

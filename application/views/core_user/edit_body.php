@@ -19,8 +19,8 @@
 	                                  <h4>Formulario de Datos</h4>
 	                                  <a href="#" class="minimize"></a>
                                 </div>
-                                <!-- /panel widget -->[
-]								<!-- body widget -->
+                                <!-- /panel widget -->
+								<!-- body widget -->
                                 <div class="panel-body noPadding">
 									<!--tab-->
 									<ul id="myTab" class="nav nav-tabs">

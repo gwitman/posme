@@ -4,21 +4,21 @@
 		<meta charset="utf-8">
 		<title>APPNS system</title>
 		<meta name="viewport" 			content="width=device-width, initial-scale=1.0">
-		<meta name="application-name" 	content="berp" /> [
-]		<!-- CSS
+		<meta name="application-name" 	content="berp" /> 
+		<!-- CSS
 		================================================== 
 		-->	
 		
 		<link href='<?php echo site_url(); ?>theme-genyx/css/family_open_sans_400_800_700.css' rel='stylesheet' type='text/css'>		
-		<link href='<?php echo site_url(); ?>theme-genyx/css/family_droid_sans_400_700.css' rel='stylesheet' type='text/css' />[
-]		 <!--[if lt IE 9]>
+		<link href='<?php echo site_url(); ?>theme-genyx/css/family_droid_sans_400_700.css' rel='stylesheet' type='text/css' />
+		 <!--[if lt IE 9]>
 		<link href="<?php echo site_url(); ?>theme-genyx/css/family_open_sans_400.css"  rel="stylesheet" type="text/css" />
 		<link href="<?php echo site_url(); ?>theme-genyx/css/family_open_sans_700.css"  rel="stylesheet" type="text/css" />
 		<link href="<?php echo site_url(); ?>theme-genyx/css/family_open_sans_800.css"  rel="stylesheet" type="text/css" />
 		<link href="<?php echo site_url(); ?>theme-genyx/css/family_droid_sans_400.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo site_url(); ?>theme-genyx/css/family_droid_sans_700.css" rel="stylesheet" type="text/css" />
-		<![endif]-->[
-]		<link href="<?php echo site_url(); ?>theme-genyx/js/plugins/upload/plupload/jquery.plupload.queue/css/jquery.plupload.queue.css" rel="stylesheet" />
+		<![endif]-->
+		<link href="<?php echo site_url(); ?>theme-genyx/js/plugins/upload/plupload/jquery.plupload.queue/css/jquery.plupload.queue.css" rel="stylesheet" />
 		<link href="<?php echo site_url(); ?>theme-genyx/js/jquery-version/jquery-ui-1.8.18.css" rel="stylesheet" />
 		<link href="<?php echo site_url(); ?>theme-genyx/js/plugins/upload/elfinder/css/elfinder.min.css" rel="stylesheet" /> 		
 		<link href="<?php echo site_url(); ?>theme-genyx/js/plugins/upload/elfinder/css/theme.css" rel="stylesheet" /> 		
@@ -45,8 +45,8 @@
 				var elf = $('#elfinder').elfinder({	
 					lang: 'es',		
 					url : '<?php echo site_url(); ?>core_elfinder/load_elfinder/componentID/<?php echo $componentID; ?>/componentItemID/<?php echo $componentItemID; ?>'  // connector URL (REQUIRED)
-				}).elfinder('instance');[
-]				//-------------  Plupload uploader -------------//
+				}).elfinder('instance');
+				//-------------  Plupload uploader -------------//
 				$("#uploader").pluploadQueue({
 					// General settings
 					runtimes 		: 'html5,html4', 
@@ -63,8 +63,8 @@
 					rename			: true,
 					
 					// Sort files
-					sortable		: true,[
-]					// Specify what files to browse for
+					sortable		: true,
+					// Specify what files to browse for
 					filters 		: [
 						{title : "Imagenes", extensions : "jpg,jpeg,gif,png"},
 						{title : "Documentos", extensions : "pdf,docx,txt"}						

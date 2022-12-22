@@ -89,8 +89,8 @@
 						$("#txtTotal").val(total);
 					}
 					function onCompleteNewShare(objResponse){
-						console.info("CALL onCompleteNewShare");	[
-]						var objRow 						= {};
+						console.info("CALL onCompleteNewShare");	
+						var objRow 						= {};
 						objRow.checked 					= false;
 						objRow.transactionMasterDetail 	= 0;
 						objRow.customerCreditDocumentID = objResponse[0];	/*customerCreditDocumentID*/

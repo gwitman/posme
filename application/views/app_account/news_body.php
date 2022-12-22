@@ -21,8 +21,8 @@
 	                                  <h4>Formulario de Datos</h4>
 	                                  <a href="#" class="minimize"></a>
                                 </div>
-                                <!-- /panel widget -->[
-]								<!-- body widget -->
+                                <!-- /panel widget -->
+								<!-- body widget -->
                                 <div class="panel-body noPadding">
 									<!-- body -->
 									<div class="email-wrapper" style="padding:15px 15px 15px 15px;padding-left:15px">
@@ -126,8 +126,8 @@
 															<label class="checkbox-inline">
 																<input type="checkbox" id="txtIsOperative" name="txtIsOperative" value="1" >
 															</label>													
-														</div>[
-]												
+														</div>
+												
 													</fieldset> 
 												</form>
 												<!-- /formulario -->

@@ -5,8 +5,8 @@
 							var periodID 			=	$("#txtMayorizatePeriod").val();
 							var cycleStartID		=	$("#txtMayorizateCicleStart").val();	
 							var cycleEndID			=	$("#txtMayorizateCicleEnd").val();	
-							var accountID			=	$("#txtAccount").val();	[
-]							if(!(periodID == "" || cycleStartID == "" || cycleEndID == "" || accountID == "") ){
+							var accountID			=	$("#txtAccount").val();	
+							if(!(periodID == "" || cycleStartID == "" || cycleEndID == "" || accountID == "") ){
 								fnWaitOpen();
 								window.location	= "<?php echo site_url(); ?>app_accounting_report/auxiliar_de_cuenta/viewReport/true/periodID/"+periodID+"/cycleStartID/"+cycleStartID+"/cycleEndID/"+cycleEndID+"/accountID/"+accountID;
 							}

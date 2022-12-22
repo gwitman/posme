@@ -76,8 +76,8 @@
 							echo "</td>";
 							echo "<td nowrap class='cell_left'>";
 								echo "<a href='".site_url()."app_collection_report/document_credit/viewReport/true/documentNumber/".$i["Factura"]."' >".$i["Factura"]."</a>";
-							echo "</td>";[
-]							echo "<td nowrap class='cell_right'>";
+							echo "</td>";
+							echo "<td nowrap class='cell_right'>";
 								echo ($i["dias_atrazo"]);
 							echo "</td>";
 							echo "<td nowrap class='cell_right'>";
