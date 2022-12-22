@@ -432,10 +432,10 @@
 				foreach($objListWorkflowStage as $ws){					
 					$counter++;
 					if($counter == 1){
-					echo "<a href='#' class='btn btn-flat btn-inverse btnAcept'  data-valueworkflow='".$ws->workflowStageID."'   > <i class='icon16 i-checkmark-4'></i>  ".$ws->name."</a> ";							
+					echo "<a href='#' class='btn btn-flat btn-warning btnAcept'  data-valueworkflow='".$ws->workflowStageID."'   > <i class='icon16 i-checkmark-4'></i>  ".$ws->name."</a> ";							
 					}
 					else{
-					echo "<a href='#' class='btn btn-flat btn-success btnAcept' data-valueworkflow='".$ws->workflowStageID."'  > <i class='icon16 i-checkmark-4'></i>  ".$ws->name."</a> ";
+					echo "<a href='#' class='btn btn-flat btn-warning btnAcept' data-valueworkflow='".$ws->workflowStageID."'  > <i class='icon16 i-checkmark-4'></i>  ".$ws->name."</a> ";
 					}
 				}
 				?>

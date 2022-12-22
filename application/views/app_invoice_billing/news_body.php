@@ -409,7 +409,7 @@
 				<a href="#" class="btn btn-flat btn-danger" id="btnDeleteItem" ><i class="icon16 i-print"></i> ELIMINAR PRO</a>	
 				<a href="#" class="btn btn-flat btn-success" id="btnNewItemCatalog" ><i class="icon16 i-print"></i> NUEVO PRO</a>
 				<a href="<?php echo site_url(); ?>app_invoice_billing/index" id="btnBack" class="btn btn-inverse" ><i class="icon16 i-rotate"></i> REGRESAR</a>
-				<a href="#" class="btn btn-success" id="btnAcept"><i class="icon16 i-checkmark-4"></i> GUARDAR</a>
+				<a href="#" class="btn btn-warning" id="btnAcept"><i class="icon16 i-checkmark-4"></i> REGISTRAR</a>
 				<input class="form-control"  type="text"  name="txtScanerCodigo" id="txtScanerCodigo" value="" >
 				
 														

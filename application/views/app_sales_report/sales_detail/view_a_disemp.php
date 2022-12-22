@@ -45,11 +45,7 @@
 						<th class="cell_right">Total</th>
 						<th class="cell_left">Cod. Producto</th>
 						<th class="cell_left">Producto</th>
-						<th class="cell_right">Cantidad</th>
-						<th class="cell_right">Precio</th>
-						<th class="cell_right">Iva</th>
-						<th class="cell_right">Monto</th>
-						<th class="cell_right">Total</th>
+						<th class="cell_right">Cantidad</th>						
 					</tr>
 				</thead>				
 				<tbody>
@@ -100,18 +96,6 @@
 							echo "</td>";
 							echo "<td class='cell_right'>";
 								echo ($i["quantity"]);
-							echo "</td>";
-							echo "<td class='cell_right'>";
-								echo ($i["unitaryPriceCajero"]);
-							echo "</td>";
-							echo "<td class='cell_right'>";
-								echo ($i["impuestoCajero"]);
-							echo "</td>";
-							echo "<td class='cell_right'>";
-								echo ($i["amountCajero"]);
-							echo "</td>";
-							echo "<td class='cell_right'>";
-								echo ($i["amountCajero"]);
 							echo "</td>";
 						echo "</tr>";
 					}
