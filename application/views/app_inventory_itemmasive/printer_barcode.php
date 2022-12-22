@@ -90,14 +90,14 @@
         		?>
 					<div class="firts" >				
 						<img  src="<?php echo site_url(); ?>app_inventory_item/popup_add_renderimg/<?php echo $i->companyID; ?>/<?php echo $objComponentItem->componentID; ?>/<?php echo $i->itemID; ?>" />
-						<p><?php echo strtolower(substr($i->name.$index, 0, 27)); ?></p>
+						<p><?php echo strtolower(substr($i->name, 0, 27)); ?></p>
 					</div>
 				<?php
 		        } else {
                 ?>
 					<div class="midle" >				
 						<img  src="<?php echo site_url(); ?>app_inventory_item/popup_add_renderimg/<?php echo $i->companyID; ?>/<?php echo $objComponentItem->componentID; ?>/<?php echo $i->itemID; ?>" />
-						<p><?php echo strtolower(substr($i->name.$index, 0, 27)); ?></p>
+						<p><?php echo strtolower(substr($i->name, 0, 27)); ?></p>
 					</div>
 				<?php
 		        }
