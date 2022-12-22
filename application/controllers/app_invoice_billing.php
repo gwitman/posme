@@ -1915,12 +1915,16 @@ class App_Invoice_Billing extends CI_Controller {
 			$cedulaCliente = $datView["objTMI"]->referenceClientIdentifier == "" ? $datView["objCustumer"]->customerNumber :  $datView["objTMI"]->referenceClientIdentifier;
 			$nombreCliente = $datView["objTMI"]->referenceClientName  == "" ? $datView["objCustumer"]->firstName : $datView["objTMI"]->referenceClientName ;
 			
+			$facturaTipo   = $datView["objTipo"]->name;
+			$facturaEstado = $datView["objStage"][0]->display;
+			$facturaEstado = $facturaTipo == "CREDITO" ? "CREDITO": $facturaEstado;
+			
 			$data = array( 
 				array('field1'=>'Fecha'			,'field2'=>$datView["objTM"]->createdOn	 		) ,
-				array('field1'=>'Estado'		,'field2'=>$datView["objStage"][0]->display	 		) ,
-				array('field1'=>'Vendedor'		,'field2'=>$datView["objUser"]->nickname     		) ,
+				array('field1'=>'Estado'		,'field2'=>$facturaEstado) ,
+				array('field1'=>'Vendedor'		,'field2'=>substr($datView["objUser"]->nickname."",0,15)) ,
 				//array('field1'=>'Tienda'		,'field2'=>$datView["objBranch"]->name   	 		) ,
-				array('field1'=>'Tipo'			,'field2'=>$datView["objTipo"]->name   	 			) ,
+				array('field1'=>'Tipo'			,'field2'=>$facturaTipo) ,
 				//array('field1'=>'Tipo Cambio'	,'field2'=>$prefixCurrency.$datView["objTM"]->exchangeRate) ,
 				array('field1'=>'Cliente'		,'field2'=>$cedulaCliente   ) ,
 				array('field1'=>'Nombre'		,'field2'=>$nombreCliente	) 

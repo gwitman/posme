@@ -461,7 +461,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "Iglesia el calbario 5c. oeste. y 1/2c. sur" 
+	tb_company_parameter.value = "Iglesia el calvario 5c. oeste. y 1/2c. sur" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_PROPIETARY_ADDRESS";## la ciudad de Malpaisillo, de la policia nacional 3C.E y 1/2C.S  
@@ -706,6 +706,6 @@ WHERE
 
 
 UPDATE tb_company SET 
-	NAME = 'Victoria Store' , address = 'Iglesia el calbario 5c. oeste. y 1/2c. sur' 
+	NAME = 'Victoria Store' , address = 'Iglesia el calvario 5c. oeste. y 1/2c. sur' 
 WHERE 
 	companyID = 2; ##Actualizar el nombre de la compania
