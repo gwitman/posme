@@ -693,35 +693,35 @@ WHERE
 /***************************************************************/
 		
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "Reyna Isabel Mondragon Pineda" 
+	tb_company_parameter.value = "Antonio Jose Delgado Melendez" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_PROPIETARY_NAME";## Witman José González Rostran 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "291-060177-0000M" 
+	tb_company_parameter.value = "081-040573-0000D" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_PROPIETARY_ID";## CEDULA DEL PROPIETARIO 
 
 
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "291-060177-0000M" 
+	tb_company_parameter.value = "081-040573-0000D" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_COMPANY_IDENTIFIER";## RUC 
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "TIG. 7849-7840 ||  CL. 8909-2430" 
+	tb_company_parameter.value = "TIGO: 8975-7526 | CLARO: 8704-3636" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_PHONE";## TELEFONO DE LA FACTURACION 
 
 
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "TIG. 7849-7840 ||  CL. 8909-2430" 
+	tb_company_parameter.value = "TIGO: 8975-7526 | CLARO: 8704-3636" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_PROPIETARY_PHONE";## TELEFONO DEL PROPIETARIO 
@@ -729,13 +729,13 @@ WHERE
 	
 
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "Terminal de Buses Malpaisillo" 
+	tb_company_parameter.value = "Chinandega, San Agustin 1c al sur" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_PROPIETARY_ADDRESS";## la ciudad de Malpaisillo, de la policia nacional 3C.E y 1/2C.S  
 							
 
 UPDATE tb_company SET 
-	NAME = 'Variedades Mondragon' , address = 'Terminal de Buses Malpaisillo' 
+	NAME = 'LABORATORIO LA-VID' , address = 'Chinandega, San Agustin 1c al sur' 
 WHERE 
 	companyID = 2; ##Actualizar el nombre de la compania
