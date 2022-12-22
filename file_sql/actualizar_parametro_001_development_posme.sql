@@ -300,7 +300,7 @@ WHERE
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
-	tb_company_parameter.value = "https://www.sinriesgos.com.ni/ServiceFacade/servicios.asmx?wsdl" 
+	tb_company_parameter.value = "https://www.sinriesgos.com.ni/wsactualizar/servicios.asmx?wsdl" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
 	tb_parameter.name = "CORE_CXC_WSDL_SIN_RIESGO_UPLOAD";## Urls para cargar la informacio de los deudores a ala sin riesgo 
