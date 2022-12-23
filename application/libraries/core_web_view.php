@@ -51,6 +51,8 @@ class core_web_view {
 		}		
 		
 		$queryFill					= str_replace("{filterPermission}", $filterPermission, $queryFill);
+
+		//log_message('ERROR',$queryFill);
 		$dataRecordSet				= $this->CI->Bd_Model->executeRender($queryFill);
 		$dataResult["view_config"]	= $companyDataView;
 		$dataResult["view_data"]	= $dataRecordSet;
