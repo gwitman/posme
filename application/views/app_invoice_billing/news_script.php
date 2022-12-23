@@ -2,8 +2,9 @@
 <script>					
 	var objTableDetail 						= {};	
 	var objListaProductos					= {};
+	var objSearchProductosOpen				= false;
 	var varPermitirFacturarProductosEnZero	= '<?php echo $objParameterInvoiceBillingQuantityZero; ?>';
-	var varPermisos				= JSON.parse('<?php echo json_encode($objListaPermisos); ?>');
+	var varPermisos							= JSON.parse('<?php echo json_encode($objListaPermisos); ?>');
 	var varPermisosEsPermitidoModificarPrecio = 
 		jLinq.from(varPermisos).where(function(obj){ return obj.display == "ES_PERMITIDO_MODIFICAR_PRECIO_EN_FACTURACION"}).select().length > 0 ?
 		true:
@@ -225,9 +226,13 @@
 		});
 		
 		$(document).on("click","#btnNewItem",function(){
-			var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI("{\"warehouseID\"|\"<?php echo $warehouseID ?>\"{}\"listPriceID\"|\"<?php echo $objListPrice->listPriceID; ?>\"{}\"typePriceID\"|\""+ $("#txtTypePriceID").val() + "\"}");
-			window.open(url_request,"MsgWindow","width=900,height=450");
-			window.onCompleteNewItem 	= onCompleteNewItem; 
+
+			if(objSearchProductosOpen 				== false){
+				objSearchProductosOpen 		= true;
+				var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI("{\"warehouseID\"|\"<?php echo $warehouseID ?>\"{}\"listPriceID\"|\"<?php echo $objListPrice->listPriceID; ?>\"{}\"typePriceID\"|\""+ $("#txtTypePriceID").val() + "\"}");
+				window.open(url_request,"MsgWindow","width=900,height=450");
+				window.onCompleteNewItem 	= onCompleteNewItem; 
+			}
 		});
 
 		$(document).on("click","#btnNewItemCatalog",function(){
@@ -323,7 +328,9 @@
 	}
 	function onCompleteNewItem(objResponse){
 		console.info("CALL onCompleteNewItem");
-		var objRow 							= {};
+
+		
+		var objRow 							= {};		
 		objRow.checked 						= false;						
 		objRow.transactionMasterDetailID 	= 0;
 		objRow.itemID						= objResponse[5];

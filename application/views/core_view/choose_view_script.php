@@ -9,6 +9,8 @@
 					window.opener.fn_aceptCallback(undefined); 
 					else
 					window.opener.fn_aceptCallback(data); 
+
+					
 					window.close(); 
 			});
 	});     

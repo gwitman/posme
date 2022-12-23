@@ -56,6 +56,7 @@ class core_view extends CI_Controller {
 
 			log_message('ERROR',"presentar informacion");
 			$dataView["fnCallback"] 	= $fnCallback;
+			$dataView["viewname"] 		= $viewname;
 			
 			log_message('ERROR',print_r($dataView,true));
 			log_message('ERROR',print_r($dataViewRender,true));

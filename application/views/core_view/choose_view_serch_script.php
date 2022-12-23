@@ -11,7 +11,15 @@
 					window.opener.<?php echo $fnCallback;?>(undefined); 
 					else
 					window.opener.<?php echo $fnCallback;?>(data); 
-					window.close(); 
+
+
+
+					var viewName = '<?php echo $viewname;?>';
+					//window.close(); 
+			});
+
+			$(window).unload(function() {
+				window.opener.objSearchProductosOpen = false;
 			});
 	});     
 </script>
