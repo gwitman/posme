@@ -130,16 +130,6 @@
 									</div>
 								</div>
 								
-								
-								<div class="form-group">
-									<label class="col-lg-4 control-label" for="selectFilter">Linea</label>
-									<div class="col-lg-8">
-										<select name="txtCustomerCreditLineID" id="txtCustomerCreditLineID" class="select2">
-										</select>
-									</div>
-								</div>
-								
-								
 								<div class="form-group">
 									<label class="col-lg-4 control-label" for="selectFilter">Tipo</label>
 									<div class="col-lg-8">
@@ -156,6 +146,10 @@
 										</select>
 									</div>
 								</div>
+								
+								
+								
+								
 								<div class="form-group">
 										<label class="col-lg-4 control-label" for="normal">Cliente</label>
 										<div class="col-lg-8">
@@ -169,6 +163,15 @@
 											<input class="form-control"   type="text" name="txtReferenceClientIdentifier" id="txtReferenceClientIdentifier" value="<?php echo $objTransactionMasterInfo->referenceClientIdentifier; ?>">
 										</div>
 								</div>
+
+								<div class="form-group hidden" id="divLineaCredit">
+									<label class="col-lg-4 control-label" for="selectFilter">Línea de Crédito</label>
+									<div class="col-lg-8">
+										<select name="txtCustomerCreditLineID" id="txtCustomerCreditLineID" class="select2">
+										</select>
+									</div>
+								</div>
+								
 								
 								
 								

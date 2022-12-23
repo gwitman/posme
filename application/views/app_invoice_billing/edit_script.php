@@ -319,6 +319,11 @@
 		$(document).on("change","#txtTypePriceID,#txtCausalID,#txtCustomerCreditLineID",function(){
 			fnClearData();
 		});
+
+		$(document).on("change","#txtCausalID",function(){
+			fnRenderLineaCreditoDiv();
+		});
+
 		$(document).on("change","input.txtQuantity",function(){
 			fnRecalculateDetail(true);
 		});
@@ -530,6 +535,8 @@
 		$("#txtCustomerCreditLineID").select2();
 		$("#txtCausalID").select2();
 		refreschChecked();
+
+		fnRenderLineaCreditoDiv();
 	}
 	//Nuevo Producto
 	function onCompleteNewItem(objResponse){
@@ -834,6 +841,31 @@
 					fnWaitOpen();
 					$( "#form-new-invoice" ).submit();
 				}				
-	}		
+	}	
+	function fnRenderLineaCreditoDiv(){
+			//Si es de credito que la factura no supere la linea de credito
+			var causalSelect 				= $("#txtCausalID").val();
+			var customerCreditLineID 		= $("#txtCustomerCreditLineID").val();
+			var objCustomerCreditLine 		= jLinq.from(tmpInfoClient.objListCustomerCreditLine).where(function(obj){ return obj.customerCreditLineID == customerCreditLineID; }).select();
+			var causalCredit 				= tmpInfoClient.objCausalTypeCredit.value.split(",");
+			var invoiceTypeCredit 			= false;
+		
+		
+			//Obtener si la factura es al credito						
+			for(var i=0;i<causalCredit.length;i++){
+				if(causalCredit[i] == causalSelect){
+					invoiceTypeCredit = true;
+				}
+			}
+			
+
+			if(invoiceTypeCredit ){
+				$("#divLineaCredit").removeClass("hidden");
+			}
+			else{
+				$("#divLineaCredit").addClass("hidden");				
+			}
+
+	}	
 </script>
 <script>  (function(g,u,i,d,e,s){g[e]=g[e]||[];var f=u.getElementsByTagName(i)[0];var k=u.createElement(i);k.async=true;k.src='https://static.userguiding.com/media/user-guiding-'+s+'-embedded.js';f.parentNode.insertBefore(k,f);if(g[d])return;var ug=g[d]={q:[]};ug.c=function(n){return function(){ug.q.push([n,arguments])};};var m=['previewGuide','finishPreview','track','identify','triggerNps','hideChecklist','launchChecklist'];for(var j=0;j<m.length;j+=1){ug[m[j]]=ug.c(m[j]);}})(window,document,'script','userGuiding','userGuidingLayer','744100086ID'); </script>
