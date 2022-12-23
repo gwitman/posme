@@ -80,19 +80,19 @@
 															</div>
 													</div>
 													<div class="form-group">
-															<label class="col-lg-4 control-label" for="normal">*Segundo Nombre</label>
+															<label class="col-lg-4 control-label text-primary" for="normal">*Segundo Nombre</label>
 															<div class="col-lg-8">
 																<input class="form-control"  type="text"  name="txtLastName" id="txtLastName" value="<?php echo $objNatural->lastName; ?>">												
 															</div>
 													</div>
 													<div class="form-group">
-															<label class="col-lg-4 control-label" for="normal">*Nombre Legal</label>
+															<label class="col-lg-4 control-label text-primary" for="normal">*Nombre Legal</label>
 															<div class="col-lg-8">
 																<input class="form-control"  type="text"  name="txtLegalName" id="txtLegalName" value="<?php echo $objLegal->legalName; ?>">					
 															</div>
 													</div>
 													<div class="form-group">
-															<label class="col-lg-4 control-label" for="normal">*Nombre Comercial</label>
+															<label class="col-lg-4 control-label text-primary" for="normal">*Nombre Comercial</label>
 															<div class="col-lg-8">
 																<input class="form-control"  type="text"  name="txtCommercialName" id="txtCommercialName" value="<?php echo $objLegal->comercialName; ?>">
 															</div>

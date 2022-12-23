@@ -717,14 +717,23 @@
 		}
 		
 		//Nombre
-		if( 
-			(
-			$("#txtFirstName").val()  + 
-			$("#txtLastName").val()   + 
-			$("#txtLegalName").val()  + 
-			$("#txtCommercialName").val() 
-			)  == ""){
-			fnShowNotification("Escribir el Nombre","error",timerNotification);
+		if( $("#txtFirstName").val()   == ""){
+			fnShowNotification("Escribir Primer Nombre","error",timerNotification);
+			result = false;
+		}
+
+		if( $("#txtLastName").val()  == ""){
+			fnShowNotification("Escribir Segundo Nombre","error",timerNotification);
+			result = false;
+		}
+
+		if( $("#txtLegalName").val()  == ""){
+			fnShowNotification("Escribir Nombre Legal","error",timerNotification);
+			result = false;
+		}
+
+		if( $("#txtCommercialName").val()  == ""){
+			fnShowNotification("Escribir Nombre Comercial","error",timerNotification);
 			result = false;
 		}
 		

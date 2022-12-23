@@ -23,7 +23,7 @@ class Item_Model extends CI_Model  {
 		return $result ? $autoIncrement : $result; 
    }
    function get_rowByCode($companyID,$itemNumber){
-		$this->db->select("i.companyID, i.branchID, i.inventoryCategoryID, i.itemID, i.familyID, i.itemNumber, i.barCode, i.name, i.description, i.unitMeasureID, i.displayID, i.capacity, i.displayUnitMeasureID, i.defaultWarehouseID, i.quantity, i.quantityMax, i.quantityMin, i.cost, i.reference1, i.reference2, i.statusID, i.isPerishable, i.factorBox, i.factorProgram, i.createdIn, i.createdAt, i.createdBy, i.createdOn, i.isActive,i.isInvoiceQuantityZero ");
+		$this->db->select("i.companyID, i.branchID, i.inventoryCategoryID, i.itemID, i.familyID, i.itemNumber, i.barCode, i.name, i.description, i.unitMeasureID, i.displayID, i.capacity, i.displayUnitMeasureID, i.defaultWarehouseID, i.quantity, i.quantityMax, i.quantityMin, i.cost, i.reference1, i.reference2, i.statusID, i.isPerishable, i.factorBox, i.factorProgram, i.createdIn, i.createdAt, i.createdBy, i.createdOn, i.isActive,i.isInvoiceQuantityZero,i.isServices ");
 		$this->db->from("tb_item i");		
 		$this->db->where("i.companyID",$companyID);
 		$this->db->where("i.itemNumber",$itemNumber);
@@ -43,7 +43,7 @@ class Item_Model extends CI_Model  {
 		return $recordSet->row();
    }
    function get_rowByPK($companyID,$itemID){    
-		$this->db->select("i.companyID, i.branchID, i.inventoryCategoryID, i.itemID, i.familyID, i.itemNumber, i.barCode, i.name, i.description, i.unitMeasureID, i.displayID, i.capacity, i.displayUnitMeasureID, i.defaultWarehouseID, i.quantity, i.quantityMax, i.quantityMin, i.cost, i.reference1, i.reference2, i.statusID, i.isPerishable, i.factorBox, i.factorProgram, i.createdIn, i.createdAt, i.createdBy, i.createdOn, i.isActive,i.isInvoiceQuantityZero");
+		$this->db->select("i.companyID, i.branchID, i.inventoryCategoryID, i.itemID, i.familyID, i.itemNumber, i.barCode, i.name, i.description, i.unitMeasureID, i.displayID, i.capacity, i.displayUnitMeasureID, i.defaultWarehouseID, i.quantity, i.quantityMax, i.quantityMin, i.cost, i.reference1, i.reference2, i.statusID, i.isPerishable, i.factorBox, i.factorProgram, i.createdIn, i.createdAt, i.createdBy, i.createdOn, i.isActive,i.isInvoiceQuantityZero,i.isServices");
 		$this->db->from("tb_item i");		
 		$this->db->where("i.companyID",$companyID);
 		$this->db->where("i.itemID",$itemID);
@@ -64,7 +64,7 @@ class Item_Model extends CI_Model  {
    }
    
    function get_rowsByPK($companyID,$listItem){    
-		$this->db->select("i.companyID, i.branchID, i.inventoryCategoryID, i.itemID, i.familyID, i.itemNumber, i.barCode, i.name, i.description, i.unitMeasureID, i.displayID, i.capacity, i.displayUnitMeasureID, i.defaultWarehouseID, i.quantity, i.quantityMax, i.quantityMin, i.cost, i.reference1, i.reference2, i.statusID, i.isPerishable, i.factorBox, i.factorProgram, i.createdIn, i.createdAt, i.createdBy, i.createdOn, i.isActive,i.isInvoiceQuantityZero");
+		$this->db->select("i.companyID, i.branchID, i.inventoryCategoryID, i.itemID, i.familyID, i.itemNumber, i.barCode, i.name, i.description, i.unitMeasureID, i.displayID, i.capacity, i.displayUnitMeasureID, i.defaultWarehouseID, i.quantity, i.quantityMax, i.quantityMin, i.cost, i.reference1, i.reference2, i.statusID, i.isPerishable, i.factorBox, i.factorProgram, i.createdIn, i.createdAt, i.createdBy, i.createdOn, i.isActive,i.isInvoiceQuantityZero,i.isServices");
 		$this->db->from("tb_item i");		
 		$this->db->where("i.companyID",$companyID);
 		$this->db->where_in("i.itemID",$listItem);
@@ -86,7 +86,7 @@ class Item_Model extends CI_Model  {
 		return $recordSet->result();
    }
    function get_rowByCompany($companyID){    
-		$this->db->select("i.companyID, i.branchID, i.inventoryCategoryID, i.itemID, i.familyID, i.itemNumber, i.barCode, i.name, i.description, i.unitMeasureID, i.displayID, i.capacity, i.displayUnitMeasureID, i.defaultWarehouseID, i.quantity, i.quantityMax, i.quantityMin, i.cost, i.reference1, i.reference2, i.statusID, i.isPerishable, i.factorBox, i.factorProgram, i.createdIn, i.createdAt, i.createdBy, i.createdOn, i.isActive,i.isInvoiceQuantityZero");
+		$this->db->select("i.companyID, i.branchID, i.inventoryCategoryID, i.itemID, i.familyID, i.itemNumber, i.barCode, i.name, i.description, i.unitMeasureID, i.displayID, i.capacity, i.displayUnitMeasureID, i.defaultWarehouseID, i.quantity, i.quantityMax, i.quantityMin, i.cost, i.reference1, i.reference2, i.statusID, i.isPerishable, i.factorBox, i.factorProgram, i.createdIn, i.createdAt, i.createdBy, i.createdOn, i.isActive,i.isInvoiceQuantityZero,i.isServices");
 		$this->db->from("tb_item i");		
 		$this->db->where("i.companyID",$companyID);
 		$this->db->where("i.isActive",1);		

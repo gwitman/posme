@@ -92,6 +92,13 @@
 											<input type="checkbox"   name="txtIsInvoiceQuantityZero" id="txtIsInvoiceQuantityZero" value="1"  <?php echo ($objItem->isInvoiceQuantityZero == 1) ? "checked":""; ?>  >
 										</div>
 								</div>
+
+								<div class="form-group">
+										<label class="col-lg-4 control-label" for="normal">Servicio</label> 
+										<div class="col-lg-8">
+											<input type="checkbox"   name="txtIsServices" id="txtIsServices" value="1"  <?php echo ($objItem->isServices == 1) ? "checked":""; ?>  >
+										</div>
+								</div>
 								
 								<div class="form-group">
 										<label class="col-lg-4 control-label" for="normal">*Capacidad</label>

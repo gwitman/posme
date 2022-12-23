@@ -300,6 +300,7 @@ class App_Inventory_Item extends CI_Controller {
 					$objItem["reference2"] 					= $this->input->post("txtReference2");
 					$objItem["statusID"] 					= $this->input->post("txtStatusID");
 					$objItem["isPerishable"] 				= $this->input->post("txtIsPerishable");
+					$objItem["isServices"] 					= $this->input->post("txtIsServices");
 					$objItem["isInvoiceQuantityZero"] 		= $this->input->post("txtIsInvoiceQuantityZero");
 					$objItem["factorBox"] 					= $this->input->post("txtFactorBox");
 					$objItem["factorProgram"] 				= $this->input->post("txtFactorProgram");
@@ -450,6 +451,7 @@ class App_Inventory_Item extends CI_Controller {
 						$objNewItem["reference2"] 					= $this->input->post("txtReference2");
 						$objNewItem["statusID"] 					= $this->input->post("txtStatusID");
 						$objNewItem["isPerishable"] 				= $this->input->post("txtIsPerishable");
+						$objNewItem["isServices"] 					= $this->input->post("txtIsServices");
 						$objNewItem["isInvoiceQuantityZero"] 		= $this->input->post("txtIsInvoiceQuantityZero");
 						$objNewItem["factorBox"] 					= $this->input->post("txtFactorBox");
 						$objNewItem["factorProgram"] 				= $this->input->post("txtFactorProgram");
