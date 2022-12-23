@@ -2,7 +2,7 @@
 <script>					
 	var objTableDetail 						= {};	
 	var objListaProductos					= {};
-	var objSearchProductosOpen				= false;
+	var openedSearchWindow					= false;
 	var varPermitirFacturarProductosEnZero	= '<?php echo $objParameterInvoiceBillingQuantityZero; ?>';
 	var varPermisos							= JSON.parse('<?php echo json_encode($objListaPermisos); ?>');
 	var varPermisosEsPermitidoModificarPrecio = 
@@ -227,8 +227,8 @@
 		
 		$(document).on("click","#btnNewItem",function(){
 
-			if(objSearchProductosOpen 				== false){
-				objSearchProductosOpen 		= true;
+			if(openedSearchWindow 				== false){
+				openedSearchWindow 			= true;
 				var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI("{\"warehouseID\"|\"<?php echo $warehouseID ?>\"{}\"listPriceID\"|\"<?php echo $objListPrice->listPriceID; ?>\"{}\"typePriceID\"|\""+ $("#txtTypePriceID").val() + "\"}");
 				window.open(url_request,"MsgWindow","width=900,height=450");
 				window.onCompleteNewItem 	= onCompleteNewItem; 
