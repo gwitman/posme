@@ -44,19 +44,52 @@
 		}
 	}	
 
-	//fnObtenerListadoProductos();	
-	//fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?> );				
-	//fnWaitClose();	
-
-	//ejecuta funcion cada 3 segundo
-	//setInterval(function(){alert("Hello")},3000);
-	//setTimeout( function() { alert("Hello")}, 10000);
-
-	setTimeout( function() { fnObtenerListadoProductos(); }, 10);
-	setTimeout( function() { fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?> );	 }, 2000);
-	setTimeout( function() { fnWaitClose(); }, 3000);
-
 	
+
+
+
+		
+	//crear la cache intervalo 
+	var intervalToRefreschCache = localStorage.getItem("intervalToRefreschCache");
+	if(intervalToRefreschCache == null)
+	localStorage.setItem("intervalToRefreschCache",24);
+
+	intervalToRefreschCache = localStorage.getItem("intervalToRefreschCache");
+
+
+	var lastRefresh = localStorage.getItem("lastsRefresh");
+	//if(lastRefresh == null)
+	localStorage.setItem("lastsRefresh",(new Date()).getTime());
+	lastRefresh = localStorage.getItem("lastsRefresh");
+
+
+	//Comparar el ultimo refresh con la hora actual
+	//Si la diferencia es mayor a 24 hora actulizar datos nuevamente.
+	
+	var today 	= new Date();
+	var t2 		= lastRefresh;
+    var t1 		= today.getTime(); 
+    var dif 	= Math.floor((t2-t1)/(24*3600*1000));
+	var dif 	= Math.floor((t2-t1)/(1000));
+	var dif 	= 0;
+	debugger;
+	if(dif > 0 ){
+		setTimeout( function() { fnObtenerListadoProductos(); }, 10);
+		setTimeout( function() { fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?>); }, 2000);
+		setTimeout( function() { fnWaitClose(); }, 3000);
+	}
+	//No actualizar datos
+	else{		
+
+		
+		
+		var objListaProductosStore 	= localStorage.getItem("objListaProductos");		
+		objListaProductos 			= JSON.parse(objListaProductosStore);
+
+		setTimeout( function() { fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?>); }, 10);
+		setTimeout( function() { fnWaitClose(); }, 1000);
+	}
+
 
 	
 	//Incializar Focos
@@ -734,8 +767,9 @@
 
 	function fnFillListaProductos(data){
 		console.info("complete success data");
-		objListaProductos = data.objGridView;
-		
+		objListaProductos 			= data.objGridView;
+		var objListaProductosStore 	= localStorage.getItem("objListaProductos");		
+		localStorage.setItem("objListaProductos",JSON.stringify(objListaProductos));		
 	}
 
 	
