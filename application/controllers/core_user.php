@@ -9,7 +9,7 @@ class core_user extends CI_Controller {
     }
 	
 	function delete(){
-		try{ 
+		try{   
 			//AUTENTICACION
 			if(!$this->core_web_authentication->isAuthenticated())
 			throw new Exception(USER_NOT_AUTENTICATED);

@@ -10,7 +10,7 @@ class core_view extends CI_Controller {
     //BUSCAR UNA VISTA POR NOMBRE
 	function showviewbyname($componentid,$fnCallback,$viewname,$autoclose,$filter){
 		try{  
-		
+		  
 			
 
   
