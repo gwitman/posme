@@ -19,15 +19,8 @@
 	
 		
 	//crear la cache intervalo 
-	var intervalToRefreschCache = localStorage.getItem("intervalToRefreschCache");
-	if(intervalToRefreschCache == null)
-	localStorage.setItem("intervalToRefreschCache",24);
-
-	intervalToRefreschCache = localStorage.getItem("intervalToRefreschCache");
-
-
 	var lastRefresh = localStorage.getItem("lastsRefresh");
-	//if(lastRefresh == null)
+	if(lastRefresh == null)
 	localStorage.setItem("lastsRefresh",(new Date()).getTime());
 	lastRefresh = localStorage.getItem("lastsRefresh");
 
@@ -36,16 +29,19 @@
 	//Si la diferencia es mayor a 24 hora actulizar datos nuevamente.
 	
 	var today 	= new Date();
-	var t2 		= lastRefresh;
-    var t1 		= today.getTime(); 
-    var dif 	= Math.floor((t2-t1)/(24*3600*1000));
-	var dif 	= Math.floor((t2-t1)/(1000));
-	var dif 	= 0;
+	var t1 		= lastRefresh;
+    var t2 		= today.getTime(); 
+    var difday 			= Math.floor((t2-t1)/(24*60*60*1000));
+	var difhora			= Math.floor((t2-t1)/(60*60*1000));
+	var difminuto		= Math.floor((t2-t1)/(60*1000));
+	var difsegundo		= Math.floor((t2-t1)/(1000));	
 	debugger;
-	if(dif > 0 ){
+	if(difsegundo > 60 ){
+
+		localStorage.setItem("lastsRefresh",(new Date()).getTime());
 		setTimeout( function() { fnObtenerListadoProductos(); }, 10);
 		setTimeout( function() { fnGetCustomerClient(); }, 2000);
-		setTimeout( function() { fnWaitClose(); }, 3000);
+		setTimeout( function() { fnWaitClose(); }, 10000);
 	}
 	//No actualizar datos
 	else{		
@@ -627,7 +623,7 @@
 	function fnCompleteGetCustomerCreditLine (data)
 	{
 		
-		console.info("complete success data");		
+		console.info("complete success data credit line");		
 		tmpInfoClient = data;
 		console.info(tmpInfoClient);
 		
