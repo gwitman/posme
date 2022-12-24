@@ -13,7 +13,7 @@ class core_view extends CI_Controller {
 		
 			
 
-
+  
 
 			//Validar Authentication
 			if(!$this->core_web_authentication->isAuthenticated())
