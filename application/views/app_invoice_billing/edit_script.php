@@ -57,13 +57,13 @@
 
 	
 	if(objListaProductosStore == null ){		
-		setTimeout( function() { fnObtenerListadoProductos(); }, 10);
-		setTimeout( function() { fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?>); }, 2000);
+		fnObtenerListadoProductos();
+		fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?>);
 		setTimeout( function() { fnWaitClose(); }, 10000);
 	}
 	//No actualizar datos
 	else{		
-		setTimeout( function() { fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?>); }, 10);
+		fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?>); 
 		setTimeout( function() { fnWaitClose(); }, 1000);
 	}
 
@@ -836,7 +836,7 @@
 				$( "#form-new-invoice" ).attr("method","POST");
 				$( "#form-new-invoice" ).attr("action","<?php echo site_url(); ?>app_invoice_billing/save/edit");
 				
-				if(await validateForm()){
+				if(validateForm()){
 					fnWaitOpen();
 					$( "#form-new-invoice" ).submit();
 				}				

@@ -25,13 +25,13 @@
 	
 	
 	if(objListaProductosStore == null ){
-		setTimeout( function() { fnObtenerListadoProductos(); }, 10);
-		setTimeout( function() { fnGetCustomerClient(); }, 2000);
+		fnObtenerListadoProductos();
+		fnGetCustomerClient();
 		setTimeout( function() { fnWaitClose(); }, 10000);
 	}
 	//No actualizar datos
 	else{		
-		setTimeout( function() { fnGetCustomerClient(); }, 10);
+		fnGetCustomerClient(); 
 		setTimeout( function() { fnWaitClose(); }, 1000);
 	}
 
