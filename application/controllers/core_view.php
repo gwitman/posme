@@ -58,8 +58,8 @@ class core_view extends CI_Controller {
 			$dataView["fnCallback"] 	= $fnCallback;
 			$dataView["viewname"] 		= $viewname;
 			
-			log_message('ERROR',print_r($dataView,true));
-			log_message('ERROR',print_r($dataViewRender,true));
+			//log_message('ERROR',print_r($dataView,true));
+			//log_message('ERROR',print_r($dataViewRender,true));
 
 			//Guardar la info en cache
 			//if($nameCache ==  $viewname){

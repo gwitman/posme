@@ -4,6 +4,7 @@
 	var objTableDetail 			= {};		
 	var tmpData 				= [];
 	var objListaProductos		= {};
+	var warehouseID 						= <?php echo $warehouseID ?>;
 	var openedSearchWindow					= false;
 	var varPermitirFacturarProductosEnZero	= '<?php echo $objParameterInvoiceBillingQuantityZero; ?>';
 	var varUrlPrinter			= '<?php echo $urlPrinterDocument; ?>';
@@ -55,6 +56,9 @@
 	localStorage.setItem("lastsRefresh",(new Date()).getTime());
 	lastRefresh = localStorage.getItem("lastsRefresh");
 
+	
+	var objListaProductosStore 	= localStorage.getItem("objListaProductos");		
+	objListaProductos 			= JSON.parse(objListaProductosStore);
 
 
 	//Comparar el ultimo refresh con la hora actual
@@ -66,8 +70,8 @@
 	var difhora			= Math.floor((t2-t1)/(60*60*1000));
 	var difminuto		= Math.floor((t2-t1)/(60*1000));
 	var difsegundo		= Math.floor((t2-t1)/(1000));	
-	debugger;
-	if(difsegundo > 60 ){
+	
+	if(difsegundo > 86400 || objListaProductosStore == null ){
 		localStorage.setItem("lastsRefresh",(new Date()).getTime());
 		setTimeout( function() { fnObtenerListadoProductos(); }, 10);
 		setTimeout( function() { fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?>); }, 2000);
@@ -75,12 +79,6 @@
 	}
 	//No actualizar datos
 	else{		
-
-		
-		
-		var objListaProductosStore 	= localStorage.getItem("objListaProductos");		
-		objListaProductos 			= JSON.parse(objListaProductosStore);
-
 		setTimeout( function() { fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?>); }, 10);
 		setTimeout( function() { fnWaitClose(); }, 1000);
 	}
@@ -574,18 +572,30 @@
 				result = false;	
 			}
 			
-			
-			objProducto = objProducto[0];
-			if(
-				parseFloat(objProducto.Cantidad) < parseFloat(rowTableItemQuantity)
-				&&
-				objProducto.isInvoiceQuantityZero == "0" 
-				&& 
-				varPermitirFacturarProductosEnZero == "false" 
-			){
-				fnShowNotification("Producto no hay suficiente en inventario " + rowTableItemNombre,"error",timerNotification);				
-				document.getElementById("txtQuantityRow"+rowTableItemID).focus();
-				result = false;	
+			if(objProducto.length > 0){
+				
+				var resultItemWarehouse = {};
+				fnGetCantidadExistente(rowTableItemID,warehouseID).done((dataResult)=>{
+					resultItemWarehouse = dataResult;
+				}) ;
+				
+				
+				objProducto = objProducto[0];					
+				if(
+					//parseFloat(objProducto.Cantidad) < parseFloat(rowTableItemQuantity) 
+					parseFloat(resultItemWarehouse.objItemWarehouse.quantity) <  parseFloat(rowTableItemQuantity) 
+					&&
+					objProducto.isInvoiceQuantityZero == "0" 
+					//&&
+					//varPermitirFacturarProductosEnZero == "false"
+				){
+					fnShowNotification("Producto no hay suficiente en inventario " + rowTableItemNombre,"error",timerNotification);				
+					document.getElementById("txtQuantityRow"+rowTableItemID).focus();
+					result = false;	
+					
+				}
+				
+				
 				
 			}
 			
@@ -837,7 +847,7 @@
 				$( "#form-new-invoice" ).attr("method","POST");
 				$( "#form-new-invoice" ).attr("action","<?php echo site_url(); ?>app_invoice_billing/save/edit");
 				
-				if(validateForm()){
+				if(await validateForm()){
 					fnWaitOpen();
 					$( "#form-new-invoice" ).submit();
 				}				
@@ -867,6 +877,23 @@
 			}
 
 	}	
+	
+	function fnGetCantidadExistente(itemID,warehouseID){
+		 
+		var result = $.ajax(
+			{									
+				cache       : false,
+				dataType    : 'json',
+				async		: false,
+				type        : 'GET',																	
+				url  		: "<?php echo site_url(); ?>app_invoice_api/getItemCantidad/"+itemID+'/'+warehouseID
+			}
+		);
+		
+		return result;
+		
+	
+	}
 	
 	//obtener informacion de los productos
 	async function fnObtenerListadoProductos(){

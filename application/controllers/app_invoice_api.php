@@ -6,6 +6,54 @@ class App_Invoice_Api extends CI_Controller {
        parent::__construct();
     }
 	
+	function getItemCantidad($itemID,$warehouseID){
+		try{ 
+			
+			//AUTENTICACION
+			if(!$this->core_web_authentication->isAuthenticated())
+			throw new Exception(USER_NOT_AUTENTICATED);
+			$dataSession		= $this->session->all_userdata();			
+			
+			////PERMISO SOBRE LA FUNCION
+			//if(APP_NEED_AUTHENTICATION == true){
+			//	$permited = false;
+			//	$permited = $this->core_web_permission->urlPermited($this->router->class,"index",$this->config->item('url_suffix'),$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+			//	
+			//	if(!$permited)
+			//	throw new Exception(NOT_ACCESS_CONTROL." ".$this->router->class);		
+			//}			
+			
+			//Cargar Librerias			
+			$this->load->model("ItemWarehouse_Model");
+			
+			//Obtener Parametros			
+			$companyID 		= $dataSession["user"]->companyID;
+			if(!$companyID && !$itemID && !$warehouseID){
+					throw new Exception(NOT_PARAMETER);		
+			} 
+			
+			log_message("ERROR",print_r("ITEM WAREHOUSE",true));
+			log_message("ERROR",print_r($itemID,true));
+			$objItemWarehouse = $this->ItemWarehouse_Model->getByPK($companyID,$itemID,$warehouseID);
+			
+			//Obtener Resultados.
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode(array(
+				'error'   			=> false,
+				'message' 			=> SUCCESS,			
+				'objItemWarehouse' 	=> $objItemWarehouse
+			)));			
+			
+		}
+		catch(Exception $ex){
+			$this->output->set_content_type('application/json');
+			$this->output->set_output(json_encode(array(
+				'error'   => true,
+				'message' => $ex->getLine()." ".$ex->getMessage()
+			)));			
+		}
+	}
+	
 	function getViewApi($componentid,$fnCallback,$viewname,$filter){
 		try{  
 

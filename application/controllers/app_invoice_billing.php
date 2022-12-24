@@ -547,14 +547,16 @@ class App_Invoice_Billing extends CI_Controller {
 					$transactionMasterDetailID				= $listTransactionDetalID[$key];
 					
 					//Validar Cantidades
+					$messageException = "La cantidad de '".$objItem->itemNumber. " " .$objItem->name."' es mayor que la disponible en bodega";
+					$messageException = $messageException.", en bodega existen ".$objItemWarehouse->quantity." y esta solicitando : ".$quantity;
 					if(
 						$objItemWarehouse->quantity < $quantity  
 						&& 
-						$objItem->isInvoiceQuantityZero == 0
-						&&
-						$objParameterInvoiceBillingQuantityZero == "false"
-					)
-					throw new Exception("La cantidad de '"+$objItem->itemNumber+ " " +$objItem->name+"' es mayor que la disponible en bodega");
+						$objItem->isInvoiceQuantityZero == 1
+						//&&
+						//$objParameterInvoiceBillingQuantityZero == "false"
+					)					
+					throw new Exception($messageException);
 										
 					//Nuevo Detalle
 					if($transactionMasterDetailID == 0){	
@@ -816,7 +818,8 @@ class App_Invoice_Billing extends CI_Controller {
 			}
 			
 		}
-		catch(Exception $ex){			
+		catch(Exception $ex){		
+			log_message("ERROR",print_r("error exception",true));			
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}	
 	}

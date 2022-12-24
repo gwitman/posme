@@ -4,6 +4,7 @@
 	var objTableDetail 						= {};	
 	var objListaProductos					= {};
 	var openedSearchWindow					= false;
+	var warehouseID 						= <?php echo $warehouseID ?>;
 	var varPermitirFacturarProductosEnZero	= '<?php echo $objParameterInvoiceBillingQuantityZero; ?>';
 	var varPermisos							= JSON.parse('<?php echo json_encode($objListaPermisos); ?>');
 	var varPermisosEsPermitidoModificarPrecio = 
@@ -24,7 +25,9 @@
 	localStorage.setItem("lastsRefresh",(new Date()).getTime());
 	lastRefresh = localStorage.getItem("lastsRefresh");
 
-
+	var objListaProductosStore 	= localStorage.getItem("objListaProductos");		
+	objListaProductos 			= JSON.parse(objListaProductosStore);
+	
 	//Comparar el ultimo refresh con la hora actual
 	//Si la diferencia es mayor a 24 hora actulizar datos nuevamente.
 	
@@ -34,9 +37,8 @@
     var difday 			= Math.floor((t2-t1)/(24*60*60*1000));
 	var difhora			= Math.floor((t2-t1)/(60*60*1000));
 	var difminuto		= Math.floor((t2-t1)/(60*1000));
-	var difsegundo		= Math.floor((t2-t1)/(1000));	
-	debugger;
-	if(difsegundo > 60 ){
+	var difsegundo		= Math.floor((t2-t1)/(1000));		
+	if(difsegundo > 86400 || objListaProductosStore == null ){
 
 		localStorage.setItem("lastsRefresh",(new Date()).getTime());
 		setTimeout( function() { fnObtenerListadoProductos(); }, 10);
@@ -45,12 +47,6 @@
 	}
 	//No actualizar datos
 	else{		
-
-		
-		
-		var objListaProductosStore 	= localStorage.getItem("objListaProductos");		
-		objListaProductos 			= JSON.parse(objListaProductosStore);
-
 		setTimeout( function() { fnGetCustomerClient(); }, 10);
 		setTimeout( function() { fnWaitClose(); }, 1000);
 	}
@@ -413,6 +409,7 @@
 			var rowTableItemID 		 = rowTable[2];
 			var rowTableItemQuantity = rowTable[6];
 			var rowTableItemNombre = rowTable[4];
+			
 			var objProducto = jLinq.from(objListaProductos).where(function(obj){ return obj.itemID == rowTableItemID}).select();
 			
 			if(objProducto.length == 0){
@@ -420,23 +417,34 @@
 				result = false;	
 			}
 			
-			objProducto = objProducto[0];
-			if(
-				parseFloat(objProducto.Cantidad) < parseFloat(rowTableItemQuantity) 
-				&&
-				objProducto.isInvoiceQuantityZero == "0" 
-				&&
-				varPermitirFacturarProductosEnZero == "false"
-			){
-				fnShowNotification("Producto no hay suficiente en inventario " + rowTableItemNombre,"error",timerNotification);				
-				document.getElementById("txtQuantityRow"+rowTableItemID).focus();
-				result = false;	
+			debugger;
+			if(objProducto.length > 0){
 				
+				var resultItemWarehouse = {};
+				fnGetCantidadExistente(rowTableItemID,warehouseID).done((dataResult)=>{
+					resultItemWarehouse = dataResult;
+				}) ;
+				
+				objProducto = objProducto[0];
+				if(
+					//parseFloat(objProducto.Cantidad) < parseFloat(rowTableItemQuantity) 
+					parseFloat(resultItemWarehouse.objItemWarehouse.quantity) <  parseFloat(rowTableItemQuantity) 
+					&&
+					objProducto.isInvoiceQuantityZero == "0" 
+					//&&
+					//varPermitirFacturarProductosEnZero == "false"
+				){
+					fnShowNotification("Producto no hay suficiente en inventario " + rowTableItemNombre,"error",timerNotification);				
+					document.getElementById("txtQuantityRow"+rowTableItemID).focus();
+					result = false;	
+					
+				}
 			}
-			
+			debugger;
 			
 			
 		}
+		
 		
 		//Si es de credito que la factura no supere la linea de credito
 		var causalSelect 				= $("#txtCausalID").val();
@@ -452,7 +460,7 @@
 				invoiceTypeCredit = true;
 			}
 		}
-		return false;
+		
 		
 		//Validaciones si la factura es al credito.
 		if(invoiceTypeCredit){
@@ -679,7 +687,7 @@
 				$( "#form-new-invoice" ).attr("method","POST");
 				$( "#form-new-invoice" ).attr("action","<?php echo site_url(); ?>app_invoice_billing/save/new");
 				
-				if(validateForm()){
+				if( validateForm()){
 					fnWaitOpen();
 					$( "#form-new-invoice" ).submit();
 				}				
@@ -712,6 +720,25 @@
 			
 
 	}	
+	
+	function fnGetCantidadExistente(itemID,warehouseID){
+		
+		var result = $.ajax(
+			{									
+				cache       : false,
+				dataType    : 'json',
+				async		: false,
+				type        : 'GET',																	
+				url  		: "<?php echo site_url(); ?>app_invoice_api/getItemCantidad/"+itemID+'/'+warehouseID
+			}
+		);
+		
+		return result;
+		
+		
+		
+	
+	}
 	
 	//obtener informacion de los productos	
 	async function fnObtenerListadoProductos(){		
