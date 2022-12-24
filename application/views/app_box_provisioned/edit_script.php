@@ -37,7 +37,7 @@
 								fnShowNotification("El Documento no puede tener mas de un item","error");
 								return; 
 							}
-							var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomerCreditDocument->componentID; ?>/onCompleteNewShare/LISTA_DE_CREDITOS_MOROSOS/empty";							
+							var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomerCreditDocument->componentID; ?>/onCompleteNewShare/LISTA_DE_CREDITOS_MOROSOS/true/empty";							
 							window.open(url_request,"MsgWindow","width=1585,height=795");
 							window.onCompleteNewShare 	= onCompleteNewShare; 
 						});

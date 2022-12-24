@@ -80,7 +80,7 @@
 						
 						//Buscar el Receta
 						$(document).on("click","#txtSearchItemID",function(){
-							var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItemReceta/SELECCIONAR_ITEM_TO_RECETA/empty";
+							var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItemReceta/SELECCIONAR_ITEM_TO_RECETA/true/empty";
 							window.open(url_request,"MsgWindow","width=900,height=450");
 							window.onCompleteItemReceta = onCompleteItemReceta; 
 						});
@@ -100,7 +100,7 @@
 								return;
 							}
 							
-							var url_request 		= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_RECETA/empty";
+							var url_request 		= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_RECETA/true/empty";
 							window.open(url_request,"MsgWindow","width=900,height=450");
 							window.onCompleteItem 	= onCompleteItem; 
 							

@@ -32,13 +32,13 @@
 		
 		//Buscar el Cliente
 		$(document).on("click","#btnSearchCustomer",function(){
-			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomer->componentID; ?>/onCompleteCustomer/SELECCIONAR_CLIENTES_BILLING/empty";
+			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomer->componentID; ?>/onCompleteCustomer/SELECCIONAR_CLIENTES_BILLING/true/empty";
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteCustomer = onCompleteCustomer; 
 		});		
 		//Buscar el Gestor de Cobro
 		$(document).on("click","#btnSearchEmployee",function(){
-			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentEmployee->componentID; ?>/onCompleteEmployee/SELECCIONAR_EMPLOYEE_COLLECTOR/empty";
+			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentEmployee->componentID; ?>/onCompleteEmployee/SELECCIONAR_EMPLOYEE_COLLECTOR/true/empty";
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteEmployee = onCompleteEmployee; 
 		});								
@@ -107,7 +107,7 @@
 				return;
 			}
 			
-			var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomerCreditDocument->componentID; ?>/onCompleteNewShare/SELECCIONAR_DOCUMENTOS_DE_CREDITO/"+encodeURI("{\"entityID\"|\""+$("#txtCustomerID").val()+"\"}");
+			var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomerCreditDocument->componentID; ?>/onCompleteNewShare/SELECCIONAR_DOCUMENTOS_DE_CREDITO/true/"+encodeURI("{\"entityID\"|\""+$("#txtCustomerID").val()+"\"}");
 			window.open(url_request,"MsgWindow","width=1585,height=795");
 			window.onCompleteNewShare 	= onCompleteNewShare; 
 		});

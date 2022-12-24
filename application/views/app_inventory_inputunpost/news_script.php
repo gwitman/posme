@@ -74,7 +74,7 @@
 		refreschChecked();
 		//Buscar el Proveedor
 		$(document).on("click","#btnSearchProvider",function(){
-			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentProvider->componentID; ?>/onCompleteProvider/SELECCIONAR_PROVEEDOR/empty";
+			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentProvider->componentID; ?>/onCompleteProvider/SELECCIONAR_PROVEEDOR/true/empty";
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteProvider = onCompleteProvider; 
 		});		
@@ -85,7 +85,7 @@
 		});
 		//Buscar el Orden de Compra
 		$(document).on("click","#btnSearchOrdenCompra",function(){
-			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentOrdenCompra->componentID; ?>/onCompleteOrdenCompra/SELECCIONAR_ORDEN_COMPRA/empty";
+			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentOrdenCompra->componentID; ?>/onCompleteOrdenCompra/SELECCIONAR_ORDEN_COMPRA/true/empty";
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteOrdenCompra = onCompleteOrdenCompra; 
 		});		
@@ -128,7 +128,7 @@
 				return;
 			}
 		
-			var url_request 		= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_PROVIDER/"+encodeURI('{\"providerID\"|\"'+$("#txtProviderID").val()+'\"}');  
+			var url_request 		= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_PROVIDER/true/"+encodeURI('{\"providerID\"|\"'+$("#txtProviderID").val()+'\"}');  
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteItem 	= onCompleteItem; 
 			

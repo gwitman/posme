@@ -22,7 +22,7 @@
 						});
 						//Nueva factura
 						$(document).on("click","#btnNewShare",function(){
-							var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentEmployee->componentID; ?>/onCompleteNewShare/SELECCIONAR_EMPLOYEE/empty";
+							var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentEmployee->componentID; ?>/onCompleteNewShare/SELECCIONAR_EMPLOYEE/true/empty";
 							window.open(url_request,"MsgWindow","width=1585,height=795");
 							window.onCompleteNewShare 	= onCompleteNewShare; 
 						});

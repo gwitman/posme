@@ -8,7 +8,7 @@
 						 
 						//Buscar el Cliente
 						$(document).on("click","#btnSearchCustomer",function(){
-							var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomer->componentID; ?>/onCompleteCustomer/SELECCIONAR_CLIENTES_BILLING/empty";
+							var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomer->componentID; ?>/onCompleteCustomer/SELECCIONAR_CLIENTES_BILLING/true/empty";
 							window.open(url_request,"MsgWindow","width=900,height=450");
 							window.onCompleteCustomer = onCompleteCustomer; 
 						});						
@@ -50,7 +50,7 @@
 								return;
 							}
 							
-							var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomerCreditDocument->componentID; ?>/onCompleteNewShare/SELECCIONAR_DOCUMENTOS_DE_CREDITO_SUMMARY/"+encodeURI("{\"entityID\"|\""+$("#txtCustomerID").val()+"\"}");
+							var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomerCreditDocument->componentID; ?>/onCompleteNewShare/SELECCIONAR_DOCUMENTOS_DE_CREDITO_SUMMARY/true/"+encodeURI("{\"entityID\"|\""+$("#txtCustomerID").val()+"\"}");
 							window.open(url_request,"MsgWindow","width=1585,height=795");
 							window.onCompleteNewShare 	= onCompleteNewShare; 
 						});

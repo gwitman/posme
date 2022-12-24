@@ -9,7 +9,7 @@
 						
 						
 						$(document).on("click","#btnOpenTemplated",function(){
-							var url_request 				= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentAccountID; ?>/onCompleteSelectTemplate/SELECCIONAR_TEMPLATED/empty";
+							var url_request 				= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentAccountID; ?>/onCompleteSelectTemplate/SELECCIONAR_TEMPLATED/true/empty";
 							window.open(url_request,"MsgWindow","width=900,height=450");
 							window.onCompleteSelectTemplate 	= onCompleteSelectTemplate; 
 						});
@@ -101,7 +101,7 @@
 								
 						});
 						$(document).on("click","#btnNewDetailJournal",function(){
-							var url_request 				= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentAccountID; ?>/onCompleteNewAccount/SELECCIONAR_CUENTA/empty";
+							var url_request 				= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentAccountID; ?>/onCompleteNewAccount/SELECCIONAR_CUENTA/true/empty";
 							window.open(url_request,"MsgWindow","width=900,height=450");
 							window.onCompleteNewAccount 	= onCompleteNewAccount; 
 						});

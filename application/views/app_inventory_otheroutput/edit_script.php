@@ -122,7 +122,7 @@
 				return;
 			}
 			
-			var url_request 		= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_OUTPUT/"+encodeURI("{\"warehouseID\"|\""+$("#txtWarehouseSourceID").val()+"\"}");
+			var url_request 		= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_OUTPUT/true/"+encodeURI("{\"warehouseID\"|\""+$("#txtWarehouseSourceID").val()+"\"}");
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteItem = onCompleteItem; 
 		});

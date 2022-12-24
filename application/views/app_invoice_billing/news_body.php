@@ -409,9 +409,18 @@
 				}
 				?>
 				<input class="form-control"  type="hidden"  name="txtStatusID" id="txtStatusID" value="<?php echo $valueWorkflowFirst; ?>" >
+
 				<a href="#" class="btn btn-flat btn-info" id="btnNewItem" ><i class="icon16 i-print"></i> AGREGAR PRO</a>
-				<a href="#" class="btn btn-flat btn-danger" id="btnDeleteItem" ><i class="icon16 i-print"></i> ELIMINAR PRO</a>	
-				<a href="#" class="btn btn-flat btn-success" id="btnNewItemCatalog" ><i class="icon16 i-print"></i> NUEVO PRO</a>
+				<a href="#" class="btn btn-flat btn-danger" id="btnDeleteItem" ><i class="icon16 i-print"></i> ELIMINAR PRO</a>					
+
+				<div class="btn-group">
+					<button class="btn btn-flat btn-success dropdown-toggle" data-toggle="dropdown"><i class="icon16 i-print"></i> PRODUCTO <span class="caret"></span></button>
+					<ul class="dropdown-menu">
+							<li><a href="#" id="btnNewItemCatalog" >NUEVO PRODUCTO</a></li>						
+							<li><a href="#" id="btnRefreshDataCatalogo" >ACTUALIZAR CATALOGO</a></li>
+					</ul>
+				</div>
+
 				<a href="<?php echo site_url(); ?>app_invoice_billing/index" id="btnBack" class="btn btn-inverse" ><i class="icon16 i-rotate"></i> REGRESAR</a>
 				<a href="#" class="btn btn-warning" id="btnAcept"><i class="icon16 i-checkmark-4"></i> REGISTRAR</a>
 				<input class="form-control"  type="text"  name="txtScanerCodigo" id="txtScanerCodigo" value="" >

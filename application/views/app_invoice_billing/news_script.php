@@ -20,27 +20,11 @@
 	
 		
 	//crear la cache intervalo 
-	var lastRefresh = localStorage.getItem("lastsRefresh");
-	if(lastRefresh == null)
-	localStorage.setItem("lastsRefresh",(new Date()).getTime());
-	lastRefresh = localStorage.getItem("lastsRefresh");
-
 	var objListaProductosStore 	= localStorage.getItem("objListaProductos");		
 	objListaProductos 			= JSON.parse(objListaProductosStore);
 	
-	//Comparar el ultimo refresh con la hora actual
-	//Si la diferencia es mayor a 24 hora actulizar datos nuevamente.
 	
-	var today 	= new Date();
-	var t1 		= lastRefresh;
-    var t2 		= today.getTime(); 
-    var difday 			= Math.floor((t2-t1)/(24*60*60*1000));
-	var difhora			= Math.floor((t2-t1)/(60*60*1000));
-	var difminuto		= Math.floor((t2-t1)/(60*1000));
-	var difsegundo		= Math.floor((t2-t1)/(1000));		
-	if(difsegundo > 86400 || objListaProductosStore == null ){
-
-		localStorage.setItem("lastsRefresh",(new Date()).getTime());
+	if(objListaProductosStore == null ){
 		setTimeout( function() { fnObtenerListadoProductos(); }, 10);
 		setTimeout( function() { fnGetCustomerClient(); }, 2000);
 		setTimeout( function() { fnWaitClose(); }, 10000);
@@ -194,7 +178,7 @@
 		
 		//Buscar el Cliente
 		$(document).on("click","#btnSearchCustomer",function(){
-			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomer->componentID; ?>/onCompleteCustomer/SELECCIONAR_CLIENTES_BILLING/empty";
+			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentCustomer->componentID; ?>/onCompleteCustomer/SELECCIONAR_CLIENTES_BILLING/true/empty";
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteCustomer = onCompleteCustomer; 
 		});						
@@ -230,7 +214,7 @@
 
 			if(openedSearchWindow 				== false){
 				openedSearchWindow 			= true;
-				var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI("{\"warehouseID\"|\"<?php echo $warehouseID ?>\"{}\"listPriceID\"|\"<?php echo $objListPrice->listPriceID; ?>\"{}\"typePriceID\"|\""+ $("#txtTypePriceID").val() + "\"}");
+				var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/false/"+encodeURI("{\"warehouseID\"|\"<?php echo $warehouseID ?>\"{}\"listPriceID\"|\"<?php echo $objListPrice->listPriceID; ?>\"{}\"typePriceID\"|\""+ $("#txtTypePriceID").val() + "\"}");
 				window.open(url_request,"MsgWindow","width=900,height=450");
 				window.onCompleteNewItem 	= onCompleteNewItem; 
 			}
@@ -241,6 +225,14 @@
 			window.open(url_request,"MsgWindow","width=700,height=600");
 			window.fnObtenerListadoProductos = fnObtenerListadoProductos; 			
 		});
+
+		$(document).on("click","#btnRefreshDataCatalogo",function(){
+			fnWaitOpen();
+			setTimeout( function() { fnObtenerListadoProductos(); }, 10);			
+			setTimeout( function() { fnWaitClose(); }, 10000);
+		});
+
+
 		$(document).on("click","#btnSearchCustomerNew",function(){
 			var url_request 				 = "<?php echo site_url(); ?>app_cxc_customer/add/callback/fnCustomerNewCompleted";
 			window.open(url_request,"mozillaWindow","width=700,height=600");

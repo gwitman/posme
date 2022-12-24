@@ -315,7 +315,7 @@
 		
 		//Nueva cuenta
 		$(document).on("click","#btnSearchAccount",function(){
-			var url_request 				= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentAccount->componentID; ?>/onCompleteSetAccount/SELECCIONAR_CUENTA/empty";
+			var url_request 				= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentAccount->componentID; ?>/onCompleteSetAccount/SELECCIONAR_CUENTA/true/empty";
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteSetAccount 	= onCompleteSetAccount; 
 		});

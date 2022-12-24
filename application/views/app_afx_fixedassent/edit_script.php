@@ -53,7 +53,7 @@
 						});
 						//Buscar el Asignado A
 						$(document).on("click","#btnSearchEmployee",function(){
-							var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentEmployeeID; ?>/onCompleteEmployee/SELECCIONAR_EMPLOYEE/empty";
+							var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentEmployeeID; ?>/onCompleteEmployee/SELECCIONAR_EMPLOYEE/true/empty";
 							window.open(url_request,"MsgWindow","width=900,height=450");
 							window.onCompleteEmployee = onCompleteEmployee; 
 						});

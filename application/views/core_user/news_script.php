@@ -43,7 +43,7 @@
 						});
 						//Buscar el Empleado
 						$(document).on("click","#btnSearchEmployeeParent",function(){
-							var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objEntity->componentID; ?>/onCompleteEmployee/SELECCIONAR_ENTIDAD/empty";
+							var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objEntity->componentID; ?>/onCompleteEmployee/SELECCIONAR_ENTIDAD/true/empty";
 							window.open(url_request,"MsgWindow","width=900,height=450");
 							window.onCompleteEmployee = onCompleteEmployee; 
 						});

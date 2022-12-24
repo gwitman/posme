@@ -187,7 +187,7 @@
 		
 		//Agregar Proveedor
 		$(document).on("click","#btnNewDetailProvider",function(){	
-			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentProviderID; ?>/onCompleteProvider/SELECCIONAR_PROVEEDOR/empty"; 
+			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentProviderID; ?>/onCompleteProvider/SELECCIONAR_PROVEEDOR/true/empty"; 
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteProvider = onCompleteProvider; 
 		});

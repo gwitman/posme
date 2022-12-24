@@ -1,5 +1,7 @@
 <script >
 	$(document).ready(function(){
+			var autoclose = <?php echo $autoclose;?>;
+
 			$("#btnPopupCancelar").click(function(){window.close();});
 			$("#btnPopupAceptar").click(function(){ 
 			
@@ -12,6 +14,11 @@
 					window.opener.<?php echo $fnCallback;?>(undefined); 
 					else
 					window.opener.<?php echo $fnCallback;?>(data); 
+
+					
+					if(autoclose == true){
+						window.close();
+					}
 			});
 
 			$(window).unload(function() {				

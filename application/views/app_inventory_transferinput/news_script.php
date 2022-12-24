@@ -75,7 +75,7 @@
 								return;
 							}
 							
-							var url_request	= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_TRANSFERINPUT/"+encodeURI("{\"warehouseSourceID\"|\""+$("#txtWarehouseSourceID").val()+"\"{}\"userID\"|\"<?php echo $userID; ?>\"}");
+							var url_request	= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_TRANSFERINPUT/true/"+encodeURI("{\"warehouseSourceID\"|\""+$("#txtWarehouseSourceID").val()+"\"{}\"userID\"|\"<?php echo $userID; ?>\"}");
 							window.open(url_request,"MsgWindow","width=900,height=450");
 							window.onCompleteItem = onCompleteItem; 
 							
