@@ -1,5 +1,6 @@
 <!-- ./ page heading -->
 <script>					
+	fnWaitOpen();
 	var objTableDetail 						= {};	
 	var objListaProductos					= {};
 	var openedSearchWindow					= false;
@@ -15,52 +16,21 @@
 	document.getElementById("txtScanerCodigo").focus();
 	
 	
-	//Obtener informacion del cliente
-	fnWaitOpen();
-	
-	
-	$.ajax({									
-		cache       : false,
-		dataType    : 'json',
-		type        : 'POST',
-		url  		: "<?php echo site_url(); ?>app_invoice_api/getLineByCustomer",
-		data 		: {entityID : $("#txtCustomerID").val()  },
-		success		: fnCompleteGetCustomerCreditLine,
-		error:function(xhr,data){	
-			console.info("complete data error");									
-			fnWaitClose();
-			fnShowNotification("Error 505","error");
-		}
-	});
-	
-	
-	//obtener informacion de los productos	
-	function fnObtenerListadoProductos(){
-		$.ajax(
-		{									
-			cache       : false,
-			dataType    : 'json',
-			type        : 'GET',																	
-			url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+$("#txtTypePriceID").val() +'"}'),		
-			success		: fnFillListaProductos,
-			error:function(xhr,data)
-			{	
-				console.info("complete data error");									
-				fnWaitClose();
-				fnShowNotification("Error 505","error");
-			}
-		});
-	}
-	function fnCustomerNewCompleted(){
-		console.info("cliente completado");
-	}
-	
-	
-	fnObtenerListadoProductos();
 		
-		
+	//Ir	
+	//fnObtenerListadoProductos();		
+	//fnGetCustomerClient();			
+	//fnWaitClose();		
 	
 	
+	//ejecuta funcion cada 3 segundo
+	//setInterval(function(){  alert("Hello")}, 3000);
+	//setTimeout( function() { alert("Hello")}, 10000);
+
+	setTimeout( function() { fnObtenerListadoProductos(); }, 10);
+	setTimeout( function() { fnGetCustomerClient(); }, 2000);
+	setTimeout( function() { fnWaitClose(); }, 3000);
+
 	$(document).ready(function(){						 
 		 $('#txtDate').datepicker({format:"yyyy-mm-dd"});
 		 $('#txtDate').val(moment().format("YYYY-MM-DD"));	
@@ -313,27 +283,14 @@
 	
 		var entityID = objResponse[1];
 		$("#txtCustomerID").val(objResponse[1]);
-		$("#txtCustomerDescription").val(objResponse[2] + " " + objResponse[3] + " / " + objResponse[4]);
-	
+		$("#txtCustomerDescription").val(objResponse[2] + " " + objResponse[3] + " / " + objResponse[4]);	
 		fnClearData();
-		//Obtener Informacion de Credito
-		fnWaitOpen();
-		$.ajax({									
-			cache       : false,
-			dataType    : 'json',
-			type        : 'POST',
-			url  		: "<?php echo site_url(); ?>app_invoice_api/getLineByCustomer",
-			data 		: {entityID : entityID  },
-			success		: fnCompleteGetCustomerCreditLine,
-			error:function(xhr,data){	
-				console.info("complete data error");									
-				fnWaitClose();
-				fnShowNotification("Error 505","error");
-			}
-		});
 		
+		
+		fnGetCustomerClient();
 		
 	}
+	
 	function onCompleteNewItem(objResponse){
 		console.info("CALL onCompleteNewItem");
 
@@ -525,6 +482,7 @@
 		
 		return result;
 	}
+	
 	function fnGetConcept(conceptItemID,nameConcept){
 		fnWaitOpen();
 		$.ajax({									
@@ -557,9 +515,11 @@
 			}
 		});								
 	}
+	
 	function refreschChecked(){
 		$("[type='checkbox'], [type='radio'], [type='file'], select").not('.toggle, .select2, .multiselect').uniform();						
 	}
+	
 	function fnClearData(){
 			console.info("fnClearData");
 			objTableDetail.fnClearTable();
@@ -570,6 +530,7 @@
 			$("#txtIva").val("0");
 			$("#txtTotal").val("0");
 	}
+	
 	function fnRecalculateDetail(clearRecibo){
 		
 		var cantidad 				= 0;
@@ -619,18 +580,18 @@
 		$("#txtChangeAmount").val("0.00");
 			
 	}
+	
 	function fnFillListaProductos(data)
-	{
+	{		
 		console.info("complete success data");
-		fnWaitClose();		
 		objListaProductos = data.objGridView;
 		
 	}
+	
 	function fnCompleteGetCustomerCreditLine (data)
 	{
 		
-		console.info("complete success data");
-		fnWaitClose();
+		console.info("complete success data");		
 		tmpInfoClient = data;
 		console.info(tmpInfoClient);
 		
@@ -670,7 +631,9 @@
 		$("#txtCustomerCreditLineID").select2();
 		$("#txtCausalID").select2();
 		refreschChecked();
+		//fnWaitClose();
 	}
+	
 	function fnGetPosition(item,data){
 		var i = 0;
 		for(i = 0 ; i < data.length; i++){
@@ -679,6 +642,7 @@
 				return i;							
 		}
 	}
+	
 	function fnEnviarFactura(){
 				$( "#form-new-invoice" ).attr("method","POST");
 				$( "#form-new-invoice" ).attr("action","<?php echo site_url(); ?>app_invoice_billing/save/new");
@@ -688,6 +652,7 @@
 					$( "#form-new-invoice" ).submit();
 				}				
 	}		
+	
 	function fnRenderLineaCreditoDiv(){
 			//Si es de credito que la factura no supere la linea de credito
 			var causalSelect 				= $("#txtCausalID").val();
@@ -711,8 +676,55 @@
 			else{
 				$("#divLineaCredit").addClass("hidden");				
 			}
+			
+			
 
 	}	
+	
+	//obtener informacion de los productos	
+	async function fnObtenerListadoProductos(){
+		const resultAjax2 = await $.ajax(
+		{									
+			cache       : false,
+			dataType    : 'json',
+			type        : 'GET',																	
+			url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+$("#txtTypePriceID").val() +'"}'),		
+			success		: fnFillListaProductos,
+			error:function(xhr,data)
+			{	
+				console.info("complete data error");	
+				fnShowNotification("Error 505","error");
+			}
+		});
+		
+		
+		return resultAjax2;
+	}
+	
+	function fnCustomerNewCompleted(){
+		console.info("cliente completado");
+	}
+	
+	async function fnGetCustomerClient(){
+		const resultAjax = await $.ajax({									
+			cache       : false,
+			dataType    : 'json',
+			type        : 'POST',
+			url  		: "<?php echo site_url(); ?>app_invoice_api/getLineByCustomer",
+			data 		: {entityID : $("#txtCustomerID").val()  },
+			success		: fnCompleteGetCustomerCreditLine,
+			error:function(xhr,data){	
+				console.info("complete data error");													
+				fnShowNotification("Error 505","error");
+			}
+		});
+		
+		
+		return resultAjax;
+		
+	}
+	
+
 </script>
 <script>  (function(g,u,i,d,e,s){g[e]=g[e]||[];var f=u.getElementsByTagName(i)[0];var k=u.createElement(i);k.async=true;k.src='https://static.userguiding.com/media/user-guiding-'+s+'-embedded.js';f.parentNode.insertBefore(k,f);if(g[d])return;var ug=g[d]={q:[]};ug.c=function(n){return function(){ug.q.push([n,arguments])};};var m=['previewGuide','finishPreview','track','identify','triggerNps','hideChecklist','launchChecklist'];for(var j=0;j<m.length;j+=1){ug[m[j]]=ug.c(m[j]);}})(window,document,'script','userGuiding','userGuidingLayer','744100086ID'); </script>
 <script>

@@ -1,8 +1,10 @@
 <!-- ./ page heading -->
 <script>	
+	fnWaitOpen();	
 	var objTableDetail 			= {};		
 	var tmpData 				= [];
 	var objListaProductos		= {};
+	var openedSearchWindow					= false;
 	var varPermitirFacturarProductosEnZero	= '<?php echo $objParameterInvoiceBillingQuantityZero; ?>';
 	var varUrlPrinter			= '<?php echo $urlPrinterDocument; ?>';
 	var varDetail 				= JSON.parse('<?php echo json_encode($objTransactionMasterDetail); ?>');	
@@ -41,48 +43,24 @@
 			]);
 		}
 	}	
-	//Obtener informacion del cliente	
-	fnWaitOpen();	
-	$.ajax({									
-		cache       : false,
-		dataType    : 'json',
-		type        : 'POST',
-		url  		: "<?php echo site_url(); ?>app_invoice_api/getLineByCustomer",
-		data 		: {entityID : <?php echo $objTransactionMaster->entityID; ?>  },
-		success		: fnCompleteGetCustomerCreditLine,
-		error:function(xhr,data){	
-			console.info("complete data error");									
-			fnWaitClose();
-			fnShowNotification("Error 505","error");
-		}
-	});		
-	
-	//obtener informacion de los productos
-	function fnObtenerListadoProductos(){
-		$.ajax({									
-			cache       : false,
-			dataType    : 'json',
-			type        : 'GET',
-			url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+$("#txtTypePriceID").val() +'"}'),		
-			success		: fnFillListaProductos,
-			error:function(xhr,data){	
-				console.info("complete data error");									
-				fnWaitClose();
-				fnShowNotification("Error 505","error");
-			}
-		});	
-	}
-	function fnCustomerNewCompleted(){
-		console.info("cliente completado");
-	}
-	
+
+	//fnObtenerListadoProductos();	
+	//fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?> );				
+	//fnWaitClose();	
+
+	//ejecuta funcion cada 3 segundo
+	//setInterval(function(){alert("Hello")},3000);
+	//setTimeout( function() { alert("Hello")}, 10000);
+
+	setTimeout( function() { fnObtenerListadoProductos(); }, 10);
+	setTimeout( function() { fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?> );	 }, 2000);
+	setTimeout( function() { fnWaitClose(); }, 3000);
+
 	
 
-	fnObtenerListadoProductos();
 	
 	//Incializar Focos
-	document.getElementById("txtScanerCodigo").focus();
-	
+	document.getElementById("txtScanerCodigo").focus();	
 	$(document).ready(function(){					
 		 $('#txtDate').datepicker({format:"yyyy-mm-dd"});						 
 		 $("#txtDate").datepicker("update");
@@ -188,17 +166,17 @@
 							}
 						}
 			]						
-		});						
+		});			
+
 		refreschChecked();
-		fnRecalculateDetail(false);
-		
+		fnRecalculateDetail(false);		
 		$("#txtReceiptAmount").val("<?php echo number_format($objTransactionMasterInfo->receiptAmount,2); ?>");
 		$("#txtReceiptAmountDol").val("<?php echo number_format($objTransactionMasterInfo->receiptAmountDol,2); ?>");
 		
-		var ingreso = fnFormatFloat($("#txtReceiptAmount").val());
-		var ingresoDol = fnFormatFloat($("#txtReceiptAmountDol").val());
-		var tipoCambio = fnFormatFloat($("#txtExchangeRate").val());
-		var total 	= fnFormatFloat($("#txtTotal").val());	
+		var ingreso 	= fnFormatFloat($("#txtReceiptAmount").val());
+		var ingresoDol 	= fnFormatFloat($("#txtReceiptAmountDol").val());
+		var tipoCambio 	= fnFormatFloat($("#txtExchangeRate").val());
+		var total 		= fnFormatFloat($("#txtTotal").val());	
 		var resultTotal =  (ingreso + (ingresoDol * tipoCambio)) - total;
 		var resultTotal = fnFormatNumber(resultTotal,2);
 		$("#txtChangeAmount").val(resultTotal);	
@@ -298,8 +276,7 @@
 					success		: function(){
 						fnWaitClose();						
 					},
-					error:function(xhr,data){	
-						debugger;
+					error:function(xhr,data){
 						console.info("complete data error");									
 						console.info(data);
 						console.info(xhr);
@@ -324,12 +301,6 @@
 			fnRenderLineaCreditoDiv();
 		});
 
-		$(document).on("change","input.txtQuantity",function(){
-			fnRecalculateDetail(true);
-		});
-		$(document).on("change","input.txtPrice",function(){
-			fnRecalculateDetail(true);
-		});
 		//Regresar a la lista
 		$(document).on("click","#btnBack",function(){
 				fnWaitOpen();
@@ -342,6 +313,7 @@
 				fnEnviarFactura();
 			
 		});
+
 		
 		
 		
@@ -406,9 +378,16 @@
 				fnRecalculateDetail(true);		
 				
 		});
+		$(document).on("change","input.txtQuantity",function(){
+			fnRecalculateDetail(true);
+		});
+		$(document).on("change","input.txtPrice",function(){
+			fnRecalculateDetail(true);
+		});
+		
+		
 		//Ir a archivos
 		$(document).on("click","#btnClickArchivo",function(){
-			debugger;
 			window.open("<?php echo site_url()."core_elfinder/index/componentID/".$objComponentBilling->componentID."/componentItemID/".$objTransactionMaster->transactionMasterID; ?>","blanck");
 		});
 		//Cambio en los recibido
@@ -455,89 +434,13 @@
 		$("#txtCustomerDescription").val(objResponse[2] + " " + objResponse[3] + " / " + objResponse[4]);
 	
 		fnClearData();
-		//Obtener Informacion de Credito
-		fnWaitOpen();
-
-		$.ajax({									
-			cache       : false,
-			dataType    : 'json',
-			type        : 'POST',
-			url  		: "<?php echo site_url(); ?>app_invoice_api/getLineByCustomer",
-			data 		: {entityID : entityID  },
-			success		: fnCompleteGetCustomerCreditLine,
-			error:function(xhr,data){	
-				console.info("complete data error");									
-				fnWaitClose();
-				fnShowNotification("Error 505","error");
-			}
-		});
+		fnGetCustomerClient(entityID);
 				
 				
 	}
 	//Buscar Linea
-	function fnFillListaProductos(data){
-		console.info("complete success data");
-		fnWaitClose();
-		objListaProductos = data.objGridView;
-		
-	}
-	function fnCompleteGetCustomerCreditLine (data)
-	{
-		console.info("complete success data");
-		fnWaitClose();
-		tmpInfoClient = data;
-		console.info(tmpInfoClient);						
-		
-		//Renderizar Line Credit
-		$("#txtCustomerCreditLineID").html("");
-		$("#txtCustomerCreditLineID").val("");
-		if(tmpInfoClient.objListCustomerCreditLine != null)
-		for(var i = 0; i< tmpInfoClient.objListCustomerCreditLine.length;i++){
-			if(i==0 && varCustomerCrediLineID == 0){
-				$("#txtCustomerCreditLineID").append("<option value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"' selected>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber + " " +tmpInfoClient.objListCustomerCreditLine[i].line  +"</option>");
-				$("#txtCustomerCreditLineID").val(tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID);
-			}
-			else if( varCustomerCrediLineID == tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID){
-				$("#txtCustomerCreditLineID").append("<option value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"' selected>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber + " " +tmpInfoClient.objListCustomerCreditLine[i].line  + "</option>");
-				$("#txtCustomerCreditLineID").val(tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID);
-			}
-			else
-				$("#txtCustomerCreditLineID").append("<option  value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"'>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber + " " +tmpInfoClient.objListCustomerCreditLine[i].line  +"</option>");
-		}
-		
-		//Habilitar la compra al contado o al credito
-		$("#txtCausalID option").removeAttr("disabled");
-		$("#txtCausalID").val("");
-		
-		
-		
-		var listArrayCausalCredit = tmpInfoClient.objCausalTypeCredit.value.split(",");
-		$.each( $("#txtCausalID option"),function(index,obj){
-			for(var i=0;i<listArrayCausalCredit.length;i++){
-				var causalIDCredit = listArrayCausalCredit[i];
-				if( ($(obj).attr("value") == causalIDCredit) && (tmpInfoClient.objListCustomerCreditLine != null))
-					$("#txtCausalID option[value="+causalIDCredit+"]").removeAttr("disabled");
-				else if( ($(obj).attr("value") == causalIDCredit) && (tmpInfoClient.objListCustomerCreditLine == null))
-					$("#txtCausalID option[value="+causalIDCredit+"]").attr("disabled","true");
-				else
-					$("#txtCausalID option[value="+causalIDCredit+"]").removeAttr("disabled");
-			}
-		});
-		
-		$.each( $("#txtCausalID option"),function(index,obj){
-			if(varTransactionCausalID == $(obj).attr("value")){
-				$(obj).attr("selected");
-				$("#txtCausalID").val(varTransactionCausalID);
-			}
-		});
-		
-		//Refresh Control
-		$("#txtCustomerCreditLineID").select2();
-		$("#txtCausalID").select2();
-		refreschChecked();
-
-		fnRenderLineaCreditoDiv();
-	}
+	
+	
 	//Nuevo Producto
 	function onCompleteNewItem(objResponse){
 		console.info("CALL onCompleteNewItem");
@@ -630,8 +533,7 @@
 			result = false;
 		};		
 		
-		for(var i = 0; i < objTableDetail.fnGetData().length; i++){
-			debugger;
+		for(var i = 0; i < objTableDetail.fnGetData().length; i++){			
 			var rowTable = objTableDetail.fnGetData()[i];
 			var rowTableItemID 		 = rowTable[2];
 			var rowTableItemQuantity = rowTable[6];
@@ -764,6 +666,23 @@
 		});								
 	}
 	
+	
+	function refreschChecked(){
+		$("[type='checkbox'], [type='radio'], [type='file'], select").not('.toggle, .select2, .multiselect').uniform();						
+	}
+
+	function fnClearData(){
+			console.info("fnClearData");
+			objTableDetail.fnClearTable();
+			$("#txtReceiptAmount").val("0");
+			$("#txtReceiptAmountDol").val("0.00");
+			$("#txtChangeAmount").val("0");
+			$("#txtSubTotal").val("0");
+			$("#txtIva").val("0");
+			$("#txtTotal").val("0");
+	}
+
+
 	function fnRecalculateDetail(clearRecibo){
 		var cantidad 				= 0;
 		var iva 					= 0;
@@ -812,19 +731,71 @@
 		$("#txtChangeAmount").val("0.00");			
 		
 	}
-	function refreschChecked(){
-		$("[type='checkbox'], [type='radio'], [type='file'], select").not('.toggle, .select2, .multiselect').uniform();						
+
+	function fnFillListaProductos(data){
+		console.info("complete success data");
+		objListaProductos = data.objGridView;
+		
 	}
-	function fnClearData(){
-			console.info("fnClearData");
-			objTableDetail.fnClearTable();
-			$("#txtReceiptAmount").val("0");
-			$("#txtReceiptAmountDol").val("0.00");
-			$("#txtChangeAmount").val("0");
-			$("#txtSubTotal").val("0");
-			$("#txtIva").val("0");
-			$("#txtTotal").val("0");
+
+	
+	function fnCompleteGetCustomerCreditLine (data)
+	{
+		console.info("complete success data");		
+		tmpInfoClient = data;
+		console.info(tmpInfoClient);						
+		
+		//Renderizar Line Credit
+		$("#txtCustomerCreditLineID").html("");
+		$("#txtCustomerCreditLineID").val("");
+		if(tmpInfoClient.objListCustomerCreditLine != null)
+		for(var i = 0; i< tmpInfoClient.objListCustomerCreditLine.length;i++){
+			if(i==0 && varCustomerCrediLineID == 0){
+				$("#txtCustomerCreditLineID").append("<option value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"' selected>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber + " " +tmpInfoClient.objListCustomerCreditLine[i].line  +"</option>");
+				$("#txtCustomerCreditLineID").val(tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID);
+			}
+			else if( varCustomerCrediLineID == tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID){
+				$("#txtCustomerCreditLineID").append("<option value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"' selected>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber + " " +tmpInfoClient.objListCustomerCreditLine[i].line  + "</option>");
+				$("#txtCustomerCreditLineID").val(tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID);
+			}
+			else
+				$("#txtCustomerCreditLineID").append("<option  value='"+tmpInfoClient.objListCustomerCreditLine[i].customerCreditLineID+"'>"+ tmpInfoClient.objListCustomerCreditLine[i].accountNumber + " " +tmpInfoClient.objListCustomerCreditLine[i].line  +"</option>");
+		}
+		
+		//Habilitar la compra al contado o al credito
+		$("#txtCausalID option").removeAttr("disabled");
+		$("#txtCausalID").val("");
+		
+		
+		
+		var listArrayCausalCredit = tmpInfoClient.objCausalTypeCredit.value.split(",");
+		$.each( $("#txtCausalID option"),function(index,obj){
+			for(var i=0;i<listArrayCausalCredit.length;i++){
+				var causalIDCredit = listArrayCausalCredit[i];
+				if( ($(obj).attr("value") == causalIDCredit) && (tmpInfoClient.objListCustomerCreditLine != null))
+					$("#txtCausalID option[value="+causalIDCredit+"]").removeAttr("disabled");
+				else if( ($(obj).attr("value") == causalIDCredit) && (tmpInfoClient.objListCustomerCreditLine == null))
+					$("#txtCausalID option[value="+causalIDCredit+"]").attr("disabled","true");
+				else
+					$("#txtCausalID option[value="+causalIDCredit+"]").removeAttr("disabled");
+			}
+		});
+		
+		$.each( $("#txtCausalID option"),function(index,obj){
+			if(varTransactionCausalID == $(obj).attr("value")){
+				$(obj).attr("selected");
+				$("#txtCausalID").val(varTransactionCausalID);
+			}
+		});
+		
+		//Refresh Control
+		$("#txtCustomerCreditLineID").select2();
+		$("#txtCausalID").select2();
+		refreschChecked();		
+		fnRenderLineaCreditoDiv();
+		//fnWaitClose();
 	}
+
 	function fnGetPosition(item,data){
 		var i = 0;
 		for(i = 0 ; i < data.length; i++){
@@ -867,5 +838,43 @@
 			}
 
 	}	
+	
+	//obtener informacion de los productos
+	async function fnObtenerListadoProductos(){
+		const resultAjax2 = await $.ajax({									
+			cache       : false,
+			dataType    : 'json',
+			type        : 'GET',
+			url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+$("#txtTypePriceID").val() +'"}'),		
+			success		: fnFillListaProductos,
+			error:function(xhr,data){	
+				console.info("complete data error");		
+				fnShowNotification("Error 505","error");
+			}
+		});	
+
+		return resultAjax2;
+	}
+
+	function fnCustomerNewCompleted(){
+		console.info("cliente completado");
+	}
+	
+	async function fnGetCustomerClient(entityIDv){
+		const resultAjax = await $.ajax({									
+			cache       : false,
+			dataType    : 'json',
+			type        : 'POST',
+			url  		: "<?php echo site_url(); ?>app_invoice_api/getLineByCustomer",
+			data 		: {entityID : entityIDv  },
+			success		: fnCompleteGetCustomerCreditLine,
+			error:function(xhr,data){	
+				console.info("complete data error");													
+				fnShowNotification("Error 505","error");
+			}
+		});
+		return resultAjax;
+		
+	}
 </script>
 <script>  (function(g,u,i,d,e,s){g[e]=g[e]||[];var f=u.getElementsByTagName(i)[0];var k=u.createElement(i);k.async=true;k.src='https://static.userguiding.com/media/user-guiding-'+s+'-embedded.js';f.parentNode.insertBefore(k,f);if(g[d])return;var ug=g[d]={q:[]};ug.c=function(n){return function(){ug.q.push([n,arguments])};};var m=['previewGuide','finishPreview','track','identify','triggerNps','hideChecklist','launchChecklist'];for(var j=0;j<m.length;j+=1){ug[m[j]]=ug.c(m[j]);}})(window,document,'script','userGuiding','userGuidingLayer','744100086ID'); </script>
