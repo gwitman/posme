@@ -15,13 +15,13 @@ class App_Invoice_Api extends CI_Controller {
 			$dataSession		= $this->session->all_userdata();			
 			
 			////PERMISO SOBRE LA FUNCION
-			//if(APP_NEED_AUTHENTICATION == true){
-			//	$permited = false;
-			//	$permited = $this->core_web_permission->urlPermited($this->router->class,"index",$this->config->item('url_suffix'),$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
-			//	
-			//	if(!$permited)
-			//	throw new Exception(NOT_ACCESS_CONTROL." ".$this->router->class);		
-			//}			
+			if(APP_NEED_AUTHENTICATION == true){
+				$permited = false;
+				$permited = $this->core_web_permission->urlPermited($this->router->class,"index",$this->config->item('url_suffix'),$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+				
+				if(!$permited)
+				throw new Exception(NOT_ACCESS_CONTROL." ".$this->router->class);		
+			}
 			
 			//Cargar Librerias			
 			$this->load->model("ItemWarehouse_Model");
