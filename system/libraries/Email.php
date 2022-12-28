@@ -30,13 +30,13 @@ class CI_Email {
 
 	var	$useragent		= "CodeIgniter";  
 	var	$mailpath		= "/usr/sbin/sendmail";		// Sendmail path
-	var	$protocol		= "mail";					// mail/sendmail/smtp
-	var	$smtp_host		= "mail.fidlocal.com";		// SMTP Server.  Example: mail.earthlink.net
-	var	$smtp_user		= "nssystem@fidlocal.com";	// SMTP Username
-	var	$smtp_pass		= "Ax.#123manGonzalez";		// SMTP Password
-	var	$smtp_port		= "587";		// SMTP Port
+	var	$protocol		= "smtp";					// mail/sendmail/smtp
+	var	$smtp_host		= "smtp.gmail.com";		// SMTP Server.  Example: mail.earthlink.net
+	var	$smtp_user		= "www.witman@gmail.com";	// SMTP Username
+	var	$smtp_pass		= "180389Witman";		// SMTP Password
+	var	$smtp_port		= "465";		// SMTP Port
 	var	$smtp_timeout	= 5;		// SMTP Timeout in seconds
-	var	$smtp_crypto	= "";		// SMTP Encryption. Can be null, tls or ssl.
+	var	$smtp_crypto	= "ssl";		// SMTP Encryption. Can be null, tls or ssl.
 	var	$wordwrap		= TRUE;		// TRUE/FALSE  Turns word-wrap on/off
 	var	$wrapchars		= "76";		// Number of characters to wrap at.
 	var	$mailtype		= "text";	// text/html  Defines email formatting
@@ -62,7 +62,7 @@ class CI_Email {
 	var	$_smtp_connect	= "";
 	var	$_encoding		= "8bit";
 	var $_IP			= FALSE;
-	var	$_smtp_auth		= FALSE;
+	var	$_smtp_auth		= TRUE;
 	var $_replyto_flag	= FALSE;
 	var	$_debug_msg		= array();
 	var	$_recipients	= array();

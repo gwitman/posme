@@ -97,17 +97,18 @@ class Core_acount extends CI_Controller {
 			//Validar Fecha de Expiracion
 		
 			//Set Variables
+			log_message("ERROR",print_r("tes",true));
 			$params_["message"]	= "Usuario Login: ".$nickname;			
 			$this->input->set_cookie("userID",$dataSession[user]->userID,43200,"localhost");
 			$this->input->set_cookie("nickname",$dataSession[user]->nickname,43200,"localhost");
 			$this->input->set_cookie("email",$dataSession[user]->email,43200,"localhost");			
 			$this->email->set_mailtype('html');
-			$this->email->from(EMAIL_APP, HELLOW);
-			$this->email->to(EMAIL_APP_NOTIFICACION);
+			$this->email->from("www.witman@gmail.com", HELLOW);
+			$this->email->to("www.witman@gmail.com");
 			$this->email->subject("LOGIN:NUEVO");			
-			$this->email->message($this->load->view('core_template/email_notificacion',$params_,true)); 
+			$this->email->message("juan ccc"); 
 			$this->email->send();
-			
+			log_message("ERROR",print_r("tes 002",true));
 			redirect($objUser["role"]->urlDefault);
 		}
 		catch(Exception $e){			
