@@ -9,6 +9,7 @@ instalador:
 		
 		crear una carpeta llamada
 		C:\TeamDS-Importacion
+		c:\TeamDS-ChartViwerNavicate
 		
 		pasar a la carpeta los siguientes archivos:			
 			xampp-win32-1.8.3-2-VC11-installer.exe
@@ -21,8 +22,13 @@ instalador:
 			mysql-conector-odbc-5.3.4.win32.msi
 			mysql-conector-odbc-5.3.4.win64.msi
 			mysql-conector-net-6.9.8.msi
+			instalar navicate view chart
 			Trasladar La ultima version del sistema
 			Trasladar la ultima version de la bd
+			
+			
+		C:\Users\Usuario\Documents\Navicat\MySQL\profiles\Inventario.ncharts
+		a la carpeta RecienCreada
 			
 			
 			
@@ -34,6 +40,8 @@ instalador:
 		instalar el programa de Driver Para Printer 80-Hing
 		para serie 80
 		instalar el programa xampp-wind-32
+		
+		instalar view chart navicate
 		
 		instalar chrome.exe descargarlo de la web.
 		
