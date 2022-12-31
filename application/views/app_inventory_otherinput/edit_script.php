@@ -91,7 +91,7 @@
 							"sClass" 		: "hidden",
 							"bSearchable"	: false,
 							"mRender"	: function ( data, type, full ) {
-								return '<input type="text" class="col-lg-12 txtDetailExpiredDate txt-numeric"" value="'+data+'" name="txtDetailExpiredDate[]" readonly="true" />';
+								return '<input type="text" class="col-lg-12 txtDetailVencimiento txt-numeric"" value="'+data+'" name="txtDetailVencimiento[]" readonly="true" />';
 							}
 						},
 						{
@@ -177,10 +177,15 @@
 			var transactionMasterDetailID 	= $(this).data("transactionmasterdetailid");
 			var tr 							= $(this).parent().parent()[0];
 			var index 						= objTableDetailTransaction.fnGetPosition(tr);
-			
+			var objdat_ 					= objTableDetailTransaction.fnGetData(index);		
+			var lote 						= objdat_[9];
+			var vencimiento 				= objdat_[10];
+			vencimiento 					= vencimiento.replace(" 00:00:00","");
 			
 			var url_request = "<?php echo site_url(); ?>app_inventory_otherinput/add_masinformacion/onCompleteUpdateMasInformacion/"+itemID+"/"+transactionMasterDetailID+"/"+index; 
-			window.open(url_request,"MsgWindow","width=900,height=450");
+			url_request = url_request + "/"+lote+"/"+vencimiento;
+			
+			window.open(url_request,"MsgWindow","width=900,height=500");
 			window.onCompleteUpdateMasInformacion = onCompleteUpdateMasInformacion; 
 		});
 		//Eliminar Item
@@ -283,7 +288,16 @@
 		return result;
 	}
 	function onCompleteUpdateMasInformacion(objResponse){
+			var index 		= objResponse.txtPosition;
+			var vencimiento = objResponse.txtVencimiento;
+			var lote 		= objResponse.txtLote;
 		
+			
+			var objdat_ = objTableDetailTransaction.fnGetData(index);		
+			objTableDetailTransaction.fnUpdate( lote, index, 9 );
+			objTableDetailTransaction.fnUpdate(  vencimiento, index, 10 );			
+			
+			
 	}
 	function onCompleteItem(objResponse){
 		console.info("CALL onCompleteItem");

@@ -537,6 +537,8 @@ class App_Inventory_OtherInput extends CI_Controller {
 						$objTMD["unitaryPrice"]					= 0;
 						$objTMD["promotionID"] 					= 0;
 						
+						//log_message("ERROR","ver fecha de vencimiento");
+						//log_message("ERROR",print_r($vencimiento,true));
 						$objTMD["lote"]							= $lote;
 						$objTMD["expirationDate"]				= $vencimiento == "" ? NULL:  $vencimiento;
 						$objTMD["reference3"]					= '';
@@ -554,6 +556,9 @@ class App_Inventory_OtherInput extends CI_Controller {
 					}
 					//Editar Detalle
 					else{
+						//log_message("ERROR","ver fecha de vencimiento");
+						//log_message("ERROR",print_r($vencimiento,true));
+						
 						$objTMD 									= $this->Transaction_Master_Detail_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID,$transactionMasterDetailID);						
 						$objTMDNew["quantity"] 						= helper_StringToNumber($arrayListQuantity[$key]);//cantidad
 						$objTMDNew["unitaryCost"]					= helper_StringToNumber($arrayListCost[$key]);//costo
@@ -806,7 +811,7 @@ class App_Inventory_OtherInput extends CI_Controller {
 		}
 	}	
 	
-	function add_masinformacion($fnCallback,$itemID,$transactionMasterDetailID,$positionID){
+	function add_masinformacion($fnCallback,$itemID,$transactionMasterDetailID,$positionID,$lote,$vencimiento){
 			
 			//AUTENTICACION
 			if(!$this->core_web_authentication->isAuthenticated())
@@ -830,6 +835,8 @@ class App_Inventory_OtherInput extends CI_Controller {
 			$data["transactionMasterDetailID"] 	= $transactionMasterDetailID;
 			$data["positionID"] 				= $positionID;
 			$data["fnCallback"] 				= $fnCallback;
+			$data["lote"] 						= $lote;
+			$data["vencimiento"] 				= $vencimiento;
 			
 			//Renderizar Resultado
 			$dataSession["message"]		= "";

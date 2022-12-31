@@ -8,6 +8,7 @@
 					var data					= {};
 					data.txtLote				= $("#txtLote").val();
 					data.txtVencimiento			= $("#txtVencimiento").val();
+					data.txtPosition			= <?php  echo $positionID; ?>;
 					window.opener.onCompleteUpdateMasInformacion(data);  
 					window.close(); 
 			});
