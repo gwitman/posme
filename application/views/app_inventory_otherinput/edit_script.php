@@ -24,11 +24,20 @@
 			"aoColumnDefs": [ 
 						{
 							"aTargets"	: [ 0 ],//checked
-							"mRender"	: function ( data, type, full ) {
-								if (data == false)
-								return '<input type="checkbox"  class="classCheckedDetail"  value="0" ></span>';
-								else
-								return '<input type="checkbox"  class="classCheckedDetail" checked="checked" value="0" ></span>';
+							"mRender"	: function ( data, type, full ) {								
+								if (data == false){
+									var str = '<input type="checkbox"  class="classCheckedDetail"  value="0" ></span>';									
+									str = str + '<br/>';
+									str = str + '<a class="btn btn-primary btnMasInformcion" data-itemid="'+full[1]+'" data-transactionmasterdetailid="'+full[2]+'"  href="#" >Mas informacion</a>';
+									return str;
+								}
+								else{
+									var str = '<input type="checkbox"  class="classCheckedDetail" checked="checked" value="0" ></span>';
+									str = str + '<br/>';
+									str = str + '<a class="btn btn-primary btnMasInformcion" data-itemid="'+full[1]+'" data-transactionmasterdetailid="'+full[2]+'"  href="#" >Mas informacion</a>';
+									return str;
+								}
+								
 							}
 						},
 						{
@@ -125,6 +134,16 @@
 		
 		//Agregar Item
 		$(document).on("click","#btnNewDetailTransaction",function(){	
+			if($("#txtWarehouseSourceID").val()==""){
+				fnShowNotification("Seleccione la Bodega","error",1000);
+				return;
+			}
+			
+			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_INPUT/true/" +encodeURI("{\"warehouseID\"|\""+$("#txtWarehouseSourceID").val()+"\"}"); 
+			window.open(url_request,"MsgWindow","width=900,height=450");
+			window.onCompleteItem = onCompleteItem; 
+		});
+		$(document).on("click",".btnMasInformcion",function(){
 			if($("#txtWarehouseSourceID").val()==""){
 				fnShowNotification("Seleccione la Bodega","error",1000);
 				return;
