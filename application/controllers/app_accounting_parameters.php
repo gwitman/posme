@@ -7,7 +7,7 @@ class App_Accounting_Parameters extends CI_Controller {
     }	
 	
 	function save(){
-		try{ 
+		try{  
 			//AUTENTICADO
 			if(!$this->core_web_authentication->isAuthenticated())
 			throw new Exception(USER_NOT_AUTENTICATED);
