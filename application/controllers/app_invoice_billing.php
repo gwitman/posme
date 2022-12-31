@@ -552,7 +552,7 @@ class App_Invoice_Billing extends CI_Controller {
 					if(
 						$objItemWarehouse->quantity < $quantity  
 						&& 
-						$objItem->isInvoiceQuantityZero == 1
+						$objItem->isInvoiceQuantityZero == 0
 						//&&
 						//$objParameterInvoiceBillingQuantityZero == "false"
 					)					
