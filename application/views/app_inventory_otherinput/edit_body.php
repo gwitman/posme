@@ -159,6 +159,9 @@
 								<th>Cantidad</th>
 								<th>Costo</th>
 								<th>Total</th>
+								<th>Lote</th>
+								<th>Expiracion</th>
+								<th>Mas</th>
 							  </tr>
 							</thead>
 							<tbody id="body_detail_transaction">             

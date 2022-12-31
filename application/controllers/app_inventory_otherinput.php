@@ -397,8 +397,8 @@ class App_Inventory_OtherInput extends CI_Controller {
 					$objTMD["unitaryPrice"]					= 0;
 					$objTMD["promotionID"] 					= 0;
 					
-					$objTMD["reference1"]					= $lote;
-					$objTMD["reference2"]					= $vencimiento;
+					$objTMD["lote"]							= $lote;
+					$objTMD["expirationDate"]				= $vencimiento == "" ? NULL:  $vencimiento;
 					$objTMD["reference3"]					= '';
 					$objTMD["catalogStatusID"]				= 0;
 					$objTMD["inventoryStatusID"]			= 0;
@@ -406,8 +406,7 @@ class App_Inventory_OtherInput extends CI_Controller {
 					$objTMD["quantityStock"]				= 0;
 					$objTMD["quantiryStockInTraffic"]		= 0;
 					$objTMD["quantityStockUnaswared"]		= 0;
-					$objTMD["remaingStock"]					= 0;
-					$objTMD["expirationDate"]				= NULL;
+					$objTMD["remaingStock"]					= 0;					
 					$objTMD["inventoryWarehouseSourceID"]	= $objTM["sourceWarehouseID"];
 					$objTMD["inventoryWarehouseTargetID"]	= $objTM["targetWarehouseID"];
 					
@@ -538,8 +537,8 @@ class App_Inventory_OtherInput extends CI_Controller {
 						$objTMD["unitaryPrice"]					= 0;
 						$objTMD["promotionID"] 					= 0;
 						
-						$objTMD["reference1"]					= $lote;
-						$objTMD["reference2"]					= $vencimiento;
+						$objTMD["lote"]							= $lote;
+						$objTMD["expirationDate"]				= $vencimiento == "" ? NULL:  $vencimiento;
 						$objTMD["reference3"]					= '';
 						$objTMD["catalogStatusID"]				= 0;
 						$objTMD["inventoryStatusID"]			= 0;
@@ -547,8 +546,7 @@ class App_Inventory_OtherInput extends CI_Controller {
 						$objTMD["quantityStock"]				= 0;
 						$objTMD["quantiryStockInTraffic"]		= 0;
 						$objTMD["quantityStockUnaswared"]		= 0;
-						$objTMD["remaingStock"]					= 0;
-						$objTMD["expirationDate"]				= NULL;
+						$objTMD["remaingStock"]					= 0;						
 						$objTMD["inventoryWarehouseSourceID"]	= NULL;
 						$objTMD["inventoryWarehouseTargetID"]	= $objTMNew["targetWarehouseID"];						
 						$this->Transaction_Master_Detail_Model->insert($objTMD);
@@ -560,8 +558,8 @@ class App_Inventory_OtherInput extends CI_Controller {
 						$objTMDNew["quantity"] 						= helper_StringToNumber($arrayListQuantity[$key]);//cantidad
 						$objTMDNew["unitaryCost"]					= helper_StringToNumber($arrayListCost[$key]);//costo
 						$objTMDNew["cost"] 							= $objTMDNew["quantity"] * $objTMDNew["unitaryCost"];
-						$objTMDNew["reference1"]					= $lote;
-						$objTMDNew["reference2"]					= $vencimiento;
+						$objTMDNew["lote"]							= $lote;
+						$objTMDNew["expirationDate"]				= $vencimiento == "" ? NULL:  $vencimiento;
 						
 						$objTMDNew["inventoryWarehouseTargetID"]	= $objTMNew["targetWarehouseID"];
 						$this->Transaction_Master_Detail_Model->update($companyID,$transactionID,$transactionMasterID,$transactionMasterDetailID,$objTMDNew);						
@@ -807,6 +805,40 @@ class App_Inventory_OtherInput extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}	
+	
+	function add_masinformacion($fnCallback,$itemID,$transactionMasterDetailID,$positionID){
+			
+			//AUTENTICACION
+			if(!$this->core_web_authentication->isAuthenticated())
+			throw new Exception(USER_NOT_AUTENTICATED);
+			$dataSession		= $this->session->all_userdata();
+			
+			//PERMISO SOBRE LA FUNCION
+			if(APP_NEED_AUTHENTICATION == true){
+				$permited = false;
+				$permited = $this->core_web_permission->urlPermited($this->router->class,"index",$this->config->item('url_suffix'),$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+				
+				if(!$permited)
+				throw new Exception(NOT_ACCESS_CONTROL);
+				
+				$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"index",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+				if ($resultPermission 	== PERMISSION_NONE)
+				throw new Exception(NOT_ACCESS_FUNCTION);			
+			}
+			
+			$data["itemID"] 					= $itemID;
+			$data["transactionMasterDetailID"] 	= $transactionMasterDetailID;
+			$data["positionID"] 				= $positionID;
+			$data["fnCallback"] 				= $fnCallback;
+			
+			//Renderizar Resultado
+			$dataSession["message"]		= "";
+			$dataSession["head"]		= $this->load->view('app_inventory_otherinput/popup_masinformacion_item_head',$data,true);
+			$dataSession["body"]		= $this->load->view('app_inventory_otherinput/popup_masinformacion_item_body',$data,true);
+			$dataSession["script"]		= $this->load->view('app_inventory_otherinput/popup_masinformacion_item_script',$data,true);  
+			$this->load->view("core_masterpage/default_popup",$dataSession);
+	}
+	
 	
 	
 }

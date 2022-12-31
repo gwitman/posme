@@ -147,7 +147,10 @@
 								<th>U/M</th><!--5-->
 								<th>Cantidad</th><!--6-->
 								<th>Costo</th><!--7-->					
-								<th>Sub Total</th><!--8-->
+								<th>Total</th><!--8-->
+								<th>Lote</th>
+								<th>Expiracion</th>
+								<th>Mas</th>
 							  </tr>
 							</thead>
 							<tbody id="body_detail_transaction">             

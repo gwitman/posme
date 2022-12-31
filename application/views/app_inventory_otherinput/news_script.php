@@ -19,14 +19,10 @@
 								
 								if (data == false){
 									var str = '<input type="checkbox"  class="classCheckedDetail"  value="0" ></span>';									
-									str = str + '<br/>';
-									str = str + '<a class="btn btn-primary btnMasInformcion" data-itemid="'+full[1]+'" data-transactionmasterdetailid="'+full[2]+'"  href="#" >Mas informacion</a>';
 									return str;
 								}
 								else{
 									var str = '<input type="checkbox"  class="classCheckedDetail" checked="checked" value="0" ></span>';
-									str = str + '<br/>';
-									str = str + '<a class="btn btn-primary btnMasInformcion" data-itemid="'+full[1]+'" data-transactionmasterdetailid="'+full[2]+'"  href="#" >Mas informacion</a>';
 									return str;
 								}
 							}
@@ -70,6 +66,38 @@
 							"mRender"	: function ( data, type, full ) {
 								return '<input type="text" class="col-lg-12 txtDetailTotal txt-numeric"" value="'+data+'" name="txtDetailTotal[]" readonly="true" />';
 							}
+						},
+						{
+							"aTargets"		: [ 9 ],//lote
+							"bVisible"		: true,
+							"sClass" 		: "hidden",
+							"bSearchable"	: false,
+							"mRender"	: function ( data, type, full ) {
+								return '<input type="text" class="col-lg-12 txtDetailLote txt-numeric"" value="'+data+'" name="txtDetailLote[]" readonly="true" />';
+							}
+						},
+						{
+							"aTargets"		: [ 10 ],//fecha expiracion
+							"bVisible"		: true,
+							"sClass" 		: "hidden",
+							"bSearchable"	: false,
+							"mRender"	: function ( data, type, full ) {
+								return '<input type="text" class="col-lg-12 txtDetailVencimiento txt-numeric"" value="'+data+'" name="txtDetailVencimiento[]" readonly="true" />';
+							}
+						},
+						{
+							"aTargets"	: [ 11 ],//mas informacion
+							"mRender"	: function ( data, type, full ) {								
+								if (data == false){									
+									var str = '<a class="btn btn-primary btnMasInformcion" data-itemid="'+full[1]+'" data-transactionmasterdetailid="'+full[2]+'"  href="#" >Mas informacion</a>';
+									return str;
+								}
+								else{									
+									var str = '<a class="btn btn-primary btnMasInformcion" data-itemid="'+full[1]+'" data-transactionmasterdetailid="'+full[2]+'"  href="#" >Mas informacion</a>';
+									return str;
+								}
+								
+							}
 						}
 			]							
 		});
@@ -94,6 +122,8 @@
 		
 		//Agregar Item
 		$(document).on("click","#btnNewDetailTransaction",function(){
+			
+			
 			if($("#txtWarehouseSourceID").val()==""){
 				fnShowNotification("Seleccione la Bodega","error",1000);
 				return;
@@ -103,16 +133,20 @@
 			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_INPUT/true/"+encodeURI("{\"warehouseID\"|\""+$("#txtWarehouseSourceID").val()+"\"}");
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteItem = onCompleteItem; 
+			
 		});
 		$(document).on("click",".btnMasInformcion",function(){
-			if($("#txtWarehouseSourceID").val()==""){
-				fnShowNotification("Seleccione la Bodega","error",1000);
-				return;
-			}
 			
-			var url_request = "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentItemID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_INPUT/true/" +encodeURI("{\"warehouseID\"|\""+$("#txtWarehouseSourceID").val()+"\"}"); 
+			var itemID 						= $(this).data("itemid");
+			var transactionMasterDetailID 	= $(this).data("transactionmasterdetailid");
+			var tr 							= $(this).parent().parent()[0];
+			var index 						= objTableDetailTransaction.fnGetPosition(tr);
+			
+			var url_request = "<?php echo site_url(); ?>app_inventory_otherinput/add_masinformacion/onCompleteUpdateMasInformacion/"+itemID+"/"+transactionMasterDetailID+"/"+index; 
 			window.open(url_request,"MsgWindow","width=900,height=450");
-			window.onCompleteItem = onCompleteItem; 
+			window.onCompleteUpdateMasInformacion = onCompleteUpdateMasInformacion; 
+			
+			
 		});
 		//Eliminar Item
 		$(document).on("click","#btnDeleteDetailTransaction",function(){
@@ -218,6 +252,9 @@
 		}
 		return result;
 	}
+	function onCompleteUpdateMasInformacion(objResponse){
+		
+	}
 	function onCompleteItem(objResponse){
 		console.info("CALL onCompleteItem");
 		var objRow 						= {};
@@ -233,6 +270,7 @@
 		objRow.total					= 0;
 		objRow.lote 					= "";
 		objRow.vencimiento				= "";
+		objRow.masinfor					= "";
 		
 		//Berificar que el Item ya esta agregado 
 		if(jLinq.from(objTableDetailTransaction.fnGetData()).where(function(obj){ return obj[1] == objRow.itemID;}).select().length > 0 ){
@@ -240,7 +278,11 @@
 			return;
 		}
 		
-		objTableDetailTransaction.fnAddData([objRow.checked,objRow.itemID,objRow.transactionMasterDetail,objRow.itemNumber,objRow.itemName,objRow.itemUM,objRow.quantity,objRow.cost,objRow.total,objRow.lote,objRow.vencimiento]);
+		objTableDetailTransaction.fnAddData([
+		objRow.checked,objRow.itemID,objRow.transactionMasterDetail,
+		objRow.itemNumber,objRow.itemName,objRow.itemUM,objRow.quantity,
+		objRow.cost,objRow.total,objRow.lote,objRow.vencimiento,
+		objRow.masinfor]);
 		refreschChecked();
 		
 	}
