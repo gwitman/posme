@@ -200,6 +200,10 @@ Probar la configuracion de pago
 	http://localhost/core_test_payment.php
 Probar la configuracion de pago
 	http://localhost/posme/
+	
+	
+Crear la tarea programada para enviar reportes diarios
+	
 
 ---------------------------------------
 actualizacion:
