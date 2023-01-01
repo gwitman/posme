@@ -96,19 +96,29 @@ class Core_acount extends CI_Controller {
 			}
 			//Validar Fecha de Expiracion
 		
-			//Set Variables
-			log_message("ERROR",print_r("tes",true));
+			//Set Variables			
 			$params_["message"]	= "Usuario Login: ".$nickname;			
 			$this->input->set_cookie("userID",$dataSession[user]->userID,43200,"localhost");
 			$this->input->set_cookie("nickname",$dataSession[user]->nickname,43200,"localhost");
 			$this->input->set_cookie("email",$dataSession[user]->email,43200,"localhost");			
-			$this->email->set_mailtype('html');
-			$this->email->from("www.witman@gmail.com", HELLOW);
-			$this->email->to("www.witman@gmail.com");
-			$this->email->subject("LOGIN:NUEVO");			
-			$this->email->message("juan ccc"); 
-			$this->email->send();
-			log_message("ERROR",print_r("tes 002",true));
+			
+	
+			$subject 	= "Inicio de session:".$nickname;
+			$body  		= $this->load->view('core_template/email_notificacion',$params_,true);
+			
+			//$this->email->initialize($configEmail);			
+			//$this->email->from(EMAIL_APP);
+			//$this->email->to($dataSession[user]->email);
+			//$this->email->subject($subject);			
+			//$this->email->message($body); 
+			
+			$this->email->from(EMAIL_APP);
+			$this->email->to(EMAIL_APP_COPY);
+			$this->email->subject($subject);			
+			$this->email->message($body); 
+			
+			$resultSend01 = $this->email->send();
+			$resultSend02 = $this->email->print_debugger();
 			redirect($objUser["role"]->urlDefault);
 		}
 		catch(Exception $e){			

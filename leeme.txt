@@ -105,6 +105,35 @@ modificar los siguientes archivos:
 		[Curl]
 		curl.cainfo = "C:\xampp\ca\cacert.pem"
 		
+		; SMTP = localhost
+		SMTP = smtp.gmail.com
+		
+		; smtp_port = 25
+		smtp_port = 465
+		
+		;sendmail_from = example@localhost
+		sendmail_from = www.witman@gmail.com
+		
+		sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t"
+		; XAMPP: Comment out this if you want to work with mailToDisk, It writes all mails in the C:\xampp\mailoutput folder
+		;sendmail_path="C:\xampp\mailtodisk\mailtodisk.exe"
+		
+modificar los siguientes archivos: 
+		C:\xampp\sendmail\sendmail.ini
+		
+		;smtp_server=mail.mydomain.com
+		smtp_server=smtp.gmail.com
+		
+		;smtp_port=25
+		smtp_port=465
+		
+		;auth_username=
+		auth_username=www.witman@gmail.com
+		;auth_password=
+		auth_password=180389Witman
+		
+		;force_sender=
+		force_sender=www.witman@gmail.com
 
 		
 modificar los siguientes archivos:		

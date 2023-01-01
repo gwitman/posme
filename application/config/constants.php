@@ -50,8 +50,9 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 /////////////////////////////////////////////////////
 //APP
 define('APP_NEED_AUTHENTICATION',true);
-define('EMAIL_APP',"nssystem@fidlocal.com");
-define('EMAIL_APP_NOTIFICACION',"gwitman@yahoo.com");
+define('EMAIL_APP',"posme@gmail.com");
+define('EMAIL_APP_NOTIFICACION',"posme@gmail.com");
+define('EMAIL_APP_COPY',"www.witman@gmail.com");
 define('PATH_FILE_OF_APP','C:/xampp/teamds2/nsSystem/fidlocal-produccion-app/file_company');
 define('PATH_FILE_OF_APP_ROOT','C:/xampp/teamds2/nsSystem/fidlocal-produccion-app');
 define('PATH_FILE_OF_XAMPP_TMP','C:/xampp/tmp');
