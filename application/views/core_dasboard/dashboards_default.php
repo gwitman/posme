@@ -57,10 +57,19 @@
 										<th scope="row">CORE_CUST_PRICE_TIPO_PLAN</th>
 										<td><?php echo $objParameterTipoPlan; ?></td>			
 									</tr>
-									<tr class="bg-primary">
-										<th scope="row">CORE_CUST_PRICE_LICENCES_EXPIRED</th>
-										<td><?php echo $objParameterExpiredLicense; ?></td>											
-									</tr>
+									
+									<?php 
+									if($objParameterTipoPlan != "PERPETUA")
+									{
+										?>
+										<tr class="bg-primary">
+											<th scope="row">CORE_CUST_PRICE_LICENCES_EXPIRED</th>
+											<td><?php echo $objParameterExpiredLicense; ?></td>											
+										</tr>
+										<?php 
+									}
+									?>
+									
 									<tr>
 										<th scope="row">CORE_CUST_PRICE_BALANCE</th>
 										<td><?php echo $objParameterCreditos; ?></td>											

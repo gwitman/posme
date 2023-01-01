@@ -110,7 +110,7 @@ modificar los siguientes archivos:
 		smtp_port = 465
 		
 		;sendmail_from = example@localhost
-		sendmail_from = www.witman@gmail.com
+		sendmail_from = posme2022@gmail.com
 		
 		sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t"
 		; XAMPP: Comment out this if you want to work with mailToDisk, It writes all mails in the C:\xampp\mailoutput folder
@@ -126,12 +126,12 @@ modificar los siguientes archivos:
 		smtp_port=465
 		
 		;auth_username=
-		auth_username=www.witman@gmail.com
+		auth_username=posme2022@gmail.com
 		;auth_password=
-		auth_password=180389Witman
+		auth_password=PosmeSoftware2022
 		
 		;force_sender=
-		force_sender=www.witman@gmail.com
+		force_sender=posme2022@gmail.com
 
 		
 modificar los siguientes archivos:		

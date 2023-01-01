@@ -508,13 +508,44 @@ class App_Notification extends CI_Controller {
 		$this->load->model('Error_Model');
 		$this->load->model('User_Tag_Model');
 		$this->load->model('Customer_Credit_Amortization_Model');
-		$this->load->model('core/Currency_Model');
+		$this->load->model('core/Currency_Model');		
+		$this->load->model('core/Bd_Model');
 	
 	
+		//Obtener parametros
 		$parameterEmail = $this->core_web_parameter->getParameter("CORE_PROPIETARY_EMAIL",APP_COMPANY);
 		$parameterEmail = $parameterEmail->value;
+		
+		$parameterBalance = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_BALANCE",APP_COMPANY);
+		$parameterBalance = $parameterBalance->value;
 			
-		$params_["message"]			= "Reporte diario: ";		
+		$fechaNow  		= DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  			//ahora
+		$fechaNow		= $fechaNow->format("Y-m-d 00:00:00");		
+		$fechaBefore  	= DateTime::createFromFormat('Y-m-d',date("Y-m-d"));  			//ayer
+		$fechaBefore	= $fechaBefore->format("Y-m-d 23:59:59");
+		$tocken			= '';
+		
+		//Obtener ventas
+		$query			= "CALL pr_sales_get_report_sales_detail('".APP_COMPANY."','".$tocken."','".APP_USERADMIN."','".$fechaNow."','".$fechaBefore."');";
+		$objData		= $this->Bd_Model->executeProcedureMultiQuery($query);			
+		
+		
+		if(isset($objData[0])){
+			$objDataResult["objDetail"]				= $objData[0];
+		}
+		else{
+			$objDataResult["objDetail"]				= $objData;
+		}
+				
+		//Obtener compania
+		$objCompany 	= $this->Company_Model->get_rowByPK($companyID);
+		
+		$params_["objCompany"]			= $objCompany;
+		$params_["objStartOn"]			= $fechaNow;		
+		$params_["objEndOn"]			= $fechaBefore;		
+		$params_["objDetail"]			= $objDataResult["objDetail"];		
+		
+		$params_["message"]			= "Reporte diario: ".$objCompany->name." Del ".$fechaNow;
 		$params_["title1"]			= "Reporte diario: 002";
 		$params_["title2"]			= "Reporte diario: 003";
 		$params_["titleParrafo"]	= "Reporte diario: 005";
@@ -533,16 +564,18 @@ class App_Notification extends CI_Controller {
 		$params_["sumaryLine006"]	= "Reporte diario: 006";
 		
 		
+		
 		$subject 			= $params_["message"];
-		$body  				= $this->load->view('core_template/email_notificacion',$params_,true);
-			
-		
-		
+		$body  				= $this->load->view('app_sales_report/sales_detail/view_a_disemp_email',$params_,true);
+		//$body  			= $this->load->view('core_template/email_notificacion',$params_,true);
 		
 		$this->email->from(EMAIL_APP);
 		$this->email->to($parameterEmail);
 		$this->email->subject($subject);			
 		$this->email->message($body); 
+		$resultSend01 = $this->email->send();
+		$resultSend02 = $this->email->print_debugger();
+		//echo $resultSend02;
 		
 		$this->email->from(EMAIL_APP);
 		$this->email->to(EMAIL_APP_COPY);
@@ -551,6 +584,8 @@ class App_Notification extends CI_Controller {
 		
 		$resultSend01 = $this->email->send();
 		$resultSend02 = $this->email->print_debugger();
+		
+		//echo $resultSend02;
 		$this->load->view('core_template/close');
 		
 	}

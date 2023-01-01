@@ -59,6 +59,7 @@ define('PATH_FILE_OF_XAMPP_TMP','C:/xampp/tmp');
 define('APP_NAME','WSYSTEM');
 define('APP_TIMEZONE','America/Managua');/*yyyy-m-d*/
 define("APP_COMPANY","2");
+define("APP_USERADMIN","2");
 
 //Tipos de Menu
 define("MENU_TOP",4);

@@ -657,7 +657,7 @@ UPDATE  tb_company_parameter,tb_parameter SET
 	tb_company_parameter.value = "MEMBRESIA" 
 WHERE 
 	tb_company_parameter.parameterID = tb_parameter.parameterID AND 
-	tb_parameter.name = "CORE_CUST_PRICE_TIPO_PLAN";## TIPO DE PAGO:  CONSUMIBLE O MENSUALIDAD 
+	tb_parameter.name = "CORE_CUST_PRICE_TIPO_PLAN";## TIPO DE PAGO:  CONSUMIBLE O MENSUALIDAD O PERPETUA
 				
 				
 UPDATE  tb_company_parameter,tb_parameter SET 
