@@ -112,13 +112,14 @@ class Core_acount extends CI_Controller {
 			//$this->email->subject($subject);			
 			//$this->email->message($body); 
 			
-			$this->email->from(EMAIL_APP);
-			$this->email->to(EMAIL_APP_COPY);
-			$this->email->subject($subject);			
-			$this->email->message($body); 
+			//$this->email->from(EMAIL_APP);
+			//$this->email->to(EMAIL_APP_COPY);
+			//$this->email->subject($subject);			
+			//$this->email->message($body); 
+			//
+			//$resultSend01 = $this->email->send();
+			//$resultSend02 = $this->email->print_debugger();
 			
-			$resultSend01 = $this->email->send();
-			$resultSend02 = $this->email->print_debugger();
 			redirect($objUser["role"]->urlDefault);
 		}
 		catch(Exception $e){			

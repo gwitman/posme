@@ -31,8 +31,6 @@ instalador:
 		a la carpeta RecienCreada
 			
 			
-			
-			
 		instalar el programa  npp.6.5.3.Installer.exe
 		
 		instalar el programa de AdbeRdr1011_es_ES.exe
@@ -203,6 +201,16 @@ Probar la configuracion de pago
 	
 	
 Crear la tarea programada para enviar reportes diarios
+	Nombre: file_job_send_report_daly
+	Hora:	16:00:00
+	Ruta: 	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\file_job\send_report_daly.bat
+
+Encrptar los siguientes archivos
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\system\libraries\Email.php
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\config\constants.php
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\config\database.php
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\config\config.php
+	C:\xampp\teamds2\nsSystem\fidlocal-produccion-app\application\libraries\.....
 	
 
 ---------------------------------------

@@ -122,6 +122,7 @@ class App_Notification extends CI_Controller {
 		}
 		
 	}
+	
 	function sendEmail(){
 		//Cargar Libreria
 		$this->load->model('Notification_Model');
@@ -145,6 +146,7 @@ class App_Notification extends CI_Controller {
 		}
 		
 	}
+	
 	function fillTipoCambio(){
 		$this->load->model("core/Company_Model");
 		$this->load->model('core/Log_Model');
@@ -228,6 +230,7 @@ class App_Notification extends CI_Controller {
 		}
 		
 	}
+	
 	function fillInventarioMinimo(){
 		$this->load->model("core/Company_Model");
 		$this->load->model('core/Log_Model');
@@ -311,6 +314,7 @@ class App_Notification extends CI_Controller {
 			}
 		}
 	}
+	
 	function fillCumpleayo(){
 		$this->load->model("core/Company_Model");
 		$this->load->model('core/Log_Model');
@@ -400,6 +404,7 @@ class App_Notification extends CI_Controller {
 			
 		}
 	}
+	
 	function fillCuotaAtrasada(){	
 		$this->load->model("core/Company_Model");
 		$this->load->model('core/Log_Model');
@@ -493,6 +498,53 @@ class App_Notification extends CI_Controller {
 				}
 			}
 		}
+	}
+	
+	function file_job_send_report_daly($companyID){	
+		$this->load->model("core/Company_Model");
+		$this->load->model('core/Log_Model');
+		$this->load->model('Notification_Model');
+		$this->load->model('Tag_Model');
+		$this->load->model('Error_Model');
+		$this->load->model('User_Tag_Model');
+		$this->load->model('Customer_Credit_Amortization_Model');
+		$this->load->model('core/Currency_Model');
+	
+	
+		$parameterEmail = $this->core_web_parameter->getParameter("CORE_PROPIETARY_EMAIL",APP_COMPANY);
+		$parameterEmail = $parameterEmail->value;
+			
+		$params_["message"]			= "Reporte diario: ";		
+		$params_["title1"]			= "Reporte diario: 002";
+		$params_["title2"]			= "Reporte diario: 003";
+		$params_["titleParrafo"]	= "Reporte diario: 005";
+		$params_["cuerpo"]			= "Reporte diario: 005";
+		
+		$params_["sumaryLeft1"]		= "Reporte diario: 005";
+		$params_["sumaryLeft2"]		= "Reporte diario: 005";
+		$params_["sumaryRight1"]	= "Reporte diario: 005";
+		$params_["sumaryRight2"]	= "Reporte diario: 005";
+		
+		$subject 			= $params_["message"];
+		$body  				= $this->load->view('core_template/email_notificacion',$params_,true);
+			
+		
+		
+				
+		$this->email->from(EMAIL_APP);
+		$this->email->to($parameterEmail);
+		$this->email->subject($subject);			
+		$this->email->message($body); 
+		
+		$this->email->from(EMAIL_APP);
+		$this->email->to(EMAIL_APP_COPY);
+		$this->email->subject($subject);			
+		$this->email->message($body); 
+		
+		$resultSend01 = $this->email->send();
+		$resultSend02 = $this->email->print_debugger();
+		$this->load->view('core_template/close');
+		
 	}
 }
 ?>
