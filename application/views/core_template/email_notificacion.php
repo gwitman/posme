@@ -433,15 +433,22 @@ https://my.stripo.email/cabinet/#/template-editor/?emailId=4667680&projectId=782
 																													<td align="center"
 																													    class="es-infoblock"
 																													    style="padding:0;Margin:0;line-height:14px;font-size:12px;color:#CCCCCC">
-																														<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:14px;color:#999999;font-size:12px">We have sent you this email because you provided us with your email address as part of the purchasing process on <a target="_blank"
+																														<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:14px;color:#999999;font-size:12px">
+																															<?php echo $sumaryLine003; ?>
+																															<a target="_blank"
 																															   href="https://viewstripo.email"
-																															   style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#CCCCCC;font-size:12px">reliability.com</a>&nbsp;Your email address will not be used for any other purpose, unless you have previously opted in to receive emails from us.<br>
-																																<br>Reliability&nbsp;Inc., 5675 Silver Wharf, Chicago Creek, Connecticut, 06331-6807, US</p>
+																															   style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#CCCCCC;font-size:12px">
+																																<?php echo $sumaryLine004; ?>
+																															   <br>
+																																<br><?php echo $sumaryLine002; ?></p>
 																																<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:14px;color:#999999;font-size:12px">
 																																	<br>
-																																		<br>To ensure Reliability&nbsp;emails reach your inbox, please add&nbsp;<a target="_blank"
+																																		<br><?php echo $sumaryLine001; ?><a target="_blank"
 																																			   href=""
-																																			   style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#CCCCCC;font-size:12px">email@reliability</a> &nbsp;to your address book</p>
+																																			   style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#CCCCCC;font-size:12px"> 
+																																			   &nbsp;
+																																			   <?php echo $sumaryLine006; ?></a>
+																																			   &nbsp;<?php echo $sumaryLine005; ?></p>
 																																	</td>
 																																</tr>
 																															</table>

@@ -525,12 +525,20 @@ class App_Notification extends CI_Controller {
 		$params_["sumaryRight1"]	= "Reporte diario: 005";
 		$params_["sumaryRight2"]	= "Reporte diario: 005";
 		
+		$params_["sumaryLine001"]	= "Reporte diario: 005";
+		$params_["sumaryLine002"]	= "Reporte diario: 004";
+		$params_["sumaryLine003"]	= "Reporte diario: 003";
+		$params_["sumaryLine004"]	= "Reporte diario: 002";
+		$params_["sumaryLine005"]	= "Reporte diario: 001";
+		$params_["sumaryLine006"]	= "Reporte diario: 006";
+		
+		
 		$subject 			= $params_["message"];
 		$body  				= $this->load->view('core_template/email_notificacion',$params_,true);
 			
 		
 		
-				
+		
 		$this->email->from(EMAIL_APP);
 		$this->email->to($parameterEmail);
 		$this->email->subject($subject);			
