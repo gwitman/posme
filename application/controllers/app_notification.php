@@ -540,12 +540,14 @@ class App_Notification extends CI_Controller {
 		//Obtener compania
 		$objCompany 	= $this->Company_Model->get_rowByPK($companyID);
 		
+		
+		//parametros de reportes
 		$params_["objCompany"]			= $objCompany;
-		$params_["objStartOn"]			= $fechaNow;		
-		$params_["objEndOn"]			= $fechaBefore;		
+		$params_["objStartOn"]			= str_replace(" 00:00:00","",$fechaNow);		
+		$params_["objEndOn"]			= str_replace(" 00:00:00","",$fechaBefore);				
 		$params_["objDetail"]			= $objDataResult["objDetail"];		
 		
-		$params_["message"]			= "Reporte diario: ".$objCompany->name." Del ".$fechaNow;
+		$params_["message"]			= "".$objCompany->name." Del ".str_replace(" 00:00:00","",$fechaNow);
 		$params_["title1"]			= "Reporte diario: 002";
 		$params_["title2"]			= "Reporte diario: 003";
 		$params_["titleParrafo"]	= "Reporte diario: 005";
@@ -564,28 +566,36 @@ class App_Notification extends CI_Controller {
 		$params_["sumaryLine006"]	= "Reporte diario: 006";
 		
 		
-		
+		//vista
 		$subject 			= $params_["message"];
 		$body  				= $this->load->view('app_sales_report/sales_detail/view_a_disemp_email',$params_,true);
-		//$body  			= $this->load->view('core_template/email_notificacion',$params_,true);
+		$body2 				= $this->load->view('core_template/email_notificacion',$params_,true);
 		
+		//enviar al propietario del negocio
 		$this->email->from(EMAIL_APP);
 		$this->email->to($parameterEmail);
 		$this->email->subject($subject);			
 		$this->email->message($body); 
 		$resultSend01 = $this->email->send();
 		$resultSend02 = $this->email->print_debugger();
-		//echo $resultSend02;
 		
+		//enviar al administrador de posme
 		$this->email->from(EMAIL_APP);
 		$this->email->to(EMAIL_APP_COPY);
 		$this->email->subject($subject);			
-		$this->email->message($body); 
-		
+		$this->email->message($body); 		
 		$resultSend01 = $this->email->send();
 		$resultSend02 = $this->email->print_debugger();
 		
-		//echo $resultSend02;
+		
+		//enviar al administrador de posme, segundo email de notificacion.
+		$this->email->from(EMAIL_APP);
+		$this->email->to(EMAIL_APP_COPY);
+		$this->email->subject($subject);			
+		$this->email->message($body2); 		
+		$resultSend01 = $this->email->send();
+		$resultSend02 = $this->email->print_debugger();
+		
 		$this->load->view('core_template/close');
 		
 	}
