@@ -421,22 +421,17 @@
                                                   <tr>
 
                                                     <th></th>
-
 													<th>itemID</th>
-
 													<th>transactionDetailID</th>
-
                                                     <th>Codigo</th>
-
                                                     <th>Nombre</th>
-
                                                     <th>U/M</th>
-
                                                     <th>Cantidad</th>
-
 													<th>Costo</th>
-
-													<th>Precio</th>
+													<th>Precio</th>													
+													<th>Lote</th><!--9-->
+													<th>Expiracion</th><!--10-->
+													<th>Mas</th><!--11-->
 
                                                   </tr>
 

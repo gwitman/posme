@@ -145,13 +145,16 @@
                                             <table id="tb_transaction_master_detail" class="table table-bordered">
                                                 <thead>
                                                   <tr>
-                                                    <th></th>
-													<th>itemID</th>
-													<th>transactionDetailID</th>
-                                                    <th>Codigo</th>
-                                                    <th>Nombre</th>
-                                                    <th>U/M</th>
-                                                    <th>Cantidad</th>
+                                                    <th></th><!--0-->
+													<th>itemID</th><!--1-->
+													<th>transactionDetailID</th><!--2-->
+                                                    <th>Codigo</th><!--3-->
+                                                    <th>Nombre</th><!--4-->
+                                                    <th>U/M</th><!--5-->
+                                                    <th>Cantidad</th><!--6-->
+													<th>Lote</th><!--7-->
+													<th>Expiracion</th><!--8-->
+													<th>Mas</th><!--9-->
                                                   </tr>
                                                 </thead>
                                                 <tbody id="body_detail_transaction">             

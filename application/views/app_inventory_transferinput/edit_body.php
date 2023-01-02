@@ -182,6 +182,9 @@
                                                     <th>Nombre</th>
                                                     <th>U/M</th>
                                                     <th>Cantidad</th>
+													<th>Lote</th><!--7-->
+													<th>Expiracion</th><!--8-->
+													<th>Mas</th><!--9-->
                                                   </tr>
                                                 </thead>
                                                 <tbody id="body_detail_transaction">             

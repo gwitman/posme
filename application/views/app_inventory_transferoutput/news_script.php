@@ -48,6 +48,38 @@
 							"mRender"	: function ( data, type, full ) {
 								return '<input type="text" class="col-lg-12 txtDetailQuantity txt-numeric" value="'+data+'" name="txtDetailQuantity[]" />';
 							}
+						},
+						{
+							"aTargets"		: [ 7 ],//lote
+							"bVisible"		: true,
+							"sClass" 		: "hidden",
+							"bSearchable"	: false,
+							"mRender"	: function ( data, type, full ) {
+								return '<input type="text" class="col-lg-12 txtDetailLote txt-numeric"" value="'+data+'" name="txtDetailLote[]" readonly="true" />';
+							}
+						},
+						{
+							"aTargets"		: [ 8 ],//fecha expiracion
+							"bVisible"		: true,
+							"sClass" 		: "hidden",
+							"bSearchable"	: false,
+							"mRender"	: function ( data, type, full ) {
+								return '<input type="text" class="col-lg-12 txtDetailVencimiento txt-numeric"" value="'+data+'" name="txtDetailVencimiento[]" readonly="true" />';
+							}
+						},
+						{
+							"aTargets"	: [ 9 ],//mas informacion
+							"mRender"	: function ( data, type, full ) {								
+								if (data == false){									
+									var str = '<a class="btn btn-primary btnMasInformcion" data-itemid="'+full[1]+'" data-transactionmasterdetailid="'+full[2]+'"  href="#" >Mas informacion</a>';
+									return str;
+								}
+								else{									
+									var str = '<a class="btn btn-primary btnMasInformcion" data-itemid="'+full[1]+'" data-transactionmasterdetailid="'+full[2]+'"  href="#" >Mas informacion</a>';
+									return str;
+								}
+								
+							}
 						}									
 			]							
 		});
@@ -92,6 +124,25 @@
 			var url_request	= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $componentTranItemID; ?>/onCompleteItem/SELECCIONAR_ITEM_TO_TRANSFEROUPUT/true/"+encodeURI("{\"warehouseSourceID\"|\""+$("#txtWarehouseSourceID").val()+"\"{}\"warehouseTargetID\"|\""+$("#txtWarehouseTargetID").val()+"\"{}\"userID\"|\"<?php echo $userID; ?>\"}");
 			window.open(url_request,"MsgWindow","width=900,height=450");
 			window.onCompleteItem = onCompleteItem; 
+		});
+		$(document).on("click",".btnMasInformcion",function(){
+			
+			var itemID 						= $(this).data("itemid");
+			var transactionMasterDetailID 	= $(this).data("transactionmasterdetailid");
+			var tr 							= $(this).parent().parent()[0];
+			var index 						= objTableDetailTransaction.fnGetPosition(tr);
+			var objdat_ 					= objTableDetailTransaction.fnGetData(index);		
+			var lote 						= objdat_[7];
+			var vencimiento 				= objdat_[8];
+			vencimiento 					= vencimiento.replace(" 00:00:00","");
+					
+			var url_request = "<?php echo site_url(); ?>app_inventory_otherinput/add_masinformacion/onCompleteUpdateMasInformacion/"+itemID+"/"+transactionMasterDetailID+"/"+index; 
+			url_request = url_request + "/"+lote+"/"+vencimiento;
+			
+			window.open(url_request,"MsgWindow","width=900,height=500");
+			window.onCompleteUpdateMasInformacion = onCompleteUpdateMasInformacion; 
+			
+			
 		});
 		//Eliminar Item
 		$(document).on("click","#btnDeleteDetailTransaction",function(){
@@ -181,6 +232,18 @@
 			result = false;
 		}
 		return result;
+	}
+	function onCompleteUpdateMasInformacion(objResponse){
+			var index 		= objResponse.txtPosition;
+			var vencimiento = objResponse.txtVencimiento;
+			var lote 		= objResponse.txtLote;
+		
+			
+			var objdat_ = objTableDetailTransaction.fnGetData(index);		
+			objTableDetailTransaction.fnUpdate( lote, index, 7 );
+			objTableDetailTransaction.fnUpdate(  vencimiento, index, 8 );		
+			
+		
 	}
 	function onCompleteItem(objResponse){
 		console.info("CALL onCompleteItem");

@@ -365,10 +365,16 @@ class App_Inventory_TransferInput extends CI_Controller {
 			//Recorrer la lista del detalle del documento
 			$arrayListItemID 							= $this->input->post("txtDetailItemID");
 			$arrayListQuantity	 						= $this->input->post("txtDetailQuantity");
+			$arrayListLote	 							= $this->input->post("txtDetailLote");			
+			$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");			
 			
 			if(!empty($arrayListItemID)){
 				foreach($arrayListItemID as $key => $value){
 					$objItem 								= $this->Item_Model->get_rowByPK($objTM["companyID"],$value);
+					$lote 									= $arrayListLote[$key];
+					$vencimiento							= $arrayListVencimiento[$key];
+					
+					
 					$objTMD["companyID"] 					= $objTM["companyID"];
 					$objTMD["transactionID"] 				= $objTM["transactionID"];
 					$objTMD["transactionMasterID"] 			= $transactionMasterID;
@@ -387,14 +393,15 @@ class App_Inventory_TransferInput extends CI_Controller {
 					$objTMD["reference1"]					= '';
 					$objTMD["reference2"]					= '';
 					$objTMD["reference3"]					= '';
+					$objTMD["lote"]							= $lote;
+					$objTMD["expirationDate"]				= $vencimiento == "" ? NULL:  $vencimiento;
 					$objTMD["catalogStatusID"]				= 0;
 					$objTMD["inventoryStatusID"]			= 0;
 					$objTMD["isActive"]						= 1;
 					$objTMD["quantityStock"]				= 0;
 					$objTMD["quantiryStockInTraffic"]		= 0;
 					$objTMD["quantityStockUnaswared"]		= 0;
-					$objTMD["remaingStock"]					= 0;
-					$objTMD["expirationDate"]				= NULL;
+					$objTMD["remaingStock"]					= 0;					
 					$objTMD["inventoryWarehouseSourceID"]	= $objTM["sourceWarehouseID"];
 					$objTMD["inventoryWarehouseTargetID"]	= $objTM["targetWarehouseID"];
 					
@@ -491,13 +498,19 @@ class App_Inventory_TransferInput extends CI_Controller {
 			//Actualizar Detalle
 			$listTMD_ID 								= $this->input->post("txtDetailTransactionDetailID");
 			$arrayListItemID 							= $this->input->post("txtDetailItemID");
-			$arrayListQuantity	 						= $this->input->post("txtDetailQuantity");			
+			$arrayListQuantity	 						= $this->input->post("txtDetailQuantity");	
+			$arrayListLote	 							= $this->input->post("txtDetailLote");			
+			$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");	
+			
 			$this->Transaction_Master_Detail_Model->deleteWhereIDNotIn($companyID,$transactionID,$transactionMasterID,$listTMD_ID);
 			
 			if(!empty($arrayListItemID)){
 				foreach($arrayListItemID as $key => $value){
 					$transactionMasterDetailID				= $listTMD_ID[$key];					
 					$objItem 								= $this->Item_Model->get_rowByPK($companyID,$value);
+					$lote 									= $arrayListLote[$key];
+					$vencimiento							= $arrayListVencimiento[$key];
+					
 					//Nuevo Detalle
 					if($transactionMasterDetailID == 0){						
 						$objTMD 								= array();
@@ -516,8 +529,8 @@ class App_Inventory_TransferInput extends CI_Controller {
 						$objTMD["unitaryPrice"]					= 0;
 						$objTMD["promotionID"] 					= 0;
 						
-						$objTMD["reference1"]					= '';
-						$objTMD["reference2"]					= '';
+						$objTMD["lote"]							= $lote;
+						$objTMD["expirationDate"]				= $vencimiento == "" ? NULL:  $vencimiento;
 						$objTMD["reference3"]					= '';
 						$objTMD["catalogStatusID"]				= 0;
 						$objTMD["inventoryStatusID"]			= 0;
@@ -525,8 +538,7 @@ class App_Inventory_TransferInput extends CI_Controller {
 						$objTMD["quantityStock"]				= 0;
 						$objTMD["quantiryStockInTraffic"]		= 0;
 						$objTMD["quantityStockUnaswared"]		= 0;
-						$objTMD["remaingStock"]					= 0;
-						$objTMD["expirationDate"]				= NULL;
+						$objTMD["remaingStock"]					= 0;						
 						$objTMD["inventoryWarehouseSourceID"]	= $objTMNew["sourceWarehouseID"];
 						$objTMD["inventoryWarehouseTargetID"]	= NULL;						
 						$this->Transaction_Master_Detail_Model->insert($objTMD);
@@ -539,6 +551,8 @@ class App_Inventory_TransferInput extends CI_Controller {
 						$objTMDNew["unitaryCost"]					= $objItem->cost;
 						$objTMDNew["cost"] 							= $objTMDNew["quantity"] * $objTMDNew["unitaryCost"];
 						$objTMDNew["inventoryWarehouseSourceID"]	= $objTMNew["sourceWarehouseID"];
+						$objTMDNew["lote"]							= $lote;
+						$objTMDNew["expirationDate"]				= $vencimiento == "" ? NULL:  $vencimiento;
 						$this->Transaction_Master_Detail_Model->update($companyID,$transactionID,$transactionMasterID,$transactionMasterDetailID,$objTMDNew);						
 					}
 					
@@ -784,7 +798,40 @@ class App_Inventory_TransferInput extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}	
-	
+	function add_masinformacion($fnCallback,$itemID,$transactionMasterDetailID,$positionID,$lote,$vencimiento){
+			
+			//AUTENTICACION
+			if(!$this->core_web_authentication->isAuthenticated())
+			throw new Exception(USER_NOT_AUTENTICATED);
+			$dataSession		= $this->session->all_userdata();
+			
+			//PERMISO SOBRE LA FUNCION
+			if(APP_NEED_AUTHENTICATION == true){
+				$permited = false;
+				$permited = $this->core_web_permission->urlPermited($this->router->class,"index",$this->config->item('url_suffix'),$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+				
+				if(!$permited)
+				throw new Exception(NOT_ACCESS_CONTROL);
+				
+				$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"index",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+				if ($resultPermission 	== PERMISSION_NONE)
+				throw new Exception(NOT_ACCESS_FUNCTION);			
+			}
+			
+			$data["itemID"] 					= $itemID;
+			$data["transactionMasterDetailID"] 	= $transactionMasterDetailID;
+			$data["positionID"] 				= $positionID;
+			$data["fnCallback"] 				= $fnCallback;
+			$data["lote"] 						= $lote;
+			$data["vencimiento"] 				= $vencimiento;
+			
+			//Renderizar Resultado
+			$dataSession["message"]		= "";
+			$dataSession["head"]		= $this->load->view('app_inventory_otherinput/popup_masinformacion_item_head',$data,true);
+			$dataSession["body"]		= $this->load->view('app_inventory_otherinput/popup_masinformacion_item_body',$data,true);
+			$dataSession["script"]		= $this->load->view('app_inventory_otherinput/popup_masinformacion_item_script',$data,true);  
+			$this->load->view("core_masterpage/default_popup",$dataSession);
+	}
 	
 }
 ?>
