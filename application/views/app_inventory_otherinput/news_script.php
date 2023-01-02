@@ -145,6 +145,9 @@
 			var lote 						= objdat_[9];
 			var vencimiento 				= objdat_[10];
 			vencimiento 					= vencimiento.replace(" 00:00:00","");
+			
+			if(lote == "") lote = "0";
+			if(vencimiento == "") vencimiento = moment().format("YYYY-MM-DD");
 					
 			var url_request = "<?php echo site_url(); ?>app_inventory_otherinput/add_masinformacion/onCompleteUpdateMasInformacion/"+itemID+"/"+transactionMasterDetailID+"/"+index; 
 			url_request = url_request + "/"+lote+"/"+vencimiento;
