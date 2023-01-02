@@ -230,6 +230,9 @@
 						objRow.itemName 				= objResponse[3];
 						objRow.itemUM 					= objResponse[4];
 						objRow.quantity 				= 0;
+						objRow.lote 					= "";
+						objRow.vencimiento				= "";
+						objRow.masinfor					= "";
 						
 						
 						//Berificar que el Item ya esta agregado 
@@ -238,7 +241,13 @@
 							return;
 						}
 						
-						objTableDetailTransaction.fnAddData([objRow.checked,objRow.itemID,objRow.transactionMasterDetail,objRow.itemNumber,objRow.itemName,objRow.itemUM,objRow.quantity]);
+						objTableDetailTransaction.fnAddData(
+						[objRow.checked,objRow.itemID,
+						objRow.transactionMasterDetail,objRow.itemNumber,
+						objRow.itemName,objRow.itemUM,objRow.quantity,
+						objRow.lote,objRow.vencimiento,
+						objRow.masinfor]
+						]);
 						refreschChecked();
 						
 					}

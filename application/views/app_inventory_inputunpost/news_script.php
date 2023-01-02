@@ -316,10 +316,11 @@
 		objRow.itemName 				= objResponse[3];
 		objRow.itemUM 					= objResponse[4];
 		objRow.quantity 				= 0;
-		objRow.cost 					= 0;
+		objRow.cost 					= 0;		
+		objRow.price 					= 0;
 		objRow.lote 					= "";
 		objRow.vencimiento				= "";
-		objRow.price 					= 0;
+		objRow.masinfor					= "";
 		
 		//Berificar que el Item ya esta agregado 
 		if(jLinq.from(objTableDetailTransaction.fnGetData()).where(function(obj){ return obj[1] == objRow.itemID;}).select().length > 0 ){
@@ -327,7 +328,13 @@
 			return;
 		}
 		
-		objTableDetailTransaction.fnAddData([objRow.checked,objRow.itemID,objRow.transactionMasterDetail,objRow.itemNumber,objRow.itemName,objRow.itemUM,objRow.quantity,objRow.cost,objRow.price]);
+		objTableDetailTransaction.fnAddData([
+		objRow.checked,objRow.itemID,objRow.transactionMasterDetail,
+		objRow.itemNumber,objRow.itemName,objRow.itemUM,
+		objRow.quantity,objRow.cost,objRow.price,
+		objRow.lote,objRow.vencimiento,
+		objRow.masinfor
+		]);
 		refreschChecked();
 		
 	}
