@@ -139,7 +139,7 @@ class App_Notification extends CI_Controller {
 			$this->email->to($i->to);
 			$this->email->subject($i->subject);
 			$this->email->message($i->message);
-			$this->email->send();
+			//$this->email->send();
 			
 			$data["sendOn"]	= date_format(date_create(),"Y-m-d H:i:s");
 			$this->Notification_Model->update($i->notificationID,$data);
@@ -593,8 +593,8 @@ class App_Notification extends CI_Controller {
 		$this->email->to(EMAIL_APP_COPY);
 		$this->email->subject($subject);			
 		$this->email->message($body2); 		
-		$resultSend01 = $this->email->send();
-		$resultSend02 = $this->email->print_debugger();
+		//$resultSend01 = $this->email->send();
+		//$resultSend02 = $this->email->print_debugger();
 		
 		$this->load->view('core_template/close');
 		

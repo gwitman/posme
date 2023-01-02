@@ -13,7 +13,7 @@
 	$errores_["severity"]	= $severity;
 	$errores_["message"]	= $message;
 	$CI->email->message($CI->load->view('core_template/email_errores',$errores_,true)); 
-	$CI->email->send();		
+	//$CI->email->send();		
 ?> 
 		
 <?php log_message("ERROR",print_r($severity,true)); ?>

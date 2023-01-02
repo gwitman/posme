@@ -66,7 +66,7 @@ p {
 			$errores_["heading"]	= $heading;
 			$errores_["message"]	= $message;
 			$CI->email->message($CI->load->view('core_template/email_error_db',$errores_,true)); 
-			$CI->email->send();			
+			//$CI->email->send();			
 		?>
 		
 		<?php log_message("ERROR",print_r($heading,true)); ?>		

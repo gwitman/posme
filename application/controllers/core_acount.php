@@ -160,14 +160,14 @@ class Core_acount extends CI_Controller {
 			Configurar application/config/constant.php 
 			*/
 			
-			/*			
-			$this->email->set_mailtype('html');
-			$this->email->from("nssystem@fidlocal.com", "Witman Jose Gonzalez Rostran");
-			$this->email->to("gwitman@yahoo.com");
-			$this->email->subject("Esto es una prueba");
-			$this->email->message("Esto es una prueba...");
-			$this->email->send();		 
-			*/
+						
+			//$this->email->set_mailtype('html');
+			//$this->email->from("nssystem@fidlocal.com", "Witman Jose Gonzalez Rostran");
+			//$this->email->to("gwitman@yahoo.com");
+			//$this->email->subject("Esto es una prueba");
+			//$this->email->message("Esto es una prueba...");
+			//$this->email->send();		 
+			
 		
 			log_message("ERROR","punto de interrupcion 001");
 			log_message("ERROR","punto de interrupcion 001 user: ".print_r($objUser["user"],true));
@@ -177,7 +177,7 @@ class Core_acount extends CI_Controller {
 			$this->email->to($objUser["user"]->email);
 			$this->email->subject(REMEMBER_PASSWORD);
 			$this->email->message($this->load->view('core_template/email_remember_password',$objUser["user"],true)); 
-			$this->email->send();
+			//$this->email->send();
 			
 			//Notificar
 			$data_message["txtMessage"]	= MESSAGE_EMAL;
