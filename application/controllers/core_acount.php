@@ -72,6 +72,8 @@ class Core_acount extends CI_Controller {
 			
 			
 			//Obtener Datos 			
+			$parameterBalance = $this->core_web_parameter->getParameter("CORE_CUST_PRICE_BALANCE",$objUser["user"]->companyID);
+			$parameterBalance = $parameterBalance->value;
 			$parameterSendBox = $this->core_web_parameter->getParameter("CORE_PAYMENT_SENDBOX",$objUser["user"]->companyID);
 			$parameterSendBox = $parameterSendBox->value;
 			$parameterSendBoxUsuario = $this->core_web_parameter->getParameter("CORE_PAYMENT_PRUEBA_USUARIO",$objUser["user"]->companyID);
@@ -95,30 +97,30 @@ class Core_acount extends CI_Controller {
 				redirect("core_acount/payment/pagoCantidadDeMeses/".$pagoCantidadDeMeses);
 			}
 			//Validar Fecha de Expiracion
-		
+			$objCompany 	= $this->Company_Model->get_rowByPK($objUser["user"]->companyID);
+			
 			//Set Variables			
-			$params_["message"]	= "Usuario Login: ".$nickname;			
+			$params_["nickname"]				= $nickname;
+			$params_["objCompany"]				= $objCompany;
+			$params_["parameterBalance"]		= $parameterBalance;
+			$params_["mensaje"]					= "Su balance de uso es:".$parameterBalance;
+			
 			$this->input->set_cookie("userID",$dataSession[user]->userID,43200,"localhost");
 			$this->input->set_cookie("nickname",$dataSession[user]->nickname,43200,"localhost");
 			$this->input->set_cookie("email",$dataSession[user]->email,43200,"localhost");			
 			
 	
-			$subject 	= "Inicio de session:".$nickname;
+			$subject 	= "Inicio de session: ".$objCompany->name." ".$nickname;
 			$body  		= $this->load->view('core_template/email_notificacion',$params_,true);
 			
-			//$this->email->initialize($configEmail);			
-			//$this->email->from(EMAIL_APP);
-			//$this->email->to($dataSession[user]->email);
-			//$this->email->subject($subject);			
-			//$this->email->message($body); 
 			
-			//$this->email->from(EMAIL_APP);
-			//$this->email->to(EMAIL_APP_COPY);
-			//$this->email->subject($subject);			
-			//$this->email->message($body); 
-			//
-			//$resultSend01 = $this->email->send();
-			//$resultSend02 = $this->email->print_debugger();
+			$this->email->from(EMAIL_APP);
+			$this->email->to(EMAIL_APP_COPY);
+			$this->email->subject($subject);			
+			$this->email->message($body); 
+			
+			$resultSend01 = $this->email->send();
+			$resultSend02 = $this->email->print_debugger();
 			
 			redirect($objUser["role"]->urlDefault);
 		}
