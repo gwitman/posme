@@ -3,7 +3,8 @@
 	var numberDecimal				= 2;
 	var numberDecimalSummary		= 2;
 	var numberDecimalSummaryRound	= false;
-	var objListaProductos			= {};
+	var objListaProductos			= {};	
+	var objListTypePreice			= JSON.parse('<?php echo json_encode($objListTypePreice); ?>');
 	
 	var objTableDetailTransaction 	= {};
 	$(document).ready(function(){					
@@ -99,6 +100,24 @@
 								}
 								
 							}
+						},
+						{
+							"aTargets"		: [ 12 ],//precio 02
+							"bVisible"		: true,
+							"sClass" 		: "hidden",
+							"bSearchable"	: false,
+							"mRender"	: function ( data, type, full ) {
+								return '<input type="text" class="col-lg-12 txtDetailPrice2 txt-numeric"" value="'+data+'" name="txtDetailPrice2[]" />';
+							}
+						},
+						{
+							"aTargets"		: [ 13 ],//precio 03
+							"bVisible"		: true,
+							"sClass" 		: "hidden",
+							"bSearchable"	: false,
+							"mRender"	: function ( data, type, full ) {
+								return '<input type="text" class="col-lg-12 txtDetailPrice3 txt-numeric"" value="'+data+'" name="txtDetailPrice3[]" />';
+							}
 						}
 			]							
 		});
@@ -174,13 +193,15 @@
 			var objdat_ 					= objTableDetailTransaction.fnGetData(index);		
 			var lote 						= objdat_[9];
 			var vencimiento 				= objdat_[10];
+			var precio1 					= objdat_[12];
+			var precio2 					= objdat_[13];
 			vencimiento 					= vencimiento.replace(" 00:00:00","");
 					
 			if(lote == "") lote = "0";
 			if(vencimiento == "") vencimiento = moment().format("YYYY-MM-DD");
 			
-			var url_request = "<?php echo site_url(); ?>app_inventory_otherinput/add_masinformacion/onCompleteUpdateMasInformacion/"+itemID+"/"+transactionMasterDetailID+"/"+index; 
-			url_request = url_request + "/"+lote+"/"+vencimiento;
+			var url_request = "<?php echo site_url(); ?>app_inventory_inputunpost/add_masinformacion/onCompleteUpdateMasInformacion/"+itemID+"/"+transactionMasterDetailID+"/"+index; 
+			url_request = url_request + "/"+lote+"/"+vencimiento+"/"+precio1+"/"+precio2;
 			
 			window.open(url_request,"MsgWindow","width=900,height=500");
 			window.onCompleteUpdateMasInformacion = onCompleteUpdateMasInformacion; 
@@ -301,11 +322,15 @@
 			var index 		= objResponse.txtPosition;
 			var vencimiento = objResponse.txtVencimiento;
 			var lote 		= objResponse.txtLote;
+			var precio1 		= objResponse.txtPrecio1;
+			var precio2 		= objResponse.txtPrecio2;
 		
 			
 			var objdat_ = objTableDetailTransaction.fnGetData(index);		
 			objTableDetailTransaction.fnUpdate( lote, index, 9 );
 			objTableDetailTransaction.fnUpdate(  vencimiento, index, 10 );		
+			objTableDetailTransaction.fnUpdate(  precio1, index, 12 );		
+			objTableDetailTransaction.fnUpdate(  precio2, index, 13 );		
 			
 		
 	}
@@ -324,6 +349,8 @@
 		objRow.lote 					= "";
 		objRow.vencimiento				= "";
 		objRow.masinfor					= "";
+		objRow.precio1					= 0;
+		objRow.precio2					= 0;
 		
 		//Berificar que el Item ya esta agregado 
 		if(jLinq.from(objTableDetailTransaction.fnGetData()).where(function(obj){ return obj[1] == objRow.itemID;}).select().length > 0 ){
@@ -336,7 +363,7 @@
 		objRow.itemNumber,objRow.itemName,objRow.itemUM,
 		objRow.quantity,objRow.cost,objRow.price,
 		objRow.lote,objRow.vencimiento,
-		objRow.masinfor
+		objRow.masinfor,objRow.precio1,objRow.precio2
 		]);
 		refreschChecked();
 		

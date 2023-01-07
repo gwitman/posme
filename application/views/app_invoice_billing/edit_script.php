@@ -4,6 +4,8 @@
 	var objTableDetail 			= {};		
 	var tmpData 				= [];
 	var objListaProductos		= {};
+	var objListaProductos2					= {};
+	var objListaProductos3					= {};
 	var warehouseID 						= <?php echo $warehouseID ?>;
 	var openedSearchWindow					= false;
 	var varPermitirFacturarProductosEnZero	= '<?php echo $objParameterInvoiceBillingQuantityZero; ?>';
@@ -53,11 +55,21 @@
 	//crear la cache intervalo 		
 	var objListaProductosStore 	= localStorage.getItem("objListaProductos");		
 	objListaProductos 			= JSON.parse(objListaProductosStore);
+	
+	var objListaProductosStore2 	= localStorage.getItem("objListaProductos2");		
+	objListaProductos2 				= JSON.parse(objListaProductosStore2);
+	
+	var objListaProductosStore3 	= localStorage.getItem("objListaProductos3");		
+	objListaProductos3	 			= JSON.parse(objListaProductosStore3);
+	
+	
 
 
 	
 	if(objListaProductosStore == null ){		
 		fnObtenerListadoProductos();
+		fnObtenerListadoProductos2();
+		fnObtenerListadoProductos3();
 		fnGetCustomerClient(<?php echo $objTransactionMaster->entityID; ?>);
 		setTimeout( function() { fnWaitClose(); }, 10000);
 	}
@@ -156,7 +168,7 @@
 						},
 						{
 							"aTargets"		: [ 7 ],//Precio
-							"mRender"		: function ( data, type, full ) {
+							"mRender"		: function ( data, type, full ) {								
 								return '<input type="text" class="col-lg-12 txtPrice" '+PriceStatus+'  id="txtPriceRow'+full[2]+'"    value="'+data+'" name="txtPrice[]" style="text-align:right" />';
 							}
 						},
@@ -234,7 +246,21 @@
 			}
 			
 			//buscar el producto y agregar
-			var filterResult = jLinq.from(objListaProductos).where(function(obj){ return obj["Barra"] == codigoABuscar}).select();
+			var filterResult = {};			
+			
+			//precio 1 ---> 154 --> precio publico
+			if($("#txtTypePriceID").val() == 154){
+				filterResult = jLinq.from(objListaProductos).where(function(obj){ return obj["Barra"] == codigoABuscar}).select();
+			}
+			//precio 2 ---> 155 --> precio mayorista
+			if($("#txtTypePriceID").val() == 155){
+				filterResult = jLinq.from(objListaProductos2).where(function(obj){ return obj["Barra"] == codigoABuscar}).select();
+			}
+			//precio 3 ---> 156 --> precio credito
+			if($("#txtTypePriceID").val() == 156){
+				filterResult = jLinq.from(objListaProductos3).where(function(obj){ return obj["Barra"] == codigoABuscar}).select();
+			}
+			
 			if(filterResult.length == 0)
 			{
 				return;
@@ -303,10 +329,14 @@
 			
 		});
 		//Cambios
-		$(document).on("change","#txtTypePriceID,#txtCausalID,#txtCustomerCreditLineID",function(){
+		$(document).on("change","#txtCausalID,#txtCustomerCreditLineID",function(){
 			fnClearData();
 		});
 
+		$(document).on("change","#txtTypePriceID",function(){
+			fnActualizarPrecio();
+		});
+		
 		$(document).on("change","#txtCausalID",function(){
 			fnRenderLineaCreditoDiv();
 		});
@@ -369,6 +399,8 @@
 		$(document).on("click","#btnRefreshDataCatalogo",function(){
 			fnWaitOpen();
 			setTimeout( function() { fnObtenerListadoProductos(); }, 10);			
+			setTimeout( function() { fnObtenerListadoProductos2(); }, 10);			
+			setTimeout( function() { fnObtenerListadoProductos3(); }, 10);			
 			setTimeout( function() { fnWaitClose(); }, 10000);
 		});
 		$(document).on("click","#btnSearchCustomerNew",function(){
@@ -711,6 +743,8 @@
 
 
 	function fnRecalculateDetail(clearRecibo){
+		
+		var typePriceID 			= $("#txtTypePriceID").val();
 		var cantidad 				= 0;
 		var iva 					= 0;
 		var precio					= 0;		
@@ -765,6 +799,20 @@
 		var objListaProductosStore 	= localStorage.getItem("objListaProductos");		
 		localStorage.setItem("objListaProductos",JSON.stringify(objListaProductos));		
 	}
+	function fnFillListaProductos2(data){
+		console.info("complete success data");
+		objListaProductos2 			= data.objGridView;
+		var objListaProductosStore2 	= localStorage.getItem("objListaProductos2");		
+		localStorage.setItem("objListaProductos2",JSON.stringify(objListaProductos2));		
+	}
+
+	function fnFillListaProductos3(data){
+		console.info("complete success data");
+		objListaProductos3 							= data.objGridView;
+		var objListaProductosStore3 				= localStorage.getItem("objListaProductos3");		
+		localStorage.setItem("objListaProductos3",JSON.stringify(objListaProductos3));		
+	}
+
 
 	
 	function fnCompleteGetCustomerCreditLine (data)
@@ -890,7 +938,8 @@
 			cache       : false,
 			dataType    : 'json',
 			type        : 'GET',
-			url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+$("#txtTypePriceID").val() +'"}'),		
+			//url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+$("#txtTypePriceID").val() +'"}'),		
+			url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+154+'"}'),		/*TIPO PRECIO 1 --> 154 --> PUBLICO*/
 			success		: fnFillListaProductos,
 			error:function(xhr,data){	
 				console.info("complete data error");		
@@ -900,6 +949,69 @@
 
 		return resultAjax2;
 	}
+	async function fnObtenerListadoProductos2(){
+		const resultAjax2 = await $.ajax({									
+			cache       : false,
+			dataType    : 'json',
+			type        : 'GET',
+			//url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+$("#txtTypePriceID").val() +'"}'),		
+			url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+155+'"}'),		/*TIPO PRECIO 2 --> 155 --> POR MAYOR*/		
+			success		: fnFillListaProductos2,
+			error:function(xhr,data){	
+				console.info("complete data error");		
+				fnShowNotification("Error 505","error");
+			}
+		});	
+
+		return resultAjax2;
+	}
+	async function fnObtenerListadoProductos3(){
+		const resultAjax2 = await $.ajax({									
+			cache       : false,
+			dataType    : 'json',
+			type        : 'GET',
+			//url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+$("#txtTypePriceID").val() +'"}'),		
+			url  		: "<?php echo site_url(); ?>app_invoice_api/getViewApi/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/"+encodeURI('{"warehouseID"|"<?php echo $warehouseID ?>"{}"listPriceID"|"<?php echo $objListPrice->listPriceID; ?>"{}"typePriceID"|"'+156+'"}'),	/*TIPO PRECIO 3 --> 156 --> CREDITO*/
+			success		: fnFillListaProductos3,
+			error:function(xhr,data){	
+				console.info("complete data error");		
+				fnShowNotification("Error 505","error");
+			}
+		});	
+
+		return resultAjax2;
+	}
+	
+	function fnActualizarPrecio()
+	{
+		
+		var typePriceID 			= $("#txtTypePriceID").val();
+		var NSSystemDetailInvoice	= objTableDetail.fnGetData();	
+		for(var i = 0; i < NSSystemDetailInvoice.length; i++)
+		{			
+			var itemID 			= NSSystemDetailInvoice[i][2];
+			var filterResult 	= {};
+			
+			//precio 1 ---> 154 --> precio publico
+			if(typePriceID == 154){
+				filterResult = jLinq.from(objListaProductos).where(function(obj){ return obj["itemID"] == itemID}).select();
+			}
+			//precio 2 ---> 155 --> precio mayorista
+			if(typePriceID == 155){
+				filterResult = jLinq.from(objListaProductos2).where(function(obj){ return obj["itemID"] == itemID}).select();
+			}
+			//precio 3 ---> 156 --> precio credito
+			if(typePriceID == 156){
+				filterResult = jLinq.from(objListaProductos3).where(function(obj){ return obj["itemID"] == itemID}).select();
+			}
+			
+			//Actualizar Precio
+			objTableDetail.fnUpdate(fnFormatNumber( filterResult[0].Precio,2) , i, 7 );
+	
+		}
+	}
+	
+	
 
 	function fnCustomerNewCompleted(){
 		console.info("cliente completado");

@@ -31,6 +31,26 @@
 														</div>
 													</div>
 													
+													<div class="form-group">
+														<label class="col-lg-2 control-label" for="preapend">Precio por mayor</label>
+														<div class="col-lg-10">
+															<div class="input-group">
+																<span class="input-group-addon">$</span>
+																<input class="form-control" id="txtPrecio1" type="text" placeholder="" value="<?php echo $precio1;?>">
+															</div>
+														</div>
+													</div>
+													
+													<div class="form-group">
+														<label class="col-lg-2 control-label" for="preapend">Precio especial</label>
+														<div class="col-lg-10">
+															<div class="input-group">
+																<span class="input-group-addon">$</span>
+																<input class="form-control" id="txtPrecio2" type="text" placeholder="" value="<?php echo $precio2;?>">
+															</div>
+														</div>
+													</div>
+													
 												
 												
 										</form>

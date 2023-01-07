@@ -346,6 +346,7 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			$this->load->library("core_web_csv/csvreader");
 			
 			
+			
 			//Obtener el Componente de Transacciones Other Input to Inventory
 			$objComponent							= $this->core_web_tools->getComponentIDBy_ComponentName("tb_transaction_master_inputunpost");
 			if(!$objComponent)
@@ -361,6 +362,7 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			$companyID 								= $dataSession["user"]->companyID;
 			$objT 									= $this->Transaction_Model->getByCompanyAndTransaction($dataSession["user"]->companyID,$transactionID);
 			
+			$objListTypePreice						= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
 			$objTM["companyID"] 					= $dataSession["user"]->companyID;
 			$objTM["transactionID"] 				= $transactionID;			
 			$objTM["branchID"]						= $dataSession["user"]->branchID;			
@@ -413,6 +415,8 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			$arrayListLote	 							= $this->input->post("txtDetailLote");			
 			$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");					
 			$arrayPrice 								= $this->input->post("txtDetailPrice");			
+			$arrayPrice2 								= $this->input->post("txtDetailPrice2");			
+			$arrayPrice3 								= $this->input->post("txtDetailPrice3");			
 			
 			
 			if(!empty($arrayListItemID)){
@@ -424,6 +428,8 @@ class App_Inventory_Inputunpost extends CI_Controller {
 					$lote 									= $arrayListLote[$key];
 					$vencimiento							= $arrayListVencimiento[$key];
 					$unitaryPrice 							= $arrayPrice[$key];
+					$unitaryPrice2 							= $arrayPrice2[$key];
+					$unitaryPrice3 							= $arrayPrice3[$key];
 					
 					$objTMD["companyID"] 					= $objTM["companyID"];
 					$objTMD["transactionID"] 				= $objTM["transactionID"];
@@ -442,7 +448,7 @@ class App_Inventory_Inputunpost extends CI_Controller {
 					
 					$objTMD["lote"]							= $lote;
 					$objTMD["expirationDate"]				= $vencimiento == "" ? NULL:  $vencimiento;
-					$objTMD["reference3"]					= '';
+					$objTMD["reference3"]					= $unitaryPrice2."|".$unitaryPrice3;
 					$objTMD["catalogStatusID"]				= 0;
 					$objTMD["inventoryStatusID"]			= 0;
 					$objTMD["isActive"]						= 1;
@@ -570,7 +576,9 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			$arrayListCost	 							= $this->input->post("txtDetailCost");			
 			$arrayListLote	 							= $this->input->post("txtDetailLote");			
 			$arrayListVencimiento						= $this->input->post("txtDetailVencimiento");			
-			$arrayPrice 								= $this->input->post("txtDetailPrice");			
+			$arrayPrice 								= $this->input->post("txtDetailPrice");	
+			$arrayPrice2 								= $this->input->post("txtDetailPrice2");			
+			$arrayPrice3 								= $this->input->post("txtDetailPrice3");						
 			$archivoCSV 								= $this->input->post("txtFileImport");			
 			
 			
@@ -655,20 +663,37 @@ class App_Inventory_Inputunpost extends CI_Controller {
 						$lote 									= $arrayListLote[$key];
 						$vencimiento							= $arrayListVencimiento[$key];
 						$unitaryPrice 							= $arrayPrice[$key];
+						$unitaryPrice2 							= $arrayPrice2[$key];
+						$unitaryPrice3 							= $arrayPrice3[$key];
 						
-						foreach($objTipePrice as $priceT)
-						{			
-								$typePriceID					= $priceT->catalogItemID;																					
-								$dataUpdatePrice["price"] 		= $unitaryPrice;
-								$dataUpdatePrice["percentage"] 	= 
-																$objItem->cost == 0 ? 
-																	($unitaryPrice / 100) : 
-																	(((100 * $unitaryPrice) / $objItem->cost) - 100);
-																	
+						//Actualizar tipo de precio 1 ---> 154 ---->PUBLICO
+						$typePriceID					= 154;
+						$dataUpdatePrice["price"] 		= $unitaryPrice;
+						$dataUpdatePrice["percentage"] 	= 
+														$objItem->cost == 0 ? 
+															($unitaryPrice / 100) : 
+															(((100 * $unitaryPrice) / $objItem->cost) - 100);
+						$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
+						
+						//Actualizar tipo de precio 2 ---> 155 ---->POR MAYOR
+						$typePriceID					= 155;
+						$dataUpdatePrice["price"] 		= $unitaryPrice2;
+						$dataUpdatePrice["percentage"] 	= 
+														$objItem->cost == 0 ? 
+															($unitaryPrice2 / 100) : 
+															(((100 * $unitaryPrice2) / $objItem->cost) - 100);
+						$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
 								
-								$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
-								
-						}
+						//Actualizar tipo de precio 3 ---> 156 ---->CREDITO
+						$typePriceID					= 156;
+						$dataUpdatePrice["price"] 		= $unitaryPrice3;
+						$dataUpdatePrice["percentage"] 	= 
+														$objItem->cost == 0 ? 
+															($unitaryPrice3 / 100) : 
+															(((100 * $unitaryPrice3) / $objItem->cost) - 100);
+						$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
+						
+					
 						
 						//Nuevo Detalle
 						if($transactionMasterDetailID == 0){						
@@ -690,7 +715,7 @@ class App_Inventory_Inputunpost extends CI_Controller {
 							
 							$objTMD["lote"]							= $lote;
 							$objTMD["expirationDate"]				= $vencimiento == "" ? NULL:  $vencimiento;
-							$objTMD["reference3"]					= '';
+							$objTMD["reference3"]					= $unitaryPrice2."|".$unitaryPrice3;
 							$objTMD["catalogStatusID"]				= 0;
 							$objTMD["inventoryStatusID"]			= 0;
 							$objTMD["isActive"]						= 1;
@@ -709,6 +734,7 @@ class App_Inventory_Inputunpost extends CI_Controller {
 							$objTMDNew["quantity"] 						= $quantity;
 							$objTMDNew["unitaryCost"]					= $cost;
 							$objTMDNew["unitaryPrice"]					= $unitaryPrice;
+							$objTMDNew["reference3"]					= $unitaryPrice2."|".$unitaryPrice3;
 							
 							$objTMDNew["unitaryAmount"]					= $unitaryPrice;
 							$objTMDNew["cost"] 							= $objTMDNew["quantity"] * $objTMDNew["unitaryCost"];
@@ -833,6 +859,8 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			} 		
 			
 			
+			$objListTypePreice	= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
+			
 			//Obtener el componente de Item
 			$objComponentItem		= $this->core_web_tools->getComponentIDBy_ComponentName("tb_item");
 			if(!$objComponentItem)
@@ -855,7 +883,8 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			
 			
 			$objListPrice 						= $this->List_Price_Model->getListPriceToApply($companyID);
-			$datView["objListPrice"]			= $objListPrice;
+			$datView["objListPrice"]			= $objListPrice;			
+			$datView["objListTypePreice"]		= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
 			//Obtener el Registro	
 			$datView["objComponentItem"]	 		= $objComponentItem;
 			$datView["objComponentProvider"]	 	= $objComponentProvider;
@@ -953,7 +982,9 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			$dataView["providerDefault"]	 		= $this->Provider_Model->get_rowByProviderNumber($companyID,$objParameterProviderDefault);
 			$dataView["providerNaturalDefault"]	 	= $this->Natural_Model->get_rowByPK($companyID,$dataView["providerDefault"]->branchID,$dataView["providerDefault"]->entityID);
 			
-
+			//Obtener el catalogo de tipos de precios
+			$dataView["objListTypePreice"]			= $this->core_web_catalog->getCatalogAllItem("tb_price","typePriceID",$companyID);
+			
 			$objListPrice 						= $this->List_Price_Model->getListPriceToApply($companyID);
 			$dataView["objListPrice"]			= $objListPrice;
 			$dataView["objComponentItem"] 			= $objComponentItem;
@@ -1030,7 +1061,7 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}	
-	function add_masinformacion($fnCallback,$itemID,$transactionMasterDetailID,$positionID,$lote,$vencimiento){
+	function add_masinformacion($fnCallback,$itemID,$transactionMasterDetailID,$positionID,$lote,$vencimiento,$precio1,$precio2){
 			
 			//AUTENTICACION
 			if(!$this->core_web_authentication->isAuthenticated())
@@ -1056,12 +1087,14 @@ class App_Inventory_Inputunpost extends CI_Controller {
 			$data["fnCallback"] 				= $fnCallback;
 			$data["lote"] 						= $lote;
 			$data["vencimiento"] 				= $vencimiento;
+			$data["precio1"] 					= $precio1;
+			$data["precio2"] 					= $precio2;
 			
 			//Renderizar Resultado
 			$dataSession["message"]		= "";
-			$dataSession["head"]		= $this->load->view('app_inventory_otherinput/popup_masinformacion_item_head',$data,true);
-			$dataSession["body"]		= $this->load->view('app_inventory_otherinput/popup_masinformacion_item_body',$data,true);
-			$dataSession["script"]		= $this->load->view('app_inventory_otherinput/popup_masinformacion_item_script',$data,true);  
+			$dataSession["head"]		= $this->load->view('app_inventory_inputunpost/popup_masinformacion_item_head',$data,true);
+			$dataSession["body"]		= $this->load->view('app_inventory_inputunpost/popup_masinformacion_item_body',$data,true);
+			$dataSession["script"]		= $this->load->view('app_inventory_inputunpost/popup_masinformacion_item_script',$data,true);  
 			$this->load->view("core_masterpage/default_popup",$dataSession);
 	}
 	

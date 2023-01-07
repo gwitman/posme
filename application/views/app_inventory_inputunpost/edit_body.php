@@ -241,6 +241,8 @@
 													<th>Lote</th><!--9-->
 													<th>Expiracion</th><!--10-->
 													<th>Mas</th><!--11-->
+													<th>Precio1</th><!--12-->
+													<th>Precio2</th><!--13-->
                                                   </tr>
                                                 </thead>
                                                 <tbody id="body_detail_transaction">             
