@@ -486,8 +486,8 @@ class App_Inventory_TransferOutput extends CI_Controller {
 					$objTMDInput["unitaryPrice"]				= 0;
 					$objTMDInput["promotionID"] 				= 0;
 					
-					$objTMDInput["reference1"]					= $lote;
-					$objTMDInput["reference2"]					= $vencimiento;
+					$objTMDInput["reference1"]					= '';
+					$objTMDInput["reference2"]					= '';
 					$objTMDInput["reference3"]					= '';
 					$objTMDInput["catalogStatusID"]				= 0;
 					$objTMDInput["inventoryStatusID"]			= 0;
@@ -496,7 +496,9 @@ class App_Inventory_TransferOutput extends CI_Controller {
 					$objTMDInput["quantiryStockInTraffic"]		= 0;
 					$objTMDInput["quantityStockUnaswared"]		= 0;
 					$objTMDInput["remaingStock"]				= 0;
-					$objTMDInput["expirationDate"]				= NULL;
+					$objTMDInput["lote"]						= $lote;
+					$objTMDInput["expirationDate"]				= $vencimiento == "" ? NULL:  $vencimiento;
+					
 					$objTMDInput["inventoryWarehouseSourceID"]	= $objTMInput["sourceWarehouseID"];
 					$objTMDInput["inventoryWarehouseTargetID"]	= $objTMInput["targetWarehouseID"];
 					
