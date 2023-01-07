@@ -57,7 +57,7 @@
 						<div class="col-lg-6">
 							
 								<div class="form-group">
-									<label class="col-lg-2 control-label" for="datepicker">Fecha</label>
+									<label class="col-lg-4 control-label" for="datepicker">Fecha</label>
 									<div class="col-lg-8">
 										<div id="datepicker" class="input-group date" data-date-format="yyyy-mm-dd">
 											<input size="16"  class="form-control" type="text" name="txtDate" id="txtDate" >
@@ -66,14 +66,9 @@
 									</div>
 								</div>
 								
+							
 								<div class="form-group">
-										<label class="col-lg-2 control-label" for="normal">Aplicado</label>
-										<div class="col-lg-5">
-											<input type="checkbox" disabled   name="txtIsApplied" id="txtIsApplied" value="1" >
-										</div>
-								</div>
-								<div class="form-group">
-										<label class="col-lg-2 control-label" for="normal">Cambio</label>
+										<label class="col-lg-4 control-label" for="normal">Cambio</label>
 										<div class="col-lg-8">
 											<input class="form-control"   type="text" disabled="disabled" name="txtExchangeRate" id="txtExchangeRate" value="<?php echo $exchangeRate; ?>">
 										</div>
@@ -81,9 +76,9 @@
 								
 								
 								<div class="form-group">
-									<label class="col-lg-2 control-label" for="normal">Descripcion</label>
-									<div class="col-lg-8">
-										<textarea class="form-control"  id="txtNote" name="txtNote" rows="6"></textarea>
+									<label class="col-lg-4 control-label" for="normal">Descripcion</label>
+									<div class="col-lg-8">										
+										<input class="form-control"   type="text" name="txtNote" id="txtNote" value="">
 									</div>
 								</div>
 							
@@ -123,6 +118,23 @@
 								</div>
 								
 								
+							
+								
+								
+								
+								<div class="form-group">
+										<label class="col-lg-4 control-label" for="normal">Cliente</label>
+										<div class="col-lg-8">
+											<input class="form-control"   type="text" name="txtReferenceClientName" id="txtReferenceClientName" value="">
+										</div>
+								</div>
+								
+								<div class="form-group">
+										<label class="col-lg-4 control-label" for="normal">Cedula</label>
+										<div class="col-lg-8">
+											<input class="form-control"   type="text" name="txtReferenceClientIdentifier" id="txtReferenceClientIdentifier" value="">
+										</div>
+								</div>
 								
 								<div class="form-group">
 									<label class="col-lg-4 control-label" for="selectFilter">Tipo</label>
@@ -143,21 +155,6 @@
 									</div>
 								</div>
 
-								
-								
-								<div class="form-group">
-										<label class="col-lg-4 control-label" for="normal">Cliente</label>
-										<div class="col-lg-8">
-											<input class="form-control"   type="text" name="txtReferenceClientName" id="txtReferenceClientName" value="">
-										</div>
-								</div>
-								
-								<div class="form-group">
-										<label class="col-lg-4 control-label" for="normal">Cedula</label>
-										<div class="col-lg-8">
-											<input class="form-control"   type="text" name="txtReferenceClientIdentifier" id="txtReferenceClientIdentifier" value="">
-										</div>
-								</div>
 
 								<div class="form-group hidden" id="divLineaCredit">
 									<label class="col-lg-4 control-label" for="selectFilter">Línea de Crédito</label>
@@ -362,11 +359,17 @@
 										</div>
 								</div>
 								
+								<div class="form-group">
+										<label class="col-lg-4 control-label" for="normal">Aplicado</label>
+										<div class="col-lg-8">
+											<input type="checkbox" disabled   name="txtIsApplied" id="txtIsApplied" value="1" >
+										</div>
+								</div>
 								
 								
 								<div class="form-group hide">
-										<label class="col-lg-6 control-label" for="normal">Primer Linea del Protocolo.</label>
-										<div class="col-lg-6">
+										<label class="col-lg-4 control-label" for="normal">Primer Linea del Protocolo.</label>
+										<div class="col-lg-8">
 											<input class="form-control"   type="text" name="txtLayFirstLineProtocolo" id="txtLayFirstLineProtocolo" value="">
 											
 											<a href="#" class="btn btn-primary  gap-right10" data-toggle="popover" data-placement="bottom" 

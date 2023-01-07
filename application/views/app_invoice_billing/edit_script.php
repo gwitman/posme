@@ -8,6 +8,7 @@
 	var objListaProductos3					= {};
 	var warehouseID 						= $("#txtWarehouseID").val();
 	var openedSearchWindow					= false;
+	var objWindowSearchProduct				= {};
 	var varPermitirFacturarProductosEnZero	= '<?php echo $objParameterInvoiceBillingQuantityZero; ?>';
 	var varUrlPrinter			= '<?php echo $urlPrinterDocument; ?>';
 	var varDetail 				= JSON.parse('<?php echo json_encode($objTransactionMasterDetail); ?>');	
@@ -387,9 +388,18 @@
 		});
 		//Nuevo Producto
 		$(document).on("click","#btnNewItem",function(){
-			var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/false/"+encodeURI("{\"warehouseID\"|\""+warehouseID+"\"{}\"listPriceID\"|\"<?php echo $objListPrice->listPriceID; ?>\"{}\"typePriceID\"|\""+ $("#txtTypePriceID").val() + "\"}");
-			window.open(url_request,"MsgWindow","width=900,height=450");
-			window.onCompleteNewItem 	= onCompleteNewItem; 
+			
+			
+			if(openedSearchWindow 				== false){
+				openedSearchWindow 			= true;
+				var url_request 			= "<?php echo site_url(); ?>core_view/showviewbyname/<?php echo $objComponentItem->componentID; ?>/onCompleteNewItem/SELECCIONAR_ITEM_BILLING/false/"+encodeURI("{\"warehouseID\"|\""+warehouseID+"\"{}\"listPriceID\"|\"<?php echo $objListPrice->listPriceID; ?>\"{}\"typePriceID\"|\""+ $("#txtTypePriceID").val() + "\"}");				
+				objWindowSearchProduct 		= window.open(url_request,"MsgWindow","width=900,height=450");				
+				window.onCompleteNewItem 	= onCompleteNewItem; 
+			}
+			else{
+				objWindowSearchProduct.focus();
+			}
+			
 		});
 		$(document).on("click","#btnNewItemCatalog",function(){
 			var url_request 				 = "<?php echo site_url(); ?>app_inventory_item/add.aspx";

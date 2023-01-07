@@ -64,7 +64,7 @@
 								
 								
 								<div class="form-group">
-									<label class="col-lg-2 control-label" for="datepicker">Fecha</label>
+									<label class="col-lg-4 control-label" for="datepicker">Fecha</label>
 									<div class="col-lg-8">
 										<div id="datepicker" class="input-group date" data-date-format="yyyy-mm-dd">
 											<input size="16"  class="form-control" type="text" name="txtDate" id="txtDate" value="<?php echo $objTransactionMaster->transactionOn; ?>" >
@@ -73,14 +73,9 @@
 									</div>
 								</div>
 								
+								
 								<div class="form-group">
-										<label class="col-lg-2 control-label" for="normal">Aplicado</label>
-										<div class="col-lg-5">
-											<input type="checkbox" disabled   name="txtIsApplied" id="txtIsApplied" value="1" <?php if($objTransactionMaster->isApplied) echo "checked"; ?> >
-										</div>
-								</div>
-								<div class="form-group">
-										<label class="col-lg-2 control-label" for="normal">Cambio</label>
+										<label class="col-lg-4 control-label" for="normal">Cambio</label>
 										<div class="col-lg-8">
 											<input class="form-control"   type="text" disabled="disabled" name="txtExchangeRate" id="txtExchangeRate" value="<?php echo $exchangeRate; ?>">
 										</div>
@@ -88,11 +83,12 @@
 								
 								
 								<div class="form-group">
-									<label class="col-lg-2 control-label" for="normal">Descripcion</label>
-									<div class="col-lg-8">
-										<textarea class="form-control"  id="txtNote" name="txtNote" rows="6"><?php echo $objTransactionMaster->note; ?></textarea>
+									<label class="col-lg-4 control-label" for="normal">Descripcion</label>
+									<div class="col-lg-8">										
+										<input class="form-control"   type="text" name="txtNote" id="txtNote" value="<?php echo $objTransactionMaster->note; ?>">
 									</div>
 								</div>
+								
 								
 							
 						</div>
@@ -130,6 +126,22 @@
 									</div>
 								</div>
 								
+								
+								
+								<div class="form-group">
+										<label class="col-lg-4 control-label" for="normal">Cliente</label>
+										<div class="col-lg-8">
+											<input class="form-control"   type="text" name="txtReferenceClientName" id="txtReferenceClientName" value="<?php echo $objTransactionMasterInfo->referenceClientName; ?>">
+										</div>
+								</div>
+								
+								<div class="form-group">
+										<label class="col-lg-4 control-label" for="normal">Cedula</label>
+										<div class="col-lg-8">
+											<input class="form-control"   type="text" name="txtReferenceClientIdentifier" id="txtReferenceClientIdentifier" value="<?php echo $objTransactionMasterInfo->referenceClientIdentifier; ?>">
+										</div>
+								</div>
+								
 								<div class="form-group">
 									<label class="col-lg-4 control-label" for="selectFilter">Tipo</label>
 									<div class="col-lg-8">
@@ -148,21 +160,6 @@
 								</div>
 								
 								
-								
-								
-								<div class="form-group">
-										<label class="col-lg-4 control-label" for="normal">Cliente</label>
-										<div class="col-lg-8">
-											<input class="form-control"   type="text" name="txtReferenceClientName" id="txtReferenceClientName" value="<?php echo $objTransactionMasterInfo->referenceClientName; ?>">
-										</div>
-								</div>
-								
-								<div class="form-group">
-										<label class="col-lg-4 control-label" for="normal">Cedula</label>
-										<div class="col-lg-8">
-											<input class="form-control"   type="text" name="txtReferenceClientIdentifier" id="txtReferenceClientIdentifier" value="<?php echo $objTransactionMasterInfo->referenceClientIdentifier; ?>">
-										</div>
-								</div>
 
 								<div class="form-group hidden" id="divLineaCredit">
 									<label class="col-lg-4 control-label" for="selectFilter">Línea de Crédito</label>
@@ -380,6 +377,13 @@
 											
 											<a href="#" class="btn btn-primary  gap-right10" data-toggle="popover" data-placement="bottom" 
 											data-content="Ejemplo: Del Interese de cada cuota, se multiplica por este % para saber de cuanto es la comision para FID-Local, este numero debe ser #0 o mayor que #1" title="" data-original-title="% de Gastos Fijo:">Ayuda:</a>
+										</div>
+								</div>
+								
+								<div class="form-group">
+										<label class="col-lg-4 control-label" for="normal">Aplicado</label>
+										<div class="col-lg-8">
+											<input type="checkbox" disabled   name="txtIsApplied" id="txtIsApplied" value="1" <?php if($objTransactionMaster->isApplied) echo "checked"; ?> >
 										</div>
 								</div>
 								
