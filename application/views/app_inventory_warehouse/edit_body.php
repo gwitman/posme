@@ -87,6 +87,24 @@
 															</div>
 														</div>
 													
+														<div class="form-group">
+															<label class="col-lg-2 control-label" for="selectFilter">Tipo</label>
+															<div class="col-lg-4">
+																<select name="txtTypeWarehouse" id="txtTypeWarehouse" class="select2">
+																		<option></option>
+																		<?php
+																		if($objListTypeWarehouse)
+																		foreach($objListTypeWarehouse as $i){
+																			if($i->catalogItemID == $objWarehouse->typeWarehouse)
+																			echo "<option selected='selected' value='".$i->catalogItemID."'>".$i->name."</option>";
+																			else
+																			echo "<option  value='".$i->catalogItemID."'>".$i->name."</option>";
+																		
+																		}
+																		?>
+																</select>
+															</div>
+														</div>
 														
 														<div class="form-group">
 															<label class="col-lg-2 control-label" for="normal">Direccion</label>

@@ -24,7 +24,7 @@ class Warehouse_Model extends CI_Model  {
 		return $result ? $autoIncrement : $result; 
    }
    function getByCode($companyID,$code){
-		$this->db->select("companyID, warehouseID, branchID, number, name, statusID, isActive");
+		$this->db->select("companyID, warehouseID, branchID, number, name, statusID, isActive, typeWarehouse");
 		$this->db->from("tb_warehouse");
 		$this->db->where("companyID",$companyID);		
 		$this->db->where("isActive",1);		
@@ -44,7 +44,7 @@ class Warehouse_Model extends CI_Model  {
 		return $recordSet->row();
    }
    function get_rowByPK($companyID,$warehouseID){
-		$this->db->select("companyID, warehouseID, branchID, number, name, statusID, isActive,address");
+		$this->db->select("companyID, warehouseID, branchID, number, name, statusID, isActive,address,typeWarehouse");
 		$this->db->from("tb_warehouse");
 		$this->db->where("companyID",$companyID);		
 		$this->db->where("isActive",1);		
@@ -64,7 +64,7 @@ class Warehouse_Model extends CI_Model  {
 		return $recordSet->row();
    }
    function getByCompany($companyID){
-		$this->db->select("companyID, warehouseID, branchID, number, name, statusID, isActive");
+		$this->db->select("companyID, warehouseID, branchID, number, name, statusID, isActive,typeWarehouse");
 		$this->db->from("tb_warehouse");
 		$this->db->where("companyID",$companyID);		
 		$this->db->where("isActive",1);		

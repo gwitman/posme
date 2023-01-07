@@ -14,7 +14,7 @@ class UserWarehouse_Model extends CI_Model  {
 		return $result;
    }
    function getRowByUserID($companyID,$userID){
-		$this->db->select("uw.companyID, uw.warehouseID, uw.branchID,uw.userID, w.number, w.name, w.statusID, w.isActive");
+		$this->db->select("uw.companyID, uw.warehouseID, uw.branchID,uw.userID, w.number, w.name, w.statusID, w.isActive,w.typeWarehouse");
 		$this->db->from("tb_user_warehouse uw");
 		$this->db->join("tb_warehouse w","uw.warehouseID = w.warehouseID");
 		$this->db->where("uw.companyID",$companyID);		
@@ -35,7 +35,7 @@ class UserWarehouse_Model extends CI_Model  {
 		return $recordSet->result();
    }
    function getRowByBranchID($companyID,$branchID){
-		$this->db->select("uw.companyID, uw.warehouseID, uw.branchID,uw.userID, w.number, w.name, w.statusID, w.isActive");
+		$this->db->select("uw.companyID, uw.warehouseID, uw.branchID,uw.userID, w.number, w.name, w.statusID, w.isActive,w.typeWarehouse");
 		$this->db->from("tb_user_warehouse uw");
 		$this->db->join("tb_warehouse w","uw.warehouseID = w.warehouseID");
 		$this->db->where("uw.companyID",$companyID);		
@@ -56,7 +56,7 @@ class UserWarehouse_Model extends CI_Model  {
 		return $recordSet->result();
    }
    function getRowByCompanyID($companyID){
-		$this->db->select("uw.companyID,uw.branchID,uw.number, uw.name, uw.statusID, uw.isActive");
+		$this->db->select("uw.companyID,uw.branchID,uw.number, uw.name, uw.statusID, uw.isActive,w.typeWarehouse");
 		$this->db->from("tb_warehouse uw");		
 		$this->db->where("uw.companyID",$companyID);		
 		$this->db->where("uw.isActive",1);		

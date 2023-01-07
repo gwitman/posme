@@ -401,6 +401,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$objTMNew["currencyID"]						= $this->input->post("txtCurrencyID"); 
 			$objTMNew["currencyID2"]					= $this->core_web_currency->getTarget($companyID,$objTMNew["currencyID"]);
 			$objTMNew["exchangeRate"]					= $this->core_web_currency->getRatio($dataSession["user"]->companyID,date("Y-m-d"),1,$objTMNew["currencyID2"],$objTMNew["currencyID"]);
+			$objTMNew["sourceWarehouseID"]				= $this->input->post("txtWarehouseID");
 			
 			
 			//Ingresar Informacion Adicional
@@ -531,7 +532,7 @@ class App_Invoice_Billing extends CI_Controller {
 					$itemID 								= $value;
 					$lote 									= $arrayListLote[$key];
 					$vencimiento							= $arrayListVencimiento[$key];
-					$warehouseID 							= $objTM->sourceWarehouseID;
+					$warehouseID 							= $objTMNew["sourceWarehouseID"];
 					$objItem 								= $this->Item_Model->get_rowByPK($companyID,$itemID);
 					$objItemWarehouse 						= $this->ItemWarehouse_Model->getByPK($companyID,$itemID,$warehouseID);					
 					$quantity 								= helper_StringToNumber($arrayListQuantity[$key]);
@@ -591,7 +592,7 @@ class App_Invoice_Billing extends CI_Controller {
 						$objTMD["quantityStockUnaswared"]		= 0;
 						$objTMD["remaingStock"]					= 0;
 						$objTMD["expirationDate"]				= NULL;
-						$objTMD["inventoryWarehouseSourceID"]	= $objTM->sourceWarehouseID;
+						$objTMD["inventoryWarehouseSourceID"]	= $objTMNew["sourceWarehouseID"];
 						$objTMD["inventoryWarehouseTargetID"]	= $objTM->targetWarehouseID;
 						
 						$tax1Total								= $tax1Total + $tax1;
@@ -611,19 +612,16 @@ class App_Invoice_Billing extends CI_Controller {
 						
 						//Actualizar el Precio
 						if($objUpdatePrice)
-						{
-							foreach($objTipePrice as $priceT)
-							{			
-									$typePriceID					= $priceT->catalogItemID;																					
-									$dataUpdatePrice["price"] 		= $price;
-									$dataUpdatePrice["percentage"] 	= 
-																	$objItem->cost == 0 ? 
-																		($price / 100) : 
-																		(((100 * $price) / $objItem->cost) - 100);																		
-									
-									$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
-									
-							}
+						{							
+							$typePriceID					= $typePriceID;
+							$dataUpdatePrice["price"] 		= $price;
+							$dataUpdatePrice["percentage"] 	= 
+															$objItem->cost == 0 ? 
+																($price / 100) : 
+																(((100 * $price) / $objItem->cost) - 100);																		
+							
+							$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);									
+							
 						}
 						
 						
@@ -646,12 +644,14 @@ class App_Invoice_Billing extends CI_Controller {
 						$objTMDNew["reference1"]				= $lote;
 						$objTMDNew["reference2"]				= $vencimiento;
 						$objTMDNew["reference3"]				= '0';
+						$objTMDNew["inventoryWarehouseSourceID"]= $objTMNew["sourceWarehouseID"];
 						
 						
 						$tax1Total								= $tax1Total + $tax1;
 						$subAmountTotal							= $subAmountTotal + ($quantity * $price);
 						$amountTotal							= $amountTotal + $objTMDNew["amount"];						
 						$this->Transaction_Master_Detail_Model->update($companyID,$transactionID,$transactionMasterID,$transactionMasterDetailID,$objTMDNew);	
+						
 						$objTMDC["reference1"]					= $this->input->post("txtFixedExpenses");
 						$objTMDC["reference2"]					= $this->input->post("txtCheckReportSinRiesgo");
 						$objTMDC["reference3"]					= $this->input->post("txtLayFirstLineProtocolo");
@@ -663,18 +663,16 @@ class App_Invoice_Billing extends CI_Controller {
 						//Actualizar el Precio
 						if($objUpdatePrice)
 						{
-							foreach($objTipePrice as $priceT)
-							{			
-									$typePriceID					= $priceT->catalogItemID;																					
-									$dataUpdatePrice["price"] 		= $price;
-									$dataUpdatePrice["percentage"] 	= 
-																	$objItem->cost == 0 ? 
-																		($price / 100) : 
-																		(((100 * $price) / $objItem->cost) - 100);
-									
-									$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
-									
-							}
+							
+							$typePriceID					= $typePriceID;
+							$dataUpdatePrice["price"] 		= $price;
+							$dataUpdatePrice["percentage"] 	= 
+															$objItem->cost == 0 ? 
+																($price / 100) : 
+																(((100 * $price) / $objItem->cost) - 100);
+							
+							$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);									
+							
 						}
 						
 					}
@@ -953,7 +951,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$objTM["journalEntryID"] 				= 0;
 			$objTM["classID"] 						= NULL;
 			$objTM["areaID"] 						= NULL;
-			$objTM["sourceWarehouseID"]				= $objTransactionCausal->warehouseSourceID;
+			$objTM["sourceWarehouseID"]				= $this->input->post("txtWarehouseID");
 			$objTM["targetWarehouseID"]				= NULL;
 			$objTM["isActive"]						= 1;
 			$this->core_web_auditoria->setAuditCreated($objTM,$dataSession);			
@@ -1081,22 +1079,24 @@ class App_Invoice_Billing extends CI_Controller {
 					$objTMDC["reference5"]					= "";
 					$objTMDC["reference9"]					= "reference1: Porcentaje de Gastos Fijo para las facturas de credito,reference2: Escritura Publica,reference3: Primer Linea del Protocolo";
 					$this->Transaction_Master_Detail_Credit_Model->insert($objTMDC);
+					
+					//Actualizar tipo de precio
 					if($objUpdatePrice)
-					{
-						foreach($objTipePrice as $priceT)
-						{			
-								$typePriceID					= $priceT->catalogItemID;																					
-								$dataUpdatePrice["price"] 		= $price;
-								$dataUpdatePrice["percentage"] 	= 
-																$objItem->cost == 0 ? 
-																	($price / 100) : 
-																	(((100 * $price) / $objItem->cost) - 100);
-																	
+					{ 
+						
+						$typePriceID					= $typePriceID;																				
+						$dataUpdatePrice["price"] 		= $price;
+						$dataUpdatePrice["percentage"] 	= 
+														$objItem->cost == 0 ? 
+															($price / 100) : 
+															(((100 * $price) / $objItem->cost) - 100);
+															
+						
+						$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
 								
-								$objPrice = $this->Price_Model->update($companyID,$listPriceID,$itemID,$typePriceID,$dataUpdatePrice);
-								
-						}
+						
 					}
+					
 					
 				}
 			}
@@ -1235,6 +1235,7 @@ class App_Invoice_Billing extends CI_Controller {
 			$objListPrice 						= $this->List_Price_Model->getListPriceToApply($companyID);
 			$objListCurrency					= $this->Company_Currency_Model->getByCompany($companyID);
 			
+			
 			if(!$objListPrice)
 			throw new Exception("NO EXISTE UNA LISTA DE PRECIO PARA SER APLICADA");
 		
@@ -1242,6 +1243,8 @@ class App_Invoice_Billing extends CI_Controller {
 			$objParameterInvoiceAutoApply			= $objParameterInvoiceAutoApply->value;
 			$objParameterTypePreiceDefault			= $this->core_web_parameter->getParameter("INVOICE_DEFAULT_TYPE_PRICE",$companyID);
 			$objParameterTypePreiceDefault			= $objParameterTypePreiceDefault->value;
+			$objParameterTipoWarehouseDespacho		= $this->core_web_parameter->getParameter("INVOICE_TYPE_WAREHOUSE_DESPACHO",$companyID);
+			$objParameterTipoWarehouseDespacho		= $objParameterTipoWarehouseDespacho->value;
 			
 			//Obtener la lista de estados
 			if($objParameterInvoiceAutoApply == "true"){
@@ -1275,6 +1278,8 @@ class App_Invoice_Billing extends CI_Controller {
 			$dataView["listProvider"]						= $this->Provider_Model->get_rowByCompany($companyID);
 			$dataView["objListaPermisos"]					= $dataSession["menuHiddenPopup"];
 			$dataView["objParameterTypePreiceDefault"] 		= $objParameterTypePreiceDefault;
+			$dataView["objParameterTipoWarehouseDespacho"] 	= $objParameterTipoWarehouseDespacho;
+			
 			
 			$objParameterInvoiceBillingQuantityZero					= $this->core_web_parameter->getParameter("INVOICE_BILLING_QUANTITY_ZERO",$companyID);
 			$dataView["objParameterInvoiceBillingQuantityZero"]		= $objParameterInvoiceBillingQuantityZero->value;

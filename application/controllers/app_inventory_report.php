@@ -385,5 +385,69 @@ class App_Inventory_Report extends CI_Controller {
 			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
 		}
 	}
+	function list_item_expired(){
+		try{ 
+		
+			//AUTENTICADO
+			if(!$this->core_web_authentication->isAuthenticated())
+			throw new Exception(USER_NOT_AUTENTICATED);
+			$dataSession		= $this->session->all_userdata();
+		
+			//PERMISOS SOBRE LAS FUNCIONES
+			if(APP_NEED_AUTHENTICATION == true){				
+				
+				$permited = false;
+				$permited = $this->core_web_permission->urlPermited($this->router->class,"index",$this->config->item('url_suffix'),$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+				
+				if(!$permited)
+				throw new Exception(NOT_ACCESS_CONTROL);
+				
+				$resultPermission		= $this->core_web_permission->urlPermissionCmd($this->router->class,"index",$this->config->item('url_suffix'),$dataSession,$dataSession["menuTop"],$dataSession["menuLeft"],$dataSession["menuBodyReport"],$dataSession["menuBodyTop"],$dataSession["menuHiddenPopup"]);
+				if ($resultPermission 	== PERMISSION_NONE)
+				throw new Exception(NOT_ACCESS_FUNCTION);			
+			}	
+			
+			$uri				= $this->uri->uri_to_assoc(3);						
+			$viewReport			= false;
+			$companyID			= $dataSession["user"]->companyID;
+			$branchID			= $dataSession["user"]->branchID;
+			$userID				= $dataSession["user"]->userID;
+			$tocken				= '';
+			 
+			
+			//Cargar Libreria
+			$this->load->model('core/Company_Model');	
+			$this->load->model('core/Bd_Model');
+				
+				
+			//Obtener el tipo de Comprobante
+			$companyID 		= $dataSession["user"]->companyID;
+			//Get Component
+			$objComponent	= $this->core_web_tools->getComponentIDBy_ComponentName("tb_company");
+			//Get Logo
+			$objParameter	= $this->core_web_parameter->getParameter("CORE_COMPANY_LOGO",$companyID);
+			//Get Company
+			$objCompany 	= $this->Company_Model->get_rowByPK($companyID);
+			//Get Datos
+			$query			= "CALL pr_inventory_get_eport_list_item_expired('".$userID."','".$tocken."','".$companyID."');";
+			$objData		= $this->Bd_Model->executeProcedureMultiQuery($query);			
+			log_message("INFO",print_r($query,true));
+			
+			if(isset($objData[0]))
+			$objDataResult["objDetail"]					= $objData[0];
+			else
+			$objDataResult["objDetail"]					= NULL;
+			$objDataResult["objCompany"] 				= $objCompany;
+			$objDataResult["objLogo"] 					= $objParameter;
+			$objDataResult["objFirma"] 					= "{companyID:" . $dataSession["user"]->companyID . ",branchID:" . $dataSession["user"]->branchID . ",userID:" . $dataSession["user"]->userID . ",fechaID:" . date('Y-m-d H:i:s') . ",reportID:" . "pr_inventory_get_report_list_item" . ",ip:". $dataSession["ip_address"] . ",sessionID:" . $dataSession["session_id"] .",agenteID:". $dataSession["user_agent"] .",lastActivity:".  $dataSession["last_activity"] . "}"  ;
+			$objDataResult["objFirmaEncription"] 		= md5 ($objDataResult["objFirma"]);
+			log_message("INFO",print_r($objDataResult,true));
+			$this->load->view("app_inventory_report/list_item_expired/view_a_disemp",$objDataResult);
+			
+		}
+		catch(Exception $ex){
+			show_error($ex->getLine()." ".$ex->getMessage() ,500 );
+		}
+	}
 }
 ?>

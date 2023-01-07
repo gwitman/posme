@@ -226,6 +226,25 @@
 									</div>
 								</div>
 								
+								<div class="form-group">
+									<label class="col-lg-4 control-label" for="selectFilter">Bodega</label>
+									<div class="col-lg-8">
+										<select name="txtWarehouseID" id="txtWarehouseID" class="select2">
+												<option></option>																
+												<?php
+												$count = 0;
+												if($objListWarehouse)
+												foreach($objListWarehouse as $ware){
+													if($objTransactionMaster->sourceWarehouseID == $ware->warehouseID)
+													echo "<option value='".$ware->warehouseID."' selected >".$ware->name."</option>";
+													else
+													echo "<option value='".$ware->warehouseID."'  >".$ware->name."</option>";
+													$count++;
+												}
+												?>
+										</select>
+									</div>
+								</div>
 								
 								
 							</div>

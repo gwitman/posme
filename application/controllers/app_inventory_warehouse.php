@@ -51,6 +51,7 @@ class App_Inventory_Warehouse extends CI_Controller {
 			$datView["objWarehouse"]			= $this->Warehouse_Model->get_rowByPK($companyID,$warehouseID);
 			$datView["objListBranch"]			= $this->Branch_Model->getByCompany($companyID);
 			$datView["objListWorkflowStage"]	= $this->core_web_workflow->getWorkflowStageByStageInit("tb_warehouse","statusID",$datView["objWarehouse"]->statusID,$companyID,$branchID,$roleID);
+			$datView["objListTypeWarehouse"]	= $this->core_web_catalog->getCatalogAllItem("tb_warehouse","typeWarehouse",$companyID);
 			
 			//Renderizar Resultado
 			$dataSession["notification"]	= $this->core_web_error->get_error($dataSession["user"]->userID);
@@ -183,6 +184,7 @@ class App_Inventory_Warehouse extends CI_Controller {
 					$obj["address"] 			= $this->input->post("txtAddress");				 
 					$obj["isActive"] 			= true;
 					$obj["statusID"] 			= $this->input->post("txtStatusID");
+					$obj["typeWarehouse"] 		= $this->input->post("txtTypeWarehouse");
 					$this->core_web_auditoria->setAuditCreated($obj,$dataSession);
 					
 					//Validar Codigo de Bodega
@@ -236,10 +238,11 @@ class App_Inventory_Warehouse extends CI_Controller {
 			
 					//Actualizar Bodega
 					$this->db->trans_begin();					
-					$obj["number"] 		= $this->input->post("txtNumber");
-					$obj["address"] 	= $this->input->post("txtAddress");
-					$obj["name"] 		= $this->input->post("txtName");
-					$obj["statusID"] 	= $this->input->post("txtStatusID");
+					$obj["number"] 				= $this->input->post("txtNumber");
+					$obj["address"] 			= $this->input->post("txtAddress");
+					$obj["name"] 				= $this->input->post("txtName");
+					$obj["statusID"] 			= $this->input->post("txtStatusID");
+					$obj["typeWarehouse"] 		= $this->input->post("txtTypeWarehouse");
 					
 					//Validar Codigo de Bodega
 					$objWarehouse		= $this->Warehouse_Model->getByCode($companyID,$obj["number"]);
@@ -303,6 +306,7 @@ class App_Inventory_Warehouse extends CI_Controller {
 			$roleID 							= $dataSession["role"]->roleID;
 			$objData["objListBranch"] 			= $this->Branch_Model->getByCompany($companyID);
 			$objData["objListWorkflowStage"]	= $this->core_web_workflow->getWorkflowInitStage("tb_warehouse","statusID",$companyID,$branchID,$roleID);
+			$objData["objListTypeWarehouse"]	= $this->core_web_catalog->getCatalogAllItem("tb_warehouse","typeWarehouse",$companyID);
 			
 			//Renderizar Resultado 
 			$dataSession["notification"]	= $this->core_web_error->get_error($dataSession["user"]->userID);
