@@ -32,15 +32,14 @@
 				<thead>
 					<tr>
 						<th class="cell_left">Codigo</th>
-						<th class="cell_left">Nombre</th>
-						<th class="cell_left">U/M</th>
+						<th class="cell_left">Nombre</th>						
 						<th class="cell_left">Categoria</th>
-						<th class="cell_right">Cantidad General</th>
+						<th class="cell_right">Proveedor</th>
 						<th class="cell_right">Costo</th>
 						<th class="cell_right">Precio</th>
 						<th class="cell_right">Bodega</th>
-						<th class="cell_right">Vencimiento</th>
-						<th class="cell_right">Cantidad Vencimiento</th>
+						<th class="cell_right">Ven.</th>
+						<th class="cell_right">Cantidad</th>
 					</tr>
 				</thead>				
 				<tbody>
@@ -55,15 +54,12 @@
 							echo "</td>";
 							echo "<td class='cell_left'>";
 								echo ($i["itemName"]);
-							echo "</td>";
-							echo "<td class='cell_left'>";
-								echo ($i["unitMeasure"]);
-							echo "</td>";
+							echo "</td>";						
 							echo "<td class='cell_left'>";
 								echo ($i["categoryName"]);
 							echo "</td>";
-							echo "<td class='cell_right'>";
-								echo ($i["quantity"]);
+							echo "<td class='cell_left'>";
+								echo ($i["proveedorName"]);
 							echo "</td>";
 							echo "<td class='cell_right'>";
 								echo ($i["cost"]);
@@ -88,15 +84,14 @@
 				<tfoot>
 					<tr>
 						<th class="cell_left">Codigo</th>
-						<th class="cell_left">Nombre</th>
-						<th class="cell_left">U/M</th>
+						<th class="cell_left">Nombre</th>						
 						<th class="cell_left">Categoria</th>
-						<th class="cell_right">Cantidad General</th>
+						<th class="cell_right">Proveedor</th>
 						<th class="cell_right">Costo</th>
 						<th class="cell_right">Precio</th>
 						<th class="cell_right">Bodega</th>
-						<th class="cell_right">Vencimiento</th>
-						<th class="cell_right">Cantidad Vencimiento</th>
+						<th class="cell_right">Ven.</th>
+						<th class="cell_right">Cantidad</th>
 					</tr>
 				</tfoot>
 			</table>
