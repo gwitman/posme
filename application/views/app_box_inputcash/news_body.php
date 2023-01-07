@@ -52,7 +52,7 @@
 													
 										
 														<div class="form-group">
-															<label class="col-lg-2 control-label" for="datepicker">Fecha</label>
+															<label class="col-lg-4 control-label" for="datepicker">Fecha</label>
 															<div class="col-lg-8">
 																<div id="datepicker" class="input-group date" data-date-format="yyyy-mm-dd">
 																	<input size="16"  class="form-control" type="text" name="txtDate" id="txtDate" >
@@ -62,20 +62,20 @@
 														</div>
 														
 														<div class="form-group">
-																<label class="col-lg-2 control-label" for="normal">Aplicado</label>
+																<label class="col-lg-4 control-label" for="normal">Aplicado</label>
 																<div class="col-lg-5">
 																	<input type="checkbox" disabled   name="txtIsApplied" id="txtIsApplied" value="1" >
 																</div>
 														</div>
 														<div class="form-group">
-																<label class="col-lg-2 control-label" for="normal">Cambio</label>
+																<label class="col-lg-4 control-label" for="normal">Cambio</label>
 																<div class="col-lg-8">
 																	<input class="form-control"   type="text" disabled="disabled" name="txtExchangeRate" id="txtExchangeRate" value="<?php echo $exchangeRate; ?>">
 																</div>
 														</div>
 														
 														<div class="form-group">
-															<label class="col-lg-2 control-label" for="selectFilter">Estado</label>
+															<label class="col-lg-4 control-label" for="selectFilter">Estado</label>
 															<div class="col-lg-8">
 																<select name="txtStatusID" id="txtStatusID" class="select2">
 																		<option></option>																
@@ -89,17 +89,56 @@
 															</div>
 														</div>
 														
+														<div class="form-group">
+																<label class="col-lg-4 control-label" for="normal">Referencia 1</label>
+																<div class="col-lg-8">																	
+																	<input class="form-control"  type="text"  name="txtDetailReference1" id="txtDetailReference1" value="">												
+																</div>
+														</div>
+														
+															
+														<div class="form-group">
+																<label class="col-lg-4 control-label" for="normal">Referencia 2</label>
+																<div class="col-lg-8">
+																	
+																	<input class="form-control"  type="text"  name="txtDetailReference2" id="txtDetailReference2" value="">												
+																</div>
+														</div>
+														
+														<div class="form-group">
+																<label class="col-lg-4 control-label" for="normal">Referencia 3</label>
+																<div class="col-lg-8">																	
+																	<input class="form-control"  type="text"  name="txtDetailReference3" id="txtDetailReference3" value="">												
+																</div>
+														</div>
+														
 													
 												</div>
 												<div class="col-lg-6">
 														
 														<div class="form-group">
-																<label class="col-lg-2 control-label" for="normal">Monto</label>
+															<label class="col-lg-4 control-label" for="selectFilter">Moneda</label>
+															<div class="col-lg-8">
+																<select name="txtCurrencyID" id="txtCurrencyID" class="select2">																		>																
+																		<?php
+																		if($objListCurrency)
+																		foreach($objListCurrency as $ws){
+																			echo "<option value='".$ws->currencyID."' selected>".$ws->simb."</option>";
+																		}
+																		?>
+																</select>
+															</div>
+														</div>
+														
+														<div class="form-group">
+																<label class="col-lg-4 control-label" for="normal">Monto</label>
 																<div class="col-lg-8">
 																	<input type="hidden" name="txtDetailTransactionDetailID" value="0">
 																	<input class="form-control"  type="text"  name="txtDetailAmount" id="txtDetailAmount" value="">												
 																</div>
 														</div>
+														
+													
 
 														<div class="vital-stats">
 															<ul>

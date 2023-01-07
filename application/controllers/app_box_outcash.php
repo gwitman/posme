@@ -40,6 +40,7 @@ class App_Box_Outcash extends CI_Controller {
 			$this->load->model("Transaction_Master_Info_Model");
 			$this->load->model("Transaction_Master_Detail_Model");
 			$this->load->model("Transaction_Master_Concept_Model");
+			$this->load->model("Company_Currency_Model");
 			
 			//Redireccionar datos
 			$uri					= $this->uri->uri_to_assoc(3);						
@@ -65,14 +66,14 @@ class App_Box_Outcash extends CI_Controller {
 			
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
 			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);						
-			
+			$objListCurrency					= $this->Company_Currency_Model->getByCompany($companyID);
 			
 			//Tipo de Factura			
 			$dataView["objTransactionMaster"]					= $this->Transaction_Master_Model->get_rowByPK($companyID,$transactionID,$transactionMasterID);			
 			$dataView["objTransactionMasterDetail"]				= $this->Transaction_Master_Detail_Model->get_rowByTransactionToShare($companyID,$transactionID,$transactionMasterID);
 			$dataView["objTransactionMaster"]->transactionOn 	= date_format(date_create($dataView["objTransactionMaster"]->transactionOn),"Y-m-d");
 			
-			
+			$dataView["objListCurrency"]		= $objListCurrency;
 			$dataView["companyID"]				= $dataSession["user"]->companyID;
 			$dataView["userID"]					= $dataSession["user"]->userID;
 			$dataView["userName"]				= $dataSession["user"]->nickname;
@@ -252,9 +253,11 @@ class App_Box_Outcash extends CI_Controller {
 			$objTMNew["transactionOn"]					= $this->input->post("txtDate");
 			$objTMNew["statusIDChangeOn"]				= date("Y-m-d H:m:s");
 			$objTMNew["note"] 							= $this->input->post("txtNote",'');
-			$objTMNew["exchangeRate"]					= $this->core_web_currency->getRatio($dataSession["user"]->companyID,date("Y-m-d"),1,$objTM->currencyID2,$objTM->currencyID);
-			//$objTMNew["reference1"] 					= $this->input->post("txtReference1");
-			//$objTMNew["reference2"] 					= $this->input->post("txtReference2");
+			$objTMNew["currencyID"] 					= $this->input->post("txtCurrencyID",'');			
+			$objTMNew["exchangeRate"]					= $this->core_web_currency->getRatio($dataSession["user"]->companyID,date("Y-m-d"),1,$objTM->currencyID2,$objTMNew["currencyID"]);
+			$objTMNew["reference1"] 					= $this->input->post("txtDetailReference1");
+			$objTMNew["reference2"] 					= $this->input->post("txtDetailReference2");
+			$objTMNew["reference3"] 					= $this->input->post("txtDetailReference3");			
 			//$objTMNew["reference3"] 					= $this->input->post("txtEmployeeID","0");
 			//$objTMNew["reference4"] 					= $this->input->post("txtCustomerCreditLineID","0");
 			//$objTMNew["descriptionReference"] 			= "reference1:input,reference2:input,reference3:Gestor de Cobro,reference4:Linea de credito del Cliente";
@@ -433,12 +436,12 @@ class App_Box_Outcash extends CI_Controller {
 			$objTM["componentID"] 					= $objComponentShare->componentID;
 			$objTM["note"] 							= $this->input->post("txtNote",'');
 			$objTM["sign"] 							= $objT->signInventory;
-			$objTM["currencyID"]					= $this->core_web_currency->getCurrencyDefault($dataSession["user"]->companyID)->currencyID;
+			$objTM["currencyID"]					= $this->input->post("txtCurrencyID",'');
 			$objTM["currencyID2"]					= $this->core_web_currency->getCurrencyExternal($dataSession["user"]->companyID)->currencyID;
 			$objTM["exchangeRate"]					= $this->core_web_currency->getRatio($dataSession["user"]->companyID,date("Y-m-d"),1,$objTM["currencyID2"],$objTM["currencyID"]);
-			//$objTM["reference1"] 					= $this->input->post("txtReference1");
-			//$objTM["reference2"] 					= $this->input->post("txtReference2");
-			$objTM["reference3"] 					= '';
+			$objTM["reference1"] 					= $this->input->post("txtDetailReference1");
+			$objTM["reference2"] 					= $this->input->post("txtDetailReference2");
+			$objTM["reference3"] 					= $this->input->post("txtDetailReference3");
 			$objTM["reference4"] 					= '';
 			$objTM["statusID"] 						= $this->input->post("txtStatusID");
 			$objTM["amount"] 						= helper_StringToNumber($this->input->post('txtTotal','0'));
@@ -593,7 +596,7 @@ class App_Box_Outcash extends CI_Controller {
 			$this->load->model("Natural_Model");
 			$this->load->model("Legal_Model");
 			$this->load->model("Transaction_Causal_Model");
-			
+			$this->load->model("Company_Currency_Model");
 			
 			$companyID 							= $dataSession["user"]->companyID;
 			$branchID 							= $dataSession["user"]->branchID;
@@ -608,8 +611,10 @@ class App_Box_Outcash extends CI_Controller {
 			$transactionID 						= $this->core_web_transaction->getTransactionID($dataSession["user"]->companyID,"tb_transaction_master_outputcash",0);
 			$objCurrency						= $this->core_web_currency->getCurrencyDefault($companyID);
 			$targetCurrency						= $this->core_web_currency->getCurrencyExternal($companyID);			
+			$objListCurrency					= $this->Company_Currency_Model->getByCompany($companyID);
 			
 			//Tipo de Factura
+			$dataView["objListCurrency"]		= $objListCurrency;
 			$dataView["companyID"]				= $dataSession["user"]->companyID;
 			$dataView["userID"]					= $dataSession["user"]->userID;
 			$dataView["userName"]				= $dataSession["user"]->nickname;
