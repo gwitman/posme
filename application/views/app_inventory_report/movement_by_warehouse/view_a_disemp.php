@@ -6,119 +6,140 @@
 		<meta name="viewport" 			content="width=device-width, initial-scale=1.0">
 		<meta name="application-name" 	content="dsemp" /> 
 		
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css" media="print">
+		<style>
+		
+			table, td, tr, th {
+				border-collapse: collapse;
+			}
+			
+			.border {
+				border-color:black;
+				border:solid 1px black;						
+			}
+				
+		</style>
 		
 	</head>
-	<body> 
-		<div class="data_grid_encabezado">
-			<table>
-				<thead>
-					<tr>
-						<th>AUXILIAR DE MOVIMIENTOS POR BODEGA</th>
-					</tr>
-					<tr>
-						<th><?php echo strtoupper($objCompany->name); ?></th>
-					</tr>
-					<tr>
-						<th>MOVIMIENTOS DE <?php echo $startOn; ?> AL <?php echo $endOn; ?></th>
-					</tr>
-				</thead>
-			</table>
-		</div>
+	<body style="font-family:monospace;font-size:smaller;margin:0px 0px 0px 0px"> 
+		
+	
+		
+		<table style="
+			width:100%;border-spacing: 10px;			
+		">
+			<thead>
+				<tr>
+					<th colspan="3" rowspan="5" style="text-align:left;width:130px">
+						<img width="120" height="110" 						
+							style="
+								width: 120px;
+								height: 110px;
+							"
+							
+							src="<?php echo site_url();  ?>/img/logos/logo-micro-finanza.jpg" 
+						/>
+					</th>
+					<th colspan="6" style="
+						text-align:right;background-color:#00628e;color:white;
+						width:80%
+					">AUXILIAR DE MOVIMIENTOS POR BODEGA</th>
+				</tr>
+				<tr>
+					<th colspan="6" style="
+						text-align:right;background-color:#00628e;color:white;
+					"><?php echo strtoupper($objCompany->name); ?></th>
+				</tr>
+				<tr>
+					<th colspan="6" style="
+						text-align:right;background-color:#00628e;color:white;
+					">MOVIMIENTOS DE <?php echo $startOn; ?> AL <?php echo $endOn; ?></th>
+				</tr>
+				<tr>
+					<th colspan="6" style="
+						text-align:right;background-color:#00628e;color:white;
+					">Bodega: <?php echo "'".$objWarehouse->number."'"; ?> <?php echo $objWarehouse->name; ?></th>
+				</tr>
+				<tr>
+					<th colspan="6" style="
+						text-align:right;background-color:#00628e;color:white;
+					">Producto: <?php echo $objItem->itemNumber." ".$objItem->name; ?></th>
+				</tr>
+				<tr>
+					<th colspan="9" style="text-align:left">
+						&nbsp;
+					</th>
+				</tr>
+			</thead>
+		</table>
+		
+		
+		
 		<br/>
-		<div class="data_grid_left">
-			<table>
-				<tbody>
-					<tr>
-						<td>Bodega</td>
-						<td><?php echo "'".$objWarehouse->number."'"; ?></td>
-					</tr>
-					<tr>
-						<td>Nombre</td>
-						<td><?php echo $objWarehouse->name; ?></td>
-					</tr>
-					<tr>
-						<td>Producto</td>
-						<td><?php echo $objItem->itemNumber." ".$objItem->name; ?></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		
+		
 		<br/>
-		<div class="data_grid_body">
-			<table>
-				<thead>
-					<tr>
-						<th class="cell_left">Fecha</th>
-						<th class="cell_left">Documento</th>
-						<th class="cell_left">Codigo</th>
-						<th class="cell_left">Desc.</th>
-						<th class="cell_left">U/M</th>
-						<th class="cell_left">Tipo</th>
-						<th class="cell_right">Cantidad</th>
-						<th class="cell_right">Balance</th>
-					</tr>
-				</thead>				
-				<tbody>
-					<?php
-					$count 		= 0;
-					if($objDetail)
-					foreach($objDetail as $i){
-						$count++;
-						echo "<tr>";
-							echo "<td class='cell_left'>";
-								echo ($i["transactionOn"]);
-							echo "</td>";
-							echo "<td class='cell_left'>";
-								echo ($i["transactionNumber"]);
-							echo "</td>";
-							echo "<td class='cell_left'>";
-								echo ($i["itemNumber"]);
-							echo "</td>";
-							echo "<td class='cell_left'>";
-								echo ($i["itemName"]);
-							echo "</td>";
-							echo "<td class='cell_left'>";
-								echo ($i["itemUnitmeasure"]);
-							echo "</td>";
-							echo "<td class='cell_left'>";
-								echo ($i["itemType"]);
-							echo "</td>";
-							echo "<td class='cell_right'>";
-								echo ($i["quantity"]);
-							echo "</td>";
-							echo "<td class='cell_right'>";
-								echo ($i["balance"]);
-							echo "</td>";
-						echo "</tr>";
-					}
-					?>
-				</tbody>
-				<tfoot>
-					<tr>
-						<th class="cell_left">Fecha</th>
-						<th class="cell_left">Documento</th>
-						<th class="cell_left">Codigo</th>
-						<th class="cell_left">Desc.</th>
-						<th class="cell_left">U/M</th>
-						<th class="cell_left">Tipo</th>
-						<th class="cell_right">Cantidad</th>
-						<th class="cell_right">Balance</th>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
+		
+		<table style="
+			width:100%;order-spacing: 10px;
+		" >
+			<thead>
+				<tr style="background-color:#00628e;color:white;">
+					<!--812-->
+					<th style="text-align:left;width:80px;"   colspan="2" class="border">Fecha</th>
+					<th style="text-align:left;width:80px;"   colspan="2" class="border">Documento</th>
+					<th style="text-align:left;width:80px;"   colspan="2" class="border">Tipo</th>
+					<th style="text-align:left;width:80px;"   colspan="2" class="border">Cantidad</th>
+					<th style="text-align:left;width:80px;"   colspan="1" class="border">Balance</th>
+				</tr>
+			</thead>				
+			<tbody>
+				<?php
+				$count 		= 0;
+				if($objDetail)
+				foreach($objDetail as $i){
+					$count++;
+					echo "<tr>";
+						echo "<td style='text-align:left'  colspan='2' class='border' >";							
+							echo (date_format(date_create($i["transactionOn"]),"Y-m-d"));
+						echo "</td>";
+						echo "<td style='text-align:left'  colspan='2' class='border' >";
+							echo ($i["transactionNumber"]);
+						echo "</td>";																	
+						echo "<td style='text-align:left'  colspan='2' class='border' >";
+							echo ($i["itemType"]);
+						echo "</td>";
+						echo "<td style='text-align:right' colspan='2'  class='border'>";
+							echo (number_format($i["quantity"],2,'.',','));
+						echo "</td>";
+						echo "<td style='text-align:right' class='border'>";
+							echo (number_format($i["balance"],2,'.',','));
+						echo "</td>";
+					echo "</tr>";
+				}
+				?>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th style="text-align:left"  colspan="2" class='border'>Fecha</th>
+					<th style="text-align:left"  colspan="2" class='border'>Documento</th>
+					<th style="text-align:left"  colspan="2" class='border'>Tipo</th>
+					<th style="text-align:left"  colspan="2" class='border'>Cantidad</th>
+					<th style="text-align:left"  colspan="1" class='border'>Balance</th>
+				</tr>
+			</tfoot>
+		</table>
+		
 		<br/>
-		<div class="data_grid_firm_system">
-			<table>
-				<tbody>
-					<tr>
-						<td><?php echo date("Y-m-d H:i:s");  ?> <?php echo $objFirmaEncription; ?></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+
+		<table style="width:100%">
+			<thead>
+				<tr>
+					<th colspan="9" ><?php echo date("Y-m-d H:i:s");  ?> <?php echo $objFirmaEncription; ?> posMe</th>
+				</tr>
+			</tbody>
+		</table>
+		
+		
 		
 	</body>	
 </html>
