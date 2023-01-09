@@ -13,12 +13,6 @@
 	</head>
 	<body style="font-family:monospace;font-size:smaller;margin:0px 0px 0px 0px"> 
 	
-		<?php 
-		helper_header('CARTERA DE CREDITO',$objCompany->name,14,'','','','1600px');
-		?>
-		
-		
-		<br/>
 		
 		
 		
@@ -178,15 +172,36 @@
 		$configColumn["13"]["Width"]			= "200px";
 		
 		
-		helper_createTableReport($objDetail,$configColumn,'1600px');
+		$resultado = helper_createTableReport($objDetail,$configColumn,'0');
 		?>
-		
-		<br/>
-	
 		
 		<?php 
-			helper_echoFirma($objFirmaEncription,14,'1600px');
+		helper_header(
+			'CARTERA DE CREDITO',
+			$objCompany->name,
+			$resultado["columnas"],
+			'',
+			"",
+			"",
+			$resultado["width"]
+		);
 		?>
+		
+		<br/>	
+		
+		<?php 
+		echo $resultado["table"];
+		?>
+		
+		<br/>		
+		<?php 
+		helper_echoFirma(	
+			$objFirmaEncription,
+			$resultado["columnas"],
+			$resultado["width"]
+		);
+		?>
+		
 		
 	</body>	
 	

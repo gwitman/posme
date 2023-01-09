@@ -6,305 +6,215 @@
 		<meta name="viewport" 			content="width=device-width, initial-scale=1.0">
 		<meta name="application-name" 	content="dsemp" /> 
 		
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css" media="print">
+		<?php 
+		helper_echoStyleReport();
+		?>
+		
 		
 	</head>
-	<body> 
-		<div class="data_grid_encabezado">
-			<table>
-				<thead>
-					<tr>
-						<th colspan="8">LISTADO DE PAGOS</th>
-					</tr>
-					<tr>
-						<th colspan="8"><?php echo strtoupper($objCompany->name); ?></th>
-					</tr>
-					<tr>
-						<th colspan="8">LISTADO DE ABONOS O PAGOS DEL CLIENTE <?php echo $objClient["customerNumber"]; ?></th>
-					</tr>
-				</thead>
-			</table>
-		</div>
+	<body style="font-family:monospace;font-size:smaller;margin:0px 0px 0px 0px"> 
 		
-		<div class="data_grid_encabezado">
-			<table>
-				<thead>
-					<tr>
-						<th colspan="8">INFORMACION DEL CLIENTE</th>
-					</tr>
-				</thead>
-			</table>
-		</div>
+		<?php
+		$configColumn["0"]["Titulo"]		= "Fecha";
+		$configColumn["0"]["FiledSouce"]	= "createdOn";
+		$configColumn["0"]["Width"]			= "80px";
+		$configColumn["0"]["Formato"]		= "Date";
 		
-		<div class="data_grid_left">
-			<table>
-				<tbody>
-					<tr>
-						<td nowrap>Nombre</td>
-						<td nowrap><?php echo $objClient["legalName"]; ?></td>
-					</tr>
-					<tr>
-						<td nowrap><?php echo $objClient["identificationType"]; ?></td>
-						<td nowrap><?php echo $objClient["identification"]; ?></td>
-					</tr>
-					<tr>
-						<td nowrap>Pais</td>
-						<td nowrap><?php echo $objClient["country"]; ?></td>
-					</tr>
-					<tr>
-						<td nowrap>Departamento</td>
-						<td nowrap><?php echo $objClient["state"]; ?></td>
-					</tr>
-					<tr>
-						<td nowrap>Ciudad</td>
-						<td nowrap><?php echo $objClient["city"]; ?></td>
-					</tr>
-					<tr>
-						<td nowrap>Nacimiento</td>
-						<td nowrap><?php echo $objClient["birth"]; ?></td>
-					</tr>
-					<tr>
-						<td nowrap>Estado</td>
-						<td nowrap><?php echo $objClient["statusClient"]; ?></td>
-					</tr>
-					<tr>
-						<td nowrap>Limite</td>
-						<td nowrap><?php echo number_format($objClient["limitCreditCordoba"],2); ?></td>
-					</tr>
-					<tr>
-						<td nowrap>Balance</td>
-						<td nowrap><?php echo number_format($objClient["balanceCordoba"],2); ?></td>
-					</tr>
-					<tr>
-						<td nowrap>Ingresos</td>
-						<td nowrap><?php echo number_format($objClient["incomeCordoba"],2); ?></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<br/>
+		$configColumn["1"]["Titulo"]		= "No Pago";
+		$configColumn["1"]["FiledSouce"]	= "transactionNumber";
+		$configColumn["1"]["Width"]			= "80px";
 		
-		<div class="data_grid_encabezado">
-			<table>
-				<thead>
-					<tr>
-						<th colspan="8">LINEAS DE CREDITO</th>
-					</tr>
-				</thead>
-			</table>
-		</div>
+		$configColumn["2"]["Titulo"]		= "Referencia";
+		$configColumn["2"]["FiledSouce"]	= "reference1";
+		$configColumn["2"]["Width"]			= "80px";
 		
-		<div class="data_grid_body">
-			<table>
-				<thead>
-					<tr>
-						<th nowrap class="cell_left">Linea</th>
-						<th nowrap class="cell_left">No</th>
-						<th nowrap class="cell_right">Limite</th>
-						<th nowrap class="cell_right">Balance</th>
-						<th nowrap class="cell_right">Interes</th>
-						<th nowrap class="cell_right">Plazo</th>
-						<th nowrap class="cell_right">Periodo</th>
-						<th nowrap class="cell_right">Estado</th>
-					</tr>
-				</thead>				
-				<tbody>
-					<?php
-					$count 		= 0;
-					if($objLine)
-					foreach($objLine as $i){
-						$count++;						
-						echo "<tr>";
-							echo "<td nowrap  class='cell_left'>";
-								echo ($i["lineName"]);
-							echo "</td>";
-							echo "<td nowrap  class='cell_left'>";
-								echo ($i["lineNumber"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo number_format($i["limitCreditCordobaLinea"],2);
-							echo "</td>";
-							echo "<td nowrap  class='cell_right'>";
-								echo number_format($i["balanceCordobaLinea"],2);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo number_format($i["interestYearLine"],2);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo number_format($i["termLine"],2);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo ($i["periodPayLine"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo ($i["statusLine"]);
-							echo "</td>";
-						echo "</tr>";
-					}
-					?>
-				</tbody>
-				<tfoot>
-					<tr>
-						<th nowrap class="cell_left">Linea</th>
-						<th nowrap class="cell_left">No</th>
-						<th nowrap class="cell_right">Limite</th>
-						<th nowrap class="cell_right">Balance</th>
-						<th nowrap class="cell_right">Interes</th>
-						<th nowrap class="cell_right">Plazo</th>
-						<th nowrap class="cell_right">Periodo</th>
-						<th nowrap class="cell_right">Estado</th>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
+		$configColumn["3"]["Titulo"]		= "Moneda";
+		$configColumn["3"]["FiledSouce"]	= "MonedaDesembolso";
+		$configColumn["3"]["Width"]			= "80px";
+		
+		$configColumn["4"]["Titulo"]		= "Abono";
+		$configColumn["4"]["FiledSouce"]	= "Pago";
+		$configColumn["4"]["Width"]			= "120px";
+		$configColumn["4"]["Formato"]		= "Number";
+		$configColumn["4"]["Total"]			= True;
+		
+		$configColumn["5"]["Titulo"]		= "Saldo Anterior";
+		$configColumn["5"]["FiledSouce"]	= "SaldoAterior";
+		$configColumn["5"]["Width"]			= "120px";
+		$configColumn["5"]["Formato"]		= "Number";
+		$configColumn["5"]["Total"]			= True;
+		
+		$configColumn["6"]["Titulo"]		= "Saldo Nuevo";
+		$configColumn["6"]["FiledSouce"]	= "SaldoNuevo";
+		$configColumn["6"]["Width"]			= "120px";
+		$configColumn["6"]["Formato"]		= "Number";
+		$configColumn["6"]["Total"]			= True;
+		
+		$configColumn["7"]["Titulo"]		= "Nota";		
+		$configColumn["7"]["FiledSouce"]	= "note";
+		$configColumn["7"]["Width"]			= "210px";
+		
+		
+		$resultado = helper_createTableReport($objPayList,$configColumn,'0');
+		?>
+		
+		
+		<?php 
+		helper_header(
+			'LISTADO DE PAGOS',
+			$objCompany->name,
+			$resultado["columnas"],
+			'LISTADO DE ABONOS O PAGOS DEL CLIENTE :'.$objClient["customerNumber"],
+			"",
+			"",
+			$resultado["width"]
+		);
+		?>
+		
+		<br/>	
+		
+		<?php
+		$configColumn1["0"]["Titulo"] 		= "Nombre";
+		$configColumn1["0"]["TituloFoot"]	= "";
+		$configColumn1["0"]["FiledSouce"]	= "legalName";
+		$configColumn1["0"]["Colspan"] 		= "7";
+		$configColumn1["0"]["Formato"] 		= "";
+		$configColumn1["0"]["Total"] 		= False;
+		$configColumn1["0"]["Alineacion"] 	= "Left";
+		$configColumn1["0"]["TotalValor"] 	= 0;
+		$configColumn1["0"]["FiledSoucePrefix"]	= "";
+		$configColumn1["0"]["Width"]			= "195px";
+		
+		$configColumn1["1"]["Titulo"] 		= "Tipo de Identificacion";
+		$configColumn1["1"]["TituloFoot"]	= "";
+		$configColumn1["1"]["FiledSouce"]	= "identificationType";
+		$configColumn1["1"]["Colspan"] 		= "7";
+		$configColumn1["1"]["Formato"] 		= "";
+		$configColumn1["1"]["Total"] 		= False;
+		$configColumn1["1"]["Alineacion"] 	= "Left";
+		$configColumn1["1"]["TotalValor"] 	= 0;
+		$configColumn1["1"]["FiledSoucePrefix"]	= "";
+		$configColumn1["1"]["Width"]			= "195px";
+		
+		$configColumn1["2"]["Titulo"] 		= "Pais";
+		$configColumn1["2"]["TituloFoot"]	= "";
+		$configColumn1["2"]["FiledSouce"]	= "country";
+		$configColumn1["2"]["Colspan"] 		= "7";
+		$configColumn1["2"]["Formato"] 		= "";
+		$configColumn1["2"]["Total"] 		= False;
+		$configColumn1["2"]["Alineacion"] 	= "Left";
+		$configColumn1["2"]["TotalValor"] 	= 0;
+		$configColumn1["2"]["FiledSoucePrefix"]	= "";
+		$configColumn1["2"]["Width"]			= "195px";
+		
+		$configColumn1["3"]["Titulo"] 		= "Estado";
+		$configColumn1["3"]["TituloFoot"]	= "";
+		$configColumn1["3"]["FiledSouce"]	= "state";
+		$configColumn1["3"]["Colspan"] 		= "7";
+		$configColumn1["3"]["Formato"] 		= "";
+		$configColumn1["3"]["Total"] 		= False;
+		$configColumn1["3"]["Alineacion"] 	= "Left";
+		$configColumn1["3"]["TotalValor"] 	= 0;
+		$configColumn1["3"]["FiledSoucePrefix"]	= "";
+		$configColumn1["3"]["Width"]			= "195px";
+		
+		$configColumn1["4"]["Titulo"] 		= "Ciudad";
+		$configColumn1["4"]["TituloFoot"]	= "";
+		$configColumn1["4"]["FiledSouce"]	= "city";
+		$configColumn1["4"]["Colspan"] 		= "7";
+		$configColumn1["4"]["Formato"] 		= "";
+		$configColumn1["4"]["Total"] 		= False;
+		$configColumn1["4"]["Alineacion"] 	= "Left";
+		$configColumn1["4"]["TotalValor"] 	= 0;
+		$configColumn1["4"]["FiledSoucePrefix"]	= "";
+		$configColumn1["4"]["Width"]			= "195px";
+		
+		$configColumn1["5"]["Titulo"] 		= "Nacimiento";
+		$configColumn1["5"]["TituloFoot"]	= "";
+		$configColumn1["5"]["FiledSouce"]	= "birth";
+		$configColumn1["5"]["Colspan"] 		= "7";
+		$configColumn1["5"]["Formato"] 		= "Date";
+		$configColumn1["5"]["Total"] 		= False;
+		$configColumn1["5"]["Alineacion"] 	= "Left";
+		$configColumn1["5"]["TotalValor"] 	= 0;
+		$configColumn1["5"]["FiledSoucePrefix"]	= "";
+		$configColumn1["5"]["Width"]			= "195px";
+		
+		$configColumn1["6"]["Titulo"] 		= "Estado del Cliente";
+		$configColumn1["6"]["TituloFoot"]	= "";
+		$configColumn1["6"]["FiledSouce"]	= "statusClient";
+		$configColumn1["6"]["Colspan"] 		= "7";
+		$configColumn1["6"]["Formato"] 		= "";
+		$configColumn1["6"]["Total"] 		= False;
+		$configColumn1["6"]["Alineacion"] 	= "Left";
+		$configColumn1["6"]["TotalValor"] 	= 0;
+		$configColumn1["6"]["FiledSoucePrefix"]	= "";
+		$configColumn1["6"]["Width"]			= "195px";
+		
+		$configColumn1["7"]["Titulo"] 		= "Limite";
+		$configColumn1["7"]["TituloFoot"]	= "";
+		$configColumn1["7"]["FiledSouce"]	= "limitCreditCordoba";
+		$configColumn1["7"]["Colspan"] 		= "7";
+		$configColumn1["7"]["Formato"] 		= "Number";
+		$configColumn1["7"]["Total"] 		= False;
+		$configColumn1["7"]["Alineacion"] 	= "Right";
+		$configColumn1["7"]["TotalValor"] 	= 0;
+		$configColumn1["7"]["FiledSoucePrefix"]	= "";
+		$configColumn1["7"]["Width"]			= "195px";
+		
+		$configColumn1["8"]["Titulo"] 		= "Balance";
+		$configColumn1["8"]["TituloFoot"]	= "";
+		$configColumn1["8"]["FiledSouce"]	= "balanceCordoba";
+		$configColumn1["8"]["Colspan"] 		= "7";
+		$configColumn1["8"]["Formato"] 		= "Number";
+		$configColumn1["8"]["Total"] 		= False;
+		$configColumn1["8"]["Alineacion"] 	= "Right";
+		$configColumn1["8"]["TotalValor"] 	= 0;
+		$configColumn1["8"]["FiledSoucePrefix"]	= "";
+		$configColumn1["8"]["Width"]			= "195px";
+		
+		$configColumn1["9"]["Titulo"] 		= "Ingreso";
+		$configColumn1["9"]["TituloFoot"]	= "";
+		$configColumn1["9"]["FiledSouce"]	= "incomeCordoba";
+		$configColumn1["9"]["Colspan"] 		= "7";
+		$configColumn1["9"]["Formato"] 		= "Number";
+		$configColumn1["9"]["Total"] 		= False;
+		$configColumn1["9"]["Alineacion"] 	= "Right";
+		$configColumn1["9"]["TotalValor"] 	= 0;
+		$configColumn1["9"]["FiledSoucePrefix"]	= "";
+		$configColumn1["9"]["Width"]			= "195px";
+		
+		$objClient;
+		$resultado2 = helper_createTableReportVertical(
+			$objClient,
+			$configColumn1,
+			$resultado["columnas"],
+			$resultado["width"]
+		);
+		
+		echo $resultado2;
+		?>
+		
+		
+		<br/>	
+		
+		
+		<?php 
+		echo $resultado["table"];
+		?>
+		
 		<br/>		
+		<?php 
+		helper_echoFirma(	
+			$objFirmaEncription,
+			$resultado["columnas"],
+			$resultado["width"]
+		);
+		?>
 		
-		<div class="data_grid_encabezado">
-			<table>
-				<thead>
-					<tr>
-						<th colspan="8">DOCUMENTOS DE CREDITO</th>
-					</tr>
-				</thead>
-			</table>
-		</div>
 		
-		<div class="data_grid_body">
-			<table>
-				<thead>
-					<tr>
-						<th nowrap class="cell_left">Linea</th>
-						<th nowrap class="cell_left">Documento</th>
-						<th nowrap class="cell_left">Fecha</th>
-						<th nowrap class="cell_right">Monto</th>
-						<th nowrap class="cell_right">Interes</th>
-						<th nowrap class="cell_right">Plazo</th>
-						<th nowrap class="cell_right">Estado</th>
-						<th nowrap class="cell_right">Moneda</th>
-					</tr>
-				</thead>				
-				<tbody>
-					<?php
-					$count 		= 0;
-					if($objDocument)
-					foreach($objDocument as $i){
-						$count++;						
-						echo "<tr>";
-							echo "<td nowrap  class='cell_left'>";
-								echo ($i["lineNumber"]);
-							echo "</td>";
-							echo "<td nowrap  class='cell_left'>";
-								echo ($i["documentNumber"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["documentOn"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo number_format($i["amountDocument"],2);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo number_format($i["interesDocument"],2);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo number_format($i["termDocument"],2);
-							echo "</td>";
-							echo "<td nowrap  class='cell_right'>";
-								echo ($i["statusDocument"]);
-							echo "</td>";
-							echo "<td nowrap  class='cell_right'>";
-								echo ($i["moneda"]);
-							echo "</td>";
-						echo "</tr>";
-					}
-					?>
-				</tbody>
-				<tfoot>
-					<tr>
-						<th nowrap class="cell_left">Linea</th>
-						<th nowrap class="cell_left">Documento</th>
-						<th nowrap class="cell_left">Fecha</th>
-						<th nowrap class="cell_right">Monto</th>
-						<th nowrap class="cell_right">Interes</th>
-						<th nowrap class="cell_right">Plazo</th>
-						<th nowrap class="cell_right">Estado</th>
-						<th nowrap class="cell_right">Moneda</th>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-		<br/>
 		
-		<div class="data_grid_encabezado">
-			<table>
-				<thead>
-					<tr>
-						<th colspan="9">PAGOS</th>
-					</tr>
-				</thead>
-			</table>
-		</div>		
-		<div class="data_grid_body">
-			<table>
-				<thead>
-					<tr>
-						<th nowrap class="cell_left">Fecha</th>
-						<th nowrap class="cell_left">No Pago</th>
-						<th nowrap class="cell_left">Referencia</th>
-						<th nowrap class="cell_left">Moneda</th>						
-						<th nowrap class="cell_right">Abono</th>
-						<th nowrap class="cell_right">Saldo Anterior</th>
-						<th nowrap class="cell_right">Saldo Nuevo</th>
-						<th nowrap colspan="2" class="cell_right">Nota</th>
-					</tr>
-				</thead>				
-				<tbody>
-					<?php
-					$count 		= 0;
-					if($objPayList)
-					foreach($objPayList as $i){
-						$count++;						
-						echo "<tr>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["createdOn"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["transactionNumber"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["reference1"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["MonedaDesembolso"]);
-							echo "</td>";							
-							echo "<td nowrap class='cell_right'>";
-								echo number_format($i["Pago"],2);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo number_format($i["SaldoAterior"],2);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo number_format($i["SaldoNuevo"],2);
-							echo "</td>";
-							echo "<td nowrap colspan='2' class='cell_right'>";
-								echo substr($i["note"],0,60);
-							echo "</td>";
-						echo "</tr>";
-					}
-					?>
-				</tbody>
-			</table>
-		</div>
-		<br/>		
-		<div class="data_grid_firm_system">
-			<table>
-				<tbody>
-					<tr>
-						<td colspan="8"><?php echo date("Y-m-d H:i:s");  ?> <?php echo $objFirmaEncription; ?></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		
 		
 	</body>	
 </html>

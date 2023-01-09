@@ -6,128 +6,114 @@
 		<meta name="viewport" 			content="width=device-width, initial-scale=1.0">
 		<meta name="application-name" 	content="dsemp" /> 
 		
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css" media="print">
+		<?php 
+		helper_echoStyleReport();
+		?>
 		
 	</head>
-	<body> 
-		<div class="data_grid_encabezado">
-			<table>
-				<thead>
-					<tr>
-						<th colspan='13'>INTERES POR PERIODO</th>
-					</tr>
-					<tr>
-						<th colspan='13'><?php echo strtoupper($objCompany->name); ?></th>
-					</tr>
-					<tr>
-						<th colspan='13'>INTERES DE <?php echo $startOn; ?> AL <?php echo $endOn; ?></th>
-					</tr>
-				</thead>
-			</table>
-		</div>
+	<body style="font-family:monospace;font-size:smaller;margin:0px 0px 0px 0px"> 
+	
+		
+		<?php
+		$configColumn["0"]["Titulo"] 		= "Codigo";		
+		$configColumn["0"]["FiledSouce"]	= "customerNumber";
+		$configColumn["0"]["Width"]			= "80px";
+		
+		$configColumn["1"]["Titulo"] 		= "Cliente";		
+		$configColumn["1"]["FiledSouce"]	= "legalName";
+		$configColumn["1"]["Width"]			= "220px";
+		
+		$configColumn["2"]["Titulo"] 		= "Fecha Docu.";		
+		$configColumn["2"]["FiledSouce"]	= "documentFecha";
+		$configColumn["2"]["Width"]			= "80px";
+		
+		$configColumn["3"]["Titulo"] 		= "Documento";		
+		$configColumn["3"]["FiledSouce"]	= "documentNumber";
+		$configColumn["3"]["Width"]			= "80px";
+		
+		$configColumn["4"]["Titulo"] 		= "Fecha Tran.";		
+		$configColumn["4"]["FiledSouce"]	= "transactionFecha";
+		$configColumn["4"]["Formato"]		= "Date";
+		$configColumn["4"]["Width"]			= "80px";
+		
+		$configColumn["5"]["Titulo"] 		= "# Transaccion";		
+		$configColumn["5"]["FiledSouce"]	= "transactionNumber";
+		$configColumn["5"]["Width"]			= "90px";
+		
+		$configColumn["6"]["Titulo"] 		= "Descripcion";		
+		$configColumn["6"]["FiledSouce"]	= "transactionName";
+		$configColumn["6"]["Width"]			= "170px";
+		
+		$configColumn["7"]["Titulo"] 		= "U$ Balance ";		
+		$configColumn["7"]["FiledSouce"]	= "balance";
+		$configColumn["7"]["Width"]			= "90px";
+		$configColumn["7"]["Formato"]		= "Number";
+		$configColumn["7"]["Total"]			= True;
+		
+		$configColumn["8"]["Titulo"] 		= "U$ Capital ";		
+		$configColumn["8"]["FiledSouce"]	= "capital";
+		$configColumn["8"]["Width"]			= "90px";
+		$configColumn["8"]["Formato"]		= "Number";
+		$configColumn["8"]["Total"]			= True;
+		
+		$configColumn["9"]["Titulo"] 		= "U$ Interes ";		
+		$configColumn["9"]["FiledSouce"]	= "interest";
+		$configColumn["9"]["Width"]			= "90px";
+		$configColumn["9"]["Formato"]		= "Number";
+		$configColumn["9"]["Total"]			= True;
+		
+		$configColumn["10"]["Titulo"] 		= "T/C ";		
+		$configColumn["10"]["FiledSouce"]	= "exchangeRate";
+		$configColumn["10"]["Width"]		= "80px";
+		$configColumn["10"]["Formato"]		= "Number";
+		
+		$configColumn["11"]["Titulo"] 		= "Venta ";		
+		$configColumn["11"]["FiledSouce"]	= "sale";
+		$configColumn["11"]["Width"]		= "80px";
+		$configColumn["11"]["Formato"]		= "Number";
+		
+		$configColumn["12"]["Titulo"] 		= "Compra ";		
+		$configColumn["12"]["FiledSouce"]	= "purchase";
+		$configColumn["12"]["Width"]		= "90px";
+		$configColumn["12"]["Formato"]		= "Number";
+		
+		$resultado = helper_createTableReport(
+			$objDetail,
+			$configColumn,
+			'0'
+		);		
+		?>
+	
+	
+	
+		
+		<?php 
+		helper_header(
+			'INTERES POR PERIODO',
+			$objCompany->name,
+			$resultado["columnas"],
+			'INTERES DE '.$startOn." AL ".$endOn,
+			"",
+			"",
+			$resultado["width"]
+		);
+		?>
+		
+		<br/>	
+		
+		<?php 
+		echo $resultado["table"];
+		?>
+		
 		<br/>		
-		<div class="data_grid_body">
-			<table>
-				<thead>					
-					<tr>
-						<th nowrap class="cell_left">Codigo</th>
-						<th nowrap class="cell_left">Cliente</th>
-						<th nowrap class="cell_left">Fecha Docu.</th>
-						<th nowrap class="cell_left">Documento</th>
-						<th nowrap class="cell_left">Fecha Tran.</th>
-						<th nowrap class="cell_left"># Transaccion.</th>
-						<th nowrap class="cell_left">Descripcion.</th>
-						
-						<th nowrap class="cell_right">U$ Balance</th>
-						<th nowrap class="cell_right">U$ Capital</th>
-						<th nowrap class="cell_right">U$ Interes</th>
-						<th nowrap class="cell_right">T/C</th>
-						<th nowrap class="cell_right">Venta</th>
-						<th nowrap class="cell_right">Compra</th>
-					</tr>
-				</thead>				
-				<tbody>
-					<?php
-					$count 		= 0;
-					if($objDetail)
-					foreach($objDetail as $i){
-						$count++;
-						echo "<tr>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["customerNumber"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["legalName"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ("'".$i["documentFecha"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["documentNumber"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ("'".$i["transactionFecha"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["transactionNumber"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["transactionName"]);
-							echo "</td>";
-							
-							
-							echo "<td nowrap class='cell_right'>";
-								echo sprintf("%01.2f",$i["balance"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo sprintf("%01.2f",$i["capital"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo sprintf("%01.2f",$i["interest"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo sprintf("%01.2f",$i["exchangeRate"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo sprintf("%01.2f",$i["sale"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo sprintf("%01.2f",$i["purchase"]);
-							echo "</td>";
-						echo "</tr>";
-					}
-					?>
-				</tbody>
-				<footer>					
-					<tr>
-						<th nowrap class="cell_left">Total</th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_right">=SUMA(I6:I<?php echo $count+5;?>)</th>
-						<th nowrap class="cell_right">=SUMA(J6:J<?php echo $count+5;?>)</th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-					</tr>
-				</footer>	
-			</table>
-		</div>
-		<br/>
-		<div class="data_grid_firm_system">
-			<table>
-				<tbody>
-					<tr>
-						<td colspan='13'><?php echo date("Y-m-d H:i:s");  ?> <?php echo $objFirmaEncription; ?></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<?php 
+		helper_echoFirma(	
+			$objFirmaEncription,
+			$resultado["columnas"],
+			$resultado["width"]
+		);
+		?>
+		
 		
 	</body>	
 </html>

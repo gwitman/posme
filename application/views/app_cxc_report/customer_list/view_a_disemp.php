@@ -14,18 +14,6 @@
 	</head>
 	<body style="font-family:monospace;font-size:smaller;margin:0px 0px 0px 0px"> 
 	
-		<?php 
-		helper_header(
-			'LISTA DE CLIENTES',
-			$objCompany->name,9,
-			'LISTA DE CLIENTES',
-			"",
-			"",'930px'
-		);
-		?>
-		
-		
-		<br/>
 		
 		<?php
 		$configColumn["0"]["Titulo"] 		= "#";
@@ -142,16 +130,36 @@
 		$configColumn["8"]["FiledSouceUrl"]	= "customerNumber";
 		$configColumn["8"]["Url"]			= site_url()."app_cxc_report/pay/viewReport/true/customerNumber/";
 			
-		helper_createTableReport($objDetail,$configColumn,'930px');
+		$resultado = helper_createTableReport($objDetail,$configColumn,'0px');
 		?>
 	
 		
+		<?php 
+		helper_header(
+			'LISTA DE CLIENTES',
+			$objCompany->name,
+			$resultado["columnas"],
+			'LISTA DE CLIENTES',
+			"",
+			"",
+			$resultado["width"]
+		);
+		?>
+		
+		<br/>	
+		
+		<?php 
+		echo $resultado["table"];
+		?>
 		
 		<br/>		
 		<?php 
-		helper_echoFirma($objFirmaEncription,9,'930px');
+		helper_echoFirma(	
+			$objFirmaEncription,
+			$resultado["columnas"],
+			$resultado["width"]
+		);
 		?>
-		
 		
 	</body>	
 </html>
