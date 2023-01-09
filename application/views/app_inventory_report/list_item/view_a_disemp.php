@@ -6,10 +6,6 @@
 		<meta name="viewport" 			content="width=device-width, initial-scale=1.0">
 		<meta name="application-name" 	content="dsemp" /> 
 		<style>
-			
-			
-			
-			
 			table, td, tr, th {
 				border-collapse: collapse;
 			}
@@ -18,7 +14,6 @@
 				border-color:black;
 				border:solid 1px black;						
 			}
-			
 		</style>
 	</head>
 	<body style="font-family:monospace;font-size:smaller;margin:0px 0px 0px 0px"> 

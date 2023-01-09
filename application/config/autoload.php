@@ -71,7 +71,7 @@ $autoload['libraries'] = array(
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','form','web_tools','cookie','text'); 
+$autoload['helper'] = array('url','form','web_tools','cookie','text','web_tools_report'); 
 
 
 /*
