@@ -7,7 +7,7 @@
 		<meta name="application-name" 	content="dsemp" /> 
 		
 		<?php 
-		helper_echoStyleReport();
+		echo helper_reporteGeneralCreateStyle();
 		?>
 		
 	</head>
@@ -172,11 +172,11 @@
 		$configColumn["13"]["Width"]			= "200px";
 		
 		
-		$resultado = helper_createTableReport($objDetail,$configColumn,'0');
+		$resultado = helper_reporteGeneralCreateTable($objDetail,$configColumn,'0');
 		?>
 		
 		<?php 
-		helper_header(
+		echo helper_reporteGeneralCreateEncabezado(
 			'CARTERA DE CREDITO',
 			$objCompany->name,
 			$resultado["columnas"],
@@ -195,7 +195,7 @@
 		
 		<br/>		
 		<?php 
-		helper_echoFirma(	
+		echo helper_reporteGeneralCreateFirma(	
 			$objFirmaEncription,
 			$resultado["columnas"],
 			$resultado["width"]

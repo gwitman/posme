@@ -7,7 +7,7 @@
 		<meta name="application-name" 	content="dsemp" /> 
 		
 		<?php 
-		helper_echoStyleReport();
+		echo helper_reporteGeneralCreateStyle();
 		?>
 		
 		
@@ -55,12 +55,12 @@
 		$configColumn["7"]["Width"]			= "210px";
 		
 		
-		$resultado = helper_createTableReport($objPayList,$configColumn,'0');
+		$resultado = helper_reporteGeneralCreateTable($objPayList,$configColumn,'0');
 		?>
 		
 		
 		<?php 
-		helper_header(
+		echo helper_reporteGeneralCreateEncabezado(
 			'LISTADO DE PAGOS',
 			$objCompany->name,
 			$resultado["columnas"],
@@ -185,7 +185,7 @@
 		$configColumn1["9"]["Width"]			= "195px";
 		
 		$objClient;
-		$resultado2 = helper_createTableReportVertical(
+		$resultado2 = helper_reporteGeneralCreateTableVertical(
 			$objClient,
 			$configColumn1,
 			$resultado["columnas"],
@@ -205,7 +205,7 @@
 		
 		<br/>		
 		<?php 
-		helper_echoFirma(	
+		helper_reporteGeneralCreateFirma(	
 			$objFirmaEncription,
 			$resultado["columnas"],
 			$resultado["width"]

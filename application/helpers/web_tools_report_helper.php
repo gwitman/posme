@@ -1,8 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-function helper_echoStyleReport(){
+function helper_reporteGeneralCreateStyle(){
 	
-		echo 
+		$result =  
 		'
 		<style>
 			table, td, tr, th {
@@ -16,28 +16,15 @@ function helper_echoStyleReport(){
 			
 		</style>
 		';
-}
-
-function helper_echoFirma($firma,$column,$width){
-	
-		echo 
-		'
-		<table style="width:'.$width.'">
-			<thead>
-				<tr>
-					<th colspan="'.$column.'" >'.date("Y-m-d H:i:s").' '.$firma.' posMe</th>
-				</tr>
-				
-			</thead>
-		</table>
-	
-		';
+		
+		return $result;
 }
 
 
-function helper_header($titulo,$company,$countColumn,$titulo2,$titulo3,$titulo4,$width){
+
+function helper_reporteGeneralCreateEncabezado($titulo,$company,$countColumn,$titulo2,$titulo3,$titulo4,$width){
 	
-		echo 
+		$resultado = 
 		'
 		<table style="
 			width:'.$width.';border-spacing: 10px;			
@@ -55,43 +42,43 @@ function helper_header($titulo,$company,$countColumn,$titulo2,$titulo3,$titulo4,
 						/>
 					</th>
 					<th colspan="'.($countColumn-3).'" style="
-						text-align:right;background-color:#68c778;color:black;
+						text-align:Left;background-color:#68c778;color:black;
 						width:80%
 					">'.$titulo.'</th>
 				</tr>
 				<tr>
 					<th colspan="'.($countColumn-3).'" style="
-						text-align:right;background-color:#00628e;color:white;
+						text-align:Left;background-color:#00628e;color:white;
 					">'.strtoupper($company).'</th>
 				</tr>
 				<tr>';
 				
 					if ($titulo2 == "")
-						echo '<th colspan="'.($countColumn-3).'" style="text-align:left">&nbsp;</th>';
+						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:Left">&nbsp;</th>';
 					else 
-						echo '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo2.'</th>';
+						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo2.'</th>';
 					
-					echo '
+					$resultado = $resultado.'
 				</tr>
 				<tr>';
 				
 					if ($titulo3 == "")
-						echo '<th colspan="'.($countColumn-3).'" style="text-align:left">&nbsp;</th>';
+						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:Left">&nbsp;</th>';
 					else 
-						echo '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo3.'</th>';
+						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo3.'</th>';
 					
 					
-					echo '
+					$resultado = $resultado. '
 				</tr>
 				<tr>';
 				
 					if ($titulo4 == "")
-						echo '<th colspan="'.($countColumn-3).'" style="text-align:left">&nbsp;</th>';
+						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:Left">&nbsp;</th>';
 					else 
-						echo '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo4.'</th>';
+						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo4.'</th>';
 					
 					
-					echo '
+					$resultado = $resultado.'
 				</tr>
 				<tr>
 					<th colspan="'.($countColumn).'" style="text-align:left">
@@ -101,9 +88,36 @@ function helper_header($titulo,$company,$countColumn,$titulo2,$titulo3,$titulo4,
 			</thead>
 		</table>
 		';
+		
+		return $resultado;
 }
 
-function helper_createTableReport($objDetail,$configColumn,$widht){
+
+
+function helper_reporteGeneralCreateFirma($firma,$column,$width){
+	
+		$result = 
+		'
+		<table style="width:'.$width.'">
+			<thead>
+				<tr>
+					<th colspan="'.$column.'" >'.date("Y-m-d H:i:s").' '.$firma.' posMe</th>
+				</tr>
+				
+			</thead>
+		</table>
+	
+		';
+		
+		echo $result;
+}
+
+
+
+//$resultado["columnas"] 	= 0;
+//$resultado["width"] 		= 0;
+//$resultado["table"] 		= "";
+function helper_reporteGeneralCreateTable($objDetail,$configColumn,$widht){
 
 	//iniciarlizar columnas
 	$cantidadColumnas 		= 0;
@@ -278,7 +292,7 @@ function helper_createTableReport($objDetail,$configColumn,$widht){
 	return $resultado;
 }
 
-function helper_createTableReportVertical($objDetail,$configColumn,$maxColmun,$widht){
+function helper_reporteGeneralCreateTableVertical($objDetail,$configColumn,$maxColmun,$widht){
 	
 	
 	
@@ -329,7 +343,7 @@ function helper_createTableReportVertical($objDetail,$configColumn,$maxColmun,$w
 				
 				$table = $table. "<tr>";
 				
-					$table = $table. "<td nowrap style='text-align:".";width:180px;background-color:#00628e;color:white;' colspan='2'   >";
+					$table = $table. "<td nowrap style='text-align:".";width:167px;background-color:#00628e;color:white;' colspan='2'   >";
 						$table		= $table.$titulo;
 					$table = $table. "</td>";
 					
@@ -340,13 +354,13 @@ function helper_createTableReportVertical($objDetail,$configColumn,$maxColmun,$w
 							$table		= $table. $valueField;
 						$table = $table. "</td>";
 						
-						$table = $table. "<td nowrap style='text-align:".$value["Alineacion"].";width:100%' colspan='".($value['Colspan']-2)."'  >";
+						$table = $table. "<td nowrap style='text-align:".$value["Alineacion"].";width:".($widht-180-167)."px' colspan='".($value['Colspan']-2)."'  >";
 							$table		= $table."	&nbsp;";
 						$table = $table. "</td>";
 						
 					}
 					else{
-						$table = $table. "<td nowrap style='text-align:".$value["Alineacion"].";width:100%' colspan='".($value['Colspan']-1)."'  >";
+						$table = $table. "<td nowrap style='text-align:".$value["Alineacion"].";width:auto' colspan='".($value['Colspan']-1)."'  >";
 							$table		= $table. $valueField;
 						$table = $table. "</td>";
 					}

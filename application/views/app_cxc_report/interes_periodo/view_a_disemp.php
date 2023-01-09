@@ -7,7 +7,7 @@
 		<meta name="application-name" 	content="dsemp" /> 
 		
 		<?php 
-		helper_echoStyleReport();
+		echo helper_reporteGeneralCreateStyle();
 		?>
 		
 	</head>
@@ -77,7 +77,7 @@
 		$configColumn["12"]["Width"]		= "90px";
 		$configColumn["12"]["Formato"]		= "Number";
 		
-		$resultado = helper_createTableReport(
+		$resultado = helper_reporteGeneralCreateTable(
 			$objDetail,
 			$configColumn,
 			'0'
@@ -88,7 +88,7 @@
 	
 		
 		<?php 
-		helper_header(
+		echo helper_reporteGeneralCreateEncabezado(
 			'INTERES POR PERIODO',
 			$objCompany->name,
 			$resultado["columnas"],
@@ -107,7 +107,7 @@
 		
 		<br/>		
 		<?php 
-		helper_echoFirma(	
+		echo helper_reporteGeneralCreateFirma(	
 			$objFirmaEncription,
 			$resultado["columnas"],
 			$resultado["width"]

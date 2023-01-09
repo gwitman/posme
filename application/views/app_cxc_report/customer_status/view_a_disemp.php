@@ -7,7 +7,7 @@
 		<meta name="application-name" 	content="dsemp" /> 
 		
 		<?php 
-		helper_echoStyleReport();
+		echo helper_reporteGeneralCreateStyle();
 		?>
 		
 	</head>
@@ -213,11 +213,11 @@
 		$configColumn["17"]["FiledSoucePrefix"]	= "";
 		$configColumn["17"]["Width"]			= "120px";
 		
-		$resultado = helper_createTableReport($objDocument,$configColumn,'2700px');
+		$resultado = helper_reporteGeneralCreateTable($objDocument,$configColumn,'2700px');
 		?>
 		
 		<?php 
-		helper_header(
+		echo helper_reporteGeneralCreateEncabezado(
 			'ESTADO DE CUENTA',
 			$objCompany->name,
 			$resultado["columnas"],
@@ -343,7 +343,7 @@
 		$configColumn1["9"]["Width"]			= "195px";
 		
 		$objClient;
-		$resultado2 = helper_createTableReportVertical(
+		$resultado2 = helper_reporteGeneralCreateTableVertical(
 			$objClient,
 			$configColumn1,
 			$resultado["columnas"],
@@ -361,7 +361,7 @@
 		
 		<br/>		
 		<?php 
-		helper_echoFirma(	
+		echo helper_reporteGeneralCreateFirma(	
 			$objFirmaEncription,
 			$resultado["columnas"],
 			$resultado["width"]

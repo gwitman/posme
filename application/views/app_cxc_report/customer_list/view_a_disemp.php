@@ -8,7 +8,7 @@
 		
 			
 		<?php 
-		helper_echoStyleReport();
+		echo helper_reporteGeneralCreateStyle();
 		?>
 		
 	</head>
@@ -130,12 +130,12 @@
 		$configColumn["8"]["FiledSouceUrl"]	= "customerNumber";
 		$configColumn["8"]["Url"]			= site_url()."app_cxc_report/pay/viewReport/true/customerNumber/";
 			
-		$resultado = helper_createTableReport($objDetail,$configColumn,'0px');
+		$resultado = helper_reporteGeneralCreateTable($objDetail,$configColumn,'0px');
 		?>
 	
 		
 		<?php 
-		helper_header(
+		echo helper_reporteGeneralCreateEncabezado(
 			'LISTA DE CLIENTES',
 			$objCompany->name,
 			$resultado["columnas"],
@@ -154,7 +154,7 @@
 		
 		<br/>		
 		<?php 
-		helper_echoFirma(	
+		echo helper_reporteGeneralCreateFirma(	
 			$objFirmaEncription,
 			$resultado["columnas"],
 			$resultado["width"]
