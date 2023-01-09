@@ -77,14 +77,34 @@ function helper_header($titulo,$company,$countColumn,$titulo2,$titulo3,$titulo4,
 						text-align:right;background-color:#00628e;color:white;
 					">'.strtoupper($company).'</th>
 				</tr>
-				<tr>
-					<th colspan="'.($countColumn-3).'" style="text-align:left">&nbsp;</th>
+				<tr>';
+				
+					if ($titulo2 == "")
+						echo '<th colspan="'.($countColumn-3).'" style="text-align:left">&nbsp;</th>';
+					else 
+						echo '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo2.'</th>';
+					
+					echo '
 				</tr>
-				<tr>
-					<th colspan="'.($countColumn-3).'" style="text-align:left">&nbsp;</th>
+				<tr>';
+				
+					if ($titulo3 == "")
+						echo '<th colspan="'.($countColumn-3).'" style="text-align:left">&nbsp;</th>';
+					else 
+						echo '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo3.'</th>';
+					
+					
+					echo '
 				</tr>
-				<tr>
-					<th colspan="'.($countColumn-3).'" style="text-align:left">&nbsp;</th>
+				<tr>';
+				
+					if ($titulo4 == "")
+						echo '<th colspan="'.($countColumn-3).'" style="text-align:left">&nbsp;</th>';
+					else 
+						echo '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo4.'</th>';
+					
+					
+					echo '
 				</tr>
 				<tr>
 					<th colspan="'.($countColumn).'" style="text-align:left">
@@ -120,20 +140,34 @@ function helper_createTableReport($objDetail,$configColumn,$widht){
 			<tbody>
 			';
 			
-		
+		$autoIncrement = 0;
 		if($objDetail)
 		foreach($objDetail as $i){
-					
+			$autoIncrement++;
 			$table = $table. "<tr>";
 			
 			foreach($configColumn as $key => $value ){
 				
 				$table = $table. "<td nowrap style='text-align:".$value["Alineacion"]."' colspan='".$value['Colspan']."'  class='border'>";
-					$valueField 			= ( $i[ $value["FiledSouce"] ] );					
-					$tipoData				= $value["Formato"] ;
-					$sumaryzar				= $value["Total"] ;
-					$prefix					= $value["FiledSoucePrefix"] ;
+					$valueField 			= ($i[$value["FiledSouce"] ] );					
+					$tipoData				= array_key_exists("Formato",$value) ? $value["Formato"] : "" ;
+					$sumaryzar				= array_key_exists("Total",$value) ? $value["Total"] : False ; 
+					$prefix					= array_key_exists("FiledSoucePrefix",$value) ? $value["FiledSoucePrefix"] : "" ;
+					$autoIncrement			= array_key_exists("AutoIncrement",$value) ? $value["AutoIncrement"] : False ;
 					
+					$IsUrl					= array_key_exists("IsUrl",$value) ? $value["IsUrl"] : False ;					
+					$Url					= array_key_exists("Url",$value) ? $value["Url"] : "" ;	
+					$FiledSouceUrl			= array_key_exists("FiledSouceUrl",$value) ? $value["FiledSouceUrl"] : "" ;	
+					
+					
+					$valueFieldPrefixValue 	= "";
+					$valueFieldUrlValue 	= "";
+					
+					if($prefix != "")
+					$valueFieldPrefixValue 	= ($i[$value["FiledSoucePrefix"] ]);
+				
+					if($FiledSouceUrl != "")
+					$valueFieldUrlValue 	= ($i[$value["FiledSouceUrl"] ]);
 					
 					
 					//Formato al valor
@@ -151,11 +185,17 @@ function helper_createTableReport($objDetail,$configColumn,$widht){
 					}
 					
 					//Prefix					
-					if($prefix != ""){
-						$valueFieldPrefixValue 	= ( $i[ $value["FiledSoucePrefix"] ] );
+					if($prefix != ""){						
 						$valueField 			= $valueFieldPrefixValue." ".$valueField;
 					}
 					
+					if($autoIncrement){
+						$valueField = $autoIncrement;
+					}
+					
+					if($IsUrl){
+						$valueField = "<a href='".$Url.$valueFieldUrlValue."' >".$valueField."</a>";
+					}
 					
 					
 					
