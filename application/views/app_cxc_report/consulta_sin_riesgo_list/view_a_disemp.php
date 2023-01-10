@@ -6,100 +6,96 @@
 		<meta name="viewport" 			content="width=device-width, initial-scale=1.0">
 		<meta name="application-name" 	content="dsemp" /> 
 		
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css" media="print">
-		
+			
+		<?php 
+		echo helper_reporteGeneralCreateStyle();
+		?>
 	</head>
-	<body> 
-		<div class="data_grid_encabezado">
-			<table>
-				<thead>
-					<tr>
-						<th colspan='8'>LISTA DE CONSULTAS REALIZADAS AL BURO DE CREDITO</th>
-					</tr>
-					<tr>
-						<th colspan='8'><?php echo strtoupper($objCompany->name); ?></th>
-					</tr>
-					<tr>
-						<th colspan='8'>DEL <?php echo $startOn; ?> AL <?php echo $endOn; ?></th>
-					</tr>
-				</thead>
-			</table>
-		</div>
-		<br/>		
-		<div class="data_grid_body">
-			<table>
-				<thead>					
-					<tr>
-						<th nowrap class="cell_left">Consecutivo</th>
-						<th nowrap class="cell_left">RequestID</th>
-						<th nowrap class="cell_left">Cliente</th>
-						<th nowrap class="cell_left">Cedula del Cliente</th>
-						<th nowrap class="cell_left">Archivo</th>
-						<th nowrap class="cell_left">Fecha de Consulta</th>
-						<th nowrap class="cell_left">Usuario</th>
-						<th nowrap class="cell_left">Estado</th>
-					</tr>
-				</thead>				
-				<tbody>
-					<?php
-					$count 		= 0;
-					if($objDetail)
-					foreach($objDetail as $i){
-						$count++;
-						echo "<tr>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($count);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["requestID"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["cliente"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ("'".$i["cedulaCliente"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo "<a href='".site_url()."app_cxc_record/index.aspx?file_exists=".$i["file_"]."'  target='_blank'    >".$i["file_"]."</a>";
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ("'".$i["createdOn"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["Usuario"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["Estado"]);
-							echo "</td>";
-						echo "</tr>";
-					}
-					?>
-				</tbody>
-				<footer>					
-					<tr>
-						<th nowrap class="cell_left">Total</th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-						<th nowrap class="cell_left"></th>
-					</tr>
-				</footer>	
-			</table>
-		</div>
-		<br/>
-		<div class="data_grid_firm_system">
-			<table>
-				<tbody>
-					<tr>
-						<td colspan='8'><?php echo date("Y-m-d H:i:s");  ?> <?php echo $objFirmaEncription; ?></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<body style="font-family:monospace;font-size:smaller;margin:0px 0px 0px 0px"> 
+	
+		<?php
+		$configColumn["0"]["Titulo"] 		= "Consecutivo";
+		$configColumn["1"]["Titulo"] 		= "RequestID";
+		$configColumn["2"]["Titulo"] 		= "Cliente";
+		$configColumn["3"]["Titulo"] 		= "Cedula del Cliente";
+		$configColumn["4"]["Titulo"] 		= "Archivo";
+		$configColumn["5"]["Titulo"] 		= "Fecha de Consulta";
+		$configColumn["6"]["Titulo"] 		= "Usuario";
+		$configColumn["7"]["Titulo"] 		= "Estado";
+		
+		$configColumn["0"]["FiledSouce"] 		= "requestID";
+		$configColumn["1"]["FiledSouce"] 		= "requestID";
+		$configColumn["2"]["FiledSouce"] 		= "cliente";
+		$configColumn["3"]["FiledSouce"] 		= "cedulaCliente";
+		$configColumn["4"]["FiledSouce"] 		= "file_";
+		$configColumn["5"]["FiledSouce"] 		= "createdOn";
+		$configColumn["6"]["FiledSouce"] 		= "Usuario";
+		$configColumn["7"]["FiledSouce"] 		= "Estado";
+		
+		$configColumn["0"]["Width"] 		= "110px";
+		$configColumn["1"]["Width"] 		= "100px";
+		$configColumn["2"]["Width"] 		= "250px";
+		$configColumn["3"]["Width"] 		= "130px";
+		$configColumn["4"]["Width"] 		= "250px";
+		$configColumn["5"]["Width"] 		= "130px";
+		$configColumn["6"]["Width"] 		= "120px";
+		$configColumn["7"]["Width"] 		= "110px";
+		
+		$configColumn["0"]["Formato"] 		= "";
+		$configColumn["1"]["Formato"] 		= "";
+		$configColumn["2"]["Formato"] 		= "";
+		$configColumn["3"]["Formato"] 		= "";
+		$configColumn["4"]["Formato"] 		= "";
+		$configColumn["5"]["Formato"] 		= "Date";
+		$configColumn["6"]["Formato"] 		= "";
+		$configColumn["7"]["Formato"] 		= "";
+		
+		$configColumn["0"]["AutoIncrement"]  = True;
+		
+		
+		$configColumn["4"]["IsUrl"]			= True;
+		$configColumn["4"]["FiledSouceUrl"]	= "file_";
+		$configColumn["4"]["Url"]			= site_url()."app_cxc_record/index.aspx?file_exists=";
+		
+		
+		
+		
+		
+		
+		$resultado = helper_reporteGeneralCreateTable($objDetail,$configColumn,'0px');
+		//log_message("ERROR",print_r($objDetail,true));
+		?>
+		
+		
+		<?php 
+		echo helper_reporteGeneralCreateEncabezado(
+			'LISTA DE CONSULTAS REALIZADAS AL BURO DE CREDITO',
+			$objCompany->name,
+			$resultado["columnas"],
+			'DEL '.$startOn.' AL '.$endOn,
+			"",
+			"",
+			$resultado["width"]
+		);
+		?>
+		
+		<br/>	
+		<?php 
+			echo $resultado["table"];
+		?>
+		<br/>	
+		
+		
+		<?php 
+		echo helper_reporteGeneralCreateFirma(	
+			$objFirmaEncription,
+			$resultado["columnas"],
+			$resultado["width"]
+		);
+		?>	
+		
+		
+		
 		
 	</body>	
 </html>

@@ -5,83 +5,68 @@
 		<title><?php echo $objFirmaEncription; ?></title>
 		<meta name="viewport" 			content="width=device-width, initial-scale=1.0">
 		<meta name="application-name" 	content="dsemp" /> 
-		
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo site_url(); ?>css/style_table_report_printer.css" media="print">
-		
+		<?php 
+		echo helper_reporteGeneralCreateStyle();
+		?>
 	</head>
-	<body style="background-image:url(<?php echo site_url(); ?>img/logos/<?php echo $objLogo->value;?>);background-size:80px 50px;"> 
-		<div class="data_grid_encabezado">
-			<table>
-				<thead>
-					<tr>
-						<th colspan="6">TIPO DE CAMBIO</th>
-					</tr>
-					<tr>
-						<th colspan="6"><?php echo strtoupper($objCompany->name); ?></th>
-					</tr>
-				</thead>
-			</table>
-		</div>
-		<br/>
-		<br/>
-		<br/>
-		<div class="data_grid_body">
-			<table>
-				<thead>
-					<tr>
-						<th nowrap class="cell_left">Fecha</th>
-						<th nowrap class="cell_left">Cordoba</th>
-						<th nowrap class="cell_left">Oficial</th>
-						<th nowrap class="cell_left">Compra</th>
-						<th nowrap class="cell_left">Venta</th>
-						<th nowrap class="cell_right">Dolar</th>	
-					</tr>
-				</thead>				
-				<tbody>
-					<?php
-					$count 		= 0;
-					if($objDetail)
-					foreach($objDetail as $i){
-						$count++;
-						if ($count % 2 == 0 )
-						echo "<tr style='background:#ddd'>";
-						else 
-						echo "<tr>";					
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["Fecha"]);
-							echo "</td>";
-								echo "<td nowrap class='cell_left'>";
-								echo ($i["Cordoba"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["Oficial"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["Compra"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_left'>";
-								echo ($i["Venta"]);
-							echo "</td>";
-							echo "<td nowrap class='cell_right'>";
-								echo ($i["Dolar"]);
-							echo "</td>";
-						echo "</tr>";
-					}
-					?>
-				</tbody>
-			</table>
-		</div>
-		<br/>
-		<div class="data_grid_firm_system">
-			<table>
-				<tbody>
-					<tr>
-						<td colspan="6"><?php echo date("Y-m-d H:i:s");  ?> <?php echo $objFirmaEncription; ?></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<body style="font-family:monospace;font-size:smaller;margin:0px 0px 0px 0px"> 
+	
+		
+		<?php
+		$configColumn["0"]["Titulo"] 		= "Fecha";
+		$configColumn["1"]["Titulo"] 		= "Cordoba";
+		$configColumn["2"]["Titulo"] 		= "Oficial";
+		$configColumn["3"]["Titulo"] 		= "Compra";
+		$configColumn["4"]["Titulo"] 		= "Venta";
+		
+		$configColumn["0"]["FiledSouce"] 		= "Fecha";
+		$configColumn["1"]["FiledSouce"] 		= "Cordoba";
+		$configColumn["2"]["FiledSouce"] 		= "Oficial";
+		$configColumn["3"]["FiledSouce"] 		= "Compra";
+		$configColumn["4"]["FiledSouce"] 		= "Venta";
+		
+		$configColumn["0"]["Width"] 		= "120px";
+		$configColumn["1"]["Width"] 		= "80px";
+		$configColumn["2"]["Width"] 		= "80px";
+		$configColumn["3"]["Width"] 		= "80px";
+		$configColumn["4"]["Width"] 		= "80px";
+		
+		$configColumn["0"]["Formato"] 		= "Date";
+		$configColumn["1"]["Formato"] 		= "";
+		$configColumn["2"]["Formato"] 		= "Number";
+		$configColumn["3"]["Formato"] 		= "Number";
+		$configColumn["4"]["Formato"] 		= "Number";
+		
+		
+		$resultado = helper_reporteGeneralCreateTable($objDetail,$configColumn,'0px');
+		
+		?>
+		
+		<?php 
+		echo helper_reporteGeneralCreateEncabezado(
+			'TIPO DE CAMBIO',
+			$objCompany->name,
+			$resultado["columnas"],
+			"",
+			"",
+			"",
+			$resultado["width"]
+		);
+		?>
+		
+		<?php 
+		echo $resultado["table"];
+		?>
+	
+		<br/>		
+		<?php 
+		echo helper_reporteGeneralCreateFirma(	
+			$objFirmaEncription,
+			$resultado["columnas"],
+			$resultado["width"]
+		);
+		?>
+		
 		
 	</body>	
 </html>

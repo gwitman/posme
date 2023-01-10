@@ -56,7 +56,7 @@ function helper_reporteGeneralCreateEncabezado($titulo,$company,$countColumn,$ti
 					if ($titulo2 == "")
 						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:Left">&nbsp;</th>';
 					else 
-						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo2.'</th>';
+						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:Left;background-color:#00628e;color:white;">'.$titulo2.'</th>';
 					
 					$resultado = $resultado.'
 				</tr>
@@ -65,7 +65,7 @@ function helper_reporteGeneralCreateEncabezado($titulo,$company,$countColumn,$ti
 					if ($titulo3 == "")
 						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:Left">&nbsp;</th>';
 					else 
-						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo3.'</th>';
+						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:Left;background-color:#00628e;color:white;">'.$titulo3.'</th>';
 					
 					
 					$resultado = $resultado. '
@@ -75,7 +75,7 @@ function helper_reporteGeneralCreateEncabezado($titulo,$company,$countColumn,$ti
 					if ($titulo4 == "")
 						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:Left">&nbsp;</th>';
 					else 
-						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:right;background-color:#00628e;color:white;">'.$titulo4.'</th>';
+						$resultado = $resultado. '<th colspan="'.($countColumn-3).'" style="text-align:Left;background-color:#00628e;color:white;">'.$titulo4.'</th>';
 					
 					
 					$resultado = $resultado.'
@@ -141,8 +141,10 @@ function helper_reporteGeneralCreateTable($objDetail,$configColumn,$widht){
 		$configColumn[$key]["Width"] 				= array_key_exists("Width",$value) ? $value["Width"] : "auto" ;
 		$configColumn[$key]["AutoIncrement"] 		= array_key_exists("AutoIncrement",$value) ? $value["AutoIncrement"] : False ;
 		$configColumn[$key]["IsUrl"] 				= array_key_exists("IsUrl",$value) ? $value["IsUrl"] : False ;
-		$configColumn[$key]["FiledSouceUrl"] 		= array_key_exists("FiledSouceUrl",$value) ? $value["FiledSouceUrl"] : "" ;
-		$configColumn[$key]["Url"] 					= array_key_exists("Url",$value) ? $value["Url"] : "" ;
+		$configColumn[$key]["FiledSouceUrl"] 			= array_key_exists("FiledSouceUrl",$value) ? $value["FiledSouceUrl"] : "" ;
+		$configColumn[$key]["Url"] 						= array_key_exists("Url",$value) ? $value["Url"] : "" ;
+		$configColumn[$key]["FiledSoucePrefixCustom"] 	= array_key_exists("FiledSoucePrefixCustom",$value) ? $value["FiledSoucePrefixCustom"] : "" ;
+		$configColumn[$key]["Promedio"] 				= array_key_exists("Promedio",$value) ? $value["Promedio"] : False ;
 		
 		$configColumn[$key]["Alineacion"] 			= $configColumn[$key]["Formato"] == "Number"? "Right": "Left";
 	}
@@ -180,10 +182,12 @@ function helper_reporteGeneralCreateTable($objDetail,$configColumn,$widht){
 		';
 		
 	//Armar cuerpo
-	$autoIncrement = 0;
+	$autoIncrementValue 	= 0;
+	$counterRow				= 0;
 	if($objDetail)
 	foreach($objDetail as $i){
-		$autoIncrement++;
+		$autoIncrementValue++;
+		$counterRow++;
 		$table = $table. "<tr>";
 		
 		foreach($configColumn as $key => $value ){
@@ -193,7 +197,10 @@ function helper_reporteGeneralCreateTable($objDetail,$configColumn,$widht){
 				$tipoData				= array_key_exists("Formato",$value) ? $value["Formato"] : "" ;
 				$sumaryzar				= array_key_exists("Total",$value) ? $value["Total"] : False ; 
 				$prefix					= array_key_exists("FiledSoucePrefix",$value) ? $value["FiledSoucePrefix"] : "" ;
+				$FiledSoucePrefixCustom	= array_key_exists("FiledSoucePrefixCustom",$value) ? $value["FiledSoucePrefixCustom"] : "" ;
+				
 				$autoIncrement			= array_key_exists("AutoIncrement",$value) ? $value["AutoIncrement"] : False ;
+				$Promedio				= array_key_exists("Promedio",$value) ? $value["Promedio"] : False ;
 				
 				$IsUrl					= array_key_exists("IsUrl",$value) ? $value["IsUrl"] : False ;					
 				$Url					= array_key_exists("Url",$value) ? $value["Url"] : "" ;	
@@ -223,14 +230,21 @@ function helper_reporteGeneralCreateTable($objDetail,$configColumn,$widht){
 				if($sumaryzar){
 					$configColumn[$key]["TotalValor"] = $value["TotalValor"] + $valueField;
 				}
+				if($Promedio){
+					$configColumn[$key]["TotalValor"] = $value["TotalValor"] + $valueField;
+				}
 				
 				//Prefix					
 				if($prefix != ""){						
 					$valueField 			= $valueFieldPrefixValue." ".$valueField;
 				}
 				
+				if($FiledSoucePrefixCustom != ""){
+					$valueField 			= $FiledSoucePrefixCustom." ".$valueField;
+				}
+				
 				if($autoIncrement){
-					$valueField = $autoIncrement;
+					$valueField = $autoIncrementValue;
 				}
 				
 				if($IsUrl){
@@ -260,14 +274,19 @@ function helper_reporteGeneralCreateTable($objDetail,$configColumn,$widht){
 						$sumaryzar	= $value["Total"] ;
 						$totalValor	= $value["TotalValor"] ;
 						$prefix		= $value["FiledSoucePrefix"] ;
+						$Promedio	= $value["Promedio"] ;
 						
 						if($filedValue == ""){
 							$filedValue = "	&nbsp;";
 						}
 						
 						if($sumaryzar){
-							$filedValue = number_format($totalValor,2,'.',',');
+							$filedValue = $filedValue."SUMA&nbsp;&nbsp;=&nbsp;&nbsp;".number_format($totalValor,2,'.',',')."<br/>";
 						}
+						if($Promedio){
+							$filedValue = $filedValue."PROMEDIO&nbsp;&nbsp;=&nbsp;&nbsp;".number_format($totalValor / $counterRow  ,2,'.',',') ;
+						}
+						
 						
 						if($prefix != ""){
 							$valueFieldPrefixValue 	= ( $i[ $value["FiledSoucePrefix"] ] );
